@@ -1,0 +1,396 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>事件处理与表单绑定</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 05 次课 · 教学设计</div>
+      <h1>事件处理与表单绑定</h1>
+      <p>教师教案与课堂组织 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 05 次课</span>
+        <span class="hero-chip"><b>主题</b>事件处理与表单绑定</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一课程信息">一、课程信息</a>
+<ul>
+</ul></li>
+<li><a href="#二教学目标">二、教学目标</a>
+<ul>
+<li><a href="#知识目标">知识目标</a></li>
+<li><a href="#能力目标">能力目标</a></li>
+<li><a href="#素质目标课程思政">素质目标（课程思政）</a></li>
+</ul></li>
+<li><a href="#三主要知识点纲要">三、主要知识点纲要</a>
+<ul>
+</ul></li>
+<li><a href="#四项目任务或案例任务">四、项目任务或案例任务</a>
+<ul>
+</ul></li>
+<li><a href="#五课堂互动设计">五、课堂互动设计</a>
+<ul>
+<li><a href="#互动-1编程小测验表单绑定场景题">互动 1：编程小测验——表单绑定场景题</a></li>
+<li><a href="#互动-2修饰符链式顺序讨论">互动 2：修饰符链式顺序讨论</a></li>
+</ul></li>
+<li><a href="#六课程思政融入点">六、课程思政融入点</a>
+<ul>
+</ul></li>
+<li><a href="#七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5 分钟）</a>
+<ul>
+</ul></li>
+<li><a href="#八课后任务">八、课后任务</a>
+<ul>
+</ul></li>
+<li><a href="#九对应岗位能力或面试考点">九、对应岗位能力或面试考点</a>
+<ul>
+</ul></li>
+<li><a href="#十教学资料与题库索引">十、教学资料与题库索引</a>
+<ul>
+</ul></li>
+<li><a href="#附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 05 次课 <span>｜</span> <strong>文档：</strong>教学设计</p>
+<blockquote>
+<p>所属模块：M2 Vue3 核心语法 ｜ 课程：《MVVM前端框架开发技术》
+配套资料：见同文件夹内
+<code>教学资料.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一课程信息">一、课程信息</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>次序</td>
+<td>第 5 次课（全课程 16 次之第 5）</td>
+</tr>
+<tr>
+<td>学时</td>
+<td>2 学时（90 分钟）</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>理论课</td>
+</tr>
+<tr>
+<td>所属模块</td>
+<td>M2 Vue3 核心语法</td>
+</tr>
+<tr>
+<td>教学主题</td>
+<td>事件处理与表单绑定</td>
+</tr>
+<tr>
+<td>先修基础</td>
+<td>第 1~4 次课（指令、响应式、computed）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="二教学目标">二、教学目标</h2>
+<h3 id="知识目标">知识目标</h3>
+<ol type="1">
+<li>掌握事件处理 <code>v-on</code>（<code>@</code>）的用法，理解事件对象
+<code>$event</code>。</li>
+<li>掌握事件修饰符（<code>.stop</code>/<code>.prevent</code>/<code>.once</code>/<code>.capture</code>/<code>.self</code>）。</li>
+<li>掌握按键修饰符（<code>.enter</code>/<code>.esc</code>
+等）与系统修饰符（<code>.ctrl</code>/<code>.shift</code>）。</li>
+<li>掌握表单输入绑定
+<code>v-model</code>（input/textarea/select/单选/多选）。</li>
+<li>掌握 <code>v-model</code>
+修饰符（<code>.lazy</code>/<code>.number</code>/<code>.trim</code>）。</li>
+</ol>
+<h3 id="能力目标">能力目标</h3>
+<ol type="1">
+<li>能正确绑定事件、传参、访问事件对象。</li>
+<li>能用事件修饰符简化常见交互（阻止冒泡、阻止默认）。</li>
+<li>能用 v-model 实现各类表单的双向绑定与简单验证。</li>
+<li>能实现 CTTS-Frontend 登录表单（双向绑定 + 验证 + 提交）。</li>
+</ol>
+<h3 id="素质目标课程思政">素质目标（课程思政）</h3>
+<ol type="1">
+<li>培养用户体验意识——良好的表单交互让用户少犯错、少返工。</li>
+<li>建立输入校验意识——前端校验是数据安全的第一道关。</li>
+</ol>
+<hr />
+<h2 id="三主要知识点纲要">三、主要知识点纲要</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>知识点</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K5-1</td>
+<td>事件处理基础</td>
+<td><code>@click</code>/<code>@submit</code>；方法引用 vs
+内联语句；<code>$event</code>；传参</td>
+</tr>
+<tr>
+<td>K5-2</td>
+<td>事件修饰符</td>
+<td><code>.stop</code>/<code>.prevent</code>/<code>.once</code>/<code>.capture</code>/<code>.self</code>/<code>.passive</code>；可链式</td>
+</tr>
+<tr>
+<td>K5-3</td>
+<td>按键与系统修饰符</td>
+<td><code>.enter</code>/<code>.esc</code>/<code>.tab</code>/<code>.space</code>/<code>.delete</code>；<code>.ctrl</code>/<code>.shift</code>/<code>.alt</code>/<code>.meta</code>；<code>.exact</code></td>
+</tr>
+<tr>
+<td>K5-4</td>
+<td>表单输入绑定</td>
+<td>input/textarea/select；单选 radio；多选 checkbox（数组）</td>
+</tr>
+<tr>
+<td>K5-5</td>
+<td>v-model 修饰符</td>
+<td><code>.lazy</code>（失焦同步）/<code>.number</code>（转数字）/<code>.trim</code>（去空格）</td>
+</tr>
+<tr>
+<td>K5-6</td>
+<td>表单验证基础</td>
+<td>非空、格式、长度校验；提交前校验</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="四项目任务或案例任务">四、项目任务或案例任务</h2>
+<p><strong>本次课任务</strong>：实现 CTTS-Frontend
+登录表单——用户名/密码双向绑定、回车提交、表单校验（非空）、阻止默认提交、提交后显示提示。</p>
+<hr />
+<h2 id="五课堂互动设计">五、课堂互动设计</h2>
+<h3 id="互动-1编程小测验表单绑定场景题">互动
+1：编程小测验——表单绑定场景题</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>给出一个多选 checkbox 列表，请学生写出 v-model
+绑定的数据类型与写法</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>多选 checkbox 绑定数组；value 标识选项</td>
+</tr>
+</tbody>
+</table>
+<h3 id="互动-2修饰符链式顺序讨论">互动 2：修饰符链式顺序讨论</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td><code>@click.prevent.stop</code> 与 <code>@click.stop.prevent</code>
+顺序有区别吗？</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>顺序影响执行先后，先 prevent 再 stop 或反之行为不同</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六课程思政融入点">六、课程思政融入点</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>融入点</td>
+<td>用户体验——表单交互设计让用户少犯错、少返工</td>
+</tr>
+<tr>
+<td>技术关联</td>
+<td>合理的事件处理与表单校验提升用户体验与数据质量</td>
+</tr>
+<tr>
+<td>引导问题</td>
+<td>"你遇到过填完一长串表单点提交才提示错误的网站吗？感受如何？"</td>
+</tr>
+<tr>
+<td>预期价值目标</td>
+<td>树立用户体验意识与输入校验意识</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5
+分钟）</h2>
+<p><strong>判断题</strong>：</p>
+<ol type="1">
+<li><code>@click="fn()"</code> 会立即调用 fn。（✓）</li>
+<li><code>.stop</code> 阻止默认行为。（✗）</li>
+<li>多选 checkbox 的 v-model 绑定数组。（✓）</li>
+<li><code>.lazy</code> 让 v-model 实时同步。（✗）</li>
+</ol>
+<blockquote>
+<p>详细题目见 <code>题库.md</code>。</p>
+</blockquote>
+<hr />
+<h2 id="八课后任务">八、课后任务</h2>
+<ol type="1">
+<li>通读 <code>教学资料.md</code>，掌握事件处理与表单绑定。</li>
+<li>完善 CTTS-Frontend
+登录表单：增加"记住我"checkbox、密码长度校验。</li>
+<li>思考：事件修饰符链式顺序的影响（200 字）。</li>
+</ol>
+<hr />
+<h2 id="九对应岗位能力或面试考点">九、对应岗位能力或面试考点</h2>
+<table>
+<thead>
+<tr>
+<th>岗位能力/面试考点</th>
+<th>对应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>事件修饰符（stop/prevent）用法</td>
+<td>K5-2</td>
+</tr>
+<tr>
+<td>v-model 各种表单绑定（高频）</td>
+<td>K5-4</td>
+</tr>
+<tr>
+<td>v-model 修饰符（lazy/number/trim）</td>
+<td>K5-5</td>
+</tr>
+<tr>
+<td>表单校验思路</td>
+<td>K5-6</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="十教学资料与题库索引">十、教学资料与题库索引</h2>
+<table>
+<thead>
+<tr>
+<th>资料类型</th>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学生复习资料</td>
+<td><code>教学资料.md</code></td>
+<td>6 个知识点详解 + 登录表单综合示例 + 知识结构图</td>
+</tr>
+<tr>
+<td>考试题库</td>
+<td><code>题库.md</code></td>
+<td>78 题，含答案解析与评分标准</td>
+</tr>
+<tr>
+<td>课程总览</td>
+<td><code>../00 课程设计总览.md</code></td>
+<td>课程整体框架</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</h2>
+<table>
+<thead>
+<tr>
+<th>时段</th>
+<th>内容</th>
+<th>时长</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0~10 min</td>
+<td>回顾 + K5-1 事件处理基础</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>10~30 min</td>
+<td>K5-2 事件修饰符 + 互动 2</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>30~45 min</td>
+<td>K5-3 按键与系统修饰符</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>45~70 min</td>
+<td>K5-4 表单绑定 + K5-5 修饰符 + 互动 1</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td>70~80 min</td>
+<td>K5-6 表单验证 + 登录表单任务</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>80~85 min</td>
+<td>随堂练习</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>85~90 min</td>
+<td>小结 + 课后任务</td>
+<td>5 min</td>
+</tr>
+</tbody>
+</table>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

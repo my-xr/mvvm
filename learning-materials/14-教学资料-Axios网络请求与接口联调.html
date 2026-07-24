@@ -1,0 +1,505 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Axios网络请求与接口联调</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 14 次课 · 教学资料</div>
+      <h1>Axios网络请求与接口联调</h1>
+      <p>学生复习资料与代码示例 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 14 次课</span>
+        <span class="hero-chip"><b>主题</b>Axios网络请求与接口联调</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一学习导读">一、学习导读</a>
+<ul>
+<li><a href="#11-本节定位">1.1 本节定位</a></li>
+<li><a href="#12-先修基础">1.2 先修基础</a></li>
+<li><a href="#13-学习目标">1.3 学习目标</a></li>
+</ul></li>
+<li><a href="#二知识点详解">二、知识点详解</a>
+<ul>
+<li><a href="#知识点-k14-1axios-安装与基本使用">知识点 K14-1：Axios 安装与基本使用</a></li>
+<li><a href="#知识点-k14-2请求封装">知识点 K14-2：请求封装</a></li>
+<li><a href="#知识点-k14-3请求拦截器">知识点 K14-3：请求拦截器</a></li>
+<li><a href="#知识点-k14-4响应拦截器">知识点 K14-4：响应拦截器</a></li>
+<li><a href="#知识点-k14-5接口联调与-vite-代理">知识点 K14-5：接口联调与 Vite 代理</a></li>
+</ul></li>
+<li><a href="#四拓展阅读选学">四、拓展阅读（选学）</a>
+<ul>
+</ul></li>
+<li><a href="#五本节小结与知识结构图">五、本节小结与知识结构图</a>
+<ul>
+</ul></li>
+<li><a href="#六复习思考题">六、复习思考题</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 14 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
+<blockquote>
+<p>学生复习资料 ｜
+配套：<code>教学设计.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一学习导读">一、学习导读</h2>
+<h3 id="11-本节定位">1.1 本节定位</h3>
+<p>本节学习 Axios
+网络请求与后端接口联调，是前后端分离开发的核心能力，也是与 JavaWeb 课程
+CTTS 后端联调的实战。</p>
+<h3 id="12-先修基础">1.2 先修基础</h3>
+<table>
+<thead>
+<tr>
+<th>先修知识</th>
+<th>程度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 12~13 次课</td>
+<td>必须</td>
+<td>Pinia 状态管理（存 Token）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-学习目标">1.3 学习目标</h3>
+<ul>
+<li>✅ 掌握 Axios 封装与拦截器</li>
+<li>✅ 掌握 Vite 代理解决跨域</li>
+<li>✅ 能联调 CTTS 后端接口</li>
+</ul>
+<hr />
+<h2 id="二知识点详解">二、知识点详解</h2>
+<h3 id="知识点-k14-1axios-安装与基本使用">知识点 K14-1：Axios
+安装与基本使用</h3>
+<h4 id="定义">定义</h4>
+<p><strong>Axios</strong> 是基于 Promise 的 HTTP
+库，支持请求/响应拦截器、取消请求、自动 JSON
+转换等，是前端最流行的网络请求库。</p>
+<h4 id="安装">安装</h4>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install axios</span></code></pre></div>
+<h4 id="基本使用">基本使用</h4>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> axios <span class="im">from</span> <span class="st">&#39;axios&#39;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">// GET 请求</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>axios<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/api/projects&#39;</span>)<span class="op">.</span><span class="fu">then</span>(res <span class="kw">=&gt;</span> {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(res<span class="op">.</span><span class="at">data</span>)        <span class="co">// 响应数据</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">// POST 请求</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>axios<span class="op">.</span><span class="fu">post</span>(<span class="st">&#39;/api/login&#39;</span><span class="op">,</span> { <span class="dt">username</span><span class="op">:</span> <span class="st">&#39;admin&#39;</span><span class="op">,</span> <span class="dt">password</span><span class="op">:</span> <span class="st">&#39;123&#39;</span> })</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">then</span>(res <span class="kw">=&gt;</span> <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(res<span class="op">.</span><span class="at">data</span>))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">// async/await</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> res <span class="op">=</span> <span class="cf">await</span> axios<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/api/projects&#39;</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(res<span class="op">.</span><span class="at">data</span>)</span></code></pre></div>
+<h4 id="响应结构">响应结构</h4>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {}<span class="op">,</span>          <span class="co">// 服务器返回的数据</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">status</span><span class="op">:</span> <span class="dv">200</span><span class="op">,</span>       <span class="co">// HTTP 状态码</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">statusText</span><span class="op">:</span> <span class="st">&#39;OK&#39;</span><span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">headers</span><span class="op">:</span> {}<span class="op">,</span>       <span class="co">// 响应头</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">config</span><span class="op">:</span> {}         <span class="co">// 请求配置</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h4 id="易错点">易错点</h4>
+<ul>
+<li><strong>直接用 res 而非 res.data</strong>：响应数据在
+<code>res.data</code>。</li>
+<li><strong>不处理错误</strong>：网络请求应 try/catch 或 catch
+处理失败。</li>
+</ul>
+<h4 id="小结">小结</h4>
+<p>Axios 基于 Promise，<code>axios.get/post</code> 发请求，响应数据在
+<code>res.data</code>。</p>
+<hr />
+<h3 id="知识点-k14-2请求封装">知识点 K14-2：请求封装</h3>
+<h4 id="定义-1">定义</h4>
+<p>创建 Axios 实例统一配置
+baseURL/timeout/headers，便于管理与切换环境。</p>
+<h4 id="用法">用法</h4>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/utils/request.js</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> axios <span class="im">from</span> <span class="st">&#39;axios&#39;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> request <span class="op">=</span> axios<span class="op">.</span><span class="fu">create</span>({</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">baseURL</span><span class="op">:</span> <span class="st">&#39;/api&#39;</span><span class="op">,</span>           <span class="co">// 基础路径，所有请求自动拼接</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">timeout</span><span class="op">:</span> <span class="dv">10000</span><span class="op">,</span>            <span class="co">// 超时 10 秒</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">headers</span><span class="op">:</span> { <span class="st">&#39;Content-Type&#39;</span><span class="op">:</span> <span class="st">&#39;application/json&#39;</span> }</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> request</span></code></pre></div>
+<h4 id="接口模块化">接口模块化</h4>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/api/user.js</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> request <span class="im">from</span> <span class="st">&#39;../utils/request&#39;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> login <span class="op">=</span> (data) <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">post</span>(<span class="st">&#39;/login&#39;</span><span class="op">,</span> data)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getUserInfo <span class="op">=</span> () <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/user/info&#39;</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">// src/api/project.js</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> request <span class="im">from</span> <span class="st">&#39;../utils/request&#39;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getProjects <span class="op">=</span> (params) <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/projects&#39;</span><span class="op">,</span> { params })</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getProjectById <span class="op">=</span> (id) <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">get</span>(<span class="vs">`/projects/</span><span class="sc">${</span>id<span class="sc">}</span><span class="vs">`</span>)</span></code></pre></div>
+<h4 id="组件中调用">组件中调用</h4>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { login } <span class="im">from</span> <span class="st">&#39;../api/user&#39;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> res <span class="op">=</span> <span class="cf">await</span> <span class="fu">login</span>({ <span class="dt">username</span><span class="op">:</span> <span class="st">&#39;admin&#39;</span><span class="op">,</span> <span class="dt">password</span><span class="op">:</span> <span class="st">&#39;123&#39;</span> })</span></code></pre></div>
+<h4 id="易错点-1">易错点</h4>
+<ul>
+<li><strong>baseURL 末尾斜杠</strong>：<code>/api/</code> 与
+<code>/login</code> 拼接可能产生双斜杠，注意统一。</li>
+<li><strong>直接用 axios 而非封装实例</strong>：应用封装的 request
+实例，统一配置。</li>
+</ul>
+<h4 id="小结-1">小结</h4>
+<p>创建 axios 实例统一配置 baseURL/timeout；接口按模块组织在
+<code>src/api/</code>，组件调用 api 函数。</p>
+<hr />
+<h3 id="知识点-k14-3请求拦截器">知识点 K14-3：请求拦截器</h3>
+<h4 id="定义-2">定义</h4>
+<p><strong>请求拦截器</strong> 在请求发送前统一处理，常用于自动添加
+Token、显示 loading。</p>
+<h4 id="用法-1">用法</h4>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/utils/request.js</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> axios <span class="im">from</span> <span class="st">&#39;axios&#39;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { useUserStore } <span class="im">from</span> <span class="st">&#39;../stores/user&#39;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> request <span class="op">=</span> axios<span class="op">.</span><span class="fu">create</span>({ <span class="dt">baseURL</span><span class="op">:</span> <span class="st">&#39;/api&#39;</span><span class="op">,</span> <span class="dt">timeout</span><span class="op">:</span> <span class="dv">10000</span> })</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">// 请求拦截器</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>request<span class="op">.</span><span class="at">interceptors</span><span class="op">.</span><span class="at">request</span><span class="op">.</span><span class="fu">use</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  (config) <span class="kw">=&gt;</span> {</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">useUserStore</span>()</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (userStore<span class="op">.</span><span class="at">token</span>) {</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      config<span class="op">.</span><span class="at">headers</span><span class="op">.</span><span class="at">Authorization</span> <span class="op">=</span> <span class="vs">`Bearer </span><span class="sc">${</span>userStore<span class="op">.</span><span class="at">token</span><span class="sc">}</span><span class="vs">`</span>   <span class="co">// 自动加 Token</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> config</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  (error) <span class="kw">=&gt;</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">reject</span>(error)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> request</span></code></pre></div>
+<h4 id="易错点-2">易错点</h4>
+<ul>
+<li><strong>拦截器中用 useUserStore</strong>：需在 Pinia
+已挂载后调用，确保 store 可用。</li>
+<li><strong>忘 return config</strong>：拦截器必须 return
+config，否则请求被拦截不发。</li>
+</ul>
+<h4 id="小结-2">小结</h4>
+<p>请求拦截器 <code>interceptors.request.use</code>，自动加 Token
+到请求头。</p>
+<hr />
+<h3 id="知识点-k14-4响应拦截器">知识点 K14-4：响应拦截器</h3>
+<h4 id="定义-3">定义</h4>
+<p><strong>响应拦截器</strong>
+在响应到达后统一处理，常用于解包数据、统一错误处理、登录过期跳转。</p>
+<h4 id="用法-2">用法</h4>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 响应拦截器</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>request<span class="op">.</span><span class="at">interceptors</span><span class="op">.</span><span class="at">response</span><span class="op">.</span><span class="fu">use</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  (response) <span class="kw">=&gt;</span> {</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> res <span class="op">=</span> response<span class="op">.</span><span class="at">data</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (res<span class="op">.</span><span class="at">code</span> <span class="op">===</span> <span class="dv">200</span>) {</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="at">data</span>          <span class="co">// 成功，返回业务数据</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      ElMessage<span class="op">.</span><span class="fu">error</span>(res<span class="op">.</span><span class="at">message</span> <span class="op">||</span> <span class="st">&#39;请求失败&#39;</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">reject</span>(<span class="kw">new</span> <span class="bu">Error</span>(res<span class="op">.</span><span class="at">message</span>))</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  (error) <span class="kw">=&gt;</span> {</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// HTTP 错误（如 401/404/500）</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (error<span class="op">.</span><span class="at">response</span><span class="op">?.</span><span class="at">status</span> <span class="op">===</span> <span class="dv">401</span>) {</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>      <span class="co">// 登录过期，清空状态跳登录</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">useUserStore</span>()</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>      userStore<span class="op">.</span><span class="fu">logout</span>()</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>      router<span class="op">.</span><span class="fu">push</span>(<span class="st">&#39;/login&#39;</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>      ElMessage<span class="op">.</span><span class="fu">error</span>(error<span class="op">.</span><span class="at">message</span> <span class="op">||</span> <span class="st">&#39;网络错误&#39;</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">reject</span>(error)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<h4 id="统一响应格式与后端约定">统一响应格式（与后端约定）</h4>
+<p>后端返回统一格式：</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> <span class="dt">&quot;code&quot;</span><span class="fu">:</span> <span class="dv">200</span><span class="fu">,</span> <span class="dt">&quot;message&quot;</span><span class="fu">:</span> <span class="st">&quot;success&quot;</span><span class="fu">,</span> <span class="dt">&quot;data&quot;</span><span class="fu">:</span> <span class="fu">{}</span> <span class="fu">}</span></span></code></pre></div>
+<p>响应拦截器根据 code 判断成功/失败，成功返回 data，失败提示。</p>
+<h4 id="易错点-3">易错点</h4>
+<ul>
+<li><strong>return Promise.reject</strong>：错误必须 reject，否则组件
+catch 不到。</li>
+<li><strong>401 处理</strong>：登录过期应清状态跳登录，避免死循环。</li>
+</ul>
+<h4 id="小结-3">小结</h4>
+<p>响应拦截器 <code>interceptors.response.use</code>，解包数据（成功返回
+data）、统一错误处理（401 跳登录）。</p>
+<hr />
+<h3 id="知识点-k14-5接口联调与-vite-代理">知识点 K14-5：接口联调与 Vite
+代理</h3>
+<h4 id="定义-4">定义</h4>
+<p>前端开发服务器（5173）调后端（8080）会产生跨域，用 Vite 代理把
+<code>/api</code> 转发到后端，解决开发环境跨域。</p>
+<h4 id="vite-代理配置">Vite 代理配置</h4>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// vite.config.js</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineConfig } <span class="im">from</span> <span class="st">&#39;vite&#39;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> vue <span class="im">from</span> <span class="st">&#39;@vitejs/plugin-vue&#39;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> <span class="fu">defineConfig</span>({</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">plugins</span><span class="op">:</span> [<span class="fu">vue</span>()]<span class="op">,</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">server</span><span class="op">:</span> {</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">proxy</span><span class="op">:</span> {</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">&#39;/api&#39;</span><span class="op">:</span> {</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">target</span><span class="op">:</span> <span class="st">&#39;http://localhost:8080&#39;</span><span class="op">,</span>   <span class="co">// 后端地址</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">changeOrigin</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span>                 <span class="co">// 改变 Origin</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">rewrite</span><span class="op">:</span> (path) <span class="kw">=&gt;</span> path<span class="op">.</span><span class="fu">replace</span>(<span class="ss">/</span><span class="sc">^\/</span><span class="ss">api/</span><span class="op">,</span> <span class="st">&#39;&#39;</span>)   <span class="co">// 可选：去掉 /api 前缀</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<h4 id="联调流程">联调流程</h4>
+<div class="visual">
+  <div class="visual-title">图示 1：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">前端请求 /api/projects</span>
+<span class="diagram-line">    <span class="tree-token">│</span>（Vite 代理转发）</span>
+<span class="diagram-line">    ▼</span>
+<span class="diagram-line">后端 http://localhost:8080/projects</span>
+<span class="diagram-line">    <span class="tree-token">│</span>（响应）</span>
+<span class="diagram-line">    ▼</span>
+<span class="diagram-line">前端拿到数据</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<h4 id="mock-兜底后端未就绪">Mock 兜底（后端未就绪）</h4>
+<p>后端未就绪时，用 Mock 数据：</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 简单 Mock：在 api 函数中判断</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getProjects <span class="op">=</span> <span class="kw">async</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 后端就绪：return request.get(&#39;/projects&#39;)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Mock 兜底：</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> [</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">id</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;项目一：JavaWeb&#39;</span><span class="op">,</span> <span class="dt">status</span><span class="op">:</span> <span class="st">&#39;进行中&#39;</span> }<span class="op">,</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">id</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;项目二：Vue3&#39;</span><span class="op">,</span> <span class="dt">status</span><span class="op">:</span> <span class="st">&#39;进行中&#39;</span> }</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>也可用 <code>mockjs</code> 等库。</p>
+<h4 id="易错点-4">易错点</h4>
+<ul>
+<li><strong>代理不生效</strong>：改 vite.config.js 后需重启 dev
+server。</li>
+<li><strong>rewrite 去前缀</strong>：若后端无 <code>/api</code> 前缀，用
+rewrite 去掉；若有则不去。</li>
+<li><strong>生产环境跨域</strong>：Vite 代理只对开发有效，生产用 Nginx
+反代或后端 CORS。</li>
+</ul>
+<h4 id="小结-4">小结</h4>
+<p>开发环境跨域用 Vite proxy 转发；后端未就绪用 Mock 兜底；生产用
+Nginx/CORS。</p>
+<hr />
+<h2
+id="三综合示例ctts-frontend-axios-封装与联调">三、综合示例：CTTS-Frontend
+Axios 封装与联调</h2>
+<p><strong>src/utils/request.js</strong>：</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> axios <span class="im">from</span> <span class="st">&#39;axios&#39;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { useUserStore } <span class="im">from</span> <span class="st">&#39;../stores/user&#39;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { useRouter } <span class="im">from</span> <span class="st">&#39;vue-router&#39;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { ElMessage } <span class="im">from</span> <span class="st">&#39;element-plus&#39;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> request <span class="op">=</span> axios<span class="op">.</span><span class="fu">create</span>({</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">baseURL</span><span class="op">:</span> <span class="st">&#39;/api&#39;</span><span class="op">,</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">timeout</span><span class="op">:</span> <span class="dv">10000</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">// 请求拦截器：自动加 Token</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>request<span class="op">.</span><span class="at">interceptors</span><span class="op">.</span><span class="at">request</span><span class="op">.</span><span class="fu">use</span>(config <span class="kw">=&gt;</span> {</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">useUserStore</span>()</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (userStore<span class="op">.</span><span class="at">token</span>) {</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    config<span class="op">.</span><span class="at">headers</span><span class="op">.</span><span class="at">Authorization</span> <span class="op">=</span> <span class="vs">`Bearer </span><span class="sc">${</span>userStore<span class="op">.</span><span class="at">token</span><span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> config</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co">// 响应拦截器：统一处理</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>request<span class="op">.</span><span class="at">interceptors</span><span class="op">.</span><span class="at">response</span><span class="op">.</span><span class="fu">use</span>(</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  response <span class="kw">=&gt;</span> {</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> res <span class="op">=</span> response<span class="op">.</span><span class="at">data</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (res<span class="op">.</span><span class="at">code</span> <span class="op">===</span> <span class="dv">200</span>) <span class="cf">return</span> res<span class="op">.</span><span class="at">data</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    ElMessage<span class="op">.</span><span class="fu">error</span>(res<span class="op">.</span><span class="at">message</span> <span class="op">||</span> <span class="st">&#39;请求失败&#39;</span>)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">reject</span>(<span class="kw">new</span> <span class="bu">Error</span>(res<span class="op">.</span><span class="at">message</span>))</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  error <span class="kw">=&gt;</span> {</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (error<span class="op">.</span><span class="at">response</span><span class="op">?.</span><span class="at">status</span> <span class="op">===</span> <span class="dv">401</span>) {</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">useUserStore</span>()</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>      userStore<span class="op">.</span><span class="fu">logout</span>()</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>      ElMessage<span class="op">.</span><span class="fu">warning</span>(<span class="st">&#39;登录已过期，请重新登录&#39;</span>)</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>      ElMessage<span class="op">.</span><span class="fu">error</span>(error<span class="op">.</span><span class="at">message</span> <span class="op">||</span> <span class="st">&#39;网络错误&#39;</span>)</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">reject</span>(error)</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> request</span></code></pre></div>
+<p><strong>src/api/user.js</strong>：</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> request <span class="im">from</span> <span class="st">&#39;../utils/request&#39;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> login <span class="op">=</span> (data) <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">post</span>(<span class="st">&#39;/login&#39;</span><span class="op">,</span> data)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getUserInfo <span class="op">=</span> () <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/user/info&#39;</span>)</span></code></pre></div>
+<p><strong>src/api/project.js</strong>：</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> request <span class="im">from</span> <span class="st">&#39;../utils/request&#39;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getProjects <span class="op">=</span> (params) <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/projects&#39;</span><span class="op">,</span> { params })</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getProjectById <span class="op">=</span> (id) <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">get</span>(<span class="vs">`/projects/</span><span class="sc">${</span>id<span class="sc">}</span><span class="vs">`</span>)</span></code></pre></div>
+<p><strong>vite.config.js</strong>（代理）：</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineConfig } <span class="im">from</span> <span class="st">&#39;vite&#39;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> vue <span class="im">from</span> <span class="st">&#39;@vitejs/plugin-vue&#39;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> <span class="fu">defineConfig</span>({</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">plugins</span><span class="op">:</span> [<span class="fu">vue</span>()]<span class="op">,</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">server</span><span class="op">:</span> {</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">proxy</span><span class="op">:</span> {</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">&#39;/api&#39;</span><span class="op">:</span> {</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">target</span><span class="op">:</span> <span class="st">&#39;http://localhost:8080&#39;</span><span class="op">,</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">changeOrigin</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">rewrite</span><span class="op">:</span> (path) <span class="kw">=&gt;</span> path<span class="op">.</span><span class="fu">replace</span>(<span class="ss">/</span><span class="sc">^\/</span><span class="ss">api/</span><span class="op">,</span> <span class="st">&#39;&#39;</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p><strong>userStore 中调用 login</strong>：</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">// stores/user.js</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { login <span class="im">as</span> loginApi } <span class="im">from</span> <span class="st">&#39;../api/user&#39;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">token</span><span class="op">:</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;token&#39;</span>) <span class="op">||</span> <span class="st">&#39;&#39;</span><span class="op">,</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">userInfo</span><span class="op">:</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;userInfo&#39;</span>) <span class="op">||</span> <span class="st">&#39;null&#39;</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">getters</span><span class="op">:</span> { <span class="dt">isLogin</span><span class="op">:</span> (s) <span class="kw">=&gt;</span> <span class="op">!!</span>s<span class="op">.</span><span class="at">token</span> }<span class="op">,</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">actions</span><span class="op">:</span> {</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">async</span> <span class="fu">login</span>(credentials) {</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> data <span class="op">=</span> <span class="cf">await</span> <span class="fu">loginApi</span>(credentials)    <span class="co">// 调接口</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">token</span> <span class="op">=</span> data<span class="op">.</span><span class="at">token</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">userInfo</span> <span class="op">=</span> data<span class="op">.</span><span class="at">userInfo</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">&#39;token&#39;</span><span class="op">,</span> <span class="kw">this</span><span class="op">.</span><span class="at">token</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">&#39;userInfo&#39;</span><span class="op">,</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(<span class="kw">this</span><span class="op">.</span><span class="at">userInfo</span>))</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">logout</span>() {</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">token</span> <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">userInfo</span> <span class="op">=</span> <span class="kw">null</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">removeItem</span>(<span class="st">&#39;token&#39;</span>)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">removeItem</span>(<span class="st">&#39;userInfo&#39;</span>)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p><strong>运行方式</strong>：配置 request、api、vite proxy；启动 CTTS
+后端（8080）与前端（5173），登录调用后端接口，请求头自动带
+Token，响应统一处理。</p>
+<blockquote>
+<p>若后端未就绪，api 函数返回 Mock 数据兜底，第 15~16
+次课再真实联调。</p>
+</blockquote>
+<hr />
+<h2 id="四拓展阅读选学">四、拓展阅读（选学）</h2>
+<ol type="1">
+<li><strong>取消请求</strong>：AbortController / CancelToken。</li>
+<li><strong>并发请求</strong>：<code>axios.all</code> /
+<code>Promise.all</code>。</li>
+<li><strong>文件上传/下载</strong>：FormData 与 responseType:
+'blob'。</li>
+</ol>
+<hr />
+<h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
+<div class="visual">
+  <div class="visual-title">图示 2：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">第 14 次课：Axios 网络请求与接口联调</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K14-1 Axios 基础（get/post，res.data）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K14-2 请求封装（实例，baseURL/timeout，api 模块化）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K14-3 请求拦截器（自动加 Token）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K14-4 响应拦截器（解包数据，统一错误，401 跳登录）</span>
+<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K14-5 联调与 Vite 代理（proxy 解决跨域，Mock 兜底）</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>响应数据</td>
+<td>在 res.data</td>
+</tr>
+<tr>
+<td>封装</td>
+<td>axios.create 实例</td>
+</tr>
+<tr>
+<td>请求拦截</td>
+<td>加 Token</td>
+</tr>
+<tr>
+<td>响应拦截</td>
+<td>解包+错误处理</td>
+</tr>
+<tr>
+<td>跨域</td>
+<td>Vite proxy（开发）/Nginx（生产）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六复习思考题">六、复习思考题</h2>
+<ol type="1">
+<li>Axios 相比 fetch 有什么优势？</li>
+<li>为什么要封装 Axios 实例？</li>
+<li>请求拦截器与响应拦截器分别做什么？</li>
+<li>开发环境跨域如何解决？生产环境呢？</li>
+<li>后端返回统一格式如何处理？</li>
+</ol>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

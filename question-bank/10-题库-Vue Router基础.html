@@ -1,0 +1,755 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vue Router基础</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 10 次课 · 题库</div>
+      <h1>Vue Router基础</h1>
+      <p>考试题库与参考解析 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 10 次课</span>
+        <span class="hero-chip"><b>主题</b>Vue Router基础</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2 分）</a>
+<ul>
+<li><a href="#11-单项选择题30-题">1.1 单项选择题（30 题）</a></li>
+<li><a href="#12-多项选择题10-题">1.2 多项选择题（10 题）</a></li>
+</ul></li>
+<li><a href="#二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1 分）</a>
+<ul>
+</ul></li>
+<li><a href="#三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2 分）</a>
+<ul>
+</ul></li>
+<li><a href="#四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</a>
+<ul>
+</ul></li>
+<li><a href="#五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#题库统计与组卷说明">题库统计与组卷说明</a>
+<ul>
+<li><a href="#题量统计">题量统计</a></li>
+<li><a href="#难度分布">难度分布</a></li>
+<li><a href="#知识点覆盖">知识点覆盖</a></li>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 10 次课 <span>｜</span> <strong>文档：</strong>题库</p>
+<blockquote>
+<p>配套：<code>教学设计.md</code>、<code>教学资料.md</code>（同文件夹）
+题量：40 选择 + 20 判断 + 10 填空 + 4 论述/简答 + 2 程序阅读/补全 + 2
+编程/接口设计 = <strong>78 题</strong>
+全部含参考答案与解析；主观题另附评分标准。 难度：★ 基础 / ★★ 提高 / ★★★
+综合 ｜ 编号：<code>10-题型-序号</code></p>
+</blockquote>
+<hr />
+<h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
+分）</h2>
+<h3 id="11-单项选择题30-题">1.1 单项选择题（30 题）</h3>
+<section class="question-card"><p><strong>10-选择-001</strong>（★ 知识点：K10-1） Vue Router 主要用于？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>状态管理</span></li><li><span class="option-label">B</span><span>SPA 前端路由</span></li><li><span class="option-label">C</span><span>网络请求</span></li><li><span class="option-label">D</span><span>UI 组件</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vue Router 用于 SPA
+前端路由，切换页面不刷新。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-002</strong>（★ 知识点：K10-1） 安装 Vue Router
+的命令是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>npm install vuex</code></span></li><li><span class="option-label">B</span><span><code>npm install vue-router</code></span></li><li><span class="option-label">C</span><span><code>npm install axios</code></span></li><li><span class="option-label">D</span><span><code>npm install vite</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>npm install vue-router</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-003</strong>（★ 知识点：K10-1） 创建 history
+模式路由用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>createWebHistory</code></span></li><li><span class="option-label">B</span><span><code>createWebHashHistory</code></span></li><li><span class="option-label">C</span><span><code>createMemoryHistory</code></span></li><li><span class="option-label">D</span><span><code>createHistory</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：history 模式用
+<code>createWebHistory()</code>。B 是 hash 模式。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-004</strong>（★ 知识点：K10-1） hash 模式的 URL
+特征是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>无 #</span></li><li><span class="option-label">B</span><span>带 #</span></li><li><span class="option-label">C</span><span>带 ?</span></li><li><span class="option-label">D</span><span>带 &amp;</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：hash 模式 URL 带
+#（如 <code>/#/projects</code>）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-005</strong>（★ 知识点：K10-2）
+路由出口（渲染匹配组件）的标签是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;router-view&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;router-link&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;route&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;view&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：<code>&lt;router-view&gt;</code> 是路由出口。A
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-006</strong>（★ 知识点：K10-2） 声明式导航链接用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;a&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;router-link&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;nav&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;link&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>&lt;router-link to&gt;</code>
+是声明式导航。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-007</strong>（★ 知识点：K10-2）
+<code>&lt;router-link&gt;</code> 指定目标路径的属性是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>href</code></span></li><li><span class="option-label">B</span><span><code>to</code></span></li><li><span class="option-label">C</span><span><code>path</code></span></li><li><span class="option-label">D</span><span><code>url</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>to</code>
+属性指定目标。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-008</strong>（★ 知识点：K10-2）
+路由配置中每项的核心字段是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>path</code> 与
+<code>component</code></span></li><li><span class="option-label">B</span><span><code>name</code> 与 <code>id</code></span></li><li><span class="option-label">C</span><span><code>url</code> 与 <code>view</code></span></li><li><span class="option-label">D</span><span><code>route</code> 与
+<code>view</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：路由项含
+<code>path</code>（路径）与 <code>component</code>（组件）。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-009</strong>（★ 知识点：K10-3） 用于编程式导航的 API
+是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>useRoute</code></span></li><li><span class="option-label">B</span><span><code>useRouter</code></span></li><li><span class="option-label">C</span><span><code>useStore</code></span></li><li><span class="option-label">D</span><span><code>useNav</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>useRouter</code> 返回路由实例，用于
+push/replace 导航。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-010</strong>（★ 知识点：K10-3）
+用于获取当前路由信息的 API 是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>useRouter</code></span></li><li><span class="option-label">B</span><span><code>useRoute</code></span></li><li><span class="option-label">C</span><span><code>useParams</code></span></li><li><span class="option-label">D</span><span><code>useQuery</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>useRoute</code>
+返回当前路由信息（params/query/path）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-011</strong>（★ 知识点：K10-3） 编程式导航到
+<code>/projects</code> 的方法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>router.push('/projects')</code></span></li><li><span class="option-label">B</span><span><code>router.go('/projects')</code></span></li><li><span class="option-label">C</span><span><code>router.to('/projects')</code></span></li><li><span class="option-label">D</span><span><code>router.navigate('/projects')</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：<code>router.push('/projects')</code>。A
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-012</strong>（★ 知识点：K10-3）
+<code>router.replace</code> 的特点是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>压入历史，可返回</span></li><li><span class="option-label">B</span><span>替换历史，不可返回</span></li><li><span class="option-label">C</span><span>不导航</span></li><li><span class="option-label">D</span><span>刷新页面</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：replace
+替换当前历史记录，不留返回。A 是 push。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-013</strong>（★ 知识点：K10-4）
+动态路由匹配参数的语法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>{id}</code></span></li><li><span class="option-label">B</span><span><code>:id</code></span></li><li><span class="option-label">C</span><span><code>[id]</code></span></li><li><span class="option-label">D</span><span><code>$id</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：动态路由用
+<code>:id</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-014</strong>（★ 知识点：K10-4） 获取动态路由参数
+<code>:id</code> 用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>route.params.id</code></span></li><li><span class="option-label">B</span><span><code>route.query.id</code></span></li><li><span class="option-label">C</span><span><code>route.path.id</code></span></li><li><span class="option-label">D</span><span><code>route.id</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：动态参数在
+<code>route.params</code>。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-015</strong>（★ 知识点：K10-4）
+让动态路由参数作为组件 props 传入，配置？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>props: true</code></span></li><li><span class="option-label">B</span><span><code>props: false</code></span></li><li><span class="option-label">C</span><span><code>props: 'id'</code></span></li><li><span class="option-label">D</span><span><code>params: true</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：<code>props: true</code> 把 params 作
+props，解耦路由。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-016</strong>（★ 知识点：K10-5） 配置嵌套路由用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>children</code></span></li><li><span class="option-label">B</span><span><code>sub</code></span></li><li><span class="option-label">C</span><span><code>nested</code></span></li><li><span class="option-label">D</span><span><code>child</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：<code>children</code>
+配置子路由。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-017</strong>（★ 知识点：K10-5）
+嵌套路由的子组件渲染在？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>父组件的 <code>&lt;router-view&gt;</code></span></li><li><span class="option-label">B</span><span>App 的 <code>&lt;router-view&gt;</code></span></li><li><span class="option-label">C</span><span>任意位置</span></li><li><span class="option-label">D</span><span>不渲染</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：子路由渲染在父组件内的
+<code>&lt;router-view&gt;</code>。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-018</strong>（★ 知识点：K10-5） 父路由 path
+<code>/user</code>，子路由 path <code>profile</code>（无
+/），完整路径是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>/profile</code></span></li><li><span class="option-label">B</span><span><code>/user/profile</code></span></li><li><span class="option-label">C</span><span><code>/user</code></span></li><li><span class="option-label">D</span><span><code>/profile/user</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：子 path 不以 /
+开头，与父拼接为 <code>/user/profile</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-019</strong>（★ 知识点：K10-2） 路由懒加载的写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>component: import('./X.vue')</code></span></li><li><span class="option-label">B</span><span><code>component: () =&gt; import('./X.vue')</code></span></li><li><span class="option-label">C</span><span><code>component: require('./X.vue')</code></span></li><li><span class="option-label">D</span><span><code>component: './X.vue'</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>component: () =&gt; import('./X.vue')</code>
+动态 import 懒加载。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-020</strong>（★ 知识点：K10-1） 在 main.js 挂载
+router 的写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>createApp(App).mount('#app')</code></span></li><li><span class="option-label">B</span><span><code>createApp(App).use(router).mount('#app')</code></span></li><li><span class="option-label">C</span><span><code>createApp(App).router(router).mount('#app')</code></span></li><li><span class="option-label">D</span><span><code>createApp(router, App).mount('#app')</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>.use(router)</code> 挂载。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-021</strong>（★★ 知识点：K10-1） history
+模式部署后刷新页面 404，原因是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>路由配置错</span></li><li><span class="option-label">B</span><span>服务器未配置路径回退到
+index.html</span></li><li><span class="option-label">C</span><span>组件未导入</span></li><li><span class="option-label">D</span><span>Vue 版本低</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：history
+模式需服务器配置所有路径回退到 index.html。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-022</strong>（★★ 知识点：K10-3）
+<code>router.push({ path: '/user', query: { id: 1 } })</code> 产生的 URL
+是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>/user/1</code></span></li><li><span class="option-label">B</span><span><code>/user?id=1</code></span></li><li><span class="option-label">C</span><span><code>/user#id=1</code></span></li><li><span class="option-label">D</span><span><code>/user&amp;id=1</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：query 产生查询字符串
+<code>?id=1</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-023</strong>（★★ 知识点：K10-3） 获取查询参数
+<code>?keyword=vue</code> 的 keyword 用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>route.params.keyword</code></span></li><li><span class="option-label">B</span><span><code>route.query.keyword</code></span></li><li><span class="option-label">C</span><span><code>route.path.keyword</code></span></li><li><span class="option-label">D</span><span><code>route.search</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：查询参数在
+<code>route.query</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-024</strong>（★★ 知识点：K10-4） 路由
+<code>/tasks/:id</code>，访问
+<code>/tasks/5</code>，<code>route.params.id</code> 的值是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>5</code></span></li><li><span class="option-label">B</span><span><code>id</code></span></li><li><span class="option-label">C</span><span><code>tasks</code></span></li><li><span class="option-label">D</span><span>undefined</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：params.id 为字符串
+<code>'5'</code>。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-025</strong>（★★ 知识点：K10-5） 子路由 path 以
+<code>/</code> 开头表示？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>相对父路径拼接</span></li><li><span class="option-label">B</span><span>绝对路径，不与父拼接</span></li><li><span class="option-label">C</span><span>报错</span></li><li><span class="option-label">D</span><span>无意义</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：以 /
+开头是绝对路径，不与父 path 拼接。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-026</strong>（★★ 知识点：K10-2）
+<code>&lt;router-link&gt;</code> 默认渲染成什么 HTML 标签？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;div&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;a&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;button&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;span&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：router-link
+默认渲染为 <code>&lt;a&gt;</code> 标签。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-027</strong>（★★ 知识点：K10-2） 配置访问
+<code>/</code> 时重定向到 <code>/projects</code>，用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>{ path: '/', redirect: '/projects' }</code></span></li><li><span class="option-label">B</span><span><code>{ path: '/', to: '/projects' }</code></span></li><li><span class="option-label">C</span><span><code>{ path: '/', push: '/projects' }</code></span></li><li><span class="option-label">D</span><span><code>{ path: '/', component: '/projects' }</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：<code>redirect</code>
+字段配置重定向。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-028</strong>（★★ 知识点：K10 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>router-view 是路由出口</span></li><li><span class="option-label">B</span><span>router-link 是导航链接</span></li><li><span class="option-label">C</span><span>useRouter
+用于编程式导航</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-029</strong>（★★ 知识点：K10 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>动态路由用 :id</span></li><li><span class="option-label">B</span><span>嵌套路由用 children</span></li><li><span class="option-label">C</span><span>useRoute 用于导航</span></li><li><span class="option-label">D</span><span>props:true
+解耦路由参数</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：C 错误，useRoute
+获取信息，useRouter 用于导航。A、B、D 正确。选 C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-030</strong>（★★ 知识点：K10 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>hash 模式带 # 兼容好</span></li><li><span class="option-label">B</span><span>history 模式干净需服务器配置</span></li><li><span class="option-label">C</span><span>路由懒加载优化首屏</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<h3 id="12-多项选择题10-题">1.2 多项选择题（10 题）</h3>
+<section class="question-card"><p><strong>10-选择-031</strong>（★★ 知识点：K10-1） 路由模式有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>hash</span></li><li><span class="option-label">B</span><span>history</span></li><li><span class="option-label">C</span><span>memory</span></li><li><span class="option-label">D</span><span>abstract</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 是 Vue
+Router 模式（memory 用于 SSR）。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-032</strong>（★★ 知识点：K10-2）
+路由配置项包含的字段有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>path</code></span></li><li><span class="option-label">B</span><span><code>component</code></span></li><li><span class="option-label">C</span><span><code>children</code></span></li><li><span class="option-label">D</span><span><code>redirect</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项都是路由配置字段。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-033</strong>（★★ 知识点：K10-3）
+<code>useRouter</code> 返回的实例可用于？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>push</code></span></li><li><span class="option-label">B</span><span><code>replace</code></span></li><li><span class="option-label">C</span><span><code>go</code></span></li><li><span class="option-label">D</span><span><code>params</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
+是导航方法；params 在 useRoute。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-034</strong>（★★ 知识点：K10-3）
+<code>useRoute</code> 返回的信息包含？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>path</code></span></li><li><span class="option-label">B</span><span><code>params</code></span></li><li><span class="option-label">C</span><span><code>query</code></span></li><li><span class="option-label">D</span><span><code>push</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
+是路由信息；push 在 useRouter。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-035</strong>（★★ 知识点：K10-4）
+关于动态路由，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>用 <code>:id</code> 定义</span></li><li><span class="option-label">B</span><span>用
+<code>route.params.id</code> 获取</span></li><li><span class="option-label">C</span><span><code>props: true</code> 可解耦</span></li><li><span class="option-label">D</span><span>用 <code>route.query.id</code> 获取</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，query 是查询参数。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-036</strong>（★★ 知识点：K10-5）
+关于嵌套路由，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>用 children 配置</span></li><li><span class="option-label">B</span><span>父组件需有子
+router-view</span></li><li><span class="option-label">C</span><span>子 path 不以 / 开头则拼接父</span></li><li><span class="option-label">D</span><span>子路由不能有子路由</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，可多层嵌套。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-037</strong>（★★ 知识点：K10 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>router-view 是出口</span></li><li><span class="option-label">B</span><span>router-link 是导航</span></li><li><span class="option-label">C</span><span>useRouter 用于导航</span></li><li><span class="option-label">D</span><span>useRoute 用于获取信息</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项均正确。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-038</strong>（★★ 知识点：K10 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>hash 模式带 #</span></li><li><span class="option-label">B</span><span>history 模式需服务器配置</span></li><li><span class="option-label">C</span><span>路由懒加载用动态 import</span></li><li><span class="option-label">D</span><span>router 必须在 main.js 挂载</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项均正确。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-039</strong>（★★ 知识点：K10 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>动态路由 :id 匹配 URL 片段</span></li><li><span class="option-label">B</span><span>嵌套路由
+children</span></li><li><span class="option-label">C</span><span>props:true 把 params 作 props</span></li><li><span class="option-label">D</span><span>replace 留下返回记录</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，replace 不留返回记录。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-选择-040</strong>（★★ 知识点：K10 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>router-link 默认渲染 a 标签</span></li><li><span class="option-label">B</span><span>query 产生 ?
+查询字符串</span></li><li><span class="option-label">C</span><span>子 path 以 / 开头是绝对路径</span></li><li><span class="option-label">D</span><span>history 模式无 #
+无需服务器配置</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，history 需服务器配置。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<h2 id="二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1
+分）</h2>
+<section class="question-card"><p><strong>10-判断-001</strong>（★）Vue Router 用于 SPA 前端路由。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-002</strong>（★）<code>&lt;router-view&gt;</code>
+是路由出口。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-003</strong>（★）<code>useRoute</code>
+用于编程式导航。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：useRoute
+获取信息，useRouter 用于导航。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-004</strong>（★）动态路由用 <code>:id</code> 定义。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-005</strong>（★）hash 模式 URL 带 #。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-006</strong>（★）history 模式需服务器配置路径回退
+index.html。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-007</strong>（★）<code>router.push</code>
+压入历史可返回。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-008</strong>（★）<code>router.replace</code>
+替换历史不可返回。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-009</strong>（★）嵌套路由用 <code>children</code>
+配置。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-010</strong>（★）路由懒加载用
+<code>() =&gt; import()</code>。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-011</strong>（★）<code>&lt;router-link&gt;</code>
+默认渲染 a 标签。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-012</strong>（★）动态参数在
+<code>route.query</code>。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：动态参数在
+route.params。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-013</strong>（★★）<code>props: true</code>
+把动态参数作为组件 props。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-014</strong>（★★）子路由 path 以 / 开头会与父拼接。（
+）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：以 /
+开头是绝对路径，不拼接。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-015</strong>（★★）嵌套路由的子组件渲染在父组件的
+router-view。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-016</strong>（★★）query 参数产生 <code>?</code>
+查询字符串。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-017</strong>（★★）router 必须在 main.js 用
+<code>.use(router)</code> 挂载。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-018</strong>（★★）hash 模式兼容性好无需服务器配置。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-019</strong>（★★）<code>redirect</code>
+字段用于配置重定向。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-判断-020</strong>（★★）useRouter 和 useRoute 功能相同。（
+）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：前者导航，后者获取信息。</p>
+</blockquote></section>
+<hr />
+<h2 id="三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2
+分）</h2>
+<section class="question-card"><p><strong>10-填空-001</strong>（★）Vue Router 用于
+<code>________</code> 应用前端路由。</p><blockquote>
+<p><strong>答案：SPA（单页）</strong>
+<strong>解析</strong>：单页应用。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-填空-002</strong>（★）路由出口标签是
+<code>&lt;________&gt;</code>。</p><blockquote>
+<p><strong>答案：router-view</strong>
+<strong>解析</strong>：router-view。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-填空-003</strong>（★）声明式导航用
+<code>&lt;________&gt;</code>。</p><blockquote>
+<p><strong>答案：router-link</strong>
+<strong>解析</strong>：router-link。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-填空-004</strong>（★）创建 history 模式用
+<code>create________History</code>。</p><blockquote>
+<p><strong>答案：Web</strong>
+<strong>解析</strong>：createWebHistory。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-填空-005</strong>（★）编程式导航用
+<code>use________</code>。</p><blockquote>
+<p><strong>答案：Router</strong> <strong>解析</strong>：useRouter。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-填空-006</strong>（★）获取当前路由信息用
+<code>use________</code>。</p><blockquote>
+<p><strong>答案：Route</strong> <strong>解析</strong>：useRoute。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-填空-007</strong>（★）动态路由用 <code>:________</code>
+匹配参数。</p><blockquote>
+<p><strong>答案：id（参数名）</strong> <strong>解析</strong>：如
+:id。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-填空-008</strong>（★）动态参数通过
+<code>route.________.id</code> 获取。</p><blockquote>
+<p><strong>答案：params</strong>
+<strong>解析</strong>：route.params。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-填空-009</strong>（★）嵌套路由用 <code>________</code>
+字段配置。</p><blockquote>
+<p><strong>答案：children</strong> <strong>解析</strong>：children。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>10-填空-010</strong>（★）查询参数通过
+<code>route.________</code> 获取。</p><blockquote>
+<p><strong>答案：query</strong> <strong>解析</strong>：route.query。</p>
+</blockquote></section>
+<hr />
+<h2 id="四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</h2>
+<section class="question-card"><p><strong>10-论述-001</strong>（★★ 知识点：K10-1，分值：8 分）
+<strong>题目</strong>：比较 hash 与 history 两种路由模式。</p>
+<p><strong>要求</strong>： （1）两者实现与 URL 区别（4 分）。
+（2）各自优缺点与选择（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）区别（4 分）：hash 模式 URL 带
+<code>#</code>，靠 hashchange
+事件切换，兼容性好，无需服务器配置；history 模式 URL 干净无
+<code>#</code>，靠 History API，需服务器配置所有路径回退 index.html
+否则刷新 404。 （2）优缺与选择（4 分）：hash
+优点是兼容好、部署简单，缺点是 URL 丑、不利于 SEO；history 优点是 URL
+美观、利于 SEO，缺点是部署需服务器配置。现代项目优选
+history（部署可控），简单场景可用 hash。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-论述-002</strong>（★★ 知识点：K10-3，分值：8 分）
+<strong>题目</strong>：说明 useRouter 与 useRoute
+的区别及各自用途，举例。</p>
+<p><strong>要求</strong>： （1）区别（4 分）。 （2）举例（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）区别（4 分）：useRouter
+返回路由实例，用于<strong>编程式导航</strong>（push/replace/go），是"动作"；useRoute
+返回当前路由信息对象，用于<strong>获取数据</strong>（path/params/query），是"数据"。
+（2）举例（4 分）：</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> <span class="fu">useRouter</span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> route <span class="op">=</span> <span class="fu">useRoute</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>router<span class="op">.</span><span class="fu">push</span>(<span class="st">&#39;/projects&#39;</span>)              <span class="co">// 导航</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(route<span class="op">.</span><span class="at">params</span><span class="op">.</span><span class="at">id</span>)          <span class="co">// 获取动态参数</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(route<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">keyword</span>)      <span class="co">// 获取查询参数</span></span></code></pre></div>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-论述-003</strong>（★★ 知识点：K10-4，分值：8 分）
+<strong>题目</strong>：说明动态路由的定义与参数获取，及 props:true
+的好处。</p>
+<p><strong>要求</strong>： （1）定义与获取（4 分）。 （2）props:true
+好处（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）定义与获取（4 分）：动态路由用
+<code>:参数名</code> 定义，如
+<code>{ path: '/tasks/:id', component: TaskDetail }</code>，匹配
+<code>/tasks/5</code>，通过 <code>route.params.id</code> 获取值为
+<code>'5'</code>。 （2）props:true 好处（4 分）：配置
+<code>props: true</code> 后，路由参数会作为组件 props 传入，组件通过
+<code>defineProps(['id'])</code> 接收，无需依赖
+<code>$route</code>，使组件与路由解耦，便于复用与测试。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-论述-004</strong>（★★ 知识点：K10-5，分值：6 分）
+<strong>题目</strong>：说明嵌套路由的配置与子 path 拼接规则。</p>
+<p><strong>要求</strong>： （1）配置方式（3 分）。 （2）path 拼接规则（3
+分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）配置（3 分）：在路由项中用
+<code>children</code> 数组配置子路由，父组件内放一个子
+<code>&lt;router-view&gt;</code> 渲染子路由匹配的组件。 （2）拼接规则（3
+分）：子路由 path 不以 <code>/</code> 开头时，与父 path 拼接（如父
+<code>/user</code> + 子 <code>profile</code> =
+<code>/user/profile</code>）；以 <code>/</code>
+开头时是绝对路径，不与父拼接。</p>
+<p><strong>评分标准</strong>：共 6 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<h2 id="五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</h2>
+<section class="question-card"><p><strong>10-程序-001</strong>（★★ 知识点：K10-2/K10-4，分值：10 分）
+<strong>题目</strong>：补全路由配置代码空缺。</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/&#39;</span><span class="op">,</span> <span class="dt">______A______</span><span class="op">:</span> <span class="st">&#39;/projects&#39;</span> }<span class="op">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/tasks/:______B______&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> TaskDetail<span class="op">,</span> <span class="dt">props</span><span class="op">:</span> <span class="kw">true</span> }<span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/user&#39;</span><span class="op">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">component</span><span class="op">:</span> UserLayout<span class="op">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">______C______</span><span class="op">:</span> [</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;profile&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> UserProfile }</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+<p><strong>要求</strong>： （1）A：重定向字段。（3 分）
+（2）B：动态参数名。（3 分） （3）C：嵌套子路由字段。（4 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>redirect</code>（3 分）。
+（2）B = <code>id</code>（3 分）：动态参数名。 （3）C =
+<code>children</code>（4 分）。</p>
+<p><strong>评分标准</strong>：共 10 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-程序-002</strong>（★★ 知识点：K10-3，分值：12 分）
+<strong>题目</strong>：补全编程式导航代码空缺。</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;button @click=&quot;goTask&quot;&gt;查看任务&lt;/button&gt;
+  &lt;p&gt;当前 ID：{{ taskId }}&lt;/p&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { useRouter, useRoute } from &#39;vue-router&#39;
+const router = ______A______
+const route = ______B______
+const taskId = route.______C______.id
+const goTask = () =&gt; router.______D______(&#39;/tasks/5&#39;)
+&lt;/script&gt;</code></pre>
+<p><strong>要求</strong>： （1）A：获取路由实例。（3 分）
+（2）B：获取当前路由信息。（3 分） （3）C：获取动态参数的属性。（3 分）
+（4）D：导航方法。（3 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>useRouter()</code>（3
+分）。 （2）B = <code>useRoute()</code>（3 分）。 （3）C =
+<code>params</code>（3 分）：route.params.id。 （4）D =
+<code>push</code>（3 分）：router.push。</p>
+<p><strong>评分标准</strong>：共 12 分，每空 3 分。</p>
+</blockquote></section>
+<hr />
+<h2 id="六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</h2>
+<section class="question-card"><p><strong>10-编程-001</strong>（★★ 知识点：K10-1/K10-2，分值：15 分）
+<strong>题目</strong>：创建 Vue Router
+配置，含首页、关于（懒加载）、重定向，并在 App.vue 用
+router-view/router-link 导航。</p>
+<p><strong>要求</strong>： （1）router/index.js
+配置（含懒加载与重定向）。（7 分） （2）main.js 挂载 router。（3 分）
+（3）App.vue 用 router-link + router-view。（5 分）</p><blockquote>
+<p><strong>参考答案</strong>： router/index.js：</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createRouter<span class="op">,</span> createWebHistory } <span class="im">from</span> <span class="st">&#39;vue-router&#39;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Home <span class="im">from</span> <span class="st">&#39;../views/Home.vue&#39;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/&#39;</span><span class="op">,</span> <span class="dt">redirect</span><span class="op">:</span> <span class="st">&#39;/home&#39;</span> }<span class="op">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/home&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> Home }<span class="op">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/about&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/About.vue&#39;</span>) }</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> <span class="fu">createRouter</span>({ <span class="dt">history</span><span class="op">:</span> <span class="fu">createWebHistory</span>()<span class="op">,</span> routes })</span></code></pre></div>
+<p>main.js：</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createApp } <span class="im">from</span> <span class="st">&#39;vue&#39;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> App <span class="im">from</span> <span class="st">&#39;./App.vue&#39;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> router <span class="im">from</span> <span class="st">&#39;./router&#39;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">createApp</span>(App)<span class="op">.</span><span class="fu">use</span>(router)<span class="op">.</span><span class="fu">mount</span>(<span class="st">&#39;#app&#39;</span>)</span></code></pre></div>
+<p>App.vue：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;nav&gt;
+    &lt;router-link to=&quot;/home&quot;&gt;首页&lt;/router-link&gt;
+    &lt;router-link to=&quot;/about&quot;&gt;关于&lt;/router-link&gt;
+  &lt;/nav&gt;
+  &lt;router-view /&gt;
+&lt;/template&gt;</code></pre>
+<p>评分：配置含懒加载+重定向（7 分）；main.js 挂载（3 分）；App
+导航+出口（5 分）。</p>
+<p><strong>评分标准</strong>：共 15 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>10-编程-002</strong>（★★★ 知识点：K10 综合，分值：20 分）
+<strong>题目</strong>：配置 CTTS-Frontend 路由，要求：</p>
+<ul>
+<li>登录页 <code>/login</code>；</li>
+<li>布局组件下含项目列表 <code>/projects</code>、任务详情
+<code>/tasks/:id</code>（动态+props:true）；</li>
+<li>用户中心 <code>/user</code> 嵌套资料
+<code>/user/profile</code>、密码 <code>/user/password</code>；</li>
+<li>根路径重定向到 <code>/projects</code>；</li>
+<li>全部懒加载。</li>
+</ul>
+<p><strong>要求</strong>： （1）路由表完整配置。（8 分） （2）动态路由
+props:true。（4 分） （3）嵌套路由 children。（5 分） （4）懒加载 +
+重定向。（3 分）</p><blockquote>
+<p><strong>参考答案</strong>：见教学资料综合示例（CTTS-Frontend
+路由配置）。 评分：路由表结构完整（8 分）；tasks/:id + props:true（4
+分）；user children（5 分）；懒加载 + redirect（3 分）。</p>
+<p><strong>评分标准</strong>：共 20 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<h2 id="题库统计与组卷说明">题库统计与组卷说明</h2>
+<h3 id="题量统计">题量统计</h3>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>数量</th>
+<th>分值</th>
+<th>小计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择题（单选 30 + 多选 10）</td>
+<td>40</td>
+<td>每题 2 分</td>
+<td>80 分</td>
+</tr>
+<tr>
+<td>判断题</td>
+<td>20</td>
+<td>每题 1 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>填空题</td>
+<td>10</td>
+<td>每题 2 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>论述/简答题</td>
+<td>4</td>
+<td>6~8 分</td>
+<td>30 分</td>
+</tr>
+<tr>
+<td>程序阅读/补全题</td>
+<td>2</td>
+<td>10~12 分</td>
+<td>22 分</td>
+</tr>
+<tr>
+<td>编程/接口设计题</td>
+<td>2</td>
+<td>15~20 分</td>
+<td>35 分</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>78</strong></td>
+<td>—</td>
+<td><strong>207 分</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="难度分布">难度分布</h3>
+<table>
+<thead>
+<tr>
+<th>难度</th>
+<th>题量（约）</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★ 基础</td>
+<td>40</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>★★ 提高</td>
+<td>34</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>★★★ 综合</td>
+<td>4</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="知识点覆盖">知识点覆盖</h3>
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>覆盖题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K10-1 概念与安装</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K10-2 配置与组件</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K10-3 useRouter/useRoute</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K10-4 动态路由</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K10-5 嵌套路由</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本题库已确保每题答案唯一明确、无歧义选项，全部含解析，主观题含评分标准，可直接录入考试系统题库。</p>
+</blockquote>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

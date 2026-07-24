@@ -1,0 +1,683 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>综合项目实践二路由整合与项目部署</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 16 次课 · 题库</div>
+      <h1>综合项目实践二路由整合与项目部署</h1>
+      <p>考试题库与参考解析 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 16 次课</span>
+        <span class="hero-chip"><b>主题</b>综合项目实践二路由整合与项目部署</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2 分）</a>
+<ul>
+<li><a href="#11-单项选择题30-题">1.1 单项选择题（30 题）</a></li>
+<li><a href="#12-多项选择题10-题">1.2 多项选择题（10 题）</a></li>
+</ul></li>
+<li><a href="#二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1 分）</a>
+<ul>
+</ul></li>
+<li><a href="#三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2 分）</a>
+<ul>
+</ul></li>
+<li><a href="#四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</a>
+<ul>
+</ul></li>
+<li><a href="#五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#题库统计与组卷说明">题库统计与组卷说明</a>
+<ul>
+<li><a href="#题量统计">题量统计</a></li>
+<li><a href="#难度分布">难度分布</a></li>
+<li><a href="#知识点覆盖">知识点覆盖</a></li>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 16 次课 <span>｜</span> <strong>文档：</strong>题库</p>
+<blockquote>
+<p>配套：<code>教学设计.md</code>、<code>教学资料.md</code>（同文件夹）
+题量：40 选择 + 20 判断 + 10 填空 + 4 论述/简答 + 2 程序阅读/补全 + 2
+编程/接口设计 = <strong>78 题</strong>
+全部含参考答案与解析；主观题另附评分标准。 难度：★ 基础 / ★★ 提高 / ★★★
+综合 ｜ 编号：<code>16-题型-序号</code></p>
+</blockquote>
+<hr />
+<h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
+分）</h2>
+<h3 id="11-单项选择题30-题">1.1 单项选择题（30 题）</h3>
+<section class="question-card"><p><strong>16-选择-001</strong>（★ 知识点：K16-4） 构建生产包的命令是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>npm run dev</code></span></li><li><span class="option-label">B</span><span><code>npm run build</code></span></li><li><span class="option-label">C</span><span><code>npm run serve</code></span></li><li><span class="option-label">D</span><span><code>npm install</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>npm run build</code> 构建生产包。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-002</strong>（★ 知识点：K16-4）
+构建产物输出到哪个目录？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>src</code></span></li><li><span class="option-label">B</span><span><code>public</code></span></li><li><span class="option-label">C</span><span><code>dist</code></span></li><li><span class="option-label">D</span><span><code>node_modules</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：构建产物在
+<code>dist</code> 目录。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-003</strong>（★ 知识点：K16-4）
+预览构建结果的命令是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>npm run dev</code></span></li><li><span class="option-label">B</span><span><code>npm run preview</code></span></li><li><span class="option-label">C</span><span><code>npm run start</code></span></li><li><span class="option-label">D</span><span><code>npm run test</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>npm run preview</code> 预览构建产物。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-004</strong>（★ 知识点：K16-5） history
+模式部署后刷新 404，原因是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>代码错误</span></li><li><span class="option-label">B</span><span>服务器未配置路径回退到
+index.html</span></li><li><span class="option-label">C</span><span>构建失败</span></li><li><span class="option-label">D</span><span>Vue 版本低</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：history
+模式需服务器配置回退 index.html。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-005</strong>（★ 知识点：K16-5） Nginx 配置 history
+模式回退用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>try_files $uri $uri/ /index.html</code></span></li><li><span class="option-label">B</span><span><code>rewrite ^ /index.html</code></span></li><li><span class="option-label">C</span><span><code>redirect /index.html</code></span></li><li><span class="option-label">D</span><span><code>proxy_pass /index.html</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：<code>try_files $uri $uri/ /index.html</code>。A
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-006</strong>（★ 知识点：K16-1）
+整合路由时，权限守卫配置在？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>每个组件</span></li><li><span class="option-label">B</span><span>全局 beforeEach</span></li><li><span class="option-label">C</span><span>main.js</span></li><li><span class="option-label">D</span><span>store</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：全局守卫用
+<code>beforeEach</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-007</strong>（★ 知识点：K16-1） 404 路由配置用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>path: '*'</code></span></li><li><span class="option-label">B</span><span><code>path: '/:pathMatch(.*)*'</code></span></li><li><span class="option-label">C</span><span><code>path: '/404'</code></span></li><li><span class="option-label">D</span><span><code>path: '/error'</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vue Router 4 用
+<code>:pathMatch(.*)*</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-008</strong>（★ 知识点：K16-2） Header
+显示用户名读取？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>userStore</span></li><li><span class="option-label">B</span><span>projectStore</span></li><li><span class="option-label">C</span><span>appStore</span></li><li><span class="option-label">D</span><span>路由</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：用户信息在
+userStore。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-009</strong>（★ 知识点：K16-3） 联调时 Mock 数据应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>保留</span></li><li><span class="option-label">B</span><span>替换为真实接口</span></li><li><span class="option-label">C</span><span>删除 api 函数</span></li><li><span class="option-label">D</span><span>不变</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：联调时替换 Mock
+为真实接口。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-010</strong>（★ 知识点：K16-4） 部署到子路径需配置？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>base</code></span></li><li><span class="option-label">B</span><span><code>publicPath</code></span></li><li><span class="option-label">C</span><span><code>root</code></span></li><li><span class="option-label">D</span><span><code>path</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：Vite 用
+<code>base</code> 配置子路径。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-011</strong>（★ 知识点：K16-5） 项目答辩不包括？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>功能演示</span></li><li><span class="option-label">B</span><span>技术讲解</span></li><li><span class="option-label">C</span><span>问题应对</span></li><li><span class="option-label">D</span><span>删除代码</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong>
+<strong>解析</strong>：答辩含演示/讲解/应答，不含删代码。D 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-012</strong>（★ 知识点：K16-4）
+<code>npm run build</code> 会做？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>启动开发服务器</span></li><li><span class="option-label">B</span><span>代码分割、Tree-shaking、压缩，输出 dist</span></li><li><span class="option-label">C</span><span>安装依赖</span></li><li><span class="option-label">D</span><span>运行测试</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：build
+做分割/Tree-shaking/压缩，输出 dist。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-013</strong>（★ 知识点：K16-1） 路由懒加载的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>加快构建</span></li><li><span class="option-label">B</span><span>按需加载，减小首屏</span></li><li><span class="option-label">C</span><span>简化代码</span></li><li><span class="option-label">D</span><span>缓存数据</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：懒加载按需加载优化首屏。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-014</strong>（★ 知识点：K16-2）
+侧边栏折叠状态存储在？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>userStore</span></li><li><span class="option-label">B</span><span>projectStore</span></li><li><span class="option-label">C</span><span>appStore</span></li><li><span class="option-label">D</span><span>路由</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：UI 状态在 appStore。C
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-015</strong>（★ 知识点：K16 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>npm run build 构建生产包</span></li><li><span class="option-label">B</span><span>产物在 dist</span></li><li><span class="option-label">C</span><span>history 部署需配置回退</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-016</strong>（★ 知识点：K16 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>构建后直接改 dist 代码</span></li><li><span class="option-label">B</span><span>preview 预览构建结果</span></li><li><span class="option-label">C</span><span>base 配置子路径</span></li><li><span class="option-label">D</span><span>答辩含演示讲解</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A 错误，不应改
+dist（应改源码重新构建）。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-017</strong>（★★ 知识点：K16-1） 整合路由时 meta
+的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>存样式</span></li><li><span class="option-label">B</span><span>存权限标识（requireAuth/role）</span></li><li><span class="option-label">C</span><span>存数据</span></li><li><span class="option-label">D</span><span>存组件</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：meta
+存权限/标题等信息。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-018</strong>（★★ 知识点：K16-4）
+构建产物文件名含哈希的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>美观</span></li><li><span class="option-label">B</span><span>缓存破坏（更新后浏览器重新加载）</span></li><li><span class="option-label">C</span><span>压缩</span></li><li><span class="option-label">D</span><span>加密</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：哈希用于缓存破坏，更新后文件名变，浏览器重新加载。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-019</strong>（★★ 知识点：K16-5） 生产环境 API
+跨域解决用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Vite proxy</span></li><li><span class="option-label">B</span><span>Nginx 反代或后端 CORS</span></li><li><span class="option-label">C</span><span>不解决</span></li><li><span class="option-label">D</span><span>JSONP</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：生产用 Nginx
+反代或后端 CORS。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-020</strong>（★★ 知识点：K16 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>整合含路由/状态/接口</span></li><li><span class="option-label">B</span><span>构建用 npm run build</span></li><li><span class="option-label">C</span><span>部署需配置回退</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-021</strong>（★★ 知识点：K16-3）
+联调时发现前后端字段不一致，应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>前端硬适配</span></li><li><span class="option-label">B</span><span>前后端对齐接口契约</span></li><li><span class="option-label">C</span><span>放弃</span></li><li><span class="option-label">D</span><span>删除接口</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：应对齐接口契约。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-022</strong>（★★ 知识点：K16-4） 环境变量（开发/生产
+API 地址）管理用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>硬编码</span></li><li><span class="option-label">B</span><span><code>.env</code> 文件</span></li><li><span class="option-label">C</span><span>store</span></li><li><span class="option-label">D</span><span>路由</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：用 <code>.env</code>
+文件管理环境变量。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-023</strong>（★★ 知识点：K16 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>构建后改 dist 维护</span></li><li><span class="option-label">B</span><span>整合三 store</span></li><li><span class="option-label">C</span><span>Nginx 配置 try_files</span></li><li><span class="option-label">D</span><span>答辩演示功能</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A
+错误，改源码重新构建。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-024</strong>（★★ 知识点：K16 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>路由懒加载优化首屏</span></li><li><span class="option-label">B</span><span>文件哈希用于缓存破坏</span></li><li><span class="option-label">C</span><span>preview 预览构建</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-025</strong>（★★ 知识点：K16 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>生产用 Vite proxy 解决跨域</span></li><li><span class="option-label">B</span><span>Mock 联调时替换</span></li><li><span class="option-label">C</span><span>base 配置子路径</span></li><li><span class="option-label">D</span><span>history 需服务器配置</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A 错误，生产用
+Nginx/CORS。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-026</strong>（★★ 知识点：K16 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>userStore 管登录</span></li><li><span class="option-label">B</span><span>appStore 管 UI</span></li><li><span class="option-label">C</span><span>projectStore 管项目数据</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-027</strong>（★★ 知识点：K16 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>答辩只看代码不看演示</span></li><li><span class="option-label">B</span><span>整合含路由守卫</span></li><li><span class="option-label">C</span><span>构建输出 dist</span></li><li><span class="option-label">D</span><span>404
+放路由最后</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A
+错误，答辩含演示。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-028</strong>（★★ 知识点：K16 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>完整交付含构建部署</span></li><li><span class="option-label">B</span><span>接口契约重要</span></li><li><span class="option-label">C</span><span>错误处理完善</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-029</strong>（★★ 知识点：K16 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>构建无需测试直接部署</span></li><li><span class="option-label">B</span><span>整合三 store</span></li><li><span class="option-label">C</span><span>Nginx try_files 回退</span></li><li><span class="option-label">D</span><span>答辩准备充分</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A
+错误，应测试后再部署。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-030</strong>（★★ 知识点：K16 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>项目交付需能运行能部署</span></li><li><span class="option-label">B</span><span>整合是收尾关键</span></li><li><span class="option-label">C</span><span>答辩体现表达能力</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<h3 id="12-多项选择题10-题">1.2 多项选择题（10 题）</h3>
+<section class="question-card"><p><strong>16-选择-031</strong>（★★ 知识点：K16 综合）
+整合包含？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>路由整合</span></li><li><span class="option-label">B</span><span>状态管理整合</span></li><li><span class="option-label">C</span><span>接口联调</span></li><li><span class="option-label">D</span><span>构建部署</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项都是整合内容。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-032</strong>（★★ 知识点：K16-4）
+构建产物包含？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>index.html</span></li><li><span class="option-label">B</span><span>assets（JS/CSS）</span></li><li><span class="option-label">C</span><span>静态资源</span></li><li><span class="option-label">D</span><span>node_modules</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 在
+dist；node_modules 不在。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-033</strong>（★★ 知识点：K16 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>npm run build 构建生产包</span></li><li><span class="option-label">B</span><span>产物在 dist</span></li><li><span class="option-label">C</span><span>history 需配置回退</span></li><li><span class="option-label">D</span><span>preview 预览构建</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项均正确。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-034</strong>（★★ 知识点：K16 综合）
+部署方式有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Nginx 静态服务器</span></li><li><span class="option-label">B</span><span>Vercel/Netlify 平台</span></li><li><span class="option-label">C</span><span>vite
+preview 简易预览</span></li><li><span class="option-label">D</span><span>直接用 dev server</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 合理；D
+仅开发用。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-035</strong>（★★ 知识点：K16 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>路由懒加载优化首屏</span></li><li><span class="option-label">B</span><span>文件哈希缓存破坏</span></li><li><span class="option-label">C</span><span>base
+配置子路径</span></li><li><span class="option-label">D</span><span>生产用 Vite proxy</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，生产用 Nginx/CORS。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-036</strong>（★★ 知识点：K16 综合）
+答辩包含？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>功能演示</span></li><li><span class="option-label">B</span><span>技术讲解</span></li><li><span class="option-label">C</span><span>问题应对</span></li><li><span class="option-label">D</span><span>总结反思</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项都是答辩内容。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-037</strong>（★★ 知识点：K16 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>userStore 管登录</span></li><li><span class="option-label">B</span><span>appStore 管 UI</span></li><li><span class="option-label">C</span><span>projectStore 管项目</span></li><li><span class="option-label">D</span><span>都放一个 store</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，分多 store。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-038</strong>（★★ 知识点：K16 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>联调替换 Mock</span></li><li><span class="option-label">B</span><span>接口契约重要</span></li><li><span class="option-label">C</span><span>Nginx
+try_files 回退</span></li><li><span class="option-label">D</span><span>改 dist 维护</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，改源码。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-039</strong>（★★ 知识点：K16 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>构建前测试</span></li><li><span class="option-label">B</span><span>环境变量用 .env</span></li><li><span class="option-label">C</span><span>404 放最后</span></li><li><span class="option-label">D</span><span>构建后直接改 dist</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-选择-040</strong>（★★ 知识点：K16 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>完整交付含构建部署</span></li><li><span class="option-label">B</span><span>答辩体现综合能力</span></li><li><span class="option-label">C</span><span>整合是收尾关键</span></li><li><span class="option-label">D</span><span>部署无需测试</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，需测试。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<h2 id="二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1
+分）</h2>
+<section class="question-card"><p><strong>16-判断-001</strong>（★）<code>npm run build</code>
+用于构建生产包。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-002</strong>（★）构建产物在 dist 目录。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-003</strong>（★）history 模式部署后刷新可能 404。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-004</strong>（★）项目答辩是交付的重要环节。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-005</strong>（★）Nginx 用 try_files 配置 history
+回退。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-006</strong>（★）preview 可预览构建结果。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-007</strong>（★）联调时 Mock 应替换为真实接口。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-008</strong>（★）base 配置部署子路径。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-009</strong>（★）路由懒加载优化首屏。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-010</strong>（★）404 路由放最后。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-011</strong>（★★）构建后应直接改 dist 维护。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：改源码重新构建。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-012</strong>（★★）文件哈希用于缓存破坏。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-013</strong>（★★）生产环境用 Vite proxy 解决跨域。（
+）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：生产用
+Nginx/CORS。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-014</strong>（★★）环境变量用 .env 文件管理。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-015</strong>（★★）Header 显示用户名读 userStore。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-016</strong>（★★）侧边栏折叠状态在 appStore。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-017</strong>（★★）接口契约是联调基础。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-018</strong>（★★）构建前应测试确保无误。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-019</strong>（★★）答辩只需看代码不需演示。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：需演示。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-判断-020</strong>（★★）完整交付含构建部署。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<hr />
+<h2 id="三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2
+分）</h2>
+<section class="question-card"><p><strong>16-填空-001</strong>（★）构建生产包用
+<code>npm run ________</code>。</p><blockquote>
+<p><strong>答案：build</strong> <strong>解析</strong>：build。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-填空-002</strong>（★）构建产物在 <code>________</code>
+目录。</p><blockquote>
+<p><strong>答案：dist</strong> <strong>解析</strong>：dist。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-填空-003</strong>（★）预览构建结果用
+<code>npm run ________</code>。</p><blockquote>
+<p><strong>答案：preview</strong> <strong>解析</strong>：preview。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-填空-004</strong>（★）history 模式 Nginx 用
+<code>try_files</code> 回退到 <code>________</code>。</p><blockquote>
+<p><strong>答案：index.html</strong>
+<strong>解析</strong>：index.html。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-填空-005</strong>（★）部署到子路径配置
+<code>________</code> 字段。</p><blockquote>
+<p><strong>答案：base</strong> <strong>解析</strong>：base。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-填空-006</strong>（★）404 路由用
+<code>:________(.*)*</code>。</p><blockquote>
+<p><strong>答案：pathMatch</strong>
+<strong>解析</strong>：pathMatch。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-填空-007</strong>（★）Header 显示用户名读
+<code>________Store</code>。</p><blockquote>
+<p><strong>答案：user</strong> <strong>解析</strong>：userStore。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-填空-008</strong>（★）侧边栏折叠状态在
+<code>________Store</code>。</p><blockquote>
+<p><strong>答案：app</strong> <strong>解析</strong>：appStore。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-填空-009</strong>（★）联调时 <code>________</code>
+数据替换为真实接口。</p><blockquote>
+<p><strong>答案：Mock</strong> <strong>解析</strong>：Mock。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>16-填空-010</strong>（★）环境变量用 <code>________</code>
+文件管理。</p><blockquote>
+<p><strong>答案：.env</strong> <strong>解析</strong>：.env。</p>
+</blockquote></section>
+<hr />
+<h2 id="四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</h2>
+<section class="question-card"><p><strong>16-论述-001</strong>（★★ 知识点：K16-4/K16-5，分值：8 分）
+<strong>题目</strong>：说明 vite build 构建与部署流程，及 history 模式
+404 解决。</p>
+<p><strong>要求</strong>： （1）构建流程（4 分）。 （2）部署与 404
+解决（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）构建（4
+分）：<code>npm run build</code> → 代码分割/Tree-shaking/压缩 → 输出到
+dist 目录（含 index.html 与 assets）；<code>npm run preview</code>
+预览检查。 （2）部署与 404（4 分）：把 dist 部署到 Nginx
+静态目录；history 模式刷新 404 因服务器找不到路径，需配置
+<code>try_files $uri $uri/ /index.html</code> 回退到 index.html；API 用
+Nginx proxy_pass 代理后端。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-论述-002</strong>（★★ 知识点：K16-1/K16-2，分值：8 分）
+<strong>题目</strong>：说明路由与状态管理的整合要点。</p>
+<p><strong>要求</strong>： （1）路由整合（4 分）。 （2）状态整合（4
+分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）路由（4 分）：整合全部页面路由表；用
+meta 标识 requireAuth/role；beforeEach 守卫校验登录与角色；404
+兜底放最后；懒加载优化。 （2）状态（4 分）：userStore 接入登录页与
+Header（存 Token/显示用户/退出）；projectStore 缓存项目数据；appStore
+管理侧边栏等 UI 状态；持久化避免刷新丢失。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-论述-003</strong>（★★ 知识点：K16 综合，分值：8 分）
+<strong>题目</strong>：项目答辩应准备哪些内容？完整交付的标准是什么？</p>
+<p><strong>要求</strong>： （1）答辩准备（4 分）。 （2）交付标准（4
+分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）答辩（4
+分）：功能演示（核心业务流程）、技术讲解（架构与技术选型）、问题应对（回答提问）、总结反思（亮点/不足/改进）。
+（2）交付标准（4
+分）：功能完整（页面齐全、流程打通）、组件质量（拆分合理）、代码规范、接口联调完善、可构建可部署可访问、答辩表现良好。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-论述-004</strong>（★★ 知识点：K16 综合，分值：6 分）
+<strong>题目</strong>：开发环境与生产环境在跨域、API
+地址、构建上的区别。</p>
+<p><strong>要求</strong>：每点 2 分。</p><blockquote>
+<p><strong>参考答案</strong>（每点 2 分，共 6 分）：</p>
+<ol type="1">
+<li>跨域：开发用 Vite proxy；生产用 Nginx 反代或后端 CORS。</li>
+<li>API 地址：开发用本地/测试地址；生产用正式域名，用 .env
+环境变量管理。</li>
+<li>构建：开发用 dev server（不压缩、热更新）；生产用
+build（压缩、分割、Tree-shaking，输出 dist）。</li>
+</ol>
+<p><strong>评分标准</strong>：共 6 分，答出 3 点即满分。</p>
+</blockquote></section>
+<hr />
+<h2 id="五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</h2>
+<section class="question-card"><p><strong>16-程序-001</strong>（★★ 知识点：K16-5，分值：10 分）
+<strong>题目</strong>：补全 Nginx 配置空缺。</p>
+<pre class="nginx"><code>server {
+  listen 80;
+  root /path/to/______A______;
+  location / {
+    ______B______ $uri $uri/ /index.html;
+  }
+  location /api/ {
+    proxy_pass http://______C______:8080/;
+  }
+}</code></pre>
+<p><strong>要求</strong>： （1）A：构建产物目录。（3 分）
+（2）B：回退指令。（4 分） （3）C：后端地址。（3 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>dist</code>（3 分）。
+（2）B = <code>try_files</code>（4 分）。 （3）C =
+<code>backend</code>（或 localhost/IP）（3 分）。</p>
+<p><strong>评分标准</strong>：共 10 分，按小题给分。C
+答合理地址即可。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-程序-002</strong>（★★ 知识点：K16-1，分值：12 分）
+<strong>题目</strong>：补全路由守卫代码空缺。</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>router<span class="op">.</span><span class="fu">______A______</span>((to) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="at">title</span> <span class="op">=</span> to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">title</span> <span class="op">||</span> <span class="st">&#39;CTTS&#39;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">useUserStore</span>()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">______B______</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>userStore<span class="op">.</span><span class="at">isLogin</span>) <span class="cf">return</span> <span class="st">&#39;/login&#39;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">______C______</span> <span class="op">&amp;&amp;</span> userStore<span class="op">.</span><span class="at">role</span> <span class="op">!==</span> to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">role</span>) <span class="cf">return</span> <span class="st">&#39;/projects&#39;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p><strong>要求</strong>： （1）A：前置守卫方法。（4 分）
+（2）B：需登录的 meta 字段。（4 分） （3）C：需角色校验的 meta 字段。（4
+分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>beforeEach</code>（4
+分）。 （2）B = <code>requireAuth</code>（4 分）。 （3）C =
+<code>role</code>（4 分）。</p>
+<p><strong>评分标准</strong>：共 12 分，每空 4 分。</p>
+</blockquote></section>
+<hr />
+<h2 id="六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</h2>
+<section class="question-card"><p><strong>16-编程-001</strong>（★★ 知识点：K16-4，分值：15 分）
+<strong>题目</strong>：写出 CTTS-Frontend
+构建与预览的完整命令，并说明构建产物的结构与部署到 Nginx 的配置。</p>
+<p><strong>要求</strong>： （1）构建与预览命令。（4 分）
+（2）产物结构说明。（5 分） （3）Nginx 部署配置。（6 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）命令（4 分）：</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build        <span class="co"># 构建到 dist</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run preview      <span class="co"># 预览</span></span></code></pre></div>
+<p>（2）产物结构（5 分）：dist 含 index.html（SPA 外壳）与
+assets（含哈希的 JS/CSS/资源）；index.html 引用 assets 中的文件。
+（3）Nginx 配置（6 分）：</p>
+<pre class="nginx"><code>server {
+  listen 80;
+  root /path/to/dist;
+  location / { try_files $uri $uri/ /index.html; }
+  location /api/ { proxy_pass http://backend:8080/; }
+}</code></pre>
+<p>评分：命令（4 分）；产物结构（5 分）；Nginx 配置（6 分）。</p>
+<p><strong>评分标准</strong>：共 15 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>16-编程-002</strong>（★★★ 知识点：K16 综合，分值：20 分）
+<strong>题目</strong>：完成 CTTS-Frontend 整合与部署方案，要求：</p>
+<ul>
+<li>整合路由表（10 页面 + meta + 守卫 + 404）；</li>
+<li>整合三 store（user/project/app）；</li>
+<li>接口联调（api 模块 + Mock 替换）；</li>
+<li>vite build 构建与 Nginx 部署。</li>
+</ul>
+<p><strong>要求</strong>： （1）路由整合方案（含守卫）。（6 分）
+（2）状态与接口整合。（6 分） （3）构建与部署方案。（8 分）</p><blockquote>
+<p><strong>参考答案</strong>：见教学资料各节。
+评分：路由表+meta+守卫+404（6 分）；三 store 接入+api 模块+Mock 替换（6
+分）；build+preview+Nginx 配置（8 分）。</p>
+<p><strong>评分标准</strong>：共 20 分，按小题给分。方案须完整可行。</p>
+</blockquote></section>
+<hr />
+<h2 id="题库统计与组卷说明">题库统计与组卷说明</h2>
+<h3 id="题量统计">题量统计</h3>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>数量</th>
+<th>分值</th>
+<th>小计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择题（单选 30 + 多选 10）</td>
+<td>40</td>
+<td>每题 2 分</td>
+<td>80 分</td>
+</tr>
+<tr>
+<td>判断题</td>
+<td>20</td>
+<td>每题 1 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>填空题</td>
+<td>10</td>
+<td>每题 2 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>论述/简答题</td>
+<td>4</td>
+<td>6~8 分</td>
+<td>30 分</td>
+</tr>
+<tr>
+<td>程序阅读/补全题</td>
+<td>2</td>
+<td>10~12 分</td>
+<td>22 分</td>
+</tr>
+<tr>
+<td>编程/接口设计题</td>
+<td>2</td>
+<td>15~20 分</td>
+<td>35 分</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>78</strong></td>
+<td>—</td>
+<td><strong>207 分</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="难度分布">难度分布</h3>
+<table>
+<thead>
+<tr>
+<th>难度</th>
+<th>题量（约）</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★ 基础</td>
+<td>40</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>★★ 提高</td>
+<td>34</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>★★★ 综合</td>
+<td>4</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="知识点覆盖">知识点覆盖</h3>
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>覆盖题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K16-1 路由整合</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K16-2 状态整合</td>
+<td>12</td>
+</tr>
+<tr>
+<td>K16-3 接口联调</td>
+<td>12</td>
+</tr>
+<tr>
+<td>K16-4 构建输出</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K16-5 部署答辩</td>
+<td>16</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本题库已确保每题答案唯一明确、无歧义选项，全部含解析，主观题含评分标准，可直接录入考试系统题库。</p>
+</blockquote>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

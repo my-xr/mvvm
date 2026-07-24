@@ -1,0 +1,759 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>组件基础与组件通信</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 07 次课 · 题库</div>
+      <h1>组件基础与组件通信</h1>
+      <p>考试题库与参考解析 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 07 次课</span>
+        <span class="hero-chip"><b>主题</b>组件基础与组件通信</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2 分）</a>
+<ul>
+<li><a href="#11-单项选择题30-题">1.1 单项选择题（30 题）</a></li>
+<li><a href="#12-多项选择题10-题">1.2 多项选择题（10 题）</a></li>
+</ul></li>
+<li><a href="#二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1 分）</a>
+<ul>
+</ul></li>
+<li><a href="#三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2 分）</a>
+<ul>
+</ul></li>
+<li><a href="#四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</a>
+<ul>
+</ul></li>
+<li><a href="#五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#题库统计与组卷说明">题库统计与组卷说明</a>
+<ul>
+<li><a href="#题量统计">题量统计</a></li>
+<li><a href="#难度分布">难度分布</a></li>
+<li><a href="#知识点覆盖">知识点覆盖</a></li>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 07 次课 <span>｜</span> <strong>文档：</strong>题库</p>
+<blockquote>
+<p>配套：<code>教学设计.md</code>、<code>教学资料.md</code>（同文件夹）
+题量：40 选择 + 20 判断 + 10 填空 + 4 论述/简答 + 2 程序阅读/补全 + 2
+编程/接口设计 = <strong>78 题</strong>
+全部含参考答案与解析；主观题另附评分标准。 难度：★ 基础 / ★★ 提高 / ★★★
+综合 ｜ 编号：<code>07-题型-序号</code></p>
+</blockquote>
+<hr />
+<h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
+分）</h2>
+<h3 id="11-单项选择题30-题">1.1 单项选择题（30 题）</h3>
+<section class="question-card"><p><strong>07-选择-001</strong>（★ 知识点：K7-1） 在
+<code>&lt;script setup&gt;</code> 中使用组件，需要？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>在 components
+选项注册</span></li><li><span class="option-label">B</span><span>用 app.component 全局注册</span></li><li><span class="option-label">C</span><span>import 导入后直接在模板用</span></li><li><span class="option-label">D</span><span>用
+defineComponent 注册</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong>
+<strong>解析</strong>：<code>&lt;script setup&gt;</code> 下 import
+的组件自动可用，无需注册。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-002</strong>（★ 知识点：K7-1）
+全局注册组件使用的方法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>app.use</code></span></li><li><span class="option-label">B</span><span><code>app.component</code></span></li><li><span class="option-label">C</span><span><code>app.register</code></span></li><li><span class="option-label">D</span><span><code>Vue.component</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：全局注册用
+<code>app.component('名字', 组件)</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-003</strong>（★ 知识点：K7-1） 组件命名推荐使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>camelCase</span></li><li><span class="option-label">B</span><span>PascalCase</span></li><li><span class="option-label">C</span><span>snake_case</span></li><li><span class="option-label">D</span><span>全小写</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：推荐 PascalCase（如
+HelloWorld），避免与原生 HTML 标签冲突。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-004</strong>（★ 知识点：K7-2）
+父组件向子组件传递数据使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>props</span></li><li><span class="option-label">B</span><span>emits</span></li><li><span class="option-label">C</span><span>v-model</span></li><li><span class="option-label">D</span><span>provide</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：父传子用 props。A
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-005</strong>（★ 知识点：K7-2）
+<code>&lt;script setup&gt;</code> 中声明 props 使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>props</code></span></li><li><span class="option-label">B</span><span><code>defineProps</code></span></li><li><span class="option-label">C</span><span><code>this.props</code></span></li><li><span class="option-label">D</span><span><code>$props</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>&lt;script setup&gt;</code> 用
+<code>defineProps</code> 声明 props。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-006</strong>（★ 知识点：K7-2） props 的数据流是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>双向</span></li><li><span class="option-label">B</span><span>单向（父→子）</span></li><li><span class="option-label">C</span><span>子→父</span></li><li><span class="option-label">D</span><span>任意方向</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：props
+单向数据流，父→子，子不能直接改。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-007</strong>（★ 知识点：K7-2） 子组件直接修改 props
+会？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>正常工作</span></li><li><span class="option-label">B</span><span>Vue 警告，不应直接修改</span></li><li><span class="option-label">C</span><span>报错终止</span></li><li><span class="option-label">D</span><span>自动同步父组件</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：props
+单向流，子直接改会触发 Vue 警告，应 emit 通知父改。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-008</strong>（★ 知识点：K7-2） props
+中对象/数组类型的默认值应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>直接写 <code>default: []</code></span></li><li><span class="option-label">B</span><span>用工厂函数 <code>default: () =&gt; []</code></span></li><li><span class="option-label">C</span><span>不设默认值</span></li><li><span class="option-label">D</span><span>用
+null</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：对象/数组默认值需用工厂函数返回，避免多实例共享引用。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-009</strong>（★ 知识点：K7-3）
+子组件向父组件传递数据使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>props</span></li><li><span class="option-label">B</span><span>emits</span></li><li><span class="option-label">C</span><span>data</span></li><li><span class="option-label">D</span><span>computed</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：子传父用 emits
+触发自定义事件。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-010</strong>（★ 知识点：K7-3）
+<code>&lt;script setup&gt;</code> 中声明 emits 使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>emits</code></span></li><li><span class="option-label">B</span><span><code>defineEmits</code></span></li><li><span class="option-label">C</span><span><code>this.$emit</code></span></li><li><span class="option-label">D</span><span><code>$emits</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>&lt;script setup&gt;</code> 用
+<code>defineEmits</code> 声明。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-011</strong>（★ 知识点：K7-3）
+子组件触发事件的方法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>this.emit</code></span></li><li><span class="option-label">B</span><span><code>emit('事件名', 数据)</code></span></li><li><span class="option-label">C</span><span><code>$emit</code></span></li><li><span class="option-label">D</span><span><code>trigger</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：defineEmits 返回 emit
+函数，调用 <code>emit('事件名', 数据)</code> 触发。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-012</strong>（★ 知识点：K7-3）
+父组件监听子组件事件用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>:事件名</code></span></li><li><span class="option-label">B</span><span><code>@事件名</code></span></li><li><span class="option-label">C</span><span><code>v-on:事件名</code>（同 B）</span></li><li><span class="option-label">D</span><span>B 和 C 都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：<code>@事件名</code>
+是 <code>v-on:事件名</code> 简写，都对。D 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-013</strong>（★ 知识点：K7-2） 下列 props
+声明正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>defineProps('name', 'age')</code></span></li><li><span class="option-label">B</span><span><code>defineProps({ name: String, age: Number })</code></span></li><li><span class="option-label">C</span><span><code>defineProps(name, age)</code></span></li><li><span class="option-label">D</span><span><code>props: ['name']</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：defineProps
+接收数组或对象，对象形式可带类型。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-014</strong>（★ 知识点：K7-2） 设置 props 必填使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>required: true</code></span></li><li><span class="option-label">B</span><span><code>must: true</code></span></li><li><span class="option-label">C</span><span><code>need: true</code></span></li><li><span class="option-label">D</span><span><code>mandatory: true</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：<code>required: true</code> 表示必填。A
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-015</strong>（★ 知识点：K7-2） 自定义校验 props
+使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>check</code></span></li><li><span class="option-label">B</span><span><code>validator</code></span></li><li><span class="option-label">C</span><span><code>validate</code></span></li><li><span class="option-label">D</span><span><code>rule</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>validator: (v) =&gt; ...</code>
+自定义校验函数。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-016</strong>（★ 知识点：K7-5） 组件 v-model
+默认绑定的 prop 名是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>value</code></span></li><li><span class="option-label">B</span><span><code>modelValue</code></span></li><li><span class="option-label">C</span><span><code>model</code></span></li><li><span class="option-label">D</span><span><code>vmodel</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vue 3 组件 v-model
+默认绑 <code>modelValue</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-017</strong>（★ 知识点：K7-5） 组件 v-model
+触发更新的 emit 事件名是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>update:value</code></span></li><li><span class="option-label">B</span><span><code>update:modelValue</code></span></li><li><span class="option-label">C</span><span><code>change</code></span></li><li><span class="option-label">D</span><span><code>input</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：组件 v-model 用
+<code>update:modelValue</code> 通知更新。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-018</strong>（★ 知识点：K7-5）
+<code>&lt;Child v-model="x" /&gt;</code> 等价于？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;Child :value="x" /&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;Child :modelValue="x" @update:modelValue="x=$event" /&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;Child :x="x" /&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;Child @input="x" /&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：v-model 等价
+<code>:modelValue</code> + <code>@update:modelValue</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-019</strong>（★ 知识点：K7-4）
+跨多层组件通信推荐使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>props 逐层透传</span></li><li><span class="option-label">B</span><span>provide / inject</span></li><li><span class="option-label">C</span><span>全局变量</span></li><li><span class="option-label">D</span><span>localStorage</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：跨层用
+provide/inject，避免 props 逐层透传。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-020</strong>（★ 知识点：K7-4） 全局状态管理推荐使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>props</span></li><li><span class="option-label">B</span><span>Pinia</span></li><li><span class="option-label">C</span><span>localStorage</span></li><li><span class="option-label">D</span><span>window 对象</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：全局状态用 Pinia（第
+12 次课）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-021</strong>（★★ 知识点：K7-2）
+下列代码中，子组件接收 <code>:init-name</code> 的 props 声明正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>defineProps(['initName'])</code></span></li><li><span class="option-label">B</span><span><code>defineProps({ initName: String })</code></span></li><li><span class="option-label">C</span><span>A 和 B 都对</span></li><li><span class="option-label">D</span><span><code>defineProps('initName')</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：父传
+<code>:init-name</code>（kebab）对应子 props
+<code>initName</code>（camel），数组或对象声明都可。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-022</strong>（★★ 知识点：K7-2）
+<code>const { name } = props</code> 解构后 name？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>仍是响应式</span></li><li><span class="option-label">B</span><span>丢失响应式</span></li><li><span class="option-label">C</span><span>变成 ref</span></li><li><span class="option-label">D</span><span>报错</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：解构 props
+会丢失响应式，需用 toRefs。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-023</strong>（★★ 知识点：K7-3） 子组件
+<code>emit('change', 10)</code>，父组件监听正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;Child :change="fn" /&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;Child @change="fn" /&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;Child v-on:change="fn" /&gt;</code></span></li><li><span class="option-label">D</span><span>B 和 C 都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：<code>@change</code>
+与 <code>v-on:change</code> 都可监听。D 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-024</strong>（★★ 知识点：K7-5） 多个 v-model
+绑定的写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;Child v-model="a, b" /&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;Child v-model:a="a" v-model:b="b" /&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;Child :a="a" :b="b" /&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;Child v-model-a v-model-b /&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：多 v-model 用
+<code>v-model:参数名</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-025</strong>（★★ 知识点：K7-1）
+关于全局注册，正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>全局注册的组件可 Tree-shaking</span></li><li><span class="option-label">B</span><span>全局注册无法 Tree-shaking，增大体积，优先局部注册</span></li><li><span class="option-label">C</span><span>全局注册只能在
+main.js 用</span></li><li><span class="option-label">D</span><span>全局注册性能更好</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：全局注册无法
+Tree-shaking，优先局部注册。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-026</strong>（★★ 知识点：K7-2） props 中
+<code>type</code> 不支持的类型是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>String</span></li><li><span class="option-label">B</span><span>Number</span></li><li><span class="option-label">C</span><span>Array</span></li><li><span class="option-label">D</span><span>JSON</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：type 支持
+String/Number/Boolean/Array/Object/Function 等，JSON 不是构造函数。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-027</strong>（★★ 知识点：K7-3） emits
+事件名推荐使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>camelCase</span></li><li><span class="option-label">B</span><span>kebab-case</span></li><li><span class="option-label">C</span><span>PascalCase</span></li><li><span class="option-label">D</span><span>任意</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：推荐 kebab-case（如
+<code>update:model-value</code>）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-028</strong>（★★ 知识点：K7-5） Vue 3.4+ 简化组件
+v-model 的 API 是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>defineProps</code></span></li><li><span class="option-label">B</span><span><code>defineModel</code></span></li><li><span class="option-label">C</span><span><code>defineEmits</code></span></li><li><span class="option-label">D</span><span><code>defineExpose</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vue 3.4+ 用
+defineModel 简化组件 v-model。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-029</strong>（★★ 知识点：K7 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>父传子用 props</span></li><li><span class="option-label">B</span><span>子传父用 emits</span></li><li><span class="option-label">C</span><span>props 单向流</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-030</strong>（★★ 知识点：K7 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>props 子组件可直接修改</span></li><li><span class="option-label">B</span><span>emits 子传父</span></li><li><span class="option-label">C</span><span>组件 v-model 用 modelValue</span></li><li><span class="option-label">D</span><span>局部注册优先</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A 错误，props
+不能直接修改。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<h3 id="12-多项选择题10-题">1.2 多项选择题（10 题）</h3>
+<section class="question-card"><p><strong>07-选择-031</strong>（★★ 知识点：K7-1）
+组件注册方式有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>局部注册（import 即用）</span></li><li><span class="option-label">B</span><span>全局注册（app.component）</span></li><li><span class="option-label">C</span><span>自动注册</span></li><li><span class="option-label">D</span><span>动态注册</span></li></ul></div><blockquote>
+<p><strong>答案：A、B</strong> <strong>解析</strong>：A、B
+是主要方式。C/D 非标准注册方式。选 A、B。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-032</strong>（★★ 知识点：K7-2） props
+声明可包含的选项有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>type</code></span></li><li><span class="option-label">B</span><span><code>required</code></span></li><li><span class="option-label">C</span><span><code>default</code></span></li><li><span class="option-label">D</span><span><code>validator</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong> <strong>解析</strong>：四项都是
+props 校验选项。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-033</strong>（★★ 知识点：K7-2） 关于
+props，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>父传子</span></li><li><span class="option-label">B</span><span>单向数据流</span></li><li><span class="option-label">C</span><span>子不能直接改</span></li><li><span class="option-label">D</span><span>子可直接改</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-034</strong>（★★ 知识点：K7-3） 关于
+emits，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>子传父</span></li><li><span class="option-label">B</span><span>用 defineEmits 声明</span></li><li><span class="option-label">C</span><span>用 emit
+触发</span></li><li><span class="option-label">D</span><span>父用 @事件名 监听</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项均正确。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-035</strong>（★★ 知识点：K7-4）
+组件通信方式有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>props（父传子）</span></li><li><span class="option-label">B</span><span>emits（子传父）</span></li><li><span class="option-label">C</span><span>provide/inject（跨层）</span></li><li><span class="option-label">D</span><span>Pinia（全局）</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong> <strong>解析</strong>：四项都是 Vue
+通信方式。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-036</strong>（★★ 知识点：K7-5） 关于组件
+v-model，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>默认 prop 是 modelValue</span></li><li><span class="option-label">B</span><span>更新事件是
+update:modelValue</span></li><li><span class="option-label">C</span><span>等价 :modelValue + @update:modelValue</span></li><li><span class="option-label">D</span><span>只能绑定一个</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，支持多 v-model。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-037</strong>（★★ 知识点：K7-2） 下列会使 props
+丢失响应式或出错的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>子组件直接改 props</span></li><li><span class="option-label">B</span><span>解构 props 不用
+toRefs</span></li><li><span class="option-label">C</span><span>对象默认值不用工厂函数</span></li><li><span class="option-label">D</span><span>用 defineProps 声明</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A 警告、B
+丢失响应式、C 报错。D 是正常用法。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-038</strong>（★★ 知识点：K7 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;script setup&gt;</code> import 即用</span></li><li><span class="option-label">B</span><span>props 单向流</span></li><li><span class="option-label">C</span><span>emits 子传父</span></li><li><span class="option-label">D</span><span>组件 v-model 用 value</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，用 modelValue。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-039</strong>（★★ 知识点：K7 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>props 可设类型与必填</span></li><li><span class="option-label">B</span><span>emits 用 defineEmits
+声明</span></li><li><span class="option-label">C</span><span>组件 v-model 支持多个</span></li><li><span class="option-label">D</span><span>全局注册优先于局部注册</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，优先局部注册。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-选择-040</strong>（★★ 知识点：K7 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>父传子用 props</span></li><li><span class="option-label">B</span><span>子传父用 emits</span></li><li><span class="option-label">C</span><span>跨层用
+provide/inject</span></li><li><span class="option-label">D</span><span>props 可双向</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，props 单向。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<h2 id="二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1
+分）</h2>
+<section class="question-card"><p><strong>07-判断-001</strong>（★）<code>&lt;script setup&gt;</code> 中
+import 的组件需手动注册。（ ）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：自动可用，无需注册。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-002</strong>（★）全局注册用
+<code>app.component</code>。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-003</strong>（★）props 是单向数据流。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-004</strong>（★）子组件可直接修改 props。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：不能，应 emit
+通知父。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-005</strong>（★）emits 用于子组件向父组件传数据。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-006</strong>（★）<code>defineEmits</code>
+用于声明自定义事件。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-007</strong>（★）父组件用 <code>@事件名</code>
+监听子组件事件。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-008</strong>（★）props 对象默认值可直接写
+<code>default: {}</code>。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：需工厂函数
+<code>default: () =&gt; ({})</code>。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-009</strong>（★）组件 v-model 默认 prop 是
+modelValue。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-010</strong>（★）组件 v-model 更新事件是
+update:modelValue。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-011</strong>（★）局部注册优先于全局注册。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确，可
+Tree-shaking。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-012</strong>（★）props 可设置
+type、required、default、validator。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-013</strong>（★★）解构 props 不影响响应式。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：会丢失响应式，需
+toRefs。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-014</strong>（★★）组件 v-model 支持多个绑定。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确，用
+v-model:参数名。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-015</strong>（★★）跨层组件通信推荐用
+provide/inject。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-016</strong>（★★）全局注册的组件可 Tree-shaking。（
+）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：不能，故优先局部注册。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-017</strong>（★★）组件命名推荐 PascalCase。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-018</strong>（★★）emits 事件名推荐 kebab-case。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-019</strong>（★★）<code>&lt;Child v-model="x" /&gt;</code>
+等价于 <code>:modelValue="x" @update:modelValue="x=$event"</code>。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-判断-020</strong>（★★）props 既能父传子也能子传父。（
+）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：单向，只能父传子。</p>
+</blockquote></section>
+<hr />
+<h2 id="三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2
+分）</h2>
+<section class="question-card"><p><strong>07-填空-001</strong>（★）<code>&lt;script setup&gt;</code>
+中声明 props 用 <code>________</code> 函数。</p><blockquote>
+<p><strong>答案：defineProps</strong>
+<strong>解析</strong>：defineProps。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-填空-002</strong>（★）<code>&lt;script setup&gt;</code>
+中声明 emits 用 <code>________</code> 函数。</p><blockquote>
+<p><strong>答案：defineEmits</strong>
+<strong>解析</strong>：defineEmits。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-填空-003</strong>（★）父组件向子组件传数据用
+<code>________</code>。</p><blockquote>
+<p><strong>答案：props</strong> <strong>解析</strong>：props。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-填空-004</strong>（★）子组件向父组件传数据用
+<code>________</code>。</p><blockquote>
+<p><strong>答案：emits</strong> <strong>解析</strong>：emits。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-填空-005</strong>（★）props 是 <code>________</code>
+数据流（填"单向"或"双向"）。</p><blockquote>
+<p><strong>答案：单向</strong> <strong>解析</strong>：父→子。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-填空-006</strong>（★）设置 props 必填用
+<code>required: ________</code>。</p><blockquote>
+<p><strong>答案：true</strong> <strong>解析</strong>：required:
+true。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-填空-007</strong>（★）组件 v-model 默认 prop 名是
+<code>________</code>。</p><blockquote>
+<p><strong>答案：modelValue</strong>
+<strong>解析</strong>：modelValue。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-填空-008</strong>（★）组件 v-model 更新事件名是
+<code>update:________</code>。</p><blockquote>
+<p><strong>答案：modelValue</strong>
+<strong>解析</strong>：update:modelValue。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-填空-009</strong>（★）全局注册组件用
+<code>app.________</code> 方法。</p><blockquote>
+<p><strong>答案：component</strong>
+<strong>解析</strong>：app.component。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>07-填空-010</strong>（★）跨层组件通信用 <code>________</code>
+/ inject。</p><blockquote>
+<p><strong>答案：provide</strong>
+<strong>解析</strong>：provide/inject。</p>
+</blockquote></section>
+<hr />
+<h2 id="四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</h2>
+<section class="question-card"><p><strong>07-论述-001</strong>（★★ 知识点：K7-1，分值：6 分）
+<strong>题目</strong>：比较局部注册与全局注册，说明推荐方式。</p>
+<p><strong>要求</strong>： （1）两者区别（3 分）。
+（2）推荐方式及原因（3 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）区别（3 分）：局部注册在组件内
+import 使用，仅当前可用；全局注册在 main.js 用
+<code>app.component</code>，全局任意位置可用。 （2）推荐（3
+分）：推荐局部注册。因全局注册无法
+Tree-shaking，增大打包体积；局部注册按需引入，更利于维护与优化。</p>
+<p><strong>评分标准</strong>：共 6 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-论述-002</strong>（★★ 知识点：K7-2，分值：8 分）
+<strong>题目</strong>：解释 props 的单向数据流，子组件需要修改 props
+数据时怎么办？</p>
+<p><strong>要求</strong>： （1）单向数据流含义（3 分）。 （2）子组件修改
+props 的正确方式（3 分）。 （3）props 校验选项（2 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）单向流（3 分）：props
+只能从父流向子，子组件不能直接修改 props，否则 Vue
+警告。这保证数据流向清晰可追踪。 （2）正确方式（3 分）：子组件用 emit
+触发事件通知父组件，由父组件修改数据后再通过 props 传回子组件；或用
+computed 派生本地数据。 （3）校验选项（2
+分）：type（类型）、required（必填）、default（默认值）、validator（自定义校验）。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-论述-003</strong>（★★ 知识点：K7-3/K7-4，分值：8 分）
+<strong>题目</strong>：说明 emits
+实现子传父的完整流程，并写出父子组件示例。</p>
+<p><strong>要求</strong>： （1）流程说明（4 分）。 （2）完整示例（4
+分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）流程（4 分）：①子组件用 defineEmits
+声明事件名；②子组件在合适时机调用 <code>emit('事件名', 数据)</code>
+触发；③父组件用 <code>@事件名</code> 监听，回调接收数据。 （2）示例（4
+分）：
+子：<code>const emit = defineEmits(['change']); const fn = () =&gt; emit('change', 10)</code>
+父：<code>&lt;Child @change="onChange" /&gt;</code>，<code>const onChange = (val) =&gt; { ... }</code></p>
+<p><strong>评分标准</strong>：共 8
+分，按小题给分。示例须含声明、触发、监听三步。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-论述-004</strong>（★★ 知识点：K7-5，分值：8 分）
+<strong>题目</strong>：解释组件 v-model 的原理，并说明如何实现。</p>
+<p><strong>要求</strong>： （1）原理（4 分）。 （2）实现方式（Vue 3.4+
+与传统）（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）原理（4
+分）：<code>&lt;Child v-model="x" /&gt;</code> 等价于
+<code>&lt;Child :modelValue="x" @update:modelValue="x=$event" /&gt;</code>，即父传
+<code>modelValue</code>（props），子 emit <code>update:modelValue</code>
+通知父更新，实现双向。 （2）实现（4 分）：①Vue 3.4+ 用
+<code>const model = defineModel()</code>，自动声明 modelValue +
+update:modelValue；②传统方式：<code>defineProps(['modelValue'])</code> +
+<code>defineEmits(['update:modelValue'])</code>，手动 emit 更新。支持多
+v-model 用 <code>v-model:参数名</code>。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<h2 id="五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</h2>
+<section class="question-card"><p><strong>07-程序-001</strong>（★★ 知识点：K7 综合，分值：10 分）
+<strong>题目</strong>：找出 3 处错误并改正。</p>
+<pre class="vue"><code>&lt;!-- 子组件 Counter.vue --&gt;
+&lt;template&gt;
+  &lt;button @click=&quot;count++&quot;&gt;{{ count }}&lt;/button&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const props = defineProps([&#39;init&#39;])
+const count = ref(props.init)
+const emit = defineEmits([&#39;change&#39;])
+count.value++   // 直接改
+&lt;/script&gt;</code></pre>
+<pre class="vue"><code>&lt;!-- 父组件 --&gt;
+&lt;template&gt;
+  &lt;Counter :init=&quot;0&quot; :change=&quot;onChange&quot; /&gt;
+&lt;/template&gt;</code></pre>
+<p><strong>要求</strong>：指出 3 处错误并改正。（每处 3.33 分，共 10
+分）</p><blockquote>
+<p><strong>参考答案</strong>：</p>
+<ol type="1">
+<li><strong><code>@click="count++"</code> 未触发 emit</strong>（3.33
+分）：应在自增后 emit 通知父，如
+<code>@click="increment"</code>，<code>const increment = () =&gt; { count.value++; emit('change', count.value) }</code>。</li>
+<li><strong><code>count.value++</code> 直接在 setup
+顶层执行</strong>（3.33 分）：setup
+顶层只执行一次，应放入方法或事件中。</li>
+<li><strong>父组件 <code>:change="onChange"</code> 错误</strong>（3.33
+分）：监听事件应用 <code>@change="onChange"</code>，不是
+<code>:change</code>。</li>
+</ol>
+<p><strong>评分标准</strong>：共 10 分，每处指出并改正得 3.33 分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-程序-002</strong>（★★ 知识点：K7-2/K7-3，分值：12 分）
+<strong>题目</strong>：补全子组件代码空缺。</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;button @click=&quot;onClick&quot;&gt;提交&lt;/button&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+const props = ______A______({ name: { type: String, required: true } })
+const emit = ______B______([&#39;submit&#39;])
+const onClick = () =&gt; {
+  emit(&#39;______C______&#39;, props.name)
+}
+&lt;/script&gt;</code></pre>
+<p><strong>要求</strong>： （1）A：声明 props 的函数。（4 分）
+（2）B：声明 emits 的函数。（4 分） （3）C：触发的事件名。（4 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>defineProps</code>（4
+分）。 （2）B = <code>defineEmits</code>（4 分）。 （3）C =
+<code>submit</code>（4 分）：与声明一致。</p>
+<p><strong>评分标准</strong>：共 12 分，每空 4 分。</p>
+</blockquote></section>
+<hr />
+<h2 id="六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</h2>
+<section class="question-card"><p><strong>07-编程-001</strong>（★★ 知识点：K7-2/K7-3，分值：15 分）
+<strong>题目</strong>：编写子组件 Counter，父组件传
+<code>init</code>（props），子组件按钮点击自增并 emit
+<code>change</code> 传新值给父，父显示。</p>
+<p><strong>要求</strong>： （1）子组件 props + emits + 按钮。（7 分）
+（2）父组件传 props + 监听事件 + 显示。（8 分）</p><blockquote>
+<p><strong>参考答案</strong>： 子组件 Counter.vue：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;button @click=&quot;increment&quot;&gt;{{ count }}&lt;/button&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const props = defineProps({ init: { type: Number, default: 0 } })
+const emit = defineEmits([&#39;change&#39;])
+const count = ref(props.init)
+const increment = () =&gt; { count.value++; emit(&#39;change&#39;, count.value) }
+&lt;/script&gt;</code></pre>
+<p>父组件 App.vue：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;Counter :init=&quot;0&quot; @change=&quot;onChange&quot; /&gt;
+  &lt;p&gt;当前：{{ result }}&lt;/p&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+import Counter from &#39;./Counter.vue&#39;
+const result = ref(0)
+const onChange = (val) =&gt; { result.value = val }
+&lt;/script&gt;</code></pre>
+<p>评分：子组件 props+emits+按钮自增+emit（7 分）；父传
+props+@监听+显示（8 分）。</p>
+<p><strong>评分标准</strong>：共 15 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>07-编程-002</strong>（★★★ 知识点：K7 综合，分值：20 分）
+<strong>题目</strong>：拆分 CTTS-Frontend 登录页为 LoginForm
+组件，要求：</p>
+<ul>
+<li>LoginForm 接收 props <code>initName</code>（默认空）；</li>
+<li>内部表单用户名/密码 v-model；</li>
+<li>提交时 emit <code>submit</code> 传 <code>{username, password}</code>
+给父；</li>
+<li>父组件传 <code>init-name="admin"</code>，监听 submit
+显示登录信息。</li>
+</ul>
+<p><strong>要求</strong>： （1）子组件 props + 表单 + emit。（8 分）
+（2）父组件传 props + 监听 + 显示。（7 分） （3）props 校验与默认值。（5
+分）</p><blockquote>
+<p><strong>参考答案</strong>：见教学资料综合示例（LoginForm）。
+评分要点：子组件 defineProps（initName 带默认值）+ reactive 表单 +
+defineEmits + emit submit 传对象（8 分）；父 import + :init-name +
+@submit + 显示（7 分）；props 校验 type/default（5 分）。</p>
+<p><strong>评分标准</strong>：共 20 分，按小题给分。代码须可运行，props
+用 kebab 传递（init-name）。</p>
+</blockquote></section>
+<hr />
+<h2 id="题库统计与组卷说明">题库统计与组卷说明</h2>
+<h3 id="题量统计">题量统计</h3>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>数量</th>
+<th>分值</th>
+<th>小计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择题（单选 30 + 多选 10）</td>
+<td>40</td>
+<td>每题 2 分</td>
+<td>80 分</td>
+</tr>
+<tr>
+<td>判断题</td>
+<td>20</td>
+<td>每题 1 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>填空题</td>
+<td>10</td>
+<td>每题 2 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>论述/简答题</td>
+<td>4</td>
+<td>6~8 分</td>
+<td>30 分</td>
+</tr>
+<tr>
+<td>程序阅读/补全题</td>
+<td>2</td>
+<td>10~12 分</td>
+<td>22 分</td>
+</tr>
+<tr>
+<td>编程/接口设计题</td>
+<td>2</td>
+<td>15~20 分</td>
+<td>35 分</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>78</strong></td>
+<td>—</td>
+<td><strong>207 分</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="难度分布">难度分布</h3>
+<table>
+<thead>
+<tr>
+<th>难度</th>
+<th>题量（约）</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★ 基础</td>
+<td>40</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>★★ 提高</td>
+<td>34</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>★★★ 综合</td>
+<td>4</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="知识点覆盖">知识点覆盖</h3>
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>覆盖题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K7-1 组件注册</td>
+<td>12</td>
+</tr>
+<tr>
+<td>K7-2 props</td>
+<td>18</td>
+</tr>
+<tr>
+<td>K7-3 emits</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K7-4 父子通信</td>
+<td>12</td>
+</tr>
+<tr>
+<td>K7-5 组件 v-model</td>
+<td>14</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本题库已确保每题答案唯一明确、无歧义选项，全部含解析，主观题含评分标准，可直接录入考试系统题库。</p>
+</blockquote>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

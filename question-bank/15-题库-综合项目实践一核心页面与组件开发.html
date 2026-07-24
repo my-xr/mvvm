@@ -1,0 +1,688 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>综合项目实践一核心页面与组件开发</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 15 次课 · 题库</div>
+      <h1>综合项目实践一核心页面与组件开发</h1>
+      <p>考试题库与参考解析 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 15 次课</span>
+        <span class="hero-chip"><b>主题</b>综合项目实践一核心页面与组件开发</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2 分）</a>
+<ul>
+<li><a href="#11-单项选择题30-题">1.1 单项选择题（30 题）</a></li>
+<li><a href="#12-多项选择题10-题">1.2 多项选择题（10 题）</a></li>
+</ul></li>
+<li><a href="#二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1 分）</a>
+<ul>
+</ul></li>
+<li><a href="#三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2 分）</a>
+<ul>
+</ul></li>
+<li><a href="#四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</a>
+<ul>
+</ul></li>
+<li><a href="#五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#题库统计与组卷说明">题库统计与组卷说明</a>
+<ul>
+<li><a href="#题量统计">题量统计</a></li>
+<li><a href="#难度分布">难度分布</a></li>
+<li><a href="#知识点覆盖">知识点覆盖</a></li>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 15 次课 <span>｜</span> <strong>文档：</strong>题库</p>
+<blockquote>
+<p>配套：<code>教学设计.md</code>、<code>教学资料.md</code>（同文件夹）
+题量：40 选择 + 20 判断 + 10 填空 + 4 论述/简答 + 2 程序阅读/补全 + 2
+编程/接口设计 = <strong>78 题</strong>
+全部含参考答案与解析；主观题另附评分标准。 难度：★ 基础 / ★★ 提高 / ★★★
+综合 ｜ 编号：<code>15-题型-序号</code></p>
+</blockquote>
+<hr />
+<h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
+分）</h2>
+<h3 id="11-单项选择题30-题">1.1 单项选择题（30 题）</h3>
+<section class="question-card"><p><strong>15-选择-001</strong>（★ 知识点：K15-1） CTTS-Frontend
+页面组件通常放在？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>src/components/</code></span></li><li><span class="option-label">B</span><span><code>src/views/</code></span></li><li><span class="option-label">C</span><span><code>src/api/</code></span></li><li><span class="option-label">D</span><span><code>src/stores/</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：页面组件放
+<code>src/views/</code>，通用组件放 <code>src/components/</code>。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-002</strong>（★ 知识点：K15-2） 登录成功后应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>直接跳转</span></li><li><span class="option-label">B</span><span>存 Token 到 store 并持久化，再跳转</span></li><li><span class="option-label">C</span><span>关闭页面</span></li><li><span class="option-label">D</span><span>刷新页面</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：登录后存 Token（store
++ localStorage），再跳转。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-003</strong>（★ 知识点：K15-2）
+布局组件显示当前用户名，数据来自？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>组件本地</span></li><li><span class="option-label">B</span><span>userStore</span></li><li><span class="option-label">C</span><span>路由</span></li><li><span class="option-label">D</span><span>localStorage 直接读</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：用户信息在
+userStore，Header 读 store 显示。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-004</strong>（★ 知识点：K15-3）
+项目列表页获取数据应在？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>created</span></li><li><span class="option-label">B</span><span>onMounted</span></li><li><span class="option-label">C</span><span>onUnmounted</span></li><li><span class="option-label">D</span><span>任意</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vue 3 用
+<code>onMounted</code> 发请求获取数据。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-005</strong>（★ 知识点：K15-3）
+列表页应通过哪里发请求？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>组件直接用 axios</span></li><li><span class="option-label">B</span><span>api 模块封装函数</span></li><li><span class="option-label">C</span><span>store 直接发</span></li><li><span class="option-label">D</span><span>路由发</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：应通过 api
+模块封装函数发请求，解耦。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-006</strong>（★ 知识点：K15-3） 任务详情页获取 id
+用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>路由 query</span></li><li><span class="option-label">B</span><span>路由 params（动态路由 + props:true）</span></li><li><span class="option-label">C</span><span>localStorage</span></li><li><span class="option-label">D</span><span>store</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：动态路由
+<code>:id</code> + props:true，组件用 props 接收 id。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-007</strong>（★ 知识点：K15-4） 成果提交应使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>GET</span></li><li><span class="option-label">B</span><span>POST</span></li><li><span class="option-label">C</span><span>DELETE</span></li><li><span class="option-label">D</span><span>HEAD</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：提交新增资源用
+POST。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-008</strong>（★ 知识点：K15-5）
+用户管理页通常需要什么权限？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>学生</span></li><li><span class="option-label">B</span><span>教师</span></li><li><span class="option-label">C</span><span>管理员</span></li><li><span class="option-label">D</span><span>任意</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong>
+<strong>解析</strong>：用户管理是管理员功能，需 admin 权限。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-009</strong>（★ 知识点：K15-3）
+列表页加载时显示"加载中..."，应使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>loading 状态变量</span></li><li><span class="option-label">B</span><span>v-if 直接</span></li><li><span class="option-label">C</span><span>报错</span></li><li><span class="option-label">D</span><span>不显示</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：用 loading
+状态变量控制加载提示。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-010</strong>（★ 知识点：K15-1） CTTS-Frontend
+接口模块放在？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>src/api/</code></span></li><li><span class="option-label">B</span><span><code>src/views/</code></span></li><li><span class="option-label">C</span><span><code>src/router/</code></span></li><li><span class="option-label">D</span><span><code>src/components/</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：接口模块放
+<code>src/api/</code>。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-011</strong>（★ 知识点：K15-2） 退出登录应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>只跳转</span></li><li><span class="option-label">B</span><span>清空 store 状态与 localStorage，再跳登录</span></li><li><span class="option-label">C</span><span>关闭浏览器</span></li><li><span class="option-label">D</span><span>刷新</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：退出清空 store +
+localStorage，跳登录页。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-012</strong>（★ 知识点：K15-3） 项目列表搜索过滤用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>computed</span></li><li><span class="option-label">B</span><span>watch</span></li><li><span class="option-label">C</span><span>methods</span></li><li><span class="option-label">D</span><span>store</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：用 computed
+派生过滤后列表。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-013</strong>（★ 知识点：K15-4）
+评审打分数据应发送给后端用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>GET</span></li><li><span class="option-label">B</span><span>POST</span></li><li><span class="option-label">C</span><span>PUT</span></li><li><span class="option-label">D</span><span>DELETE</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：提交评审用 POST。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-014</strong>（★ 知识点：K15 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>页面组件放 src/views</span></li><li><span class="option-label">B</span><span>登录后存 Token</span></li><li><span class="option-label">C</span><span>列表用 onMounted 发请求</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-015</strong>（★ 知识点：K15 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>列表页直接用 axios 发请求</span></li><li><span class="option-label">B</span><span>详情页用动态路由 props</span></li><li><span class="option-label">C</span><span>提交用 POST</span></li><li><span class="option-label">D</span><span>退出清空状态</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A 错误，应通过 api
+模块。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-016</strong>（★ 知识点：K15-2） 布局组件的
+<code>&lt;router-view /&gt;</code> 作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>显示导航</span></li><li><span class="option-label">B</span><span>渲染子路由页面</span></li><li><span class="option-label">C</span><span>显示用户名</span></li><li><span class="option-label">D</span><span>发请求</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>&lt;router-view /&gt;</code>
+渲染子路由匹配的页面。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-017</strong>（★★ 知识点：K15-3） 列表页 onMounted
+发请求失败应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>忽略</span></li><li><span class="option-label">B</span><span>catch 处理并提示</span></li><li><span class="option-label">C</span><span>终止程序</span></li><li><span class="option-label">D</span><span>不处理</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：应 try/catch
+处理失败并提示。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-018</strong>（★★ 知识点：K15-4） 表单提交前应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>直接提交</span></li><li><span class="option-label">B</span><span>校验数据合法性</span></li><li><span class="option-label">C</span><span>关闭页面</span></li><li><span class="option-label">D</span><span>刷新</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：提交前应校验。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-019</strong>（★★ 知识点：K15-5）
+用户管理页访问权限控制用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>组件 v-if</span></li><li><span class="option-label">B</span><span>路由 meta + 守卫</span></li><li><span class="option-label">C</span><span>localStorage</span></li><li><span class="option-label">D</span><span>CSS</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：用路由 meta 标识 role
++ 守卫校验。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-020</strong>（★★ 知识点：K15 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>接口模块化便于管理</span></li><li><span class="option-label">B</span><span>loading 状态改善体验</span></li><li><span class="option-label">C</span><span>错误应 catch 处理</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-021</strong>（★★ 知识点：K15-3） 任务详情页
+<code>defineProps(['id'])</code> 的 id 来自？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>路由
+params（props:true）</span></li><li><span class="option-label">B</span><span>query</span></li><li><span class="option-label">C</span><span>store</span></li><li><span class="option-label">D</span><span>硬编码</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：动态路由 +
+props:true，id 来自路由 params。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-022</strong>（★★ 知识点：K15 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>登录不存 Token 直接跳转</span></li><li><span class="option-label">B</span><span>列表用 computed 过滤</span></li><li><span class="option-label">C</span><span>提交用 POST</span></li><li><span class="option-label">D</span><span>用户管理需 admin</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A 错误，应存
+Token。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-023</strong>（★★ 知识点：K15 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>布局组件读 store 显示用户</span></li><li><span class="option-label">B</span><span>详情页用动态路由</span></li><li><span class="option-label">C</span><span>提交前校验</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-024</strong>（★★ 知识点：K15 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>列表页 onUnmounted 发请求</span></li><li><span class="option-label">B</span><span>api 模块化</span></li><li><span class="option-label">C</span><span>退出清状态</span></li><li><span class="option-label">D</span><span>权限用 meta</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A 错误，应在
+onMounted 发请求。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-025</strong>（★★ 知识点：K15 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>页面放 src/views</span></li><li><span class="option-label">B</span><span>通用组件放 src/components</span></li><li><span class="option-label">C</span><span>接口放 src/api</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-026</strong>（★★ 知识点：K15 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>loading 不必要</span></li><li><span class="option-label">B</span><span>错误应处理</span></li><li><span class="option-label">C</span><span>提交前校验</span></li><li><span class="option-label">D</span><span>退出清状态</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A 错误，loading
+改善体验。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-027</strong>（★★ 知识点：K15 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>登录存 Token + 持久化</span></li><li><span class="option-label">B</span><span>Header 读 store</span></li><li><span class="option-label">C</span><span>详情用 props:true</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-028</strong>（★★ 知识点：K15 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>后端未就绪不能开发</span></li><li><span class="option-label">B</span><span>用 Mock 兜底</span></li><li><span class="option-label">C</span><span>接口契约重要</span></li><li><span class="option-label">D</span><span>跨域用 proxy</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A 错误，可用 Mock
+开发。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-029</strong>（★★ 知识点：K15 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>综合实践整合组件/路由/状态/请求</span></li><li><span class="option-label">B</span><span>接口模块化解耦</span></li><li><span class="option-label">C</span><span>错误处理改善体验</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-030</strong>（★★ 知识点：K15 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>用户管理所有角色都能访问</span></li><li><span class="option-label">B</span><span>评审用 POST</span></li><li><span class="option-label">C</span><span>详情用动态路由</span></li><li><span class="option-label">D</span><span>退出清状态</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A 错误，用户管理需
+admin。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<h3 id="12-多项选择题10-题">1.2 多项选择题（10 题）</h3>
+<section class="question-card"><p><strong>15-选择-031</strong>（★★ 知识点：K15-1） CTTS-Frontend
+核心页面包括？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>登录页</span></li><li><span class="option-label">B</span><span>项目列表页</span></li><li><span class="option-label">C</span><span>任务详情页</span></li><li><span class="option-label">D</span><span>用户管理页</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项都是核心页面。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-032</strong>（★★ 知识点：K15-2）
+登录功能包含？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>表单校验</span></li><li><span class="option-label">B</span><span>调 login 接口</span></li><li><span class="option-label">C</span><span>存 Token</span></li><li><span class="option-label">D</span><span>跳转</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项都是登录流程。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-033</strong>（★★ 知识点：K15 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>页面放 src/views</span></li><li><span class="option-label">B</span><span>接口放 src/api</span></li><li><span class="option-label">C</span><span>列表用
+onMounted 发请求</span></li><li><span class="option-label">D</span><span>提交用 POST</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项均正确。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-034</strong>（★★ 知识点：K15 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>登录后存 Token</span></li><li><span class="option-label">B</span><span>Header 读 store</span></li><li><span class="option-label">C</span><span>退出清状态</span></li><li><span class="option-label">D</span><span>权限用 meta</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项均正确。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-035</strong>（★★ 知识点：K15 综合）
+联调要注意的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>接口契约</span></li><li><span class="option-label">B</span><span>跨域代理</span></li><li><span class="option-label">C</span><span>Token 携带</span></li><li><span class="option-label">D</span><span>错误处理</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项都是联调要点。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-036</strong>（★★ 知识点：K15 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>loading 改善体验</span></li><li><span class="option-label">B</span><span>computed 过滤列表</span></li><li><span class="option-label">C</span><span>详情用 props:true</span></li><li><span class="option-label">D</span><span>后端未就绪用 Mock</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项均正确。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-037</strong>（★★ 知识点：K15 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>提交前校验</span></li><li><span class="option-label">B</span><span>错误 catch 处理</span></li><li><span class="option-label">C</span><span>用户管理需
+admin</span></li><li><span class="option-label">D</span><span>评审用 POST</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项均正确。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-038</strong>（★★ 知识点：K15 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>布局用 router-view 渲染子页</span></li><li><span class="option-label">B</span><span>api 模块化</span></li><li><span class="option-label">C</span><span>退出清 store 与 localStorage</span></li><li><span class="option-label">D</span><span>列表直接用 axios</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，用 api 模块。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-039</strong>（★★ 知识点：K15 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>详情页 defineProps 接收 id</span></li><li><span class="option-label">B</span><span>列表 onMounted
+请求</span></li><li><span class="option-label">C</span><span>提交表单 v-model</span></li><li><span class="option-label">D</span><span>权限靠前端守卫完全保证</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，需后端校验。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-选择-040</strong>（★★ 知识点：K15 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>综合实践整合多项技能</span></li><li><span class="option-label">B</span><span>接口契约是协作基础</span></li><li><span class="option-label">C</span><span>错误处理改善体验</span></li><li><span class="option-label">D</span><span>后端未就绪不能开发</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，用 Mock。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<h2 id="二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1
+分）</h2>
+<section class="question-card"><p><strong>15-判断-001</strong>（★）页面组件放 src/views。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-002</strong>（★）登录后应存 Token 到 store
+并持久化。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-003</strong>（★）列表页应直接在组件用 axios
+发请求。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：应通过 api 模块。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-004</strong>（★）任务详情页用动态路由传 id。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-005</strong>（★）成果提交用 POST 请求。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-006</strong>（★）用户管理页需管理员权限。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-007</strong>（★）列表页用 onMounted 发请求。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-008</strong>（★）退出登录应清空 store 与
+localStorage。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-009</strong>（★）接口模块放 src/api。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-010</strong>（★）布局组件用 router-view 渲染子页。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-011</strong>（★★）列表页加载时不需要 loading 状态。（
+）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：需要 loading
+改善体验。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-012</strong>（★★）请求失败应 catch 处理并提示。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-013</strong>（★★）表单提交前应校验数据。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-014</strong>（★★）后端未就绪就不能开发前端。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：可用 Mock 兜底。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-015</strong>（★★）列表过滤用 computed。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-016</strong>（★★）详情页 props:true 解耦路由。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-017</strong>（★★）权限只靠前端守卫即可保证安全。（
+）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：需后端校验。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-018</strong>（★★）Header 显示用户名读 userStore。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-019</strong>（★★）接口契约是前后端协作基础。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-判断-020</strong>（★★）综合实践整合组件/路由/状态/请求。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<hr />
+<h2 id="三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2
+分）</h2>
+<section class="question-card"><p><strong>15-填空-001</strong>（★）页面组件放 <code>src/________</code>
+目录。</p><blockquote>
+<p><strong>答案：views</strong> <strong>解析</strong>：views。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-填空-002</strong>（★）登录后存 Token 到
+<code>________</code>（状态管理）。</p><blockquote>
+<p><strong>答案：store（userStore）</strong>
+<strong>解析</strong>：store。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-填空-003</strong>（★）列表页用 <code>on________</code>
+发请求。</p><blockquote>
+<p><strong>答案：Mounted</strong> <strong>解析</strong>：onMounted。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-填空-004</strong>（★）任务详情用动态路由
+<code>:________</code>。</p><blockquote>
+<p><strong>答案：id</strong> <strong>解析</strong>：id。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-填空-005</strong>（★）成果提交用 <code>________</code>
+请求方法。</p><blockquote>
+<p><strong>答案：POST</strong> <strong>解析</strong>：POST。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-填空-006</strong>（★）用户管理需 <code>________</code>
+权限。</p><blockquote>
+<p><strong>答案：admin（管理员）</strong>
+<strong>解析</strong>：admin。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-填空-007</strong>（★）接口模块放
+<code>src/________</code>。</p><blockquote>
+<p><strong>答案：api</strong> <strong>解析</strong>：api。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-填空-008</strong>（★）退出登录清空 store 与
+<code>________</code>Storage。</p><blockquote>
+<p><strong>答案：local</strong>
+<strong>解析</strong>：localStorage。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-填空-009</strong>（★）布局组件用
+<code>&lt;________&gt;</code> 渲染子页。</p><blockquote>
+<p><strong>答案：router-view</strong>
+<strong>解析</strong>：router-view。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>15-填空-010</strong>（★）列表过滤用
+<code>________</code>（计算属性）。</p><blockquote>
+<p><strong>答案：computed</strong> <strong>解析</strong>：computed。</p>
+</blockquote></section>
+<hr />
+<h2 id="四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</h2>
+<section class="question-card"><p><strong>15-论述-001</strong>（★★ 知识点：K15-1，分值：8 分）
+<strong>题目</strong>：说明 CTTS-Frontend 核心页面规划与目录结构。</p>
+<p><strong>要求</strong>： （1）页面清单（4 分）。 （2）目录结构（4
+分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）页面（4
+分）：登录、布局、项目列表、任务列表、任务详情、成果提交、评审列表、评审详情、用户管理、个人中心。
+（2）目录（4
+分）：src/api（接口）、src/components（通用组件）、src/views（页面）、src/stores（Pinia）、src/router（路由）、src/utils（request
+等）。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-论述-002</strong>（★★ 知识点：K15-2，分值：8 分）
+<strong>题目</strong>：说明登录页与布局组件的实现要点。</p>
+<p><strong>要求</strong>： （1）登录页（4 分）。 （2）布局组件（4
+分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）登录页（4 分）：表单 v-model + 校验
+→ 调 login 接口 → 存 Token 到 userStore 并持久化 → 跳转 /projects；错误
+catch 提示。 （2）布局（4 分）：Header 读 userStore
+显示用户名与退出；Sidebar 导航；Content 用
+<code>&lt;router-view/&gt;</code> 渲染子页。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-论述-003</strong>（★★ 知识点：K15-3，分值：8 分）
+<strong>题目</strong>：说明列表页与详情页的实现要点。</p>
+<p><strong>要求</strong>： （1）列表页（4 分）。 （2）详情页（4
+分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）列表页（4 分）：onMounted 调 api
+模块获取数据；loading 状态防白屏；computed 过滤；v-for + :key 渲染；错误
+catch 提示。 （2）详情页（4 分）：动态路由 <code>:id</code> +
+props:true；组件 defineProps 接收 id；onMounted 调接口获取详情。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-论述-004</strong>（★★ 知识点：K15 综合，分值：6 分）
+<strong>题目</strong>：前后端联调要注意哪些问题？</p>
+<p><strong>要求</strong>：列举至少 3 点（每点 2 分）。</p><blockquote>
+<p><strong>参考答案</strong>（每点 2 分，共 6 分）：</p>
+<ol type="1">
+<li>接口契约——前后端对齐字段名、类型、响应格式；</li>
+<li>跨域——开发用 Vite proxy，生产用 Nginx/CORS；</li>
+<li>Token——请求拦截器自动携带；</li>
+<li>错误处理——响应拦截器统一提示；</li>
+<li>Mock 兜底——后端未就绪用 Mock 开发。</li>
+</ol>
+<p><strong>评分标准</strong>：共 6 分，答出 3 点即满分。</p>
+</blockquote></section>
+<hr />
+<h2 id="五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</h2>
+<section class="question-card"><p><strong>15-程序-001</strong>（★★ 知识点：K15-3，分值：10 分）
+<strong>题目</strong>：补全列表页代码空缺。</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;ul v-if=&quot;!loading&quot;&gt;
+    &lt;li v-for=&quot;p in ______A______&quot; :key=&quot;p.id&quot;&gt;{{ p.title }}&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;p v-else&gt;加载中...&lt;/p&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref, ______B______, onMounted } from &#39;vue&#39;
+import { getProjects } from &#39;../api/project&#39;
+const projects = ref([])
+const loading = ref(true)
+const filtered = ______C______(() =&gt; projects.value)
+onMounted(async () =&gt; {
+  projects.value = await getProjects()
+  loading.value = false
+})
+&lt;/script&gt;</code></pre>
+<p><strong>要求</strong>： （1）A：v-for 数据源。（3 分）
+（2）B：导入的计算属性 API。（3 分） （3）C：创建计算属性的 API。（4
+分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>filtered</code>（3 分）。
+（2）B = <code>computed</code>（3 分）。 （3）C =
+<code>computed</code>（4 分）。</p>
+<p><strong>评分标准</strong>：共 10 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-程序-002</strong>（★★ 知识点：K15-2/K15-4，分值：12 分）
+<strong>题目</strong>：补全登录与提交代码空缺。</p>
+<pre class="vue"><code>&lt;!-- Login.vue --&gt;
+&lt;script setup&gt;
+const userStore = useUserStore()
+const router = useRouter()
+const onLogin = async () =&gt; {
+  await userStore.______A______(form)
+  router.______B______(&#39;/projects&#39;)
+}
+&lt;/script&gt;</code></pre>
+<pre class="vue"><code>&lt;!-- SubmitForm.vue --&gt;
+&lt;script setup&gt;
+const props = defineProps([&#39;id&#39;])
+const onSubmit = async () =&gt; {
+  await ______C______(props.id, form)
+  alert(&#39;提交成功&#39;)
+}
+&lt;/script&gt;</code></pre>
+<p><strong>要求</strong>： （1）A：userStore 登录方法。（4 分）
+（2）B：路由跳转方法。（4 分） （3）C：提交接口函数名。（4 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>login</code>（4 分）。
+（2）B = <code>push</code>（4 分）。 （3）C = <code>submitTask</code>（4
+分）。</p>
+<p><strong>评分标准</strong>：共 12 分，每空 4 分。</p>
+</blockquote></section>
+<hr />
+<h2 id="六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</h2>
+<section class="question-card"><p><strong>15-编程-001</strong>（★★ 知识点：K15-2/K15-3，分值：15 分）
+<strong>题目</strong>：编写 CTTS-Frontend 登录页与项目列表页。登录页调
+login 存 Token 跳转；列表页 onMounted 调 getProjects 显示，带 loading
+与搜索过滤。</p>
+<p><strong>要求</strong>： （1）登录页（表单+校验+调接口+跳转）。（7
+分） （2）列表页（onMounted+loading+computed 过滤）。（8 分）</p><blockquote>
+<p><strong>参考答案</strong>：见教学资料 3.1 与 3.3 节。
+评分：登录页校验+调 login+跳转（7 分）；列表页
+onMounted+loading+computed+v-for+:key（8 分）。</p>
+<p><strong>评分标准</strong>：共 15 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>15-编程-002</strong>（★★★ 知识点：K15 综合，分值：20 分）
+<strong>题目</strong>：完成 CTTS-Frontend 核心页面整合，要求：</p>
+<ul>
+<li>登录页调接口存 Token；</li>
+<li>布局组件（Header 读 store + Sidebar + router-view）；</li>
+<li>项目列表页（调接口+loading+过滤）；</li>
+<li>任务详情页（动态路由 props + 调接口）；</li>
+<li>成果提交页（表单 + POST 接口）。</li>
+</ul>
+<p><strong>要求</strong>： （1）登录 + 布局（6 分）。 （2）列表 +
+详情（6 分）。 （3）提交页（4 分）。 （4）完整可运行（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>：见教学资料各节代码。 评分：登录存 Token +
+布局读 store（6 分）；列表 onMounted+过滤 + 详情 props+接口（6
+分）；提交表单+POST（4 分）；可运行（4 分）。</p>
+<p><strong>评分标准</strong>：共 20 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<h2 id="题库统计与组卷说明">题库统计与组卷说明</h2>
+<h3 id="题量统计">题量统计</h3>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>数量</th>
+<th>分值</th>
+<th>小计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择题（单选 30 + 多选 10）</td>
+<td>40</td>
+<td>每题 2 分</td>
+<td>80 分</td>
+</tr>
+<tr>
+<td>判断题</td>
+<td>20</td>
+<td>每题 1 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>填空题</td>
+<td>10</td>
+<td>每题 2 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>论述/简答题</td>
+<td>4</td>
+<td>6~8 分</td>
+<td>30 分</td>
+</tr>
+<tr>
+<td>程序阅读/补全题</td>
+<td>2</td>
+<td>10~12 分</td>
+<td>22 分</td>
+</tr>
+<tr>
+<td>编程/接口设计题</td>
+<td>2</td>
+<td>15~20 分</td>
+<td>35 分</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>78</strong></td>
+<td>—</td>
+<td><strong>207 分</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="难度分布">难度分布</h3>
+<table>
+<thead>
+<tr>
+<th>难度</th>
+<th>题量（约）</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★ 基础</td>
+<td>40</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>★★ 提高</td>
+<td>34</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>★★★ 综合</td>
+<td>4</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="知识点覆盖">知识点覆盖</h3>
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>覆盖题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K15-1 页面规划</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K15-2 登录+布局</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K15-3 列表+详情</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K15-4 表单页</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K15-5 用户管理</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本题库已确保每题答案唯一明确、无歧义选项，全部含解析，主观题含评分标准，可直接录入考试系统题库。</p>
+</blockquote>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

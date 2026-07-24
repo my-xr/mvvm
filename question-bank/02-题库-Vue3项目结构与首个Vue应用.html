@@ -1,0 +1,967 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vue3项目结构与首个Vue应用</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 02 次课 · 题库</div>
+      <h1>Vue3项目结构与首个Vue应用</h1>
+      <p>考试题库与参考解析 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 02 次课</span>
+        <span class="hero-chip"><b>主题</b>Vue3项目结构与首个Vue应用</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2 分）</a>
+<ul>
+<li><a href="#11-单项选择题30-题">1.1 单项选择题（30 题）</a></li>
+<li><a href="#12-多项选择题10-题">1.2 多项选择题（10 题）</a></li>
+</ul></li>
+<li><a href="#二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1 分）</a>
+<ul>
+</ul></li>
+<li><a href="#三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2 分）</a>
+<ul>
+</ul></li>
+<li><a href="#四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</a>
+<ul>
+</ul></li>
+<li><a href="#五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#题库统计与组卷说明">题库统计与组卷说明</a>
+<ul>
+<li><a href="#题量统计">题量统计</a></li>
+<li><a href="#难度分布">难度分布</a></li>
+<li><a href="#知识点覆盖">知识点覆盖</a></li>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 02 次课 <span>｜</span> <strong>文档：</strong>题库</p>
+<blockquote>
+<p>配套：<code>教学设计.md</code>、<code>教学资料.md</code>（同文件夹）
+题量：40 选择 + 20 判断 + 10 填空 + 4 论述/简答 + 2 程序阅读/补全 + 2
+编程/接口设计 = <strong>78 题</strong>
+全部题目含参考答案与解析；主观题另附评分标准。 难度标注：★ 基础 / ★★
+提高 / ★★★ 综合 ｜ 编号规则：<code>02-题型-序号</code></p>
+</blockquote>
+<hr />
+<h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
+分）</h2>
+<h3 id="11-单项选择题30-题">1.1 单项选择题（30 题）</h3>
+<section class="question-card"><p><strong>02-选择-001</strong>（★ 知识点：K2-1） Vite 创建的 Vue 3
+项目中，HTML 入口文件是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>src/main.js</code></span></li><li><span class="option-label">B</span><span><code>src/App.vue</code></span></li><li><span class="option-label">C</span><span><code>index.html</code></span></li><li><span class="option-label">D</span><span><code>vite.config.js</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong>
+<strong>解析</strong>：<code>index.html</code> 是 SPA 唯一的 HTML
+外壳，含挂载点 <code>#app</code> 并加载 <code>/src/main.js</code>。C
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-002</strong>（★ 知识点：K2-1） Vue 3 项目中，创建 Vue
+应用并挂载到 <code>#app</code> 的文件是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>index.html</code></span></li><li><span class="option-label">B</span><span><code>src/main.js</code></span></li><li><span class="option-label">C</span><span><code>src/App.vue</code></span></li><li><span class="option-label">D</span><span><code>package.json</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>src/main.js</code> 中执行
+<code>createApp(App).mount('#app')</code>，是 JS 入口。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-003</strong>（★ 知识点：K2-1） Vue 3
+项目的根组件文件通常是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>main.js</code></span></li><li><span class="option-label">B</span><span><code>App.vue</code></span></li><li><span class="option-label">C</span><span><code>index.html</code></span></li><li><span class="option-label">D</span><span><code>style.css</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>src/App.vue</code> 是根组件，被
+<code>main.js</code> 引入并挂载。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-004</strong>（★ 知识点：K2-1）
+下列文件中，存放项目依赖的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>public/</code></span></li><li><span class="option-label">B</span><span><code>src/</code></span></li><li><span class="option-label">C</span><span><code>node_modules/</code></span></li><li><span class="option-label">D</span><span><code>assets/</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong>
+<strong>解析</strong>：<code>node_modules/</code> 由
+<code>npm install</code> 生成，存放所有依赖包。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-005</strong>（★ 知识点：K2-1） 关于
+<code>public/</code> 与 <code>src/assets/</code> 的区别，正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>两者完全相同</span></li><li><span class="option-label">B</span><span><code>public/</code>
+的资源会被构建处理，<code>assets/</code> 不会</span></li><li><span class="option-label">C</span><span><code>public/</code>
+的资源不构建处理（直接拷贝），<code>assets/</code> 的资源会被构建处理</span></li><li><span class="option-label">D</span><span>两者都不存放资源</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：<code>public/</code>
+的资源直接拷贝不构建，用绝对路径 <code>/xx</code>
+访问；<code>assets/</code> 的资源用 import 引入，会被 Vite 构建处理。C
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-006</strong>（★ 知识点：K2-2） Vue
+的单文件组件（SFC）文件后缀是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>.js</code></span></li><li><span class="option-label">B</span><span><code>.html</code></span></li><li><span class="option-label">C</span><span><code>.vue</code></span></li><li><span class="option-label">D</span><span><code>.ts</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：Vue 单文件组件以
+<code>.vue</code> 为后缀，含 template/script/style 三段。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-007</strong>（★ 知识点：K2-2） SFC
+的三段式结构不包括下列哪一项？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;template&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;script&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;style&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;config&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：SFC 三段为
+<code>&lt;template&gt;</code>、<code>&lt;script&gt;</code>、<code>&lt;style&gt;</code>，没有
+<code>&lt;config&gt;</code>。D 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-008</strong>（★ 知识点：K2-2）
+<code>&lt;style scoped&gt;</code> 中 <code>scoped</code> 的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>让样式全局生效</span></li><li><span class="option-label">B</span><span>让样式只作用于当前组件</span></li><li><span class="option-label">C</span><span>压缩 CSS</span></li><li><span class="option-label">D</span><span>启用 CSS
+变量</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>scoped</code>
+使样式仅作用于当前组件，通过 <code>data-v-xxx</code>
+属性选择器实现隔离。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-009</strong>（★ 知识点：K2-3）
+<code>&lt;script setup&gt;</code> 中声明的变量，如何暴露给模板？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>必须
+<code>return</code></span></li><li><span class="option-label">B</span><span>自动暴露，无需 return</span></li><li><span class="option-label">C</span><span>通过 <code>export</code>
+暴露</span></li><li><span class="option-label">D</span><span>通过 <code>global</code> 注册</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>&lt;script setup&gt;</code>
+顶层声明的变量/函数自动暴露给模板，无需 return。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-010</strong>（★ 知识点：K2-3） 在
+<code>&lt;script setup&gt;</code> 中 import
+一个组件，要在模板中使用，需要？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>在 <code>components</code>
+选项中注册</span></li><li><span class="option-label">B</span><span>用 <code>app.component</code> 全局注册</span></li><li><span class="option-label">C</span><span>直接在模板中使用，无需注册</span></li><li><span class="option-label">D</span><span>用 <code>defineComponent</code> 包装</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong>
+<strong>解析</strong>：<code>&lt;script setup&gt;</code> 下 import
+的组件自动可用，无需手动注册。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-011</strong>（★ 知识点：K2-4） <code>ref(0)</code>
+返回的对象，访问其真实值的方式是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>ref</code></span></li><li><span class="option-label">B</span><span><code>ref.value</code></span></li><li><span class="option-label">C</span><span><code>ref()</code></span></li><li><span class="option-label">D</span><span><code>ref.data</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>ref</code> 返回
+Ref 对象 <code>{value}</code>，JS 中通过 <code>.value</code>
+访问真实值。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-012</strong>（★ 知识点：K2-4） 在模板中显示
+<code>ref</code> 数据 <code>count</code>，正确写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>{{ count.value }}</code></span></li><li><span class="option-label">B</span><span><code>{{ count }}</code></span></li><li><span class="option-label">C</span><span><code>{{ count().value }}</code></span></li><li><span class="option-label">D</span><span><code>{{ count.data }}</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：模板中 ref
+自动解包，直接 <code>{{ count }}</code> 即可，写 <code>.value</code>
+反而错误。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-013</strong>（★ 知识点：K2-4） 下列代码中，正确递增
+ref 计数器的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>count++</code></span></li><li><span class="option-label">B</span><span><code>count.value++</code></span></li><li><span class="option-label">C</span><span><code>count.add()</code></span></li><li><span class="option-label">D</span><span><code>count = count + 1</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：JS 中必须
+<code>count.value++</code>。<code>count</code> 是对象不能直接
+<code>++</code>（A 错）；D 会覆盖变量丢失响应式。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-014</strong>（★ 知识点：K2-4） 把 ref 计数器重置为
+0，正确写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>count = 0</code></span></li><li><span class="option-label">B</span><span><code>count.value = 0</code></span></li><li><span class="option-label">C</span><span><code>count.reset()</code></span></li><li><span class="option-label">D</span><span><code>count = ref(0)</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：修改 ref 值需赋值给
+<code>.value</code>，即 <code>count.value = 0</code>。A/D
+会覆盖变量丢失响应式。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-015</strong>（★ 知识点：K2-2） 关于 SFC
+三段的顺序，社区约定是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>script → template → style</span></li><li><span class="option-label">B</span><span>style →
+template → script</span></li><li><span class="option-label">C</span><span>template → script → style</span></li><li><span class="option-label">D</span><span>任意顺序均可，无约定</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：社区约定 template →
+script → style，官方脚手架与 ESLint 也按此顺序。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-016</strong>（★ 知识点：K2-3） 关于
+<code>&lt;script setup&gt;</code>，下列说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>是 Composition
+API 的语法糖</span></li><li><span class="option-label">B</span><span>顶层声明自动暴露给模板</span></li><li><span class="option-label">C</span><span>需要
+<code>export default</code></span></li><li><span class="option-label">D</span><span>导入的组件可直接在模板用</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong>
+<strong>解析</strong>：<code>&lt;script setup&gt;</code>
+不需要也不允许写 <code>export default</code>，它本身是语法糖。A、B、D
+正确。C 错误，故选 C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-017</strong>（★ 知识点：K2-1）
+<code>vite.config.js</code> 文件的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>存放依赖清单</span></li><li><span class="option-label">B</span><span>配置
+Vite（别名、代理、插件等）</span></li><li><span class="option-label">C</span><span>定义组件</span></li><li><span class="option-label">D</span><span>配置路由</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>vite.config.js</code> 是 Vite
+配置文件，用于配置别名、开发代理、插件等。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-018</strong>（★ 知识点：K2-1）
+<code>package.json</code> 文件的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>存放源代码</span></li><li><span class="option-label">B</span><span>存放依赖清单与脚本命令</span></li><li><span class="option-label">C</span><span>配置路由</span></li><li><span class="option-label">D</span><span>配置样式</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>package.json</code> 记录项目依赖清单与
+<code>scripts</code> 命令（如 dev/build）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-019</strong>（★ 知识点：K2-5）
+<code>v-for="project in projects"</code> 中，<code>project</code> 是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>数组本身</span></li><li><span class="option-label">B</span><span>循环变量，代表当前项</span></li><li><span class="option-label">C</span><span>索引</span></li><li><span class="option-label">D</span><span>方法名</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>project</code>
+是循环变量，代表数组当前项；<code>projects</code> 是数据源。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-020</strong>（★ 知识点：K2-5） <code>v-for</code>
+列表渲染中，建议为每项添加？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>:key</code></span></li><li><span class="option-label">B</span><span><code>:id</code></span></li><li><span class="option-label">C</span><span><code>:index</code></span></li><li><span class="option-label">D</span><span><code>:name</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：<code>v-for</code>
+应加 <code>:key</code> 绑定唯一标识，帮助 Vue 高效更新列表。B
+是属性非指令属性名。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-021</strong>（★★ 知识点：K2-1） 关于 Vue 3
+项目的文件加载链路，正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>main.js</code> →
+<code>index.html</code> → <code>App.vue</code></span></li><li><span class="option-label">B</span><span><code>App.vue</code> →
+<code>main.js</code> → <code>index.html</code></span></li><li><span class="option-label">C</span><span><code>index.html</code> → <code>main.js</code> → <code>App.vue</code></span></li><li><span class="option-label">D</span><span><code>index.html</code> → <code>App.vue</code> →
+<code>main.js</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：浏览器先加载
+<code>index.html</code>，其中加载
+<code>main.js</code>，<code>main.js</code> 引入并挂载
+<code>App.vue</code>。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-022</strong>（★★ 知识点：K2-2） 关于
+SFC，下列说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>SFC 必须三段齐全，缺一不可</span></li><li><span class="option-label">B</span><span><code>&lt;style&gt;</code> 是可选的</span></li><li><span class="option-label">C</span><span>一个 <code>.vue</code>
+文件只能写一个组件</span></li><li><span class="option-label">D</span><span>SFC 不能包含样式</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：三段中
+<code>&lt;style&gt;</code> 可选，组件可无样式。A 错；C
+错（一个文件就是一个组件）；D 错。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-023</strong>（★★ 知识点：K2-3）
+<code>&lt;script setup&gt;</code> 相比普通 <code>setup()</code>
+函数的主要优势是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>性能更差</span></li><li><span class="option-label">B</span><span>减少样板代码，无需 return</span></li><li><span class="option-label">C</span><span>不支持
+Composition API</span></li><li><span class="option-label">D</span><span>必须手动注册组件</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>&lt;script setup&gt;</code>
+减少样板代码（无需 return、无需 components 注册），更简洁。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-024</strong>（★★ 知识点：K2-4） 关于模板中 ref
+的自动解包，下列说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>模板中需要手动 <code>.value</code></span></li><li><span class="option-label">B</span><span>模板中 ref 会自动解包，直接用变量名</span></li><li><span class="option-label">C</span><span>自动解包只对基本类型有效</span></li><li><span class="option-label">D</span><span>解包后会丢失响应式</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：模板中 ref
+自动解包，直接 <code>{{ count }}</code> 即可，无需
+<code>.value</code>。解包不丢失响应式。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-025</strong>（★★ 知识点：K2-4）
+下列代码会导致响应式丢失的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>count.value = 1</code></span></li><li><span class="option-label">B</span><span><code>count.value++</code></span></li><li><span class="option-label">C</span><span><code>count = 1</code></span></li><li><span class="option-label">D</span><span><code>count.value = count.value + 1</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong>
+<strong>解析</strong>：<code>count = 1</code>
+会把变量重新赋值为普通数字，丢失原 ref 对象的响应式。应改
+<code>count.value = 1</code>。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-026</strong>（★★ 知识点：K2-2/K2-3） 关于
+<code>&lt;style scoped&gt;</code>，下列说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>scoped
+样式会作用到所有组件</span></li><li><span class="option-label">B</span><span>scoped 通过属性选择器实现作用域隔离</span></li><li><span class="option-label">C</span><span>scoped
+会删除样式</span></li><li><span class="option-label">D</span><span>scoped 不能写普通 CSS</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：scoped 通过给元素加
+<code>data-v-xxx</code> 属性选择器，使样式只作用于当前组件。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-027</strong>（★★ 知识点：K2-1） 引用
+<code>src/assets/logo.png</code> 图片，正确方式是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>直接用
+<code>/logo.png</code></span></li><li><span class="option-label">B</span><span>用
+<code>import logo from './assets/logo.png'</code> 后绑定</span></li><li><span class="option-label">C</span><span>放
+<code>public/</code> 用绝对路径</span></li><li><span class="option-label">D</span><span>复制到 <code>index.html</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>assets/</code>
+资源用 <code>import</code> 引入会被构建处理；<code>public/</code>
+才用绝对路径。题干是 assets，选 B。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-028</strong>（★★ 知识点：K2-3） 在
+<code>&lt;script setup&gt;</code> 中使用
+<code>ref</code>，正确的导入是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>import { ref } from 'vue'</code></span></li><li><span class="option-label">B</span><span><code>import ref from 'vue'</code></span></li><li><span class="option-label">C</span><span><code>import { ref } from 'react'</code></span></li><li><span class="option-label">D</span><span><code>import * as ref from 'vue'</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：<code>ref</code> 是
+vue 的具名导出，用 <code>import { ref } from 'vue'</code>。B
+是默认导入（vue 无默认导出 ref）。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-029</strong>（★★ 知识点：K2-4） <code>ref</code>
+适合包装的数据类型是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>只能是字符串</span></li><li><span class="option-label">B</span><span>基本类型（也支持对象，但对象常用 reactive）</span></li><li><span class="option-label">C</span><span>只能是数字</span></li><li><span class="option-label">D</span><span>只能是数组</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>ref</code>
+适合基本类型，也能包对象/数组，但对象一般推荐用 <code>reactive</code>。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-030</strong>（★★ 知识点：K2-5） 在 CTTS-Frontend
+首页中，<code>projects</code> 数据要让视图自动更新，应使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>普通数组
+<code>const projects = [...]</code></span></li><li><span class="option-label">B</span><span><code>ref([...])</code> 包装</span></li><li><span class="option-label">C</span><span>全局变量</span></li><li><span class="option-label">D</span><span><code>localStorage</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：要让数据变化时视图更新，需用响应式数据。<code>ref([...])</code>
+包装数组即可响应式。A 普通数组不会触发更新。B 正确。</p>
+</blockquote></section>
+<hr />
+<h3 id="12-多项选择题10-题">1.2 多项选择题（10 题）</h3>
+<section class="question-card"><p><strong>02-选择-031</strong>（★★ 知识点：K2-2） SFC
+的三段式包括？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;template&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;script&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;style&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;router&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：SFC 三段为
+template/script/style。<code>&lt;router&gt;</code> 不是 SFC 的段。选
+A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-032</strong>（★★ 知识点：K2-3） 关于
+<code>&lt;script setup&gt;</code> 的特点，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>顶层声明自动暴露给模板</span></li><li><span class="option-label">B</span><span>导入的组件可直接使用</span></li><li><span class="option-label">C</span><span>无需
+<code>export default</code></span></li><li><span class="option-label">D</span><span>必须手动 return 变量</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 都是
+<code>&lt;script setup&gt;</code> 特点。D 错误，无需 return。选
+A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-033</strong>（★★ 知识点：K2-4） 关于 <code>ref</code>
+的使用规则，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>JS 中通过 <code>.value</code> 访问</span></li><li><span class="option-label">B</span><span>模板中自动解包，直接用变量名</span></li><li><span class="option-label">C</span><span><code>count.value++</code> 可正确递增</span></li><li><span class="option-label">D</span><span><code>count = 1</code> 会保留响应式</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，<code>count = 1</code> 会丢失响应式。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-034</strong>（★★ 知识点：K2-1） 下列属于
+<code>src/</code> 目录下文件的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>App.vue</code></span></li><li><span class="option-label">B</span><span><code>main.js</code></span></li><li><span class="option-label">C</span><span><code>style.css</code></span></li><li><span class="option-label">D</span><span><code>package.json</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong>
+<strong>解析</strong>：App.vue、main.js、style.css 在 <code>src/</code>
+下；package.json 在项目根目录。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-035</strong>（★★ 知识点：K2-1） 关于 Vue 3
+项目，说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>index.html</code> 是 SPA 唯一 HTML</span></li><li><span class="option-label">B</span><span><code>main.js</code> 创建并挂载 Vue 应用</span></li><li><span class="option-label">C</span><span><code>App.vue</code>
+是根组件</span></li><li><span class="option-label">D</span><span><code>node_modules</code> 应提交到 git</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，node_modules 不提交 git。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-036</strong>（★★ 知识点：K2-2） 关于 SFC
+三段，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;template&gt;</code> 放结构</span></li><li><span class="option-label">B</span><span><code>&lt;script setup&gt;</code> 放逻辑</span></li><li><span class="option-label">C</span><span><code>&lt;style&gt;</code>
+可选</span></li><li><span class="option-label">D</span><span>三段顺序必须是 style→script→template</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，约定顺序是 template→script→style。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-037</strong>（★★ 知识点：K2-3）
+<code>&lt;script setup&gt;</code> 相比 Options API 的优势有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>减少样板代码</span></li><li><span class="option-label">B</span><span>逻辑聚合更易复用</span></li><li><span class="option-label">C</span><span>导入组件无需注册</span></li><li><span class="option-label">D</span><span>不支持
+Composition API</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
+都是优势。D 错误，<code>&lt;script setup&gt;</code> 正是 Composition API
+语法糖。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-038</strong>（★★ 知识点：K2-4）
+下列操作会触发视图更新的有？（多选，假设 count 是 ref）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>count.value++</code></span></li><li><span class="option-label">B</span><span><code>count.value = 10</code></span></li><li><span class="option-label">C</span><span><code>count = 5</code></span></li><li><span class="option-label">D</span><span>在模板中显示 <code>{{ count }}</code> 后修改
+<code>count.value</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、D</strong> <strong>解析</strong>：A、B、D 修改
+<code>.value</code> 会触发更新。C
+覆盖变量丢失响应式，不会触发原视图更新。选 A、B、D。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-039</strong>（★★ 知识点：K2-1/K2-2）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>SFC 把组件结构、逻辑、样式聚合在一个文件</span></li><li><span class="option-label">B</span><span>项目结构规范有利于团队协作</span></li><li><span class="option-label">C</span><span><code>&lt;style scoped&gt;</code>
+使样式只作用于当前组件</span></li><li><span class="option-label">D</span><span><code>public/</code> 资源会被 Vite
+构建处理</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，public 资源不构建处理（直接拷贝）。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-选择-040</strong>（★★ 知识点：K2-2/K2-3/K2-4）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;script setup&gt;</code> 中
+<code>import { ref } from 'vue'</code> 后可用 ref</span></li><li><span class="option-label">B</span><span>ref
+返回的对象在模板中自动解包</span></li><li><span class="option-label">C</span><span>SFC 三段为 template/script/style</span></li><li><span class="option-label">D</span><span><code>&lt;script setup&gt;</code> 必须写 <code>export default</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，<code>&lt;script setup&gt;</code> 不写
+<code>export default</code>。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<h2 id="二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1
+分）</h2>
+<section class="question-card"><p><strong>02-判断-001</strong>（★）<code>index.html</code> 是 Vue 3
+项目的 JS 入口文件。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：JS 入口是
+<code>src/main.js</code>，<code>index.html</code> 是 HTML 外壳。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-002</strong>（★）<code>src/main.js</code> 中
+<code>createApp(App).mount('#app')</code> 创建并挂载 Vue 应用。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确，main.js 是 JS
+入口，创建应用挂载到 <code>#app</code>。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-003</strong>（★）<code>.vue</code> 文件必须同时包含
+template、script、style 三段，缺一不可。（ ）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：<code>&lt;style&gt;</code>
+可选，组件可无样式。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-004</strong>（★）<code>&lt;script setup&gt;</code>
+中声明的变量需要 return 才能在模板中使用。（ ）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：<code>&lt;script setup&gt;</code> 自动暴露，无需
+return。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-005</strong>（★）<code>&lt;style scoped&gt;</code>
+的样式只作用于当前组件。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：scoped
+实现组件级样式隔离。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-006</strong>（★）<code>ref</code> 返回的对象在
+JavaScript 中通过 <code>.value</code> 访问真实值。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：ref 返回 Ref 对象，JS
+中用 <code>.value</code>。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-007</strong>（★）在模板中显示 ref 数据，应写成
+<code>{{ count.value }}</code>。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：模板自动解包，应写
+<code>{{ count }}</code>。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-008</strong>（★）<code>&lt;script setup&gt;</code> 中
+import 的组件可直接在模板使用，无需注册。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：导入即用，无需
+components 注册。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-009</strong>（★）<code>public/</code> 目录的资源会被
+Vite 构建处理（加哈希等）。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：public
+资源直接拷贝不构建；assets 才被构建处理。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-010</strong>（★）<code>node_modules</code>
+目录应该提交到 git 仓库。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：node_modules
+体积大，用 .gitignore 排除，不提交。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-011</strong>（★）SFC 三段的社区约定顺序是 template →
+script → style。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：约定顺序如此。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-012</strong>（★）<code>&lt;script setup&gt;</code> 是
+Composition API 的语法糖。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确，是 Composition
+API 推荐写法。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-013</strong>（★★）<code>count = 1</code>（count 是
+ref）会保留响应式。（ ）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：会覆盖变量丢失响应式，应
+<code>count.value = 1</code>。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-014</strong>（★★）<code>v-for</code>
+渲染列表时应为每项添加唯一的 <code>:key</code>。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：key 帮助 Vue
+高效更新列表。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-015</strong>（★★）<code>&lt;script setup&gt;</code>
+中需要写 <code>export default { }</code>。（ ）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：<code>&lt;script setup&gt;</code> 不需要也不允许
+<code>export default</code>。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-016</strong>（★★）<code>ref</code>
+只能包装基本类型数据，不能包装对象。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：ref
+也能包对象，但对象常用 reactive。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-017</strong>（★★）<code>assets/</code> 目录的资源用
+<code>import</code> 引入会被 Vite 构建处理。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：assets 资源用 import
+引入，会被构建处理。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-018</strong>（★★）<code>vite.config.js</code>
+用于配置 Vite（别名、代理、插件等）。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-019</strong>（★★）Vue 3 的 SFC
+支持多根节点（Fragment）。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：Vue 3
+模板可有多根节点，但初学建议单根包裹。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-判断-020</strong>（★★）模板中 ref
+自动解包后会丢失响应式。（ ）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：解包只是显示值的便捷机制，不丢失响应式。</p>
+</blockquote></section>
+<hr />
+<h2 id="三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2
+分）</h2>
+<section class="question-card"><p><strong>02-填空-001</strong>（★）Vue 3 项目的 HTML 入口是
+<code>________</code>。</p><blockquote>
+<p><strong>答案：index.html</strong> <strong>解析</strong>：SPA 唯一
+HTML 外壳。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-填空-002</strong>（★）Vue 3 项目的 JS 入口是
+<code>src/________</code>。</p><blockquote>
+<p><strong>答案：main.js</strong> <strong>解析</strong>：创建并挂载 Vue
+应用。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-填空-003</strong>（★）Vue 3 项目的根组件是
+<code>src/________</code>。</p><blockquote>
+<p><strong>答案：App.vue</strong> <strong>解析</strong>：被 main.js
+引入挂载。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-填空-004</strong>（★）SFC 三段式为
+<code>&lt;template&gt;</code>、<code>&lt;script setup&gt;</code> 和
+<code>&lt;________&gt;</code>。</p><blockquote>
+<p><strong>答案：style</strong>
+<strong>解析</strong>：第三段是样式。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-填空-005</strong>（★）<code>&lt;style ________&gt;</code>
+表示样式只作用于当前组件。</p><blockquote>
+<p><strong>答案：scoped</strong> <strong>解析</strong>：scoped
+实现组件级样式隔离。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-填空-006</strong>（★）<code>&lt;script setup&gt;</code>
+中声明变量后，________ return 即可在模板使用（填"需要"或"无需"）。</p><blockquote>
+<p><strong>答案：无需</strong> <strong>解析</strong>：自动暴露，无需
+return。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-填空-007</strong>（★）<code>ref</code> 返回的对象在
+JavaScript 中通过 <code>________</code> 访问真实值。</p><blockquote>
+<p><strong>答案：.value</strong> <strong>解析</strong>：Ref 对象用
+.value 访问。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-填空-008</strong>（★）模板中 ref 数据会自动
+<code>________</code>，直接用变量名即可。</p><blockquote>
+<p><strong>答案：解包（unwrap）</strong>
+<strong>解析</strong>：模板自动解包 ref。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-填空-009</strong>（★）<code>import { ________ } from 'vue'</code>
+用于导入创建响应式数据的 API。</p><blockquote>
+<p><strong>答案：ref</strong> <strong>解析</strong>：ref 是 vue
+的具名导出。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>02-填空-010</strong>（★）<code>v-for</code> 列表渲染应绑定
+<code>:________</code> 帮助 Vue 高效更新。</p><blockquote>
+<p><strong>答案：key</strong> <strong>解析</strong>：key
+为列表项提供唯一标识。</p>
+</blockquote></section>
+<hr />
+<h2 id="四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</h2>
+<section class="question-card"><p><strong>02-论述-001</strong>（★★ 知识点：K2-1，分值：6 分）
+<strong>题目</strong>：简述 Vue 3 项目的文件加载链路，说明
+<code>index.html</code>、<code>src/main.js</code>、<code>src/App.vue</code>
+各自的作用。</p>
+<p><strong>要求</strong>： （1）写出加载链路顺序。（2 分）
+（2）分别说明三个文件的作用。（4 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）加载链路（2
+分）：<code>index.html</code> → <code>src/main.js</code> →
+<code>src/App.vue</code>。浏览器先加载 index.html，其中
+<code>&lt;script&gt;</code> 加载 main.js，main.js 引入 App.vue 并挂载。
+（2）三文件作用（每点 1.33 分，答全 3 个得 4 分）：</p>
+<ul>
+<li><code>index.html</code>：SPA 唯一 HTML 外壳，含挂载点
+<code>#app</code>，加载 main.js；</li>
+<li><code>src/main.js</code>：JS 入口，执行
+<code>createApp(App).mount('#app')</code> 创建并挂载应用；</li>
+<li><code>src/App.vue</code>：根组件，整个应用的顶层模板。</li>
+</ul>
+<p><strong>评分标准</strong>：共 6 分。链路顺序正确 2 分；三文件作用各
+1.33 分，意思相近即给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-论述-002</strong>（★★ 知识点：K2-2/K2-3，分值：8 分）
+<strong>题目</strong>：什么是 SFC？说明其三段式结构及各段作用，并解释
+<code>&lt;script setup&gt;</code> 相比普通 <code>setup()</code>
+的优势。</p>
+<p><strong>要求</strong>： （1）解释 SFC 含义。（2 分）
+（2）说明三段及作用。（3 分） （3）说明
+<code>&lt;script setup&gt;</code> 的优势。（3 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）SFC 含义（2 分）：SFC（Single File
+Component，单文件组件）是 Vue 把组件的结构、逻辑、样式聚合在同一个
+<code>.vue</code> 文件中的写法。 （2）三段及作用（每段 1 分，共 3
+分）：</p>
+<ul>
+<li><code>&lt;template&gt;</code>：结构，组件的 HTML 视图；</li>
+<li><code>&lt;script setup&gt;</code>：逻辑，组件的数据与方法；</li>
+<li><code>&lt;style&gt;</code>：样式，组件的 CSS（可选）。
+（3）<code>&lt;script setup&gt;</code> 优势（每点 1 分，共 3 分）：</li>
+<li>顶层声明自动暴露，无需 return；</li>
+<li>导入的组件可直接用，无需 components 注册；</li>
+<li>减少样板代码，编译时优化性能更好。</li>
+</ul>
+<p><strong>评分标准</strong>：共 8 分，按小题分值给分。优势答出 3
+点满分，少一点扣 1 分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-论述-003</strong>（★★ 知识点：K2-4，分值：8 分）
+<strong>题目</strong>：解释 <code>ref</code>
+的响应式机制，并说明为什么在 JavaScript 中要用 <code>.value</code>
+而模板中不用。</p>
+<p><strong>要求</strong>： （1）解释 ref 的作用与返回对象结构。（3 分）
+（2）说明 JS 中为何用 <code>.value</code>。（3 分）
+（3）说明模板中为何不用 <code>.value</code>。（2 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）ref 作用与结构（3
+分）：<code>ref()</code> 把值包装成响应式数据，返回一个 Ref
+对象，结构形如 <code>{ value: 原始值 }</code>。Vue 通过追踪
+<code>.value</code> 的读写实现响应式——修改 <code>.value</code>
+时视图自动更新。 （2）JS 中用 <code>.value</code>（3 分）：因为 ref
+返回的是对象，真实值存在 <code>.value</code> 属性中，JS 中必须访问
+<code>.value</code> 才能读写真实值；直接 <code>count++</code> 会因 count
+是对象而失败，<code>count = 1</code> 会覆盖变量丢失响应式。
+（3）模板中不用 <code>.value</code>（2 分）：模板中 Vue 自动对 ref
+进行"解包"（unwrap），直接显示 <code>.value</code> 的值，所以写
+<code>{{ count }}</code> 即可，写 <code>.value</code> 反而取不到。</p>
+<p><strong>评分标准</strong>：共 8
+分，按小题分值给分。第（2）题需答出"ref 返回对象"这一关键点。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-论述-004</strong>（★★ 知识点：K2-1/K2-5，分值：8 分）
+<strong>题目</strong>：在 CTTS-Frontend 首页中，为什么要用
+<code>ref</code>
+包装项目列表数据而不用普通数组？请从响应式角度分析，并描述普通数组与 ref
+数组在修改后视图表现的差异。</p>
+<p><strong>要求</strong>： （1）说明用 ref 包装的原因。（4 分）
+（2）对比普通数组与 ref 数组的视图表现。（4 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）用 ref 的原因（4 分）：Vue
+的响应式系统通过 ref/reactive 追踪数据变化。普通数组不是响应式的，修改后
+Vue 检测不到变化，视图不会更新。用 <code>ref([...])</code>
+包装后，数组变为响应式，修改 <code>projects.value</code>（或其元素）时
+Vue 会自动更新视图，实现数据驱动。 （2）对比（每方面 2 分，共 4
+分）：</p>
+<ul>
+<li>普通数组：修改后视图<strong>不更新</strong>，需手动操作 DOM
+才能改变显示；</li>
+<li>ref 数组：修改 <code>.value</code>
+或数组元素后，视图<strong>自动更新</strong>，无需操作 DOM。</li>
+</ul>
+<p><strong>评分标准</strong>：共 8
+分，按小题分值给分。第（1）题需答出"普通数组非响应式、ref
+使其响应式"核心点。</p>
+</blockquote></section>
+<hr />
+<h2 id="五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</h2>
+<section class="question-card"><p><strong>02-程序-001</strong>（★★ 知识点：K2-4，分值：10 分）
+<strong>题目</strong>：阅读以下计数器组件，找出 3 处错误并改正。</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;次数：{{ count.value }}&lt;/p&gt;
+    &lt;button @click=&quot;count++&quot;&gt;+1&lt;/button&gt;
+    &lt;button @click=&quot;reset&quot;&gt;重置&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+const count = ref(0)
+const reset = () =&gt; {
+  count = 0
+}
+&lt;/script&gt;</code></pre>
+<p><strong>要求</strong>：指出 3 处错误并给出改正代码。（每处 3.33
+分，共 10 分）</p><blockquote>
+<p><strong>参考答案</strong>（3 处错误）：</p>
+<ol type="1">
+<li><strong>模板 <code>{{ count.value }}</code> 错误</strong>（3.33
+分）：模板自动解包，应改为 <code>{{ count }}</code>。</li>
+<li><strong><code>@click="count++"</code> 错误</strong>（3.33
+分）：count 是对象不能直接 ++，应改为
+<code>@click="count.value++"</code> 或调用方法。</li>
+<li><strong><code>count = 0</code> 错误</strong>（3.33
+分）：会覆盖变量丢失响应式，应改为
+<code>count.value = 0</code>。另外缺少
+<code>import { ref } from 'vue'</code>（可作为附加错误指出，但不计入 3
+处）。</li>
+</ol>
+<p>改正后：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;次数：{{ count }}&lt;/p&gt;
+    &lt;button @click=&quot;count.value++&quot;&gt;+1&lt;/button&gt;
+    &lt;button @click=&quot;reset&quot;&gt;重置&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const count = ref(0)
+const reset = () =&gt; { count.value = 0 }
+&lt;/script&gt;</code></pre>
+<p><strong>评分标准</strong>：共 10 分。指出每处错误并改正得 3.33
+分。若只指出未改正得一半分。附加指出 import 缺失不额外加分但不扣分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-程序-002</strong>（★★ 知识点：K2-5，分值：12 分）
+<strong>题目</strong>：补全以下 CTTS-Frontend 首页代码中的空缺。</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;h1&gt;CTTS-Frontend&lt;/h1&gt;
+    &lt;ul&gt;
+      &lt;li v-for=&quot;p in ______A______&quot; :key=&quot;p.id&quot;&gt;
+        {{ p.title }}
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;访问：{{ ______B______ }}&lt;/p&gt;
+    &lt;button @click=&quot;visit.______C______++&quot;&gt;增加访问&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+
+const projects = ref([
+  { id: 1, title: &#39;项目一&#39; },
+  { id: 2, title: &#39;项目二&#39; }
+])
+const visit = ref(0)
+&lt;/script&gt;</code></pre>
+<p><strong>要求</strong>： （1）补全 A（v-for 数据源）。（4 分）
+（2）补全 B（模板显示 ref 数据）。（4 分） （3）补全 C（JS 中修改
+ref）。（4 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>projects</code>（4
+分）：v-for 遍历的数据源是 projects。 （2）B = <code>visit</code>（4
+分）：模板自动解包，直接写 visit，不写 .value。 （3）C =
+<code>value</code>（4 分）：JS 中修改 ref 用
+<code>visit.value++</code>，所以 C 是 value。</p>
+<p><strong>评分标准</strong>：共 12 分，每空 4 分。B 写成
+<code>visit.value</code> 不给分（模板自动解包）。</p>
+</blockquote></section>
+<hr />
+<h2 id="六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</h2>
+<section class="question-card"><p><strong>02-编程-001</strong>（★★ 知识点：K2-2/K2-4，分值：15 分）
+<strong>题目</strong>：编写一个 Vue 3 SFC 组件
+<code>Counter.vue</code>，实现一个计数器：显示当前数字，提供"+1"、"-1"、"重置"三个按钮。要求使用
+<code>&lt;script setup&gt;</code> 与
+<code>ref</code>，三段式结构完整。</p>
+<p><strong>要求</strong>： （1）<code>&lt;template&gt;</code>
+结构正确（显示数字 + 三个按钮）。（5 分）
+（2）<code>&lt;script setup&gt;</code> 用 ref
+定义数据并实现三个方法。（7 分） （3）<code>&lt;style scoped&gt;</code>
+添加基本样式。（3 分）</p><blockquote>
+<p><strong>参考答案</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div class=&quot;counter&quot;&gt;
+    &lt;p&gt;当前计数：{{ count }}&lt;/p&gt;
+    &lt;button @click=&quot;add&quot;&gt;+1&lt;/button&gt;
+    &lt;button @click=&quot;sub&quot;&gt;-1&lt;/button&gt;
+    &lt;button @click=&quot;reset&quot;&gt;重置&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const count = ref(0)
+const add = () =&gt; count.value++
+const sub = () =&gt; count.value--
+const reset = () =&gt; { count.value = 0 }
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.counter {
+  text-align: center;
+  padding: 20px;
+}
+button {
+  margin: 0 6px;
+  padding: 6px 16px;
+  cursor: pointer;
+}
+&lt;/style&gt;</code></pre>
+<p>评分：template 结构正确（5 分）；script 用 ref 且三方法正确（7
+分，ref 2 分 + 三方法各 1.67 分）；style 存在且有样式（3 分）。JS
+中必须用 <code>.value</code>，否则扣 2 分。</p>
+<p><strong>评分标准</strong>：共 15
+分，按小题分值给分。代码须三段式齐全且可运行。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>02-编程-002</strong>（★★★ 知识点：K2-3/K2-4/K2-5
+综合，分值：20 分） <strong>题目</strong>：编写 CTTS-Frontend 首页
+<code>App.vue</code>，要求：</p>
+<ul>
+<li>显示标题"CTTS-Frontend 校园实训任务管理系统"；</li>
+<li>用 ref 包装一个项目列表数组（至少 3 个项目，含 id/title/status
+字段），用 <code>v-for</code> 渲染；</li>
+<li>提供一个输入框与"搜索"按钮（搜索功能可用简单 includes
+实现，或仅展示结构）；</li>
+<li>用 ref 实现一个访问计数器，提供"增加访问"与"重置"按钮。</li>
+</ul>
+<p><strong>要求</strong>： （1）完整三段式结构。（3 分） （2）ref
+包装项目列表与计数器，v-for 渲染列表并带 :key。（7 分）
+（3）计数器按钮可正常工作（JS 用 .value）。（5 分）
+（4）搜索输入框与按钮结构（v-model 绑定关键词，可选实现过滤）。（5
+分）</p><blockquote>
+<p><strong>参考答案</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div class=&quot;home&quot;&gt;
+    &lt;h1&gt;CTTS-Frontend 校园实训任务管理系统&lt;/h1&gt;
+
+    &lt;input v-model=&quot;keyword&quot; placeholder=&quot;搜索项目&quot; /&gt;
+    &lt;ul&gt;
+      &lt;li v-for=&quot;p in filteredProjects&quot; :key=&quot;p.id&quot;&gt;
+        {{ p.title }} — {{ p.status }}
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class=&quot;counter&quot;&gt;
+      &lt;p&gt;访问次数：{{ visitCount }}&lt;/p&gt;
+      &lt;button @click=&quot;visitCount.value++&quot;&gt;增加访问&lt;/button&gt;
+      &lt;button @click=&quot;reset&quot;&gt;重置&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, computed } from &#39;vue&#39;
+
+const keyword = ref(&#39;&#39;)
+const projects = ref([
+  { id: 1, title: &#39;项目一：JavaWeb&#39;, status: &#39;进行中&#39; },
+  { id: 2, title: &#39;项目二：Vue3&#39;, status: &#39;进行中&#39; },
+  { id: 3, title: &#39;项目三：全栈联调&#39;, status: &#39;未开始&#39; }
+])
+const filteredProjects = computed(() =&gt;
+  projects.value.filter(p =&gt; p.title.includes(keyword.value))
+)
+
+const visitCount = ref(0)
+const reset = () =&gt; { visitCount.value = 0 }
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.home { max-width: 700px; margin: 0 auto; font-family: system-ui; }
+h1 { color: #42b883; }
+ul { list-style: none; padding: 0; }
+li { padding: 10px 0; border-bottom: 1px solid #eee; }
+.counter { margin-top: 20px; }
+button { padding: 6px 16px; margin: 0 6px; cursor: pointer; }
+&lt;/style&gt;</code></pre>
+<p>评分：三段式（3 分）；ref 包装 projects/visitCount + v-for 带 :key（7
+分）；计数器按钮用 .value（5 分，注意模板里
+<code>@click="visitCount.value++"</code> 也可，或用方法）；搜索 v-model
++ 过滤（5 分，仅结构无过滤给 3 分）。</p>
+<p><strong>评分标准</strong>：共 20
+分，按小题分值给分。代码须可运行。v-for 必须带 :key（缺扣 1
+分）。computed 第 4 次课详讲，本题用作过滤可选，未用 computed
+而用方法过滤也可。</p>
+</blockquote></section>
+<hr />
+<h2 id="题库统计与组卷说明">题库统计与组卷说明</h2>
+<h3 id="题量统计">题量统计</h3>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>数量</th>
+<th>分值</th>
+<th>小计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择题（单选 30 + 多选 10）</td>
+<td>40</td>
+<td>每题 2 分</td>
+<td>80 分</td>
+</tr>
+<tr>
+<td>判断题</td>
+<td>20</td>
+<td>每题 1 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>填空题</td>
+<td>10</td>
+<td>每题 2 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>论述/简答题</td>
+<td>4</td>
+<td>6~8 分</td>
+<td>30 分</td>
+</tr>
+<tr>
+<td>程序阅读/补全题</td>
+<td>2</td>
+<td>10~12 分</td>
+<td>22 分</td>
+</tr>
+<tr>
+<td>编程/接口设计题</td>
+<td>2</td>
+<td>15~20 分</td>
+<td>35 分</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>78</strong></td>
+<td>—</td>
+<td><strong>207 分</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="难度分布">难度分布</h3>
+<table>
+<thead>
+<tr>
+<th>难度</th>
+<th>题量（约）</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★ 基础</td>
+<td>40</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>★★ 提高</td>
+<td>34</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>★★★ 综合</td>
+<td>4</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="知识点覆盖">知识点覆盖</h3>
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>覆盖题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K2-1 项目结构</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K2-2 SFC</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K2-3 <code>&lt;script setup&gt;</code></td>
+<td>14</td>
+</tr>
+<tr>
+<td>K2-4 ref</td>
+<td>18</td>
+</tr>
+<tr>
+<td>K2-5 首页开发</td>
+<td>14</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本题库已确保每题答案唯一明确、无歧义选项、不靠文字游戏，全部含解析，主观题含评分标准，可直接录入考试系统题库。</p>
+</blockquote>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

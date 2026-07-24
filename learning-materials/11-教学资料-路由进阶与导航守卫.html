@@ -1,0 +1,436 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>路由进阶与导航守卫</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 11 次课 · 教学资料</div>
+      <h1>路由进阶与导航守卫</h1>
+      <p>学生复习资料与代码示例 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 11 次课</span>
+        <span class="hero-chip"><b>主题</b>路由进阶与导航守卫</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一学习导读">一、学习导读</a>
+<ul>
+<li><a href="#11-本节定位">1.1 本节定位</a></li>
+<li><a href="#12-先修基础">1.2 先修基础</a></li>
+<li><a href="#13-学习目标">1.3 学习目标</a></li>
+</ul></li>
+<li><a href="#二知识点详解">二、知识点详解</a>
+<ul>
+<li><a href="#知识点-k11-1全局守卫">知识点 K11-1：全局守卫</a></li>
+<li><a href="#知识点-k11-2路由独享守卫与组件内守卫">知识点 K11-2：路由独享守卫与组件内守卫</a></li>
+<li><a href="#知识点-k11-3路由元信息-meta">知识点 K11-3：路由元信息 meta</a></li>
+<li><a href="#知识点-k11-4路由懒加载与代码分割">知识点 K11-4：路由懒加载与代码分割</a></li>
+<li><a href="#知识点-k11-5重定向与-404">知识点 K11-5：重定向与 404</a></li>
+</ul></li>
+<li><a href="#四拓展阅读选学">四、拓展阅读（选学）</a>
+<ul>
+</ul></li>
+<li><a href="#五本节小结与知识结构图">五、本节小结与知识结构图</a>
+<ul>
+</ul></li>
+<li><a href="#六复习思考题">六、复习思考题</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 11 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
+<blockquote>
+<p>学生复习资料 ｜
+配套：<code>教学设计.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一学习导读">一、学习导读</h2>
+<h3 id="11-本节定位">1.1 本节定位</h3>
+<p>本节学习路由守卫与权限控制，是 SPA
+安全与体验的关键。学完后能实现登录拦截与角色路由。</p>
+<h3 id="12-先修基础">1.2 先修基础</h3>
+<table>
+<thead>
+<tr>
+<th>先修知识</th>
+<th>程度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 10 次课</td>
+<td>必须</td>
+<td>Router 配置、动态/嵌套路由</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-学习目标">1.3 学习目标</h3>
+<ul>
+<li>✅ 掌握全局/独享/组件内守卫</li>
+<li>✅ 掌握 meta 权限控制</li>
+<li>✅ 掌握懒加载、重定向、404</li>
+</ul>
+<hr />
+<h2 id="二知识点详解">二、知识点详解</h2>
+<h3 id="知识点-k11-1全局守卫">知识点 K11-1：全局守卫</h3>
+<h4 id="定义">定义</h4>
+<p><strong>全局守卫</strong>对所有路由跳转生效，分前置
+<code>beforeEach</code> 与后置
+<code>afterEach</code>。前置守卫常用于登录拦截。</p>
+<h4 id="用法">用法</h4>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createRouter<span class="op">,</span> createWebHistory } <span class="im">from</span> <span class="st">&#39;vue-router&#39;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> <span class="fu">createRouter</span>({ <span class="dt">history</span><span class="op">:</span> <span class="fu">createWebHistory</span>()<span class="op">,</span> routes })</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">// 全局前置守卫</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>router<span class="op">.</span><span class="fu">beforeEach</span>((to<span class="op">,</span> <span class="im">from</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">// to: 目标路由；from: 来源路由</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 返回 false 取消；返回路径/对象 重定向；不返回或 true 放行</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> isLogin <span class="op">=</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;token&#39;</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">requireAuth</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>isLogin) {</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;/login&#39;</span>           <span class="co">// 重定向到登录页</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 不返回 = 放行</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">// 全局后置守卫（不能改变导航，常用于埋点、改标题）</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>router<span class="op">.</span><span class="fu">afterEach</span>((to) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="at">title</span> <span class="op">=</span> to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">title</span> <span class="op">||</span> <span class="st">&#39;CTTS-Frontend&#39;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<h4 id="vue-router-4-的-next-说明">Vue Router 4 的 next 说明</h4>
+<p>Vue Router 4 推荐通过<strong>返回值</strong>控制导航，不再强制
+<code>next()</code>：</p>
+<ul>
+<li>不返回 / 返回 <code>true</code> /
+<code>undefined</code>：放行。</li>
+<li>返回 <code>false</code>：取消导航。</li>
+<li>返回路径字符串或路由对象：重定向。</li>
+</ul>
+<p>仍可用 <code>next</code> 参数（兼容），但推荐返回值写法。</p>
+<h4 id="易错点">易错点</h4>
+<ul>
+<li><strong><code>beforeEach</code> 不返回</strong>：默认放行，需显式
+return 重定向。</li>
+<li><strong>后置守卫改导航</strong>：<code>afterEach</code>
+不能改变导航，只能做副作用。</li>
+<li><strong>死循环</strong>：重定向到 <code>/login</code> 时若
+<code>/login</code> 也 <code>requireAuth</code>
+会无限重定向，应排除登录页。</li>
+</ul>
+<h4 id="小结">小结</h4>
+<p><code>beforeEach</code>
+前置守卫做登录拦截，通过返回值控制放行/重定向/取消；<code>afterEach</code>
+后置做副作用。</p>
+<hr />
+<h3 id="知识点-k11-2路由独享守卫与组件内守卫">知识点
+K11-2：路由独享守卫与组件内守卫</h3>
+<h4 id="定义-1">定义</h4>
+<ul>
+<li><strong>路由独享守卫</strong>
+<code>beforeEnter</code>：只在进入某条路由时触发，写在路由配置里。</li>
+<li><strong>组件内守卫</strong>：在组件内用
+<code>onBeforeRouteLeave</code>（离开前）、<code>onBeforeRouteUpdate</code>（路由更新前）。</li>
+</ul>
+<h4 id="用法-1">用法</h4>
+<p><strong>路由独享</strong>：</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/admin&#39;</span><span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">component</span><span class="op">:</span> Admin<span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">beforeEnter</span><span class="op">:</span> (to<span class="op">,</span> <span class="im">from</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;role&#39;</span>) <span class="op">!==</span> <span class="st">&#39;admin&#39;</span>) {</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">&#39;/login&#39;</span>      <span class="co">// 非管理员重定向</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+<p><strong>组件内守卫</strong>：</p>
+<pre class="vue"><code>&lt;script setup&gt;
+import { onBeforeRouteLeave, onBeforeRouteUpdate } from &#39;vue-router&#39;
+
+onBeforeRouteLeave((to, from) =&gt; {
+  const ok = confirm(&#39;确定离开？未保存的数据将丢失&#39;)
+  if (!ok) return false      // 取消导航
+})
+
+onBeforeRouteUpdate((to, from) =&gt; {
+  // 同组件不同参数（如 /user/1 → /user/2）触发
+})
+&lt;/script&gt;</code></pre>
+<h4 id="守卫执行顺序">守卫执行顺序</h4>
+<div class="visual">
+  <div class="visual-title">图示 1：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">导航触发</span>
+<span class="diagram-line">  <span class="arrow-token">→</span> beforeEach（全局前置）</span>
+<span class="diagram-line">  <span class="arrow-token">→</span> beforeEnter（路由独享）</span>
+<span class="diagram-line">  <span class="arrow-token">→</span> 组件内 beforeRouteEnter</span>
+<span class="diagram-line">  <span class="arrow-token">→</span> afterEach（全局后置）</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<h4 id="易错点-1">易错点</h4>
+<ul>
+<li><strong>组件内守卫用错 API</strong>：Vue 3 用
+<code>onBeforeRouteLeave</code> 组合式 API，非
+<code>beforeRouteLeave</code> 选项。</li>
+<li><strong><code>beforeEnter</code>
+只对当前路由</strong>：不影响子路由（除非子路由也配置）。</li>
+</ul>
+<h4 id="小结-1">小结</h4>
+<p><code>beforeEnter</code> 路由独享；组件内
+<code>onBeforeRouteLeave</code>/<code>onBeforeRouteUpdate</code>；守卫按全局→独享→组件内→后置顺序执行。</p>
+<hr />
+<h3 id="知识点-k11-3路由元信息-meta">知识点 K11-3：路由元信息 meta</h3>
+<h4 id="定义-2">定义</h4>
+<p><strong>路由元信息 <code>meta</code></strong>
+是路由配置中的自定义字段，用于存储权限、标题等信息，守卫中读取
+<code>to.meta</code> 判断。</p>
+<h4 id="用法-2">用法</h4>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/login&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> Login<span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;登录&#39;</span> } }<span class="op">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/projects&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> Projects<span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">requireAuth</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;项目列表&#39;</span> } }<span class="op">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/admin/users&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> Users<span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">requireAuth</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">role</span><span class="op">:</span> <span class="st">&#39;admin&#39;</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;用户管理&#39;</span> } }</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>router<span class="op">.</span><span class="fu">beforeEach</span>((to) <span class="kw">=&gt;</span> {</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="at">title</span> <span class="op">=</span> to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">title</span> <span class="op">||</span> <span class="st">&#39;CTTS&#39;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">requireAuth</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;token&#39;</span>)) {</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;/login&#39;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">role</span> <span class="op">&amp;&amp;</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;role&#39;</span>) <span class="op">!==</span> to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">role</span>) {</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;/projects&#39;</span>        <span class="co">// 角色不符重定向</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<h4 id="meta-合并">meta 合并</h4>
+<p>嵌套路由的 meta 会合并（子路由 meta 与父路由 meta
+合并，子优先）。</p>
+<h4 id="易错点-2">易错点</h4>
+<ul>
+<li><strong>meta 写在子路由但守卫读父</strong>：守卫中
+<code>to.meta</code> 是合并后的结果，可直接读。</li>
+<li><strong>把敏感信息放 meta</strong>：meta
+在前端可见，不能存密钥等敏感数据，只存权限标识。</li>
+</ul>
+<h4 id="小结-2">小结</h4>
+<p>meta 存储路由元信息（权限/角色/标题），守卫读取 <code>to.meta</code>
+判断是否放行。</p>
+<hr />
+<h3 id="知识点-k11-4路由懒加载与代码分割">知识点
+K11-4：路由懒加载与代码分割</h3>
+<h4 id="定义-3">定义</h4>
+<p><strong>路由懒加载</strong> 用动态 <code>import()</code>
+按需加载路由组件，减小首屏体积，提升加载速度。</p>
+<h4 id="用法-3">用法</h4>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/login&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/Login.vue&#39;</span>) }<span class="op">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/projects&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/Projects.vue&#39;</span>) }</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+<h4 id="分组chunk">分组（chunk）</h4>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/admin&#39;</span><span class="op">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="co">/* webpackChunkName: &quot;admin&quot; */</span> <span class="st">&#39;../views/Admin.vue&#39;</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+<p>Vite 自动代码分割，每个动态 import 生成独立 chunk。</p>
+<h4 id="易错点-3">易错点</h4>
+<ul>
+<li><strong>全部静态
+import</strong>：首屏加载所有组件，体积大；应用懒加载。</li>
+<li><strong>过度拆分</strong>：每个路由一个 chunk
+可能产生过多请求，可分组。</li>
+</ul>
+<h4 id="小结-3">小结</h4>
+<p>路由懒加载用 <code>() =&gt; import()</code>，按需加载优化首屏；Vite
+自动代码分割。</p>
+<hr />
+<h3 id="知识点-k11-5重定向与-404">知识点 K11-5：重定向与 404</h3>
+<h4 id="定义-4">定义</h4>
+<p><strong>重定向</strong> 用 <code>redirect</code> 字段；<strong>404
+页面</strong>用通配路由 <code>:pathMatch(.*)*</code>
+匹配所有未定义路径。</p>
+<h4 id="用法-4">用法</h4>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/&#39;</span><span class="op">,</span> <span class="dt">redirect</span><span class="op">:</span> <span class="st">&#39;/projects&#39;</span> }<span class="op">,</span>                    <span class="co">// 重定向</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/home&#39;</span><span class="op">,</span> <span class="dt">redirect</span><span class="op">:</span> { <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;projects&#39;</span> } }<span class="op">,</span>        <span class="co">// 命名路由重定向</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/projects&#39;</span><span class="op">,</span> <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;projects&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> Projects }<span class="op">,</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/:pathMatch(.*)*&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/NotFound.vue&#39;</span>) }  <span class="co">// 404，放最后</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+<h4 id="404-注意">404 注意</h4>
+<ul>
+<li>通配路由必须放<strong>最后</strong>，否则会匹配所有路径。</li>
+<li>Vue Router 4 用 <code>:pathMatch(.*)*</code>（Vue 2 是
+<code>*</code>）。</li>
+</ul>
+<h4 id="易错点-4">易错点</h4>
+<ul>
+<li><strong>404 路由放前面</strong>：会匹配所有，导致其他路由失效。</li>
+<li><strong>重定向死循环</strong>：A 重定向 B，B 又重定向 A。</li>
+</ul>
+<h4 id="小结-4">小结</h4>
+<p><code>redirect</code>
+重定向；<code>{ path: '/:pathMatch(.*)*', component: NotFound }</code>
+配置 404，放路由表最后。</p>
+<hr />
+<h2
+id="三综合示例ctts-frontend-登录权限与角色路由">三、综合示例：CTTS-Frontend
+登录权限与角色路由</h2>
+<p><strong>src/router/index.js</strong>：</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createRouter<span class="op">,</span> createWebHistory } <span class="im">from</span> <span class="st">&#39;vue-router&#39;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Layout <span class="im">from</span> <span class="st">&#39;../views/Layout.vue&#39;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/login&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/Login.vue&#39;</span>)<span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;登录&#39;</span> } }<span class="op">,</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/&#39;</span><span class="op">,</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">component</span><span class="op">:</span> Layout<span class="op">,</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">meta</span><span class="op">:</span> { <span class="dt">requireAuth</span><span class="op">:</span> <span class="kw">true</span> }<span class="op">,</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">children</span><span class="op">:</span> [</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;projects&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/Projects.vue&#39;</span>)<span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;项目列表&#39;</span> } }<span class="op">,</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;tasks/:id&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/TaskDetail.vue&#39;</span>)<span class="op">,</span> <span class="dt">props</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;任务详情&#39;</span> } }<span class="op">,</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;admin/users&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/Users.vue&#39;</span>)<span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;用户管理&#39;</span><span class="op">,</span> <span class="dt">role</span><span class="op">:</span> <span class="st">&#39;admin&#39;</span> } }</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/:pathMatch(.*)*&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/NotFound.vue&#39;</span>) }</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> <span class="fu">createRouter</span>({ <span class="dt">history</span><span class="op">:</span> <span class="fu">createWebHistory</span>()<span class="op">,</span> routes })</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">// 全局前置守卫：登录 + 角色校验</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>router<span class="op">.</span><span class="fu">beforeEach</span>((to) <span class="kw">=&gt;</span> {</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="at">title</span> <span class="op">=</span> to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">title</span> <span class="op">||</span> <span class="st">&#39;CTTS-Frontend&#39;</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> token <span class="op">=</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;token&#39;</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> role <span class="op">=</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;role&#39;</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">requireAuth</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>token) {</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;/login&#39;</span>                       <span class="co">// 未登录跳登录</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">role</span> <span class="op">&amp;&amp;</span> to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">role</span> <span class="op">!==</span> role) {</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;/projects&#39;</span>                     <span class="co">// 角色不符</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> router</span></code></pre></div>
+<p><strong>Login.vue（登录后存 token 与 role）</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;form @submit.prevent=&quot;onLogin&quot;&gt;
+    &lt;input v-model=&quot;username&quot; placeholder=&quot;用户名&quot; /&gt;
+    &lt;input v-model=&quot;password&quot; type=&quot;password&quot; placeholder=&quot;密码&quot; /&gt;
+    &lt;button type=&quot;submit&quot;&gt;登录&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+import { useRouter } from &#39;vue-router&#39;
+const username = ref(&#39;&#39;)
+const password = ref(&#39;&#39;)
+const router = useRouter()
+const onLogin = () =&gt; {
+  // 简化：实际应调后端接口
+  localStorage.setItem(&#39;token&#39;, &#39;fake-token&#39;)
+  localStorage.setItem(&#39;role&#39;, &#39;admin&#39;)    // 实际从后端返回
+  router.push(&#39;/projects&#39;)
+}
+&lt;/script&gt;</code></pre>
+<p><strong>运行方式</strong>：配置路由与守卫，未登录访问
+<code>/projects</code> 会跳转 <code>/login</code>；登录后可访问；非
+admin 访问 <code>/admin/users</code> 跳回 <code>/projects</code>。</p>
+<hr />
+<h2 id="四拓展阅读选学">四、拓展阅读（选学）</h2>
+<ol type="1">
+<li><strong>路由过渡动效</strong>：<code>&lt;router-view&gt;</code> 配合
+<code>&lt;transition&gt;</code>。</li>
+<li><strong>滚动行为</strong>：<code>createRouter</code> 的
+<code>scrollBehavior</code> 选项。</li>
+<li><strong>数据获取时机</strong>：导航前获取 vs 导航后获取。</li>
+</ol>
+<hr />
+<h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
+<div class="visual">
+  <div class="visual-title">图示 2：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">第 11 次课：路由进阶与导航守卫</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K11-1 全局守卫（beforeEach/afterEach，返回值控制）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K11-2 独享守卫（beforeEnter）+ 组件内（onBeforeRouteLeave/Update）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K11-3 meta 元信息（权限/角色/标题）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K11-4 路由懒加载（() <span class="arrow-token">=&gt;</span> import()，代码分割）</span>
+<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K11-5 重定向 redirect + 404（:pathMatch(.*)*）</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>前置守卫</td>
+<td>beforeEach 做登录拦截</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>true 放行，false 取消，路径重定向</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>存权限标识</td>
+</tr>
+<tr>
+<td>懒加载</td>
+<td><code>() =&gt; import()</code></td>
+</tr>
+<tr>
+<td>404</td>
+<td><code>:pathMatch(.*)*</code> 放最后</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六复习思考题">六、复习思考题</h2>
+<ol type="1">
+<li>全局守卫、独享守卫、组件内守卫的执行顺序？</li>
+<li>beforeEach 如何通过返回值控制导航？</li>
+<li>meta 如何实现角色权限控制？</li>
+<li>路由懒加载的好处？如何配置？</li>
+<li>404 路由为什么必须放最后？前端权限能完全保证安全吗？</li>
+</ol>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

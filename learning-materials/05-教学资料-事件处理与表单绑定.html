@@ -1,0 +1,520 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>事件处理与表单绑定</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 05 次课 · 教学资料</div>
+      <h1>事件处理与表单绑定</h1>
+      <p>学生复习资料与代码示例 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 05 次课</span>
+        <span class="hero-chip"><b>主题</b>事件处理与表单绑定</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一学习导读">一、学习导读</a>
+<ul>
+<li><a href="#11-本节定位">1.1 本节定位</a></li>
+<li><a href="#12-先修基础">1.2 先修基础</a></li>
+<li><a href="#13-学习目标">1.3 学习目标</a></li>
+</ul></li>
+<li><a href="#二知识点详解">二、知识点详解</a>
+<ul>
+<li><a href="#知识点-k5-1事件处理基础">知识点 K5-1：事件处理基础</a></li>
+<li><a href="#知识点-k5-2事件修饰符">知识点 K5-2：事件修饰符</a></li>
+<li><a href="#知识点-k5-3按键与系统修饰符">知识点 K5-3：按键与系统修饰符</a></li>
+<li><a href="#知识点-k5-4表单输入绑定">知识点 K5-4：表单输入绑定</a></li>
+<li><a href="#知识点-k5-5v-model-修饰符">知识点 K5-5：v-model 修饰符</a></li>
+<li><a href="#知识点-k5-6表单验证基础">知识点 K5-6：表单验证基础</a></li>
+</ul></li>
+<li><a href="#三综合示例ctts-frontend-登录表单">三、综合示例：CTTS-Frontend 登录表单</a>
+<ul>
+</ul></li>
+<li><a href="#四拓展阅读选学">四、拓展阅读（选学）</a>
+<ul>
+</ul></li>
+<li><a href="#五本节小结与知识结构图">五、本节小结与知识结构图</a>
+<ul>
+</ul></li>
+<li><a href="#六复习思考题">六、复习思考题</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 05 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
+<blockquote>
+<p>学生复习资料 ｜
+配套：<code>教学设计.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一学习导读">一、学习导读</h2>
+<h3 id="11-本节定位">1.1 本节定位</h3>
+<p>本节学习事件处理与表单绑定，是交互开发的核心。学完后能实现各类表单与用户交互。</p>
+<h3 id="12-先修基础">1.2 先修基础</h3>
+<table>
+<thead>
+<tr>
+<th>先修知识</th>
+<th>程度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 3~4 次课</td>
+<td>必须</td>
+<td>v-on/v-model 基础、响应式</td>
+</tr>
+<tr>
+<td>HTML 表单</td>
+<td>熟悉</td>
+<td>input/textarea/select</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-学习目标">1.3 学习目标</h3>
+<ul>
+<li>✅ 掌握事件处理与事件对象</li>
+<li>✅ 掌握事件/按键/系统修饰符</li>
+<li>✅ 掌握各类表单的 v-model 绑定</li>
+<li>✅ 掌握 v-model 修饰符与表单校验</li>
+</ul>
+<hr />
+<h2 id="二知识点详解">二、知识点详解</h2>
+<h3 id="知识点-k5-1事件处理基础">知识点 K5-1：事件处理基础</h3>
+<h4 id="定义">定义</h4>
+<p><code>v-on</code>（简写 <code>@</code>）绑定 DOM
+事件，触发时执行方法或内联语句。</p>
+<h4 id="用法">用法</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;button @click=&quot;count.value++&quot;&gt;+1&lt;/button&gt;          &lt;!-- 内联语句 --&gt;
+  &lt;button @click=&quot;handleClick&quot;&gt;点击&lt;/button&gt;          &lt;!-- 方法引用 --&gt;
+  &lt;button @click=&quot;say(&#39;hi&#39;)&quot;&gt;传参&lt;/button&gt;            &lt;!-- 内联传参 --&gt;
+  &lt;button @click=&quot;say(&#39;hi&#39;, $event)&quot;&gt;传参+事件对象&lt;/button&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const count = ref(0)
+const handleClick = (e) =&gt; { console.log(e.target) }  // 方法引用：自动接收事件对象
+const say = (msg, e) =&gt; { console.log(msg, e) }       // 内联：手动传 $event
+&lt;/script&gt;</code></pre>
+<h4 id="方法引用-vs-内联语句">方法引用 vs 内联语句</h4>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>行为</th>
+<th>事件对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@click="fn"</code></td>
+<td>方法引用，触发时调用</td>
+<td>自动作为第一参数</td>
+</tr>
+<tr>
+<td><code>@click="fn()"</code></td>
+<td>内联，立即执行</td>
+<td>需手动传 <code>$event</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="易错点">易错点</h4>
+<ul>
+<li><strong><code>@click="fn()"</code> 忘传
+<code>$event</code></strong>：拿不到事件对象。</li>
+<li><strong>方法名拼错</strong>：模板方法名须与 script 一致。</li>
+</ul>
+<h4 id="小结">小结</h4>
+<p><code>@event</code> 绑定事件；方法引用自动接收事件对象，内联语句用
+<code>$event</code>。</p>
+<hr />
+<h3 id="知识点-k5-2事件修饰符">知识点 K5-2：事件修饰符</h3>
+<h4 id="定义-1">定义</h4>
+<p>事件修饰符以 <code>.</code> 后缀简化常见事件操作，可链式使用。</p>
+<h4 id="常用修饰符">常用修饰符</h4>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>作用</th>
+<th>等价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.stop</code></td>
+<td>阻止冒泡</td>
+<td><code>e.stopPropagation()</code></td>
+</tr>
+<tr>
+<td><code>.prevent</code></td>
+<td>阻止默认行为</td>
+<td><code>e.preventDefault()</code></td>
+</tr>
+<tr>
+<td><code>.once</code></td>
+<td>只触发一次</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>.capture</code></td>
+<td>捕获模式</td>
+<td>addEventListener capture</td>
+</tr>
+<tr>
+<td><code>.self</code></td>
+<td>仅事件源为自身才触发</td>
+<td><code>e.target === currentTarget</code></td>
+</tr>
+<tr>
+<td><code>.passive</code></td>
+<td>不调用 preventDefault（性能）</td>
+<td>passive:true</td>
+</tr>
+</tbody>
+</table>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;form @submit.prevent=&quot;onSubmit&quot;&gt;          &lt;!-- 阻止默认提交 --&gt;
+    &lt;div @click.stop=&quot;outer&quot;&gt;                &lt;!-- 阻止冒泡 --&gt;
+      &lt;button @click.once=&quot;onceFn&quot;&gt;只点一次&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/template&gt;</code></pre>
+<h4 id="链式顺序">链式顺序</h4>
+<p><code>@click.prevent.stop</code>：先 prevent 再
+stop；<code>@click.stop.prevent</code>：先 stop 再
+prevent。顺序影响执行先后。</p>
+<h4 id="易错点-1">易错点</h4>
+<ul>
+<li><strong><code>.passive</code> 与 <code>.prevent</code>
+不能同用</strong>：passive 表示不阻止默认行为，与 prevent 矛盾。</li>
+<li><strong>修饰符顺序</strong>：影响行为，注意书写顺序。</li>
+</ul>
+<h4 id="小结-1">小结</h4>
+<p>事件修饰符
+<code>.stop</code>/<code>.prevent</code>/<code>.once</code>/<code>.capture</code>/<code>.self</code>
+简化常见操作，可链式。</p>
+<hr />
+<h3 id="知识点-k5-3按键与系统修饰符">知识点 K5-3：按键与系统修饰符</h3>
+<h4 id="定义-2">定义</h4>
+<p>按键修饰符限定特定按键触发；系统修饰符限定组合键。</p>
+<h4 id="按键修饰符">按键修饰符</h4>
+<pre class="vue"><code>&lt;input @keyup.enter=&quot;submit&quot; /&gt;      &lt;!-- 回车 --&gt;
+&lt;input @keyup.esc=&quot;cancel&quot; /&gt;        &lt;!-- Esc --&gt;
+&lt;input @keyup.tab=&quot;next&quot; /&gt;          &lt;!-- Tab --&gt;
+&lt;input @keyup.delete=&quot;remove&quot; /&gt;     &lt;!-- Delete/Backspace --&gt;
+&lt;input @keyup.space=&quot;doSomething&quot; /&gt;  &lt;!-- 空格 --&gt;</code></pre>
+<p>也支持按键码（已废弃，不推荐）与自定义按键名。</p>
+<h4 id="系统修饰符">系统修饰符</h4>
+<pre class="vue"><code>&lt;div @click.ctrl=&quot;onCtrlClick&quot;&gt;Ctrl+点击&lt;/div&gt;
+&lt;div @click.shift=&quot;onShiftClick&quot;&gt;Shift+点击&lt;/div&gt;
+&lt;!-- .exact 精确匹配组合键 --&gt;
+&lt;button @click.ctrl.exact=&quot;fn&quot;&gt;仅 Ctrl（不按其他）&lt;/button&gt;</code></pre>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.ctrl</code></td>
+<td>按下 Ctrl</td>
+</tr>
+<tr>
+<td><code>.shift</code></td>
+<td>按下 Shift</td>
+</tr>
+<tr>
+<td><code>.alt</code></td>
+<td>按下 Alt</td>
+</tr>
+<tr>
+<td><code>.meta</code></td>
+<td>按下 Meta（Mac: Command，Win: Win 键）</td>
+</tr>
+<tr>
+<td><code>.exact</code></td>
+<td>精确匹配组合键</td>
+</tr>
+</tbody>
+</table>
+<h4 id="易错点-2">易错点</h4>
+<ul>
+<li><strong>按键修饰符用错事件</strong>：<code>@click.enter</code>
+无效，按键修饰符用于 <code>keyup</code>/<code>keydown</code>。</li>
+<li><strong><code>.meta</code> 跨平台差异</strong>：Mac 是
+Command，Windows 是 Win 键。</li>
+</ul>
+<h4 id="小结-2">小结</h4>
+<p>按键修饰符（<code>.enter</code>/<code>.esc</code>
+等）限定按键；系统修饰符（<code>.ctrl</code>/<code>.shift</code>）限定组合键；<code>.exact</code>
+精确匹配。</p>
+<hr />
+<h3 id="知识点-k5-4表单输入绑定">知识点 K5-4：表单输入绑定</h3>
+<h4 id="定义-3">定义</h4>
+<p><code>v-model</code> 实现各类表单元素的双向绑定。</p>
+<h4 id="用法-1">用法</h4>
+<p><strong>文本输入</strong>：</p>
+<pre class="vue"><code>&lt;input v-model=&quot;text&quot; /&gt;
+&lt;textarea v-model=&quot;desc&quot;&gt;&lt;/textarea&gt;</code></pre>
+<p><strong>单选 radio</strong>（绑定字符串值）：</p>
+<pre class="vue"><code>&lt;input type=&quot;radio&quot; v-model=&quot;gender&quot; value=&quot;male&quot; /&gt;男
+&lt;input type=&quot;radio&quot; v-model=&quot;gender&quot; value=&quot;female&quot; /&gt;女
+&lt;!-- gender 为 &#39;male&#39; 或 &#39;female&#39; --&gt;</code></pre>
+<p><strong>多选 checkbox</strong>：
+单个（布尔）：<code>&lt;input type="checkbox" v-model="agree" /&gt;</code>（agree
+为 true/false） 多个（数组）：</p>
+<pre class="vue"><code>&lt;input type=&quot;checkbox&quot; v-model=&quot;hobbies&quot; value=&quot;read&quot; /&gt;阅读
+&lt;input type=&quot;checkbox&quot; v-model=&quot;hobbies&quot; value=&quot;music&quot; /&gt;音乐
+&lt;!-- hobbies 为 [&#39;read&#39;,&#39;music&#39;] 子集 --&gt;</code></pre>
+<p><strong>下拉 select</strong>：</p>
+<pre class="vue"><code>&lt;select v-model=&quot;selected&quot;&gt;
+  &lt;option value=&quot;a&quot;&gt;A&lt;/option&gt;
+  &lt;option value=&quot;b&quot;&gt;B&lt;/option&gt;
+&lt;/select&gt;
+&lt;!-- 多选 --&gt;
+&lt;select v-model=&quot;selectedList&quot; multiple&gt;
+  ...
+&lt;/select&gt;</code></pre>
+<h4 id="易错点-3">易错点</h4>
+<ul>
+<li><strong>checkbox 多选忘绑定数组</strong>：多个 checkbox
+必须绑定数组，否则只存布尔。</li>
+<li><strong>radio/checkbox 忘写 value</strong>：v-model 靠 value
+区分选项，缺 value 无法正确同步。</li>
+<li><strong>textarea 用 <code>{{ }}</code> 插值</strong>：textarea 应用
+v-model，不能在标签内用 <code>{{ }}</code>。</li>
+</ul>
+<h4 id="小结-3">小结</h4>
+<p>v-model
+支持文本、radio（字符串）、checkbox（单布尔/多数组）、select（单值/多选数组）。</p>
+<hr />
+<h3 id="知识点-k5-5v-model-修饰符">知识点 K5-5：v-model 修饰符</h3>
+<h4 id="定义-4">定义</h4>
+<p>v-model 修饰符控制同步时机与数据转换。</p>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.lazy</code></td>
+<td>失焦（change）时同步，非实时（input）</td>
+</tr>
+<tr>
+<td><code>.number</code></td>
+<td>转为数字类型</td>
+</tr>
+<tr>
+<td><code>.trim</code></td>
+<td>去除首尾空格</td>
+</tr>
+</tbody>
+</table>
+<pre class="vue"><code>&lt;input v-model.lazy=&quot;text&quot; /&gt;      &lt;!-- 失焦同步 --&gt;
+&lt;input v-model.number=&quot;age&quot; /&gt;     &lt;!-- 转数字 --&gt;
+&lt;input v-model.trim=&quot;name&quot; /&gt;      &lt;!-- 去空格 --&gt;
+&lt;input v-model.lazy.number=&quot;n&quot; /&gt;  &lt;!-- 链式 --&gt;</code></pre>
+<h4 id="易错点-4">易错点</h4>
+<ul>
+<li><strong><code>.number</code>
+对非数字字符串</strong>：无法转数字时保留原字符串。</li>
+<li><strong><code>.lazy</code>
+体验</strong>：输入时数据不变，失焦才变，注意与实时校验冲突。</li>
+</ul>
+<h4 id="小结-4">小结</h4>
+<p><code>.lazy</code> 失焦同步、<code>.number</code>
+转数字、<code>.trim</code> 去空格，可链式。</p>
+<hr />
+<h3 id="知识点-k5-6表单验证基础">知识点 K5-6：表单验证基础</h3>
+<h4 id="定义-5">定义</h4>
+<p>表单验证在提交前校验数据合法性（非空、格式、长度等），避免无效请求。</p>
+<h4 id="用法-2">用法</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;form @submit.prevent=&quot;onSubmit&quot;&gt;
+    &lt;input v-model.trim=&quot;form.username&quot; placeholder=&quot;用户名&quot; /&gt;
+    &lt;p v-if=&quot;errors.username&quot; class=&quot;err&quot;&gt;{{ errors.username }}&lt;/p&gt;
+
+    &lt;input v-model.trim=&quot;form.password&quot; type=&quot;password&quot; placeholder=&quot;密码&quot; /&gt;
+    &lt;p v-if=&quot;errors.password&quot; class=&quot;err&quot;&gt;{{ errors.password }}&lt;/p&gt;
+
+    &lt;button type=&quot;submit&quot;&gt;登录&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { reactive } from &#39;vue&#39;
+const form = reactive({ username: &#39;&#39;, password: &#39;&#39; })
+const errors = reactive({ username: &#39;&#39;, password: &#39;&#39; })
+
+const validate = () =&gt; {
+  errors.username = form.username ? &#39;&#39; : &#39;用户名不能为空&#39;
+  errors.password = form.password.length &gt;= 6 ? &#39;&#39; : &#39;密码至少 6 位&#39;
+  return !errors.username &amp;&amp; !errors.password
+}
+const onSubmit = () =&gt; {
+  if (!validate()) return
+  alert(&#39;登录成功：&#39; + form.username)
+}
+&lt;/script&gt;
+&lt;style scoped&gt;
+.err { color: red; font-size: 12px; }
+&lt;/style&gt;</code></pre>
+<h4 id="小结-5">小结</h4>
+<p>表单验证：提交前校验非空/格式/长度；用响应式 errors
+显示错误信息；校验通过才提交。</p>
+<hr />
+<h2 id="三综合示例ctts-frontend-登录表单">三、综合示例：CTTS-Frontend
+登录表单</h2>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div class=&quot;login&quot;&gt;
+    &lt;h2&gt;登录&lt;/h2&gt;
+    &lt;form @submit.prevent=&quot;onSubmit&quot;&gt;
+      &lt;div&gt;
+        &lt;input v-model.trim=&quot;form.username&quot; placeholder=&quot;用户名&quot; @keyup.enter=&quot;onSubmit&quot; /&gt;
+        &lt;p v-if=&quot;errors.username&quot; class=&quot;err&quot;&gt;{{ errors.username }}&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;input v-model.trim=&quot;form.password&quot; type=&quot;password&quot; placeholder=&quot;密码&quot; @keyup.enter=&quot;onSubmit&quot; /&gt;
+        &lt;p v-if=&quot;errors.password&quot; class=&quot;err&quot;&gt;{{ errors.password }}&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;label&gt;
+        &lt;input type=&quot;checkbox&quot; v-model=&quot;form.remember&quot; /&gt; 记住我
+      &lt;/label&gt;
+      &lt;button type=&quot;submit&quot;&gt;登录&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;p v-if=&quot;msg&quot;&gt;{{ msg }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { reactive } from &#39;vue&#39;
+const form = reactive({ username: &#39;&#39;, password: &#39;&#39;, remember: false })
+const errors = reactive({ username: &#39;&#39;, password: &#39;&#39; })
+const msg = ref(&#39;&#39;)   // 注：需 import ref（见下）
+import { ref } from &#39;vue&#39;
+
+const validate = () =&gt; {
+  errors.username = form.username ? &#39;&#39; : &#39;用户名不能为空&#39;
+  errors.password = form.password.length &gt;= 6 ? &#39;&#39; : &#39;密码至少 6 位&#39;
+  return !errors.username &amp;&amp; !errors.password
+}
+const onSubmit = () =&gt; {
+  if (!validate()) return
+  msg.value = `登录成功：${form.username}，记住我：${form.remember}`
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.login { max-width: 360px; margin: 40px auto; font-family: system-ui; }
+input { display: block; width: 100%; padding: 8px; margin: 6px 0; box-sizing: border-box; }
+.err { color: #e24b4a; font-size: 12px; margin: 0 0 6px; }
+button { padding: 8px 20px; background: #42b883; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+&lt;/style&gt;</code></pre>
+<p><strong>运行方式</strong>：替换
+<code>src/App.vue</code>，输入用户名密码，回车或点登录提交；空用户名或密码&lt;6
+位会提示错误。</p>
+<hr />
+<h2 id="四拓展阅读选学">四、拓展阅读（选学）</h2>
+<ol type="1">
+<li><strong>自定义组件 v-model</strong>：组件上用 v-model（第 7
+次课讲）。</li>
+<li><strong>VueUse 的 useFormValidator</strong> 等表单校验库。</li>
+<li><strong>按键别名自定义</strong>：<code>app.config.keyCodes</code>（Vue
+2 风格，Vue 3 推荐用按键名）。</li>
+</ol>
+<hr />
+<h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
+<div class="visual">
+  <div class="visual-title">图示 1：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">第 5 次课：事件处理与表单绑定</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K5-1 事件处理（@，方法引用 vs 内联，$event）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K5-2 事件修饰符（.stop/.prevent/.once/.capture/.self）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K5-3 按键修饰符（.enter/.esc）+ 系统修饰符（.ctrl/.shift/.exact）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K5-4 表单绑定（文本/radio/checkbox/select）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K5-5 v-model 修饰符（.lazy/.number/.trim）</span>
+<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K5-6 表单验证（非空/格式/长度，errors 显示）</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>事件对象</td>
+<td>方法引用自动接收，内联用 <code>$event</code></td>
+</tr>
+<tr>
+<td>阻止冒泡</td>
+<td><code>.stop</code></td>
+</tr>
+<tr>
+<td>阻止默认</td>
+<td><code>.prevent</code></td>
+</tr>
+<tr>
+<td>回车提交</td>
+<td><code>@keyup.enter</code></td>
+</tr>
+<tr>
+<td>多选 checkbox</td>
+<td>绑定数组</td>
+</tr>
+<tr>
+<td>失焦同步</td>
+<td><code>.lazy</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六复习思考题">六、复习思考题</h2>
+<ol type="1">
+<li><code>@click="fn"</code> 与 <code>@click="fn()"</code> 的区别？</li>
+<li><code>.stop</code> 与 <code>.prevent</code> 分别阻止什么？</li>
+<li>多选 checkbox 的 v-model 绑定什么类型？</li>
+<li><code>.lazy</code>/<code>.number</code>/<code>.trim</code>
+各自作用？</li>
+<li>表单验证的基本思路是什么？</li>
+</ol>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

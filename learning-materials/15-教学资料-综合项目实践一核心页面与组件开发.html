@@ -1,0 +1,507 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>综合项目实践一核心页面与组件开发</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 15 次课 · 教学资料</div>
+      <h1>综合项目实践一核心页面与组件开发</h1>
+      <p>学生复习资料与代码示例 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 15 次课</span>
+        <span class="hero-chip"><b>主题</b>综合项目实践一核心页面与组件开发</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一学习导读">一、学习导读</a>
+<ul>
+<li><a href="#11-本节定位">1.1 本节定位</a></li>
+<li><a href="#12-先修基础">1.2 先修基础</a></li>
+<li><a href="#13-学习目标">1.3 学习目标</a></li>
+</ul></li>
+<li><a href="#二核心页面规划k15-1">二、核心页面规划（K15-1）</a>
+<ul>
+<li><a href="#页面清单">页面清单</a></li>
+<li><a href="#目录结构">目录结构</a></li>
+</ul></li>
+<li><a href="#三核心页面代码">三、核心页面代码</a>
+<ul>
+<li><a href="#31-登录页-loginvuek15-2">3.1 登录页 Login.vue（K15-2）</a></li>
+<li><a href="#32-布局组件-layoutvuek15-2">3.2 布局组件 Layout.vue（K15-2）</a></li>
+<li><a href="#33-项目列表页-projectsvuek15-3">3.3 项目列表页 Projects.vue（K15-3）</a></li>
+<li><a href="#34-任务详情页-taskdetailvuek15-3动态路由--props">3.4 任务详情页 TaskDetail.vue（K15-3，动态路由 + props）</a></li>
+<li><a href="#35-成果提交页-submitformvuek15-4">3.5 成果提交页 SubmitForm.vue（K15-4）</a></li>
+<li><a href="#36-评审页-reviewdetailvuek15-4">3.6 评审页 ReviewDetail.vue（K15-4）</a></li>
+<li><a href="#37-用户管理页-usersvuek15-5">3.7 用户管理页 Users.vue（K15-5）</a></li>
+</ul></li>
+<li><a href="#四接口模块srcapi">四、接口模块（src/api/）</a>
+<ul>
+</ul></li>
+<li><a href="#五联调要点">五、联调要点</a>
+<ul>
+</ul></li>
+<li><a href="#六本节小结与知识结构图">六、本节小结与知识结构图</a>
+<ul>
+</ul></li>
+<li><a href="#七复习思考题">七、复习思考题</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 15 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
+<blockquote>
+<p>学生复习资料 ｜ 配套：<code>教学设计.md</code>、<code>题库.md</code>
+本节为实践课，资料以核心页面完整代码为主。</p>
+</blockquote>
+<hr />
+<h2 id="一学习导读">一、学习导读</h2>
+<h3 id="11-本节定位">1.1 本节定位</h3>
+<p>本节综合运用前 14 次课知识，完成 CTTS-Frontend 全部核心页面并对接后端
+API，是全课程的集中实战。</p>
+<h3 id="12-先修基础">1.2 先修基础</h3>
+<table>
+<thead>
+<tr>
+<th>先修知识</th>
+<th>程度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 1~14 次课</td>
+<td>必须</td>
+<td>组件/路由/Pinia/Axios 全部</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-学习目标">1.3 学习目标</h3>
+<ul>
+<li>✅ 完成全部核心页面</li>
+<li>✅ 对接后端 API</li>
+<li>✅ 整合组件化、路由、状态、请求</li>
+</ul>
+<hr />
+<h2 id="二核心页面规划k15-1">二、核心页面规划（K15-1）</h2>
+<h3 id="页面清单">页面清单</h3>
+<table>
+<thead>
+<tr>
+<th>页面</th>
+<th>路由</th>
+<th>组件</th>
+<th>数据来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>登录</td>
+<td>/login</td>
+<td>Login.vue</td>
+<td>login 接口</td>
+</tr>
+<tr>
+<td>布局</td>
+<td>/</td>
+<td>Layout.vue</td>
+<td>userStore</td>
+</tr>
+<tr>
+<td>项目列表</td>
+<td>/projects</td>
+<td>Projects.vue</td>
+<td>getProjects 接口</td>
+</tr>
+<tr>
+<td>任务列表</td>
+<td>/projects/:id/tasks</td>
+<td>TaskList.vue</td>
+<td>getTasks 接口</td>
+</tr>
+<tr>
+<td>任务详情</td>
+<td>/tasks/:id</td>
+<td>TaskDetail.vue</td>
+<td>getTaskById 接口</td>
+</tr>
+<tr>
+<td>成果提交</td>
+<td>/tasks/:id/submit</td>
+<td>SubmitForm.vue</td>
+<td>submit 接口</td>
+</tr>
+<tr>
+<td>评审列表</td>
+<td>/reviews</td>
+<td>Reviews.vue</td>
+<td>getReviews 接口</td>
+</tr>
+<tr>
+<td>评审详情</td>
+<td>/reviews/:id</td>
+<td>ReviewDetail.vue</td>
+<td>review 接口</td>
+</tr>
+<tr>
+<td>用户管理</td>
+<td>/admin/users</td>
+<td>Users.vue</td>
+<td>getUsers 接口</td>
+</tr>
+<tr>
+<td>个人中心</td>
+<td>/profile</td>
+<td>Profile.vue</td>
+<td>getUserInfo 接口</td>
+</tr>
+</tbody>
+</table>
+<h3 id="目录结构">目录结构</h3>
+<div class="visual">
+  <div class="visual-title">图示 1：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">src/</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> api/            # 接口模块</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> components/     # 通用组件</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> views/          # 页面组件</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> stores/         # Pinia store</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> router/         # 路由</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> utils/          # request 等工具</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> App.vue</span>
+<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> main.js</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<hr />
+<h2 id="三核心页面代码">三、核心页面代码</h2>
+<h3 id="31-登录页-loginvuek15-2">3.1 登录页 Login.vue（K15-2）</h3>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;form @submit.prevent=&quot;onLogin&quot;&gt;
+    &lt;input v-model.trim=&quot;form.username&quot; placeholder=&quot;用户名&quot; /&gt;
+    &lt;input v-model.trim=&quot;form.password&quot; type=&quot;password&quot; placeholder=&quot;密码&quot; /&gt;
+    &lt;button type=&quot;submit&quot;&gt;登录&lt;/button&gt;
+    &lt;p v-if=&quot;error&quot; class=&quot;err&quot;&gt;{{ error }}&lt;/p&gt;
+  &lt;/form&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { reactive, ref } from &#39;vue&#39;
+import { useRouter } from &#39;vue-router&#39;
+import { useUserStore } from &#39;../stores/user&#39;
+const form = reactive({ username: &#39;&#39;, password: &#39;&#39; })
+const error = ref(&#39;&#39;)
+const router = useRouter()
+const userStore = useUserStore()
+const onLogin = async () =&gt; {
+  if (!form.username || form.password.length &lt; 6) {
+    error.value = &#39;用户名不能空且密码至少6位&#39;
+    return
+  }
+  try {
+    await userStore.login(form)
+    router.push(&#39;/projects&#39;)
+  } catch (e) {
+    error.value = &#39;登录失败：&#39; + e.message
+  }
+}
+&lt;/script&gt;
+&lt;style scoped&gt;
+.err { color: red; font-size: 12px; }
+&lt;/style&gt;</code></pre>
+<h3 id="32-布局组件-layoutvuek15-2">3.2 布局组件
+Layout.vue（K15-2）</h3>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div class=&quot;layout&quot;&gt;
+    &lt;AppHeader /&gt;
+    &lt;div class=&quot;body&quot;&gt;
+      &lt;AppSidebar /&gt;
+      &lt;main class=&quot;content&quot;&gt;&lt;router-view /&gt;&lt;/main&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import AppHeader from &#39;../components/AppHeader.vue&#39;
+import AppSidebar from &#39;../components/AppSidebar.vue&#39;
+&lt;/script&gt;
+&lt;style scoped&gt;
+.layout { height: 100vh; display: flex; flex-direction: column; }
+.body { display: flex; flex: 1; }
+.content { flex: 1; padding: 16px; overflow: auto; }
+&lt;/style&gt;</code></pre>
+<p><strong>AppHeader.vue</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;header&gt;
+    &lt;span&gt;CTTS-Frontend&lt;/span&gt;
+    &lt;span&gt;{{ userStore.username }}&lt;/span&gt;
+    &lt;button v-if=&quot;userStore.isLogin&quot; @click=&quot;onLogout&quot;&gt;退出&lt;/button&gt;
+  &lt;/header&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { useRouter } from &#39;vue-router&#39;
+import { useUserStore } from &#39;../stores/user&#39;
+const userStore = useUserStore()
+const router = useRouter()
+const onLogout = () =&gt; {
+  userStore.logout()
+  router.push(&#39;/login&#39;)
+}
+&lt;/script&gt;
+&lt;style scoped&gt;
+header { display: flex; gap: 16px; align-items: center; padding: 10px 20px; background: #42b883; color: #fff; }
+&lt;/style&gt;</code></pre>
+<h3 id="33-项目列表页-projectsvuek15-3">3.3 项目列表页
+Projects.vue（K15-3）</h3>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;项目列表&lt;/h2&gt;
+    &lt;input v-model=&quot;keyword&quot; placeholder=&quot;搜索&quot; /&gt;
+    &lt;ul v-if=&quot;loading === false&quot;&gt;
+      &lt;li v-for=&quot;p in filtered&quot; :key=&quot;p.id&quot; @click=&quot;goTasks(p.id)&quot;&gt;
+        {{ p.title }} - {{ p.status }}
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p v-else&gt;加载中...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref, computed, onMounted } from &#39;vue&#39;
+import { useRouter } from &#39;vue-router&#39;
+import { getProjects } from &#39;../api/project&#39;
+const router = useRouter()
+const keyword = ref(&#39;&#39;)
+const projects = ref([])
+const loading = ref(true)
+const filtered = computed(() =&gt; projects.value.filter(p =&gt; p.title.includes(keyword.value)))
+const goTasks = (id) =&gt; router.push(`/projects/${id}/tasks`)
+onMounted(async () =&gt; {
+  try {
+    projects.value = await getProjects()
+  } finally {
+    loading.value = false
+  }
+})
+&lt;/script&gt;</code></pre>
+<h3 id="34-任务详情页-taskdetailvuek15-3动态路由--props">3.4 任务详情页
+TaskDetail.vue（K15-3，动态路由 + props）</h3>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;{{ task.title }}&lt;/h2&gt;
+    &lt;p&gt;状态：{{ task.status }}&lt;/p&gt;
+    &lt;p&gt;截止：{{ task.deadline }}&lt;/p&gt;
+    &lt;button @click=&quot;goSubmit&quot;&gt;提交成果&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref, onMounted } from &#39;vue&#39;
+import { useRouter } from &#39;vue-router&#39;
+import { getTaskById } from &#39;../api/task&#39;
+const props = defineProps([&#39;id&#39;])
+const router = useRouter()
+const task = ref({})
+const goSubmit = () =&gt; router.push(`/tasks/${props.id}/submit`)
+onMounted(async () =&gt; {
+  task.value = await getTaskById(props.id)
+})
+&lt;/script&gt;</code></pre>
+<h3 id="35-成果提交页-submitformvuek15-4">3.5 成果提交页
+SubmitForm.vue（K15-4）</h3>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;form @submit.prevent=&quot;onSubmit&quot;&gt;
+    &lt;textarea v-model=&quot;form.content&quot; placeholder=&quot;成果内容&quot;&gt;&lt;/textarea&gt;
+    &lt;button type=&quot;submit&quot;&gt;提交&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { reactive } from &#39;vue&#39;
+import { useRouter } from &#39;vue-router&#39;
+import { submitTask } from &#39;../api/task&#39;
+const props = defineProps([&#39;id&#39;])
+const form = reactive({ content: &#39;&#39; })
+const router = useRouter()
+const onSubmit = async () =&gt; {
+  await submitTask(props.id, form)
+  alert(&#39;提交成功&#39;)
+  router.back()
+}
+&lt;/script&gt;</code></pre>
+<h3 id="36-评审页-reviewdetailvuek15-4">3.6 评审页
+ReviewDetail.vue（K15-4）</h3>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;评审&lt;/h2&gt;
+    &lt;p&gt;提交内容：{{ submission.content }}&lt;/p&gt;
+    &lt;input v-model.number=&quot;score&quot; type=&quot;number&quot; placeholder=&quot;分数&quot; /&gt;
+    &lt;textarea v-model=&quot;comment&quot; placeholder=&quot;评语&quot;&gt;&lt;/textarea&gt;
+    &lt;button @click=&quot;onReview&quot;&gt;提交评审&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref, onMounted } from &#39;vue&#39;
+import { getSubmission, reviewSubmission } from &#39;../api/review&#39;
+const props = defineProps([&#39;id&#39;])
+const submission = ref({})
+const score = ref(0)
+const comment = ref(&#39;&#39;)
+onMounted(async () =&gt; { submission.value = await getSubmission(props.id) })
+const onReview = async () =&gt; {
+  await reviewSubmission(props.id, { score: score.value, comment: comment.value })
+  alert(&#39;评审完成&#39;)
+}
+&lt;/script&gt;</code></pre>
+<h3 id="37-用户管理页-usersvuek15-5">3.7 用户管理页
+Users.vue（K15-5）</h3>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;用户管理&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li v-for=&quot;u in users&quot; :key=&quot;u.id&quot;&gt;{{ u.username }} - {{ u.role }}&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref, onMounted } from &#39;vue&#39;
+import { getUsers } from &#39;../api/user&#39;
+const users = ref([])
+onMounted(async () =&gt; { users.value = await getUsers() })
+&lt;/script&gt;</code></pre>
+<hr />
+<h2 id="四接口模块srcapi">四、接口模块（src/api/）</h2>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// api/project.js</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> request <span class="im">from</span> <span class="st">&#39;../utils/request&#39;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getProjects <span class="op">=</span> () <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/projects&#39;</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">// api/task.js</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> request <span class="im">from</span> <span class="st">&#39;../utils/request&#39;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getTasks <span class="op">=</span> (projectId) <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">get</span>(<span class="vs">`/projects/</span><span class="sc">${</span>projectId<span class="sc">}</span><span class="vs">/tasks`</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getTaskById <span class="op">=</span> (id) <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">get</span>(<span class="vs">`/tasks/</span><span class="sc">${</span>id<span class="sc">}</span><span class="vs">`</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> submitTask <span class="op">=</span> (id<span class="op">,</span> data) <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">post</span>(<span class="vs">`/tasks/</span><span class="sc">${</span>id<span class="sc">}</span><span class="vs">/submit`</span><span class="op">,</span> data)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">// api/review.js</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> request <span class="im">from</span> <span class="st">&#39;../utils/request&#39;</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getReviews <span class="op">=</span> () <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/reviews&#39;</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getSubmission <span class="op">=</span> (id) <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">get</span>(<span class="vs">`/reviews/</span><span class="sc">${</span>id<span class="sc">}</span><span class="vs">`</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> reviewSubmission <span class="op">=</span> (id<span class="op">,</span> data) <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">post</span>(<span class="vs">`/reviews/</span><span class="sc">${</span>id<span class="sc">}</span><span class="vs">`</span><span class="op">,</span> data)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">// api/user.js</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> request <span class="im">from</span> <span class="st">&#39;../utils/request&#39;</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> login <span class="op">=</span> (data) <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">post</span>(<span class="st">&#39;/login&#39;</span><span class="op">,</span> data)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getUserInfo <span class="op">=</span> () <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/user/info&#39;</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getUsers <span class="op">=</span> () <span class="kw">=&gt;</span> request<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/admin/users&#39;</span>)</span></code></pre></div>
+<blockquote>
+<p>后端未就绪时，各 api 函数返回 Mock 数据兜底。</p>
+</blockquote>
+<hr />
+<h2 id="五联调要点">五、联调要点</h2>
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>接口契约</td>
+<td>前后端对齐字段名、类型、响应格式</td>
+</tr>
+<tr>
+<td>跨域</td>
+<td>Vite proxy 代理</td>
+</tr>
+<tr>
+<td>Token</td>
+<td>请求拦截器自动携带</td>
+</tr>
+<tr>
+<td>错误处理</td>
+<td>响应拦截器统一提示</td>
+</tr>
+<tr>
+<td>加载状态</td>
+<td>loading 防止白屏</td>
+</tr>
+<tr>
+<td>Mock 兜底</td>
+<td>后端未就绪用 Mock</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六本节小结与知识结构图">六、本节小结与知识结构图</h2>
+<div class="visual">
+  <div class="visual-title">图示 2：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">第 15 次课：综合项目实践一</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K15-1 页面规划（10 个页面 + 目录结构）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K15-2 登录 + 布局（调接口存 Token，读 store 显示）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K15-3 列表 + 详情（分页筛选，动态路由 props）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K15-4 表单页（提交 + 评审，POST 接口）</span>
+<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K15-5 用户管理（管理员 CRUD + 权限）</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>登录</td>
+<td>调接口存 Token</td>
+</tr>
+<tr>
+<td>布局</td>
+<td>读 store 显示用户</td>
+</tr>
+<tr>
+<td>列表</td>
+<td>api 模块 + loading</td>
+</tr>
+<tr>
+<td>详情</td>
+<td>动态路由 + props</td>
+</tr>
+<tr>
+<td>提交</td>
+<td>POST 表单</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="七复习思考题">七、复习思考题</h2>
+<ol type="1">
+<li>核心页面如何规划与拆分组件？</li>
+<li>登录后如何让全局 Header 显示用户信息？</li>
+<li>任务详情页如何用动态路由传 id 并调接口？</li>
+<li>列表页如何处理加载状态与错误？</li>
+<li>前后端联调要注意哪些问题？</li>
+</ol>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

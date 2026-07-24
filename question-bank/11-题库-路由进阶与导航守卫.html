@@ -1,0 +1,716 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>路由进阶与导航守卫</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 11 次课 · 题库</div>
+      <h1>路由进阶与导航守卫</h1>
+      <p>考试题库与参考解析 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 11 次课</span>
+        <span class="hero-chip"><b>主题</b>路由进阶与导航守卫</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2 分）</a>
+<ul>
+<li><a href="#11-单项选择题30-题">1.1 单项选择题（30 题）</a></li>
+<li><a href="#12-多项选择题10-题">1.2 多项选择题（10 题）</a></li>
+</ul></li>
+<li><a href="#二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1 分）</a>
+<ul>
+</ul></li>
+<li><a href="#三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2 分）</a>
+<ul>
+</ul></li>
+<li><a href="#四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</a>
+<ul>
+</ul></li>
+<li><a href="#五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#题库统计与组卷说明">题库统计与组卷说明</a>
+<ul>
+<li><a href="#题量统计">题量统计</a></li>
+<li><a href="#难度分布">难度分布</a></li>
+<li><a href="#知识点覆盖">知识点覆盖</a></li>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 11 次课 <span>｜</span> <strong>文档：</strong>题库</p>
+<blockquote>
+<p>配套：<code>教学设计.md</code>、<code>教学资料.md</code>（同文件夹）
+题量：40 选择 + 20 判断 + 10 填空 + 4 论述/简答 + 2 程序阅读/补全 + 2
+编程/接口设计 = <strong>78 题</strong>
+全部含参考答案与解析；主观题另附评分标准。 难度：★ 基础 / ★★ 提高 / ★★★
+综合 ｜ 编号：<code>11-题型-序号</code></p>
+</blockquote>
+<hr />
+<h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
+分）</h2>
+<h3 id="11-单项选择题30-题">1.1 单项选择题（30 题）</h3>
+<section class="question-card"><p><strong>11-选择-001</strong>（★ 知识点：K11-1） 全局前置守卫是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>afterEach</code></span></li><li><span class="option-label">B</span><span><code>beforeEach</code></span></li><li><span class="option-label">C</span><span><code>beforeEnter</code></span></li><li><span class="option-label">D</span><span><code>beforeRouteLeave</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>beforeEach</code> 是全局前置守卫。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-002</strong>（★ 知识点：K11-1） 全局后置守卫是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>beforeEach</code></span></li><li><span class="option-label">B</span><span><code>afterEach</code></span></li><li><span class="option-label">C</span><span><code>beforeEnter</code></span></li><li><span class="option-label">D</span><span><code>afterRoute</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>afterEach</code> 是全局后置守卫。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-003</strong>（★ 知识点：K11-1）
+<code>beforeEach</code> 中取消导航应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>返回 <code>true</code></span></li><li><span class="option-label">B</span><span>返回
+<code>false</code></span></li><li><span class="option-label">C</span><span>不返回</span></li><li><span class="option-label">D</span><span>调用 <code>next(false)</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vue Router 4 推荐返回
+<code>false</code> 取消。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-004</strong>（★ 知识点：K11-1）
+<code>beforeEach</code> 中重定向应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>返回 <code>false</code></span></li><li><span class="option-label">B</span><span>返回目标路径字符串或路由对象</span></li><li><span class="option-label">C</span><span>调用 <code>redirect()</code></span></li><li><span class="option-label">D</span><span>不返回</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：返回路径字符串或路由对象即重定向。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-005</strong>（★ 知识点：K11-1）
+<code>afterEach</code> 的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>改变导航</span></li><li><span class="option-label">B</span><span>做副作用（如改标题、埋点）</span></li><li><span class="option-label">C</span><span>取消导航</span></li><li><span class="option-label">D</span><span>重定向</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>afterEach</code>
+不能改变导航，只做副作用。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-006</strong>（★ 知识点：K11-2） 路由独享守卫是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>beforeEach</code></span></li><li><span class="option-label">B</span><span><code>beforeEnter</code></span></li><li><span class="option-label">C</span><span><code>beforeRouteLeave</code></span></li><li><span class="option-label">D</span><span><code>afterEach</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>beforeEnter</code>
+写在路由配置里，只对该路由生效。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-007</strong>（★ 知识点：K11-2） Vue 3
+组件内离开前守卫的 API 是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>beforeRouteLeave</code></span></li><li><span class="option-label">B</span><span><code>onBeforeRouteLeave</code></span></li><li><span class="option-label">C</span><span><code>onRouteLeave</code></span></li><li><span class="option-label">D</span><span><code>useLeave</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vue 3 用
+<code>onBeforeRouteLeave</code> 组合式 API。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-008</strong>（★ 知识点：K11-3）
+路由元信息用哪个字段存储？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>info</code></span></li><li><span class="option-label">B</span><span><code>meta</code></span></li><li><span class="option-label">C</span><span><code>data</code></span></li><li><span class="option-label">D</span><span><code>config</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>meta</code>
+字段存储路由元信息。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-009</strong>（★ 知识点：K11-3） 守卫中读取目标路由的
+meta 用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>from.meta</code></span></li><li><span class="option-label">B</span><span><code>to.meta</code></span></li><li><span class="option-label">C</span><span><code>route.meta</code></span></li><li><span class="option-label">D</span><span><code>this.meta</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>to.meta</code>
+是目标路由的元信息。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-010</strong>（★ 知识点：K11-4） 路由懒加载的写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>component: import('./X.vue')</code></span></li><li><span class="option-label">B</span><span><code>component: () =&gt; import('./X.vue')</code></span></li><li><span class="option-label">C</span><span><code>component: require('./X.vue')</code></span></li><li><span class="option-label">D</span><span><code>component: './X.vue'</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>component: () =&gt; import('./X.vue')</code>
+动态 import 懒加载。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-011</strong>（★ 知识点：K11-4）
+路由懒加载的主要目的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>减少代码</span></li><li><span class="option-label">B</span><span>按需加载，减小首屏体积</span></li><li><span class="option-label">C</span><span>简化语法</span></li><li><span class="option-label">D</span><span>缓存数据</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：懒加载按需加载，优化首屏。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-012</strong>（★ 知识点：K11-5）
+配置重定向用哪个字段？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>to</code></span></li><li><span class="option-label">B</span><span><code>redirect</code></span></li><li><span class="option-label">C</span><span><code>push</code></span></li><li><span class="option-label">D</span><span><code>replace</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>redirect</code>
+字段配置重定向。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-013</strong>（★ 知识点：K11-5） Vue Router 4 配置 404
+路由用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>path: '*'</code></span></li><li><span class="option-label">B</span><span><code>path: '/:pathMatch(.*)*'</code></span></li><li><span class="option-label">C</span><span><code>path: '/404'</code></span></li><li><span class="option-label">D</span><span><code>path: '/**'</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vue Router 4 用
+<code>:pathMatch(.*)*</code>（Vue 2 是 <code>*</code>）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-014</strong>（★ 知识点：K11-5） 404
+路由应放在路由表的？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>第一条</span></li><li><span class="option-label">B</span><span>中间</span></li><li><span class="option-label">C</span><span>最后一条</span></li><li><span class="option-label">D</span><span>任意位置</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong>
+<strong>解析</strong>：通配路由放最后，否则匹配所有。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-015</strong>（★ 知识点：K11-1）
+<code>beforeEach</code> 的回调参数 <code>to</code> 表示？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>来源路由</span></li><li><span class="option-label">B</span><span>目标路由</span></li><li><span class="option-label">C</span><span>当前组件</span></li><li><span class="option-label">D</span><span>路由实例</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>to</code>
+是目标路由，<code>from</code> 是来源。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-016</strong>（★ 知识点：K11-2）
+守卫执行顺序正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>beforeEach → beforeEnter → 组件内 → afterEach</span></li><li><span class="option-label">B</span><span>beforeEnter → beforeEach → 组件内 → afterEach</span></li><li><span class="option-label">C</span><span>组件内 → beforeEach
+→ beforeEnter → afterEach</span></li><li><span class="option-label">D</span><span>afterEach → beforeEach → beforeEnter →
+组件内</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：全局前置 → 独享 →
+组件内 → 全局后置。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-017</strong>（★ 知识点：K11-3） 关于 meta，正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>meta 只能存字符串</span></li><li><span class="option-label">B</span><span>meta 可存对象，含权限/角色/标题等</span></li><li><span class="option-label">C</span><span>meta
+在后端校验</span></li><li><span class="option-label">D</span><span>meta 不可读</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：meta
+是对象，存自定义信息。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-018</strong>（★ 知识点：K11-1）
+<code>beforeEach</code> 中放行导航应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>返回 <code>false</code></span></li><li><span class="option-label">B</span><span>不返回或返回 <code>true</code></span></li><li><span class="option-label">C</span><span>调用 <code>next(false)</code></span></li><li><span class="option-label">D</span><span>返回
+<code>null</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：不返回或返回
+<code>true</code> 放行。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-019</strong>（★ 知识点：K11-2）
+<code>onBeforeRouteLeave</code> 常用于？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>路由加载前</span></li><li><span class="option-label">B</span><span>离开页面前提示（如未保存数据）</span></li><li><span class="option-label">C</span><span>路由更新后</span></li><li><span class="option-label">D</span><span>后置守卫</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：离开前守卫，常用于提示未保存数据。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-020</strong>（★ 知识点：K11-3）
+前端守卫能否完全保证安全？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>能，前端拦截即可</span></li><li><span class="option-label">B</span><span>不能，前端可被绕过，需后端校验</span></li><li><span class="option-label">C</span><span>后端不需要校验</span></li><li><span class="option-label">D</span><span>守卫无作用</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：前端守卫只是体验优化，真正安全靠后端校验。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-021</strong>（★★ 知识点：K11-1）
+<code>beforeEach</code> 重定向到 <code>/login</code>，若
+<code>/login</code> 也 <code>requireAuth: true</code> 会？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>正常跳转</span></li><li><span class="option-label">B</span><span>死循环重定向</span></li><li><span class="option-label">C</span><span>报错</span></li><li><span class="option-label">D</span><span>取消导航</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：登录页也 requireAuth
+会无限重定向，应排除登录页。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-022</strong>（★★ 知识点：K11-3） 嵌套路由的 meta
+特性是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>子路由覆盖父路由</span></li><li><span class="option-label">B</span><span>父子 meta 合并，子优先</span></li><li><span class="option-label">C</span><span>只有父 meta
+生效</span></li><li><span class="option-label">D</span><span>只有子 meta 生效</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：嵌套路由 meta
+合并，子路由优先。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-023</strong>（★★ 知识点：K11-4） 路由懒加载生成的
+chunk 数量取决于？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>组件大小</span></li><li><span class="option-label">B</span><span>动态 import 的数量</span></li><li><span class="option-label">C</span><span>路由层级</span></li><li><span class="option-label">D</span><span>无关</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：每个动态 import
+生成一个 chunk。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-024</strong>（★★ 知识点：K11-5） 重定向配置错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>{ path: '/', redirect: '/home' }</code></span></li><li><span class="option-label">B</span><span><code>{ path: '/', redirect: { name: 'home' } }</code></span></li><li><span class="option-label">C</span><span><code>{ path: '/', to: '/home' }</code></span></li><li><span class="option-label">D</span><span><code>{ path: '/', redirect: '/home' }</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：重定向用
+<code>redirect</code> 字段，不是 <code>to</code>。C 错误。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-025</strong>（★★ 知识点：K11-2）
+<code>beforeEnter</code> 写在？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>全局</span></li><li><span class="option-label">B</span><span>路由配置项内</span></li><li><span class="option-label">C</span><span>组件内</span></li><li><span class="option-label">D</span><span>main.js</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>beforeEnter</code> 写在路由配置项内。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-026</strong>（★★ 知识点：K11 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>beforeEach 是前置守卫</span></li><li><span class="option-label">B</span><span>meta 存权限信息</span></li><li><span class="option-label">C</span><span>懒加载优化首屏</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-027</strong>（★★ 知识点：K11 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>404 路由放第一</span></li><li><span class="option-label">B</span><span>beforeEach 返回 false 取消</span></li><li><span class="option-label">C</span><span>beforeEnter 路由独享</span></li><li><span class="option-label">D</span><span>懒加载用动态 import</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A 错误，404
+放最后。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-028</strong>（★★ 知识点：K11 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>afterEach 不能改导航</span></li><li><span class="option-label">B</span><span>前端守卫需配合后端校验</span></li><li><span class="option-label">C</span><span>meta 可存角色信息</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-029</strong>（★★ 知识点：K11 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>afterEach 可重定向</span></li><li><span class="option-label">B</span><span>onBeforeRouteLeave 是组件内守卫</span></li><li><span class="option-label">C</span><span>404 用
+:pathMatch(.<em>)</em></span></li><li><span class="option-label">D</span><span>redirect 配置重定向</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A 错误，afterEach
+不能改导航。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-030</strong>（★★ 知识点：K11 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>守卫顺序：全局→独享→组件内→后置</span></li><li><span class="option-label">B</span><span>meta 合并子优先</span></li><li><span class="option-label">C</span><span>404 放最后</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<h3 id="12-多项选择题10-题">1.2 多项选择题（10 题）</h3>
+<section class="question-card"><p><strong>11-选择-031</strong>（★★ 知识点：K11-1）
+全局守卫包括？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>beforeEach</code></span></li><li><span class="option-label">B</span><span><code>afterEach</code></span></li><li><span class="option-label">C</span><span><code>beforeEnter</code></span></li><li><span class="option-label">D</span><span><code>beforeRouteLeave</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B</strong> <strong>解析</strong>：A、B 是全局守卫；C
+独享；D 组件内。选 A、B。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-032</strong>（★★ 知识点：K11-2）
+路由守卫种类有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>全局守卫</span></li><li><span class="option-label">B</span><span>路由独享守卫</span></li><li><span class="option-label">C</span><span>组件内守卫</span></li><li><span class="option-label">D</span><span>后端守卫</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
+是前端路由守卫三类。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-033</strong>（★★ 知识点：K11-1）
+<code>beforeEach</code> 返回值的含义有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>不返回/true 放行</span></li><li><span class="option-label">B</span><span>false 取消</span></li><li><span class="option-label">C</span><span>路径字符串重定向</span></li><li><span class="option-label">D</span><span>null 报错</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-034</strong>（★★ 知识点：K11-3） meta
+可存储的信息有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>requireAuth</code></span></li><li><span class="option-label">B</span><span><code>role</code></span></li><li><span class="option-label">C</span><span><code>title</code></span></li><li><span class="option-label">D</span><span>密钥</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 合理；D
+不应存敏感信息。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-035</strong>（★★ 知识点：K11 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>beforeEach 做登录拦截</span></li><li><span class="option-label">B</span><span>meta 存权限</span></li><li><span class="option-label">C</span><span>懒加载优化首屏</span></li><li><span class="option-label">D</span><span>404 放第一</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，放最后。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-036</strong>（★★ 知识点：K11 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>afterEach 不能改导航</span></li><li><span class="option-label">B</span><span>beforeEnter 路由独享</span></li><li><span class="option-label">C</span><span>onBeforeRouteLeave 组件内</span></li><li><span class="option-label">D</span><span>前端守卫完全保证安全</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-037</strong>（★★ 知识点：K11 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>404 用 :pathMatch(.<em>)</em></span></li><li><span class="option-label">B</span><span>redirect
+配置重定向</span></li><li><span class="option-label">C</span><span>懒加载用 () =&gt; import()</span></li><li><span class="option-label">D</span><span>meta 只能存字符串</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，meta 存对象。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-038</strong>（★★ 知识点：K11 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>守卫顺序全局前置→独享→组件内→后置</span></li><li><span class="option-label">B</span><span>返回
+false 取消导航</span></li><li><span class="option-label">C</span><span>嵌套 meta 合并子优先</span></li><li><span class="option-label">D</span><span>beforeEach 能改标题（其实
+afterEach 更合适）</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+不准确，改标题用 afterEach。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-039</strong>（★★ 知识点：K11 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>onBeforeRouteLeave 用于离开提示</span></li><li><span class="option-label">B</span><span>beforeEnter
+写在路由配置</span></li><li><span class="option-label">C</span><span>懒加载按需加载</span></li><li><span class="option-label">D</span><span>404 放最前</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-选择-040</strong>（★★ 知识点：K11 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>beforeEach 返回路径重定向</span></li><li><span class="option-label">B</span><span>meta 可存 role</span></li><li><span class="option-label">C</span><span>afterEach 做埋点</span></li><li><span class="option-label">D</span><span>前端守卫无需后端校验</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，需后端校验。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<h2 id="二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1
+分）</h2>
+<section class="question-card"><p><strong>11-判断-001</strong>（★）<code>beforeEach</code>
+是全局前置守卫。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-002</strong>（★）<code>afterEach</code>
+能改变导航。（ ）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：不能，只做副作用。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-003</strong>（★）<code>beforeEach</code> 返回
+<code>false</code> 取消导航。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-004</strong>（★）<code>meta</code>
+可存储路由元信息用于权限判断。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-005</strong>（★）前端守卫能完全保证安全。（ ）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：不能，需后端校验。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-006</strong>（★）路由懒加载用
+<code>() =&gt; import()</code>。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-007</strong>（★）404 路由用
+<code>:pathMatch(.*)*</code> 匹配。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-008</strong>（★）404 路由应放在路由表最后。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-009</strong>（★）<code>redirect</code>
+字段配置重定向。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-010</strong>（★）<code>beforeEnter</code>
+是路由独享守卫。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-011</strong>（★）Vue 3 组件内守卫用
+<code>onBeforeRouteLeave</code>。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-012</strong>（★）懒加载能减小首屏体积。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-013</strong>（★★）<code>afterEach</code>
+可用于改标题。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-014</strong>（★★）<code>beforeEach</code>
+重定向到登录页，登录页也 requireAuth 会死循环。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-015</strong>（★★）嵌套路由 meta 会合并。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-016</strong>（★★）<code>beforeEnter</code>
+对所有路由生效。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：只对当前路由。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-017</strong>（★★）meta 可存敏感信息如密钥。（ ）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：前端可见，不能存敏感信息。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-018</strong>（★★）<code>beforeEach</code>
+返回路径字符串即重定向。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-019</strong>（★★）守卫顺序是全局前置→独享→组件内→后置。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-判断-020</strong>（★★）<code>onBeforeRouteUpdate</code>
+在同组件不同参数时触发。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<hr />
+<h2 id="三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2
+分）</h2>
+<section class="question-card"><p><strong>11-填空-001</strong>（★）全局前置守卫是
+<code>before________</code>。</p><blockquote>
+<p><strong>答案：Each</strong> <strong>解析</strong>：beforeEach。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-填空-002</strong>（★）全局后置守卫是
+<code>after________</code>。</p><blockquote>
+<p><strong>答案：Each</strong> <strong>解析</strong>：afterEach。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-填空-003</strong>（★）路由独享守卫是
+<code>before________</code>。</p><blockquote>
+<p><strong>答案：Enter</strong> <strong>解析</strong>：beforeEnter。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-填空-004</strong>（★）路由元信息用 <code>________</code>
+字段存储。</p><blockquote>
+<p><strong>答案：meta</strong> <strong>解析</strong>：meta。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-填空-005</strong>（★）守卫中读取目标路由 meta 用
+<code>to.________</code>。</p><blockquote>
+<p><strong>答案：meta</strong> <strong>解析</strong>：to.meta。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-填空-006</strong>（★）路由懒加载用
+<code>() =&gt; ________()</code>。</p><blockquote>
+<p><strong>答案：import</strong> <strong>解析</strong>：动态
+import。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-填空-007</strong>（★）配置重定向用 <code>________</code>
+字段。</p><blockquote>
+<p><strong>答案：redirect</strong> <strong>解析</strong>：redirect。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-填空-008</strong>（★）Vue Router 4 配置 404 用
+<code>:________(.*)*</code>。</p><blockquote>
+<p><strong>答案：pathMatch</strong>
+<strong>解析</strong>：pathMatch。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-填空-009</strong>（★）404 路由应放在路由表
+<code>________</code>。</p><blockquote>
+<p><strong>答案：最后</strong> <strong>解析</strong>：放最后。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>11-填空-010</strong>（★）Vue 3 组件内离开前守卫用
+<code>onBeforeRoute________</code>。</p><blockquote>
+<p><strong>答案：Leave</strong>
+<strong>解析</strong>：onBeforeRouteLeave。</p>
+</blockquote></section>
+<hr />
+<h2 id="四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</h2>
+<section class="question-card"><p><strong>11-论述-001</strong>（★★ 知识点：K11-1/K11-2，分值：8 分）
+<strong>题目</strong>：说明路由守卫的种类与执行顺序。</p>
+<p><strong>要求</strong>： （1）三类守卫（4 分）。 （2）执行顺序（4
+分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）三类（每点 1.33 分，共 4
+分）：①全局守卫（beforeEach/afterEach）；②路由独享守卫（beforeEnter）；③组件内守卫（onBeforeRouteLeave/onBeforeRouteUpdate）。
+（2）顺序（4 分）：导航触发后依次执行：全局前置（beforeEach）→
+路由独享（beforeEnter）→ 组件内（beforeRouteEnter）→
+全局后置（afterEach）。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-论述-002</strong>（★★ 知识点：K11-1，分值：8 分）
+<strong>题目</strong>：说明 beforeEach
+如何通过返回值控制导航，并举例登录拦截。</p>
+<p><strong>要求</strong>： （1）返回值规则（4 分）。
+（2）登录拦截示例（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）返回值规则（4 分）：不返回/返回 true
+放行；返回 false 取消导航；返回路径字符串或路由对象重定向。 （2）示例（4
+分）：</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>router<span class="op">.</span><span class="fu">beforeEach</span>((to) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">requireAuth</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;token&#39;</span>)) {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;/login&#39;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-论述-003</strong>（★★ 知识点：K11-3，分值：8 分）
+<strong>题目</strong>：说明如何用 meta 实现角色权限控制。</p>
+<p><strong>要求</strong>： （1）meta 配置（4 分）。 （2）守卫判断（4
+分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）meta 配置（4 分）：在路由配置中加
+<code>meta: { requireAuth: true, role: 'admin' }</code> 标识所需权限。
+（2）守卫判断（4 分）：</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>router<span class="op">.</span><span class="fu">beforeEach</span>((to) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> token <span class="op">=</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;token&#39;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> role <span class="op">=</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;role&#39;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">requireAuth</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>token) <span class="cf">return</span> <span class="st">&#39;/login&#39;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">role</span> <span class="op">&amp;&amp;</span> to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">role</span> <span class="op">!==</span> role) <span class="cf">return</span> <span class="st">&#39;/projects&#39;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-论述-004</strong>（★★ 知识点：K11 综合，分值：6 分）
+<strong>题目</strong>：前端路由守卫能否保证安全？为什么？</p>
+<p><strong>要求</strong>： （1）能否保证（2 分）。
+（2）原因与正确做法（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）不能完全保证（2 分）。
+（2）原因与做法（4 分）：前端守卫可被绕过（用户改本地存储、直接调
+API），只挡住无权限页面的显示，是体验优化。真正的安全必须靠后端接口校验权限（每次请求验证
+token 与角色）。正确做法是前端守卫 + 后端校验双重保障。</p>
+<p><strong>评分标准</strong>：共 6 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<h2 id="五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</h2>
+<section class="question-card"><p><strong>11-程序-001</strong>（★★ 知识点：K11-1/K11-3，分值：10 分）
+<strong>题目</strong>：补全全局守卫代码空缺。</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>router<span class="op">.</span><span class="fu">______A______</span>((to) <span class="kw">=&gt;</span> {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="at">title</span> <span class="op">=</span> to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">title</span> <span class="op">||</span> <span class="st">&#39;CTTS&#39;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">______B______</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;token&#39;</span>)) {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;______C______&#39;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p><strong>要求</strong>： （1）A：前置守卫方法名。（3 分）
+（2）B：需要登录的 meta 字段。（3 分） （3）C：重定向目标。（4 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>beforeEach</code>（3
+分）。 （2）B = <code>requireAuth</code>（3 分）。 （3）C =
+<code>/login</code>（4 分）。</p>
+<p><strong>评分标准</strong>：共 10 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-程序-002</strong>（★★ 知识点：K11-5，分值：12 分）
+<strong>题目</strong>：补全 404 与重定向路由配置空缺。</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/&#39;</span><span class="op">,</span> <span class="dt">______A______</span><span class="op">:</span> <span class="st">&#39;/projects&#39;</span> }<span class="op">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/projects&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> Projects }<span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/:______B______(.*)*&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> NotFound }</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+<p><strong>要求</strong>： （1）A：重定向字段。（4 分） （2）B：404
+匹配参数名。（4 分） （3）说明 404 路由为何放最后。（4 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>redirect</code>（4 分）。
+（2）B = <code>pathMatch</code>（4 分）。 （3）原因（4
+分）：通配路由会匹配所有路径，若放前面会拦截其他路由，导致正常路由失效，故放最后兜底。</p>
+<p><strong>评分标准</strong>：共 12 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<h2 id="六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</h2>
+<section class="question-card"><p><strong>11-编程-001</strong>（★★ 知识点：K11-1/K11-3，分值：15 分）
+<strong>题目</strong>：为 CTTS-Frontend
+编写全局守卫，实现：未登录访问需认证页面跳转登录页；非 admin 访问 admin
+页面跳回项目列表；并设置页面标题。</p>
+<p><strong>要求</strong>： （1）路由 meta
+配置（requireAuth/role/title）。（5 分） （2）beforeEach
+登录与角色校验。（7 分） （3）页面标题设置。（3 分）</p><blockquote>
+<p><strong>参考答案</strong>：</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/login&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> Login<span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;登录&#39;</span> } }<span class="op">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/projects&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> Projects<span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">requireAuth</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;项目列表&#39;</span> } }<span class="op">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/admin/users&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> Users<span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">requireAuth</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">role</span><span class="op">:</span> <span class="st">&#39;admin&#39;</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;用户管理&#39;</span> } }</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> <span class="fu">createRouter</span>({ <span class="dt">history</span><span class="op">:</span> <span class="fu">createWebHistory</span>()<span class="op">,</span> routes })</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>router<span class="op">.</span><span class="fu">beforeEach</span>((to) <span class="kw">=&gt;</span> {</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="at">title</span> <span class="op">=</span> to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">title</span> <span class="op">||</span> <span class="st">&#39;CTTS&#39;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> token <span class="op">=</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;token&#39;</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> role <span class="op">=</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;role&#39;</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">requireAuth</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>token) <span class="cf">return</span> <span class="st">&#39;/login&#39;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">role</span> <span class="op">&amp;&amp;</span> to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">role</span> <span class="op">!==</span> role) <span class="cf">return</span> <span class="st">&#39;/projects&#39;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> router</span></code></pre></div>
+<p>评分：meta 配置（5 分）；beforeEach 双校验（7 分）；标题（3
+分）。</p>
+<p><strong>评分标准</strong>：共 15 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>11-编程-002</strong>（★★★ 知识点：K11 综合，分值：20 分）
+<strong>题目</strong>：完成 CTTS-Frontend 路由进阶配置，要求：</p>
+<ul>
+<li>路由含 login、projects、tasks/:id、admin/users（懒加载）；</li>
+<li>meta 标识 requireAuth 与 role；</li>
+<li>全局守卫实现登录拦截与角色控制；</li>
+<li>根路径重定向到 /projects；</li>
+<li>配置 404 页面。</li>
+</ul>
+<p><strong>要求</strong>： （1）路由表（懒加载+meta+重定向+404）。（8
+分） （2）全局守卫（登录+角色）。（7 分） （3）404 配置放最后。（5
+分）</p><blockquote>
+<p><strong>参考答案</strong>：见教学资料综合示例。
+评分：路由表含懒加载+meta+redirect+404（8 分）；beforeEach 双校验（7
+分）；404 放最后且用 :pathMatch(.<em>)</em>（5 分）。</p>
+<p><strong>评分标准</strong>：共 20 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<h2 id="题库统计与组卷说明">题库统计与组卷说明</h2>
+<h3 id="题量统计">题量统计</h3>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>数量</th>
+<th>分值</th>
+<th>小计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择题（单选 30 + 多选 10）</td>
+<td>40</td>
+<td>每题 2 分</td>
+<td>80 分</td>
+</tr>
+<tr>
+<td>判断题</td>
+<td>20</td>
+<td>每题 1 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>填空题</td>
+<td>10</td>
+<td>每题 2 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>论述/简答题</td>
+<td>4</td>
+<td>6~8 分</td>
+<td>30 分</td>
+</tr>
+<tr>
+<td>程序阅读/补全题</td>
+<td>2</td>
+<td>10~12 分</td>
+<td>22 分</td>
+</tr>
+<tr>
+<td>编程/接口设计题</td>
+<td>2</td>
+<td>15~20 分</td>
+<td>35 分</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>78</strong></td>
+<td>—</td>
+<td><strong>207 分</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="难度分布">难度分布</h3>
+<table>
+<thead>
+<tr>
+<th>难度</th>
+<th>题量（约）</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★ 基础</td>
+<td>40</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>★★ 提高</td>
+<td>34</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>★★★ 综合</td>
+<td>4</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="知识点覆盖">知识点覆盖</h3>
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>覆盖题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K11-1 全局守卫</td>
+<td>18</td>
+</tr>
+<tr>
+<td>K11-2 独享/组件内守卫</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K11-3 meta</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K11-4 懒加载</td>
+<td>12</td>
+</tr>
+<tr>
+<td>K11-5 重定向404</td>
+<td>14</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本题库已确保每题答案唯一明确、无歧义选项，全部含解析，主观题含评分标准，可直接录入考试系统题库。</p>
+</blockquote>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

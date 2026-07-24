@@ -1,0 +1,383 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>路由进阶与导航守卫</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 11 次课 · 教学设计</div>
+      <h1>路由进阶与导航守卫</h1>
+      <p>教师教案与课堂组织 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 11 次课</span>
+        <span class="hero-chip"><b>主题</b>路由进阶与导航守卫</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一课程信息">一、课程信息</a>
+<ul>
+</ul></li>
+<li><a href="#二教学目标">二、教学目标</a>
+<ul>
+<li><a href="#知识目标">知识目标</a></li>
+<li><a href="#能力目标">能力目标</a></li>
+<li><a href="#素质目标课程思政">素质目标（课程思政）</a></li>
+</ul></li>
+<li><a href="#三主要知识点纲要">三、主要知识点纲要</a>
+<ul>
+</ul></li>
+<li><a href="#四项目任务或案例任务">四、项目任务或案例任务</a>
+<ul>
+</ul></li>
+<li><a href="#五课堂互动设计">五、课堂互动设计</a>
+<ul>
+<li><a href="#互动-1面试题快问快答导航守卫">互动 1：面试题快问快答——导航守卫</a></li>
+<li><a href="#互动-2前端权限-vs-后端权限">互动 2：前端权限 vs 后端权限</a></li>
+</ul></li>
+<li><a href="#六课程思政融入点">六、课程思政融入点</a>
+<ul>
+</ul></li>
+<li><a href="#七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5 分钟）</a>
+<ul>
+</ul></li>
+<li><a href="#八课后任务">八、课后任务</a>
+<ul>
+</ul></li>
+<li><a href="#九对应岗位能力或面试考点">九、对应岗位能力或面试考点</a>
+<ul>
+</ul></li>
+<li><a href="#十教学资料与题库索引">十、教学资料与题库索引</a>
+<ul>
+</ul></li>
+<li><a href="#附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 11 次课 <span>｜</span> <strong>文档：</strong>教学设计</p>
+<blockquote>
+<p>所属模块：M4 Vue Router 路由 ｜ 课程：《MVVM前端框架开发技术》
+配套资料：见同文件夹内
+<code>教学资料.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一课程信息">一、课程信息</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>次序</td>
+<td>第 11 次课（全课程 16 次之第 11）</td>
+</tr>
+<tr>
+<td>学时</td>
+<td>2 学时（90 分钟）</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>理论课</td>
+</tr>
+<tr>
+<td>所属模块</td>
+<td>M4 Vue Router 路由</td>
+</tr>
+<tr>
+<td>教学主题</td>
+<td>路由进阶与导航守卫</td>
+</tr>
+<tr>
+<td>先修基础</td>
+<td>第 10 次课（Vue Router 基础、动态/嵌套路由）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="二教学目标">二、教学目标</h2>
+<h3 id="知识目标">知识目标</h3>
+<ol type="1">
+<li>掌握全局守卫 <code>beforeEach</code>、<code>afterEach</code>。</li>
+<li>理解路由独享守卫与组件内守卫。</li>
+<li>掌握路由元信息 <code>meta</code> 实现权限控制。</li>
+<li>掌握路由懒加载与代码分割。</li>
+<li>掌握重定向与 404 页面配置。</li>
+</ol>
+<h3 id="能力目标">能力目标</h3>
+<ol type="1">
+<li>能用 <code>beforeEach</code> 实现登录权限拦截。</li>
+<li>能用 <code>meta</code> 实现角色路由控制。</li>
+<li>能配置 404 页面与重定向。</li>
+<li>能完成 CTTS-Frontend 登录权限与角色路由控制。</li>
+</ol>
+<h3 id="素质目标课程思政">素质目标（课程思政）</h3>
+<ol type="1">
+<li>培养安全意识——前端路由守卫是权限的第一道防线。</li>
+<li>建立防御性编程思维——权限校验要前后端结合。</li>
+</ol>
+<hr />
+<h2 id="三主要知识点纲要">三、主要知识点纲要</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>知识点</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K11-1</td>
+<td>全局守卫</td>
+<td><code>beforeEach</code>（前置）/
+<code>afterEach</code>（后置）；next 放行/重定向/取消</td>
+</tr>
+<tr>
+<td>K11-2</td>
+<td>独享与组件内守卫</td>
+<td><code>beforeEnter</code>
+路由独享；<code>onBeforeRouteLeave</code>/<code>onBeforeRouteUpdate</code>
+组件内</td>
+</tr>
+<tr>
+<td>K11-3</td>
+<td>路由元信息 meta</td>
+<td><code>meta: { requireAuth, role }</code>；守卫中读取 meta
+判断权限</td>
+</tr>
+<tr>
+<td>K11-4</td>
+<td>路由懒加载与代码分割</td>
+<td><code>() =&gt; import()</code>；分组；按需加载优化首屏</td>
+</tr>
+<tr>
+<td>K11-5</td>
+<td>重定向与 404</td>
+<td><code>redirect</code>；<code>{ path: '/:pathMatch(.*)*', component: NotFound }</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="四项目任务或案例任务">四、项目任务或案例任务</h2>
+<p><strong>本次课任务</strong>：实现 CTTS-Frontend
+登录权限拦截（未登录跳转登录页）与角色路由控制（学生/教师/管理员访问不同页面）。</p>
+<hr />
+<h2 id="五课堂互动设计">五、课堂互动设计</h2>
+<h3 id="互动-1面试题快问快答导航守卫">互动
+1：面试题快问快答——导航守卫</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>"导航守卫有几种？执行顺序是怎样的？"</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>全局/独享/组件内三类；顺序：beforeEach → beforeEnter → 组件内 →
+afterEach</td>
+</tr>
+</tbody>
+</table>
+<h3 id="互动-2前端权限-vs-后端权限">互动 2：前端权限 vs 后端权限</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>"前端守卫能保证安全吗？为什么还要后端校验？"</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>前端守卫只是体验优化（挡住无权限页面），真正的安全靠后端校验，前端可被绕过</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六课程思政融入点">六、课程思政融入点</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>融入点</td>
+<td>安全意识——路由守卫是权限第一道防线</td>
+</tr>
+<tr>
+<td>技术关联</td>
+<td>守卫拦截未授权访问，保护用户数据</td>
+</tr>
+<tr>
+<td>引导问题</td>
+<td>"如果前端不做权限拦截，用户直接输 URL 会怎样？"</td>
+</tr>
+<tr>
+<td>预期价值目标</td>
+<td>树立安全意识与防御性编程思维</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5
+分钟）</h2>
+<p><strong>判断题</strong>：</p>
+<ol type="1">
+<li><code>beforeEach</code> 是全局前置守卫。（✓）</li>
+<li><code>meta</code> 可存储路由元信息用于权限判断。（✓）</li>
+<li>前端守卫能完全保证安全，无需后端校验。（✗）</li>
+<li>404 页面用 <code>:pathMatch(.*)*</code> 匹配。（✓）</li>
+</ol>
+<blockquote>
+<p>详细题目见 <code>题库.md</code>。</p>
+</blockquote>
+<hr />
+<h2 id="八课后任务">八、课后任务</h2>
+<ol type="1">
+<li>通读 <code>教学资料.md</code>，掌握守卫、meta、懒加载、404。</li>
+<li>完善 CTTS-Frontend：增加角色路由（学生不能访问用户管理页）。</li>
+<li>思考：前端权限与后端权限的关系（200 字）。</li>
+</ol>
+<hr />
+<h2 id="九对应岗位能力或面试考点">九、对应岗位能力或面试考点</h2>
+<table>
+<thead>
+<tr>
+<th>岗位能力/面试考点</th>
+<th>对应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>导航守卫种类与执行顺序（高频）</td>
+<td>K11-1、K11-2</td>
+</tr>
+<tr>
+<td>meta 权限控制</td>
+<td>K11-3</td>
+</tr>
+<tr>
+<td>路由懒加载</td>
+<td>K11-4</td>
+</tr>
+<tr>
+<td>前端权限 vs 后端权限</td>
+<td>K11-1/K11-3</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="十教学资料与题库索引">十、教学资料与题库索引</h2>
+<table>
+<thead>
+<tr>
+<th>资料类型</th>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学生复习资料</td>
+<td><code>教学资料.md</code></td>
+<td>5 个知识点详解 + CTTS-Frontend 权限守卫综合示例 + 知识结构图</td>
+</tr>
+<tr>
+<td>考试题库</td>
+<td><code>题库.md</code></td>
+<td>78 题，含答案解析与评分标准</td>
+</tr>
+<tr>
+<td>课程总览</td>
+<td><code>../00 课程设计总览.md</code></td>
+<td>课程整体框架</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</h2>
+<table>
+<thead>
+<tr>
+<th>时段</th>
+<th>内容</th>
+<th>时长</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0~15 min</td>
+<td>回顾 + K11-1 全局守卫 + 互动 1</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>15~35 min</td>
+<td>K11-2 独享与组件内守卫</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>35~55 min</td>
+<td>K11-3 meta 权限控制 + 互动 2</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>55~70 min</td>
+<td>K11-4 懒加载 + K11-5 重定向404</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>70~85 min</td>
+<td>项目任务（权限守卫）+ 随堂练习</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>85~90 min</td>
+<td>小结 + 课后任务</td>
+<td>5 min</td>
+</tr>
+</tbody>
+</table>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,717 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vue3项目结构与首个Vue应用</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 02 次课 · 教学资料</div>
+      <h1>Vue3项目结构与首个Vue应用</h1>
+      <p>学生复习资料与代码示例 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 02 次课</span>
+        <span class="hero-chip"><b>主题</b>Vue3项目结构与首个Vue应用</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一学习导读">一、学习导读</a>
+<ul>
+<li><a href="#11-本节定位">1.1 本节定位</a></li>
+<li><a href="#12-先修基础">1.2 先修基础</a></li>
+<li><a href="#13-学习目标">1.3 学习目标</a></li>
+</ul></li>
+<li><a href="#二知识点详解">二、知识点详解</a>
+<ul>
+<li><a href="#知识点-k2-1vue3-项目目录结构">知识点 K2-1：Vue3 项目目录结构</a></li>
+<li><a href="#知识点-k2-2sfc-单文件组件">知识点 K2-2：SFC 单文件组件</a></li>
+<li><a href="#知识点-k2-3script-setup-语法">知识点 K2-3：&lt;script setup&gt; 语法</a></li>
+<li><a href="#知识点-k2-4响应式初体验-ref">知识点 K2-4：响应式初体验 ref</a></li>
+<li><a href="#知识点-k2-5首个页面开发ctts-frontend-首页">知识点 K2-5：首个页面开发（CTTS-Frontend 首页）</a></li>
+<li><a href="#验收标准">验收标准</a></li>
+</ul></li>
+<li><a href="#四拓展阅读选学">四、拓展阅读（选学）</a>
+<ul>
+</ul></li>
+<li><a href="#五本节小结与知识结构图">五、本节小结与知识结构图</a>
+<ul>
+</ul></li>
+<li><a href="#六复习思考题">六、复习思考题</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 02 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
+<blockquote>
+<p>学生复习资料 ｜
+配套：<code>教学设计.md</code>（教师教案）、<code>题库.md</code>（78
+题考试题库）
+本资料面向学生课后复习自学，包含定义、原理、问题、完整示例代码、图示、易错点与小结。</p>
+</blockquote>
+<hr />
+<h2 id="一学习导读">一、学习导读</h2>
+<h3 id="11-本节定位">1.1 本节定位</h3>
+<p>这是第 2 次课，承接第 1 次课搭建好的 CTTS-Frontend
+项目，开始<strong>写真正的 Vue 代码</strong>。重点是理清项目结构、掌握
+SFC（单文件组件）三段式写法、初步体验 <code>ref</code> 响应式，并完成
+CTTS-Frontend 首页。</p>
+<p>学完本节，你应当能回答：</p>
+<ul>
+<li>Vue 3 项目的文件加载链路是怎样的？各目录/文件分别干什么？</li>
+<li>什么是 SFC？三段式各自的作用？</li>
+<li><code>&lt;script setup&gt;</code> 有什么优势？</li>
+<li><code>ref</code> 为什么在 JS 里要用
+<code>.value</code>，模板里却不用？</li>
+</ul>
+<h3 id="12-先修基础">1.2 先修基础</h3>
+<table>
+<thead>
+<tr>
+<th>先修知识</th>
+<th>用到程度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 1 次课内容</td>
+<td>必须</td>
+<td>已用 Vite 创建项目并跑起来</td>
+</tr>
+<tr>
+<td>HTML/CSS/JS</td>
+<td>熟悉</td>
+<td>标签、样式、变量、函数</td>
+</tr>
+<tr>
+<td>ES6 模块</td>
+<td>了解即可</td>
+<td>知道 <code>import/export</code> 概念</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-学习目标">1.3 学习目标</h3>
+<ul>
+<li>✅ 掌握 Vue 3 项目目录结构与加载链路</li>
+<li>✅ 掌握 SFC 三段式结构与 <code>&lt;script setup&gt;</code></li>
+<li>✅ 会用 <code>ref</code> 创建响应式数据</li>
+<li>✅ 完成 CTTS-Frontend 首页</li>
+</ul>
+<hr />
+<h2 id="二知识点详解">二、知识点详解</h2>
+<h3 id="知识点-k2-1vue3-项目目录结构">知识点 K2-1：Vue3
+项目目录结构</h3>
+<h4 id="定义">定义</h4>
+<p>Vite 创建的 Vue 3
+项目有一套约定俗成的目录结构，每个文件/目录都有明确职责。理解结构是团队协作的基础。</p>
+<h4 id="原理文件加载链路">原理：文件加载链路</h4>
+<div class="visual">
+  <div class="visual-title">Vue3 项目文件加载链路</div>
+  <div class="loading-chain">
+    <div class="loading-card"><span class="mini">HTML 外壳</span><b>index.html</b><p>提供 <code>#app</code> 挂载点，并通过 <code>type="module"</code> 加载入口脚本。</p></div>
+    <div class="loading-card"><span class="mini">JS 入口</span><b>src/main.js</b><p>导入根组件，执行 <code>createApp(App).mount('#app')</code> 创建并挂载应用。</p></div>
+    <div class="loading-card"><span class="mini">根组件</span><b>src/App.vue</b><p>承载顶层界面，可继续导入 <code>src/components/</code> 中的子组件。</p></div>
+  </div>
+</div>
+
+<h4 id="完整目录与职责">完整目录与职责</h4>
+<div class="visual">
+  <div class="visual-title">CTTS-Frontend 推荐目录结构</div>
+  <div class="file-tree"><ul>
+    <li><span class="folder">ctts-frontend/</span><ul>
+      <li><span class="folder">node_modules/</span> <span class="note">依赖目录：npm install 生成，不手改、不提交</span></li>
+      <li><span class="folder">public/</span> <span class="note">静态资源：直接拷贝，用 /xxx 访问</span><ul><li><span class="file">vite.svg</span></li></ul></li>
+      <li><span class="folder">src/</span> <span class="note">源代码主目录</span><ul>
+        <li><span class="folder">assets/</span> <span class="note">需构建处理的资源，通常 import 引入</span><ul><li><span class="file">vue.svg</span></li></ul></li>
+        <li><span class="folder">components/</span> <span class="note">可复用组件</span></li>
+        <li><span class="file">App.vue</span> <span class="note">根组件</span></li>
+        <li><span class="file">main.js</span> <span class="note">应用入口</span></li>
+        <li><span class="file">style.css</span> <span class="note">全局样式</span></li>
+      </ul></li>
+      <li><span class="file">index.html</span> <span class="note">SPA HTML 外壳</span></li>
+      <li><span class="file">package.json</span> <span class="note">依赖清单与脚本命令</span></li>
+      <li><span class="file">vite.config.js</span> <span class="note">Vite 配置</span></li>
+      <li><span class="file">.gitignore</span> <span class="note">Git 忽略配置</span></li>
+    </ul></li>
+  </ul></div>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>文件/目录</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>index.html</code></td>
+<td>SPA 唯一 HTML，含挂载点 <code>#app</code>，加载
+<code>main.js</code></td>
+</tr>
+<tr>
+<td><code>src/main.js</code></td>
+<td>创建 Vue 应用、引入根组件、挂载到 <code>#app</code></td>
+</tr>
+<tr>
+<td><code>src/App.vue</code></td>
+<td>根组件，整个应用的顶层模板</td>
+</tr>
+<tr>
+<td><code>src/components/</code></td>
+<td>存放可复用子组件</td>
+</tr>
+<tr>
+<td><code>src/assets/</code></td>
+<td>需构建处理的资源（import 引入）</td>
+</tr>
+<tr>
+<td><code>public/</code></td>
+<td>不需构建的静态资源（直接拷贝）</td>
+</tr>
+<tr>
+<td><code>package.json</code></td>
+<td>依赖清单与脚本命令</td>
+</tr>
+<tr>
+<td><code>vite.config.js</code></td>
+<td>Vite 配置（别名、代理、插件等）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="关键文件代码">关键文件代码</h4>
+<p><code>index.html</code>：</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">&quot;zh-CN&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">&quot;UTF-8&quot;</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content</span><span class="op">=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>CTTS-Frontend<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;app&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;/src/main.js&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div>
+<p><code>src/main.js</code>：</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createApp } <span class="im">from</span> <span class="st">&#39;vue&#39;</span>   <span class="co">// 引入 createApp</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> App <span class="im">from</span> <span class="st">&#39;./App.vue&#39;</span>       <span class="co">// 引入根组件</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="st">&#39;./style.css&#39;</span>              <span class="co">// 引入全局样式</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">createApp</span>(App)<span class="op">.</span><span class="fu">mount</span>(<span class="st">&#39;#app&#39;</span>)      <span class="co">// 创建应用并挂载</span></span></code></pre></div>
+<h4 id="易错点">易错点</h4>
+<ul>
+<li><strong>混淆 public 与 assets</strong>：<code>public</code>
+用绝对路径 <code>/xx.svg</code> 访问，不构建；<code>assets</code> 用
+<code>import</code> 引入，会构建（可被 Vite 处理哈希等）。引用错位置会
+404。</li>
+<li><strong>把组件放在 src 外</strong>：组件应放
+<code>src/components/</code>，放外面虽能跑但不规范，不利于维护。</li>
+<li><strong>直接改
+node_modules</strong>：依赖目录不要手动改，<code>npm install</code>
+会覆盖。</li>
+</ul>
+<h4 id="小结">小结</h4>
+<p>Vue 3
+项目加载链路：<code>index.html → src/main.js → src/App.vue</code>。源代码集中在
+<code>src/</code>，组件放
+<code>src/components/</code>，资源按是否需构建分放 <code>assets</code>
+或 <code>public</code>。</p>
+<hr />
+<h3 id="知识点-k2-2sfc-单文件组件">知识点 K2-2：SFC 单文件组件</h3>
+<h4 id="定义-1">定义</h4>
+<p><strong>SFC（Single File Component，单文件组件）</strong> 是 Vue
+的特色写法，把一个组件的<strong>结构（template）、逻辑（script）、样式（style）</strong>
+写在同一个 <code>.vue</code> 文件中。</p>
+<h4 id="原理三段式">原理：三段式</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;!-- 结构：HTML，组件的视图 --&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+// 逻辑：JavaScript，组件的数据与方法
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+/* 样式：CSS，组件的外观 */
+&lt;/style&gt;</code></pre>
+<p>三段各自职责： | 段 | 作用 | 是否必须 | | --- | --- | --- | |
+<code>&lt;template&gt;</code> | 组件的 HTML 结构（视图） |
+推荐，一个组件通常有 | | <code>&lt;script setup&gt;</code> |
+组件的逻辑（数据、方法） | 推荐 | | <code>&lt;style&gt;</code> |
+组件的样式 | 可选 |</p>
+<blockquote>
+<p><code>&lt;style scoped&gt;</code> 中的 <code>scoped</code>
+表示样式只作用于当前组件，避免污染全局。</p>
+</blockquote>
+<h4 id="问题--场景">问题 / 场景</h4>
+<p><strong>问：为什么把 HTML/JS/CSS 放一个文件？</strong>
+传统分离三文件的方式在组件化开发中反而割裂了"一个组件的完整性"。SFC
+把组件相关的三部分聚合，方便维护与复用——打开一个 <code>.vue</code>
+就能看到该组件的全部。</p>
+<p><strong>问：三段顺序有要求吗？</strong> 没有强制要求，但社区约定
+<strong>template → script → style</strong>。Vite 官方脚手架与 ESLint
+插件也按此顺序。</p>
+<h4 id="完整示例代码">完整示例代码</h4>
+<pre class="vue"><code>&lt;!-- src/components/Hello.vue --&gt;
+&lt;template&gt;
+  &lt;div class=&quot;hello&quot;&gt;
+    &lt;h2&gt;{{ message }}&lt;/h2&gt;
+    &lt;button @click=&quot;sayHi&quot;&gt;点击问好&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+
+const message = ref(&#39;Hello, Vue 3!&#39;)
+const sayHi = () =&gt; {
+  alert(message.value)
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.hello {
+  text-align: center;
+  padding: 20px;
+}
+h2 {
+  color: #42b883;
+}
+&lt;/style&gt;</code></pre>
+<h4 id="易错点-1">易错点</h4>
+<ul>
+<li><strong><code>&lt;template&gt;</code> 没有唯一根元素</strong>（Vue 2
+要求）：Vue 3
+支持多根节点（Fragment），但建议初学仍用单根包裹，避免样式与逻辑混乱。</li>
+<li><strong>忘了 <code>scoped</code></strong>：不加 <code>scoped</code>
+的样式会全局生效，可能污染其他组件。组件样式建议加
+<code>scoped</code>。</li>
+<li><strong>在 <code>&lt;template&gt;</code> 里写 JS
+逻辑</strong>：模板只放声明式绑定，复杂逻辑放
+<code>&lt;script setup&gt;</code>。</li>
+</ul>
+<h4 id="小结-1">小结</h4>
+<p>SFC 用三段式把组件的结构、逻辑、样式聚合在一个 <code>.vue</code>
+文件，是 Vue 组件化开发的基本单元。</p>
+<hr />
+<h3 id="知识点-k2-3script-setup-语法">知识点
+K2-3：<code>&lt;script setup&gt;</code> 语法</h3>
+<h4 id="定义-2">定义</h4>
+<p><code>&lt;script setup&gt;</code> 是 Vue 3 推荐的 Composition API
+语法糖，用于编写组件逻辑。它比普通 <code>&lt;script&gt;</code> +
+<code>setup()</code> 函数更简洁。</p>
+<h4 id="原理">原理</h4>
+<p>普通 <code>&lt;script setup&gt;</code> 的特点：</p>
+<ol type="1">
+<li><strong>顶层即 setup</strong>：整个
+<code>&lt;script setup&gt;</code> 内容就是 setup
+函数体，组件每次渲染时执行。</li>
+<li><strong>自动暴露</strong>：顶层声明的变量、函数，自动暴露给模板使用，<strong>无需
+return</strong>。</li>
+<li><strong>导入即用</strong>：<code>import</code>
+进来的组件/工具，可直接在模板用，无需注册。</li>
+<li><strong>更好的性能</strong>：编译时优化，减少运行时开销。</li>
+</ol>
+<p>对比普通 setup 函数：</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 普通 &lt;script&gt; + setup()：需要手动 return</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setup</span>() {</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> count <span class="op">=</span> <span class="fu">ref</span>(<span class="dv">0</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> add <span class="op">=</span> () <span class="kw">=&gt;</span> count<span class="op">.</span><span class="at">value</span><span class="op">++</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> { count<span class="op">,</span> add }   <span class="co">// 必须 return 才能在模板用</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre class="vue"><code>&lt;!-- &lt;script setup&gt;：自动暴露，无需 return --&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const count = ref(0)
+const add = () =&gt; count.value++
+// count、add 自动可用
+&lt;/script&gt;</code></pre>
+<h4 id="问题--场景-1">问题 / 场景</h4>
+<p><strong>问：<code>&lt;script setup&gt;</code> 里能 import
+组件直接用吗？</strong> 能。导入的组件自动注册，无需
+<code>components: { }</code> 选项：</p>
+<pre class="vue"><code>&lt;script setup&gt;
+import Hello from &#39;./Hello.vue&#39;   // 导入即用
+&lt;/script&gt;
+&lt;template&gt;
+  &lt;Hello /&gt;                        &lt;!-- 直接用 --&gt;
+&lt;/template&gt;</code></pre>
+<p><strong>问：能用 Options API 吗？</strong>
+可以，但混用不推荐。一个组件要么全用
+<code>&lt;script setup&gt;</code>，要么用普通
+<code>&lt;script&gt;</code> + Options。本课程统一用
+<code>&lt;script setup&gt;</code>。</p>
+<h4 id="完整示例代码-1">完整示例代码</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;计数：{{ count }}&lt;/p&gt;
+    &lt;button @click=&quot;add&quot;&gt;+1&lt;/button&gt;
+    &lt;button @click=&quot;reset&quot;&gt;重置&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+
+const count = ref(0)
+const add = () =&gt; count.value++
+const reset = () =&gt; { count.value = 0 }
+&lt;/script&gt;</code></pre>
+<h4 id="图示">图示</h4>
+<div class="visual">
+  <div class="visual-title"><code>&lt;script setup&gt;</code> 编译与使用关系</div>
+  <div class="compile-map">
+    <div class="compile-col">
+      <div class="compile-item"><b>顶层声明</b><br><code>count</code>、<code>add</code> 等变量/函数</div>
+      <div class="compile-item"><b>组件导入</b><br><code>import Hello from './Hello.vue'</code></div>
+    </div>
+    <div class="compile-arrow"><span>→</span><span>→</span></div>
+    <div class="compile-col">
+      <div class="compile-item"><b>模板直接可用</b><br><code>{{ count }}</code>、<code>@click="add"</code>，无需 <code>return</code></div>
+      <div class="compile-item"><b>导入即注册</b><br>模板中直接写 <code>&lt;Hello /&gt;</code>，无需 <code>components</code> 选项</div>
+    </div>
+  </div>
+</div>
+
+<h4 id="易错点-2">易错点</h4>
+<ul>
+<li><strong>在 <code>&lt;script setup&gt;</code> 里写
+<code>export default</code></strong>：不需要也不允许，<code>&lt;script setup&gt;</code>
+本身就是语法糖，不要再写 <code>export default</code>。</li>
+<li><strong>以为导入的组件要注册</strong>：<code>&lt;script setup&gt;</code>
+下 import 进来的组件自动可用，别再加 <code>components</code>。</li>
+<li><strong>解构 props 丢失响应式</strong>（提前警示）：props
+解构会丢失响应式，需用 <code>toRefs</code>（第 7 次课讲）。</li>
+</ul>
+<h4 id="小结-2">小结</h4>
+<p><code>&lt;script setup&gt;</code> 是 Composition API
+语法糖，顶层声明自动暴露、导入即用、无需 return，是 Vue 3
+推荐的组件逻辑写法。</p>
+<hr />
+<h3 id="知识点-k2-4响应式初体验-ref">知识点 K2-4：响应式初体验 ref</h3>
+<h4 id="定义-3">定义</h4>
+<p><strong><code>ref</code></strong> 是 Vue 3 创建响应式数据的
+API。把一个值用 <code>ref()</code>
+包裹，这个值就变成"响应式"的——当它变化时，引用它的视图会自动更新。</p>
+<h4 id="原理-1">原理</h4>
+<p><code>ref()</code> 返回一个 <strong>Ref 对象</strong>，结构形如
+<code>{ value: 原始值 }</code>。Vue 通过追踪 <code>.value</code>
+的读写实现响应式。</p>
+<div class="visual">
+  <div class="visual-title"><code>ref</code> 响应式更新链路</div>
+  <div class="ref-flow">
+    <div class="ref-node"><b><code>ref(0)</code></b><small>创建 Ref 对象</small></div>
+    <div class="ref-node hot"><b><code>{ value: 0 }</code></b><small>JS 中读写真实值</small></div>
+    <div class="ref-node"><b>修改 <code>.value</code></b><small>Vue 捕获状态变化</small></div>
+    <div class="ref-node hot"><b>视图自动更新</b><small>模板重新渲染相关位置</small></div>
+  </div>
+</div>
+
+<p><strong>关键规则</strong>：</p>
+<ul>
+<li>在 <strong>JavaScript</strong> 中：必须通过 <code>.value</code>
+读写，如 <code>count.value++</code>。</li>
+<li>在 <strong>模板</strong> 中：自动解包（unwrap），直接用
+<code>{{ count }}</code>，<strong>不要</strong>写
+<code>{{ count.value }}</code>。</li>
+</ul>
+<h4 id="问题--场景-2">问题 / 场景</h4>
+<p><strong>问：为什么 JS 里要 <code>.value</code>，模板里不用？</strong>
+<code>ref</code> 返回的是对象（<code>{value}</code>），JS 中必须访问
+<code>.value</code> 才能拿到真实值。模板中 Vue 自动"解包"了
+ref，直接显示值，所以不用
+<code>.value</code>。这是初学者最易错的点。</p>
+<p><strong>问：ref 只能包基本类型吗？</strong> 不是。<code>ref</code>
+也能包对象/数组，但对象一般推荐用 <code>reactive</code>（第 4
+次课详讲）。<code>ref</code> 包对象时，访问属性仍需
+<code>obj.value.xxx</code>。</p>
+<h4 id="完整示例代码-2">完整示例代码</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;访问次数：{{ visitCount }}&lt;/p&gt;
+    &lt;button @click=&quot;visitCount++&quot;&gt;增加访问&lt;/button&gt;
+    &lt;button @click=&quot;reset&quot;&gt;重置&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+
+const visitCount = ref(0)        // 响应式数据
+const reset = () =&gt; {
+  visitCount.value = 0           // JS 中必须 .value
+}
+// visitCount.value++  ✅ 正确
+// visitCount++        ❌ 错误（visitCount 是对象，不能直接++）
+&lt;/script&gt;</code></pre>
+<h4 id="图示-1">图示</h4>
+<div class="visual">
+  <div class="visual-title">模板自动解包与 JS 中 <code>.value</code> 的区别</div>
+  <div class="compare">
+    <div class="compare-card good"><h4>模板中</h4><p><code>{{ visitCount }}</code> 会自动解包，直接显示真实数值；点击按钮中的表达式也可像普通值一样使用。</p></div>
+    <div class="compare-card good"><h4>JavaScript 中</h4><p><code>visitCount.value++</code> 才是在修改 Ref 内部真实值；直接给 <code>visitCount</code> 重新赋值会丢失响应式。</p></div>
+  </div>
+</div>
+
+<h4 id="易错点-3">易错点</h4>
+<ul>
+<li><strong>JS 中忘写 <code>.value</code></strong>：<code>count++</code>
+会报错或失效，必须 <code>count.value++</code>。</li>
+<li><strong>模板中多写
+<code>.value</code></strong>：<code>{{ count.value }}</code> 会显示
+undefined，模板自动解包，写 <code>{{ count }}</code> 即可。</li>
+<li><strong>重新赋值整个 ref</strong>：<code>count = ref(0)</code>
+会覆盖变量、丢失原 ref，应改 <code>count.value = 0</code>。</li>
+<li><strong>在解构中丢失响应式</strong>：<code>let { value } = count</code>
+后 <code>value</code> 不再响应式。</li>
+</ul>
+<h4 id="小结-3">小结</h4>
+<p><code>ref</code> 创建响应式数据，返回 Ref 对象。JS 中用
+<code>.value</code>
+访问，模板中自动解包。它是体验"数据驱动视图"的第一个工具。</p>
+<hr />
+<h3 id="知识点-k2-5首个页面开发ctts-frontend-首页">知识点
+K2-5：首个页面开发（CTTS-Frontend 首页）</h3>
+<h4 id="定义-4">定义</h4>
+<p>把 K2-1~K2-4 综合运用，开发 CTTS-Frontend 首页：欢迎信息 +
+静态项目列表 + 访问计数器，体现 SFC 结构与 ref 响应式。</p>
+<h4 id="原理-2">原理</h4>
+<p>首页结构：</p>
+<div class="visual">
+  <div class="visual-title">CTTS-Frontend 首页结构</div>
+  <div class="app-structure">
+    <div class="app-row"><span>1</span><div><b>顶部</b>：系统名称与课程/项目简介。</div></div>
+    <div class="app-row"><span>2</span><div><b>中部</b>：项目功能列表，展示核心业务能力。</div></div>
+    <div class="app-row"><span>3</span><div><b>底部</b>：访问计数器，使用 <code>ref</code> 与按钮交互完成响应式体验。</div></div>
+  </div>
+</div>
+
+<h4 id="完整示例代码直接替换-srcappvue">完整示例代码（直接替换
+src/App.vue）</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div class=&quot;home&quot;&gt;
+    &lt;header class=&quot;header&quot;&gt;
+      &lt;h1&gt;CTTS-Frontend&lt;/h1&gt;
+      &lt;p&gt;校园实训任务管理系统&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;main class=&quot;main&quot;&gt;
+      &lt;h2&gt;实训项目列表&lt;/h2&gt;
+      &lt;ul class=&quot;project-list&quot;&gt;
+        &lt;li v-for=&quot;project in projects&quot; :key=&quot;project.id&quot; class=&quot;project-item&quot;&gt;
+          &lt;span class=&quot;title&quot;&gt;{{ project.title }}&lt;/span&gt;
+          &lt;span class=&quot;status&quot;&gt;{{ project.status }}&lt;/span&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+
+      &lt;div class=&quot;counter&quot;&gt;
+        &lt;p&gt;本页访问次数：{{ visitCount }}&lt;/p&gt;
+        &lt;button @click=&quot;visitCount++&quot;&gt;增加访问&lt;/button&gt;
+        &lt;button @click=&quot;resetCount&quot;&gt;重置&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+
+// 静态项目列表数据
+const projects = ref([
+  { id: 1, title: &#39;项目一：JavaWeb 后端开发&#39;, status: &#39;进行中&#39; },
+  { id: 2, title: &#39;项目二：Vue3 前端开发&#39;, status: &#39;进行中&#39; },
+  { id: 3, title: &#39;项目三：全栈联调实训&#39;, status: &#39;未开始&#39; }
+])
+
+// 访问计数器（响应式）
+const visitCount = ref(0)
+const resetCount = () =&gt; {
+  visitCount.value = 0
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.home {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: system-ui, sans-serif;
+  color: #333;
+}
+.header {
+  text-align: center;
+  padding: 30px 0;
+  border-bottom: 2px solid #42b883;
+}
+.header h1 {
+  color: #42b883;
+  margin: 0;
+}
+.project-list {
+  list-style: none;
+  padding: 0;
+}
+.project-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+.project-item .status {
+  color: #999;
+  font-size: 14px;
+}
+.counter {
+  margin-top: 30px;
+  text-align: center;
+}
+button {
+  padding: 6px 16px;
+  margin: 0 6px;
+  border: 1px solid #42b883;
+  background: #fff;
+  color: #42b883;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover {
+  background: #42b883;
+  color: #fff;
+}
+&lt;/style&gt;</code></pre>
+<p><strong>运行方式</strong>：保存后 Vite
+自动热更新，浏览器看到首页。点击"增加访问"按钮，访问次数自动
++1（数据驱动，无需操作 DOM）。</p>
+<h4 id="易错点-4">易错点</h4>
+<ul>
+<li><strong><code>v-for</code> 忘加
+<code>:key</code></strong>：列表渲染必须加唯一 key（这里用
+<code>project.id</code>），否则 Vue 警告且影响更新性能。第 6
+次课详讲。</li>
+<li><strong>projects 用普通数组而非
+ref</strong>：普通数组修改后视图不更新，需用 <code>ref</code>（或
+<code>reactive</code>）才是响应式。</li>
+<li><strong><code>{{ project.title }}</code> 写成
+<code>{{ projects.title }}</code></strong>：v-for 里
+<code>project</code> 是循环变量，注意层级。</li>
+</ul>
+<h4 id="小结-4">小结</h4>
+<p>通过 CTTS-Frontend 首页，综合运用了 SFC
+三段式、<code>&lt;script setup&gt;</code>、<code>ref</code>、<code>v-for</code>，初步建立"数据驱动视图"的实战直觉。</p>
+<hr />
+<h2
+id="三综合示例ctts-frontend-首页完整可运行">三、综合示例：CTTS-Frontend
+首页（完整可运行）</h2>
+<p>见 K2-5 完整代码。将其替换 <code>src/App.vue</code>，运行
+<code>npm run dev</code>，浏览器访问 <code>localhost:5173</code>
+即可看到首页。</p>
+<h3 id="验收标准">验收标准</h3>
+<ul>
+<li>✅ 页面显示标题、项目列表、计数器。</li>
+<li>✅ 点击"增加访问"按钮，次数自动 +1。</li>
+<li>✅ 点击"重置"按钮，次数归零。</li>
+<li>✅ 列表项有唯一 <code>:key</code>。</li>
+</ul>
+<hr />
+<h2 id="四拓展阅读选学">四、拓展阅读（选学）</h2>
+<ol type="1">
+<li><strong>SFC 编译原理</strong>：<code>.vue</code> 文件经
+<code>@vitejs/plugin-vue</code> 编译成 JS 渲染函数，可查阅 Vue
+官方"单文件组件"文档。</li>
+<li><strong><code>&lt;style&gt;</code> 的 scoped 原理</strong>：scoped
+通过给元素加 <code>data-v-xxx</code> 属性选择器实现作用域隔离。</li>
+<li><strong>ref 解包规则细节</strong>：顶层 ref 属性自动解包，嵌套 ref
+不一定解包，详见第 4 次课。</li>
+</ol>
+<hr />
+<h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
+<div class="visual">
+  <div class="visual-title">第 2 次课核心知识点地图</div>
+  <div class="knowledge-map">
+    <div class="root">Vue3 项目结构<br>与首个 Vue 应用</div>
+    <div class="items">
+      <div><b>K2-1</b> 项目结构：<code>index.html → main.js → App.vue</code></div>
+      <div><b>K2-2</b> SFC：<code>template / script / style</code> 三段式</div>
+      <div><b>K2-3</b> <code>&lt;script setup&gt;</code>：自动暴露、导入即用、无需 return</div>
+      <div><b>K2-4</b> <code>ref</code>：JS 中用 <code>.value</code>，模板中自动解包</div>
+      <div><b>K2-5</b> 首页开发：标题、列表、计数器组成首个页面</div>
+    </div>
+  </div>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>加载链路</td>
+<td>index.html → main.js → App.vue</td>
+</tr>
+<tr>
+<td>SFC</td>
+<td>一个 .vue = template + script setup + style</td>
+</tr>
+<tr>
+<td>script setup</td>
+<td>声明即暴露，导入即用</td>
+</tr>
+<tr>
+<td>ref 规则</td>
+<td>JS 用 .value，模板直接用</td>
+</tr>
+<tr>
+<td>数据驱动</td>
+<td>改 ref 的值，视图自动更新</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六复习思考题">六、复习思考题</h2>
+<ol type="1">
+<li>描述 Vue 3 项目的文件加载链路，说明
+<code>index.html</code>、<code>main.js</code>、<code>App.vue</code>
+各自作用。</li>
+<li><code>&lt;script setup&gt;</code> 相比普通 <code>setup()</code>
+函数有什么优势？</li>
+<li>为什么 <code>ref</code> 在 JS 中要
+<code>.value</code>、模板中不用？</li>
+<li>SFC 三段式分别对应 MVVM 的哪些角色？</li>
+<li>把首页的 <code>projects</code> 改成普通数组（不用
+ref），观察修改后视图是否更新，思考为什么。</li>
+</ol>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

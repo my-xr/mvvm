@@ -1,0 +1,422 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pinia进阶与状态管理实践</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 13 次课 · 教学资料</div>
+      <h1>Pinia进阶与状态管理实践</h1>
+      <p>学生复习资料与代码示例 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 13 次课</span>
+        <span class="hero-chip"><b>主题</b>Pinia进阶与状态管理实践</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一学习导读">一、学习导读</a>
+<ul>
+<li><a href="#11-本节定位">1.1 本节定位</a></li>
+<li><a href="#12-先修基础">1.2 先修基础</a></li>
+<li><a href="#13-学习目标">1.3 学习目标</a></li>
+</ul></li>
+<li><a href="#二知识点详解">二、知识点详解</a>
+<ul>
+<li><a href="#知识点-k13-1多-store-管理">知识点 K13-1：多 store 管理</a></li>
+<li><a href="#知识点-k13-2store-间相互引用">知识点 K13-2：store 间相互引用</a></li>
+<li><a href="#知识点-k13-3状态持久化">知识点 K13-3：状态持久化</a></li>
+<li><a href="#知识点-k13-4reset--patch--subscribe">知识点 K13-4：$reset / $patch / $subscribe</a></li>
+</ul></li>
+<li><a href="#三综合示例ctts-frontend-三个-store">三、综合示例：CTTS-Frontend 三个 store</a>
+<ul>
+</ul></li>
+<li><a href="#四实践复盘要点">四、实践复盘要点</a>
+<ul>
+</ul></li>
+<li><a href="#五本节小结与知识结构图">五、本节小结与知识结构图</a>
+<ul>
+</ul></li>
+<li><a href="#六复习思考题">六、复习思考题</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 13 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
+<blockquote>
+<p>学生复习资料 ｜ 配套：<code>教学设计.md</code>、<code>题库.md</code>
+本节为实践课，资料以完整项目代码为主。</p>
+</blockquote>
+<hr />
+<h2 id="一学习导读">一、学习导读</h2>
+<h3 id="11-本节定位">1.1 本节定位</h3>
+<p>本节综合运用 Pinia，完成 CTTS-Frontend 全局状态管理方案，是多 store
+协作与持久化的集中训练。</p>
+<h3 id="12-先修基础">1.2 先修基础</h3>
+<table>
+<thead>
+<tr>
+<th>先修知识</th>
+<th>程度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 12 次课</td>
+<td>必须</td>
+<td>Pinia 基础</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-学习目标">1.3 学习目标</h3>
+<ul>
+<li>✅ 设计多 store 方案</li>
+<li>✅ 实现 store 间引用与持久化</li>
+<li>✅ 掌握 $reset/$patch/$subscribe</li>
+</ul>
+<hr />
+<h2 id="二知识点详解">二、知识点详解</h2>
+<h3 id="知识点-k13-1多-store-管理">知识点 K13-1：多 store 管理</h3>
+<h4 id="定义">定义</h4>
+<p>按职责把全局状态拆分到多个 store，每个 store 单一职责，便于维护。</p>
+<h4 id="ctts-frontend-store-规划">CTTS-Frontend store 规划</h4>
+<table>
+<thead>
+<tr>
+<th>store</th>
+<th>职责</th>
+<th>主要状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userStore</td>
+<td>用户登录与信息</td>
+<td>token、userInfo</td>
+</tr>
+<tr>
+<td>projectStore</td>
+<td>项目数据缓存</td>
+<td>projects、total</td>
+</tr>
+<tr>
+<td>appStore</td>
+<td>全局 UI 状态</td>
+<td>sidebarCollapsed、theme</td>
+</tr>
+</tbody>
+</table>
+<h4 id="目录结构">目录结构</h4>
+<div class="visual">
+  <div class="visual-title">图示 1：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">src/stores/</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> user.js</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> project.js</span>
+<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> app.js</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<h4 id="小结">小结</h4>
+<p>多 store 按职责分类，单一职责，目录集中在
+<code>src/stores/</code>。</p>
+<hr />
+<h3 id="知识点-k13-2store-间相互引用">知识点 K13-2：store
+间相互引用</h3>
+<h4 id="定义-1">定义</h4>
+<p>在 action 中调用其他
+store：<code>const other = useXxxStore()</code>。</p>
+<h4 id="用法">用法</h4>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// stores/project.js</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { useUserStore } <span class="im">from</span> <span class="st">&#39;./user&#39;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useProjectStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;project&#39;</span><span class="op">,</span> {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({ <span class="dt">projects</span><span class="op">:</span> [] })<span class="op">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">actions</span><span class="op">:</span> {</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">async</span> <span class="fu">fetchProjects</span>() {</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">useUserStore</span>()      <span class="co">// 引用其他 store</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="op">!</span>userStore<span class="op">.</span><span class="at">isLogin</span>) <span class="cf">return</span>        <span class="co">// 未登录不请求</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>      <span class="co">// 实际调接口（第 14 次课）</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">projects</span> <span class="op">=</span> [{ <span class="dt">id</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;项目一&#39;</span> }]</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<h4 id="易错点">易错点</h4>
+<ul>
+<li><strong>循环引用</strong>：A 引用 B，B 引用 A，应在 action
+内部调用（不在顶层），避免初始化死循环。</li>
+<li><strong>顶层调用</strong>：<code>useXxxStore()</code> 必须在 setup
+或 action 内调用，不能在 store 顶层。</li>
+</ul>
+<h4 id="小结-1">小结</h4>
+<p>store 间在 action 内用 <code>useXxxStore()</code>
+互相调用；避免循环引用与顶层调用。</p>
+<hr />
+<h3 id="知识点-k13-3状态持久化">知识点 K13-3：状态持久化</h3>
+<h4 id="定义-2">定义</h4>
+<p>把状态存到 localStorage，刷新页面后从 localStorage
+恢复，保持状态不丢失。</p>
+<h4 id="用法手动持久化">用法（手动持久化）</h4>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// stores/user.js</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">token</span><span class="op">:</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;token&#39;</span>) <span class="op">||</span> <span class="st">&#39;&#39;</span><span class="op">,</span>           <span class="co">// 初始化恢复</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">userInfo</span><span class="op">:</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;userInfo&#39;</span>) <span class="op">||</span> <span class="st">&#39;null&#39;</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">actions</span><span class="op">:</span> {</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">login</span>(token<span class="op">,</span> userInfo) {</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">token</span> <span class="op">=</span> token</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">userInfo</span> <span class="op">=</span> userInfo</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">&#39;token&#39;</span><span class="op">,</span> token)                <span class="co">// 持久化</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">&#39;userInfo&#39;</span><span class="op">,</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(userInfo))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">logout</span>() {</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">token</span> <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">userInfo</span> <span class="op">=</span> <span class="kw">null</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">removeItem</span>(<span class="st">&#39;token&#39;</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">removeItem</span>(<span class="st">&#39;userInfo&#39;</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<h4 id="用-subscribe-自动持久化">用 $subscribe 自动持久化</h4>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 在组件或 store 中监听变化自动存储</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>userStore<span class="op">.</span><span class="fu">$subscribe</span>((mutation<span class="op">,</span> state) <span class="kw">=&gt;</span> {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">&#39;token&#39;</span><span class="op">,</span> state<span class="op">.</span><span class="at">token</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">&#39;userInfo&#39;</span><span class="op">,</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(state<span class="op">.</span><span class="at">userInfo</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<h4
+id="插件方式pinia-plugin-persistedstate">插件方式（pinia-plugin-persistedstate）</h4>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install pinia-plugin-persistedstate</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// main.js</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createPinia } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> piniaPluginPersistedstate <span class="im">from</span> <span class="st">&#39;pinia-plugin-persistedstate&#39;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> pinia <span class="op">=</span> <span class="fu">createPinia</span>()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>pinia<span class="op">.</span><span class="fu">use</span>(piniaPluginPersistedstate)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(pinia)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// store 中开启</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({ <span class="dt">token</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span> <span class="dt">userInfo</span><span class="op">:</span> <span class="kw">null</span> })<span class="op">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">persist</span><span class="op">:</span> <span class="kw">true</span>          <span class="co">// 自动持久化</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<h4 id="易错点-1">易错点</h4>
+<ul>
+<li><strong>持久化敏感数据</strong>：token 存 localStorage 有 XSS
+风险，生产环境可考虑 httpOnly cookie。</li>
+<li><strong>持久化大对象</strong>：避免存过大数据，影响性能。</li>
+</ul>
+<h4 id="小结-2">小结</h4>
+<p>持久化用 localStorage 存取或 $subscribe 自动存；插件
+pinia-plugin-persistedstate 可自动持久化。</p>
+<hr />
+<h3 id="知识点-k13-4reset--patch--subscribe">知识点 K13-4：$reset /
+$patch / $subscribe</h3>
+<h4 id="reset">$reset</h4>
+<p>重置 state 到初始值：</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>userStore<span class="op">.</span><span class="fu">$reset</span>()       <span class="co">// state 恢复到 state() 返回的初始值</span></span></code></pre></div>
+<h4 id="patch">$patch</h4>
+<p>批量修改 state：</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>userStore<span class="op">.</span><span class="fu">$patch</span>({ <span class="dt">token</span><span class="op">:</span> <span class="st">&#39;a&#39;</span><span class="op">,</span> <span class="dt">userInfo</span><span class="op">:</span> { <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;x&#39;</span> } })</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>userStore<span class="op">.</span><span class="fu">$patch</span>(state <span class="kw">=&gt;</span> { state<span class="op">.</span><span class="at">token</span> <span class="op">=</span> <span class="st">&#39;a&#39;</span> })</span></code></pre></div>
+<h4 id="subscribe">$subscribe</h4>
+<p>监听 state 变化：</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>userStore<span class="op">.</span><span class="fu">$subscribe</span>((mutation<span class="op">,</span> state) <span class="kw">=&gt;</span> {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;state 变了&#39;</span><span class="op">,</span> state)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<h4 id="易错点-2">易错点</h4>
+<ul>
+<li><strong>组合式 store 无 $reset</strong>：Setup
+Store（组合式写法）默认无 $reset，需自行实现。</li>
+<li><strong>$subscribe 不自动解绑</strong>：组件内用需手动解绑或在
+onUnmounted 清理。</li>
+</ul>
+<h4 id="小结-3">小结</h4>
+<p>$reset 重置、$patch 批量改、$subscribe 监听变化；组合式 store 无默认
+$reset。</p>
+<hr />
+<h2 id="三综合示例ctts-frontend-三个-store">三、综合示例：CTTS-Frontend
+三个 store</h2>
+<p><strong>src/stores/user.js</strong>（见第 12 次课综合示例，含
+localStorage 持久化）。</p>
+<p><strong>src/stores/project.js</strong>：</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { useUserStore } <span class="im">from</span> <span class="st">&#39;./user&#39;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useProjectStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;project&#39;</span><span class="op">,</span> {</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">projects</span><span class="op">:</span> []<span class="op">,</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">total</span><span class="op">:</span> <span class="dv">0</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">getters</span><span class="op">:</span> {</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">projectCount</span><span class="op">:</span> (state) <span class="kw">=&gt;</span> state<span class="op">.</span><span class="at">projects</span><span class="op">.</span><span class="at">length</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">actions</span><span class="op">:</span> {</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">async</span> <span class="fu">fetchProjects</span>() {</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">useUserStore</span>()</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="op">!</span>userStore<span class="op">.</span><span class="at">isLogin</span>) <span class="cf">return</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>      <span class="co">// 简化：实际调接口</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">projects</span> <span class="op">=</span> [</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        { <span class="dt">id</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;项目一：JavaWeb&#39;</span><span class="op">,</span> <span class="dt">status</span><span class="op">:</span> <span class="st">&#39;进行中&#39;</span> }<span class="op">,</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>        { <span class="dt">id</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;项目二：Vue3&#39;</span><span class="op">,</span> <span class="dt">status</span><span class="op">:</span> <span class="st">&#39;进行中&#39;</span> }</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>      ]</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">total</span> <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="at">projects</span><span class="op">.</span><span class="at">length</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reset</span>() {</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="fu">$reset</span>()</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p><strong>src/stores/app.js</strong>：</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useAppStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;app&#39;</span><span class="op">,</span> {</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">sidebarCollapsed</span><span class="op">:</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;sidebar&#39;</span>) <span class="op">===</span> <span class="st">&#39;true&#39;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">actions</span><span class="op">:</span> {</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">toggleSidebar</span>() {</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">sidebarCollapsed</span> <span class="op">=</span> <span class="op">!</span><span class="kw">this</span><span class="op">.</span><span class="at">sidebarCollapsed</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">&#39;sidebar&#39;</span><span class="op">,</span> <span class="kw">this</span><span class="op">.</span><span class="at">sidebarCollapsed</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p><strong>组件中使用</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div :class=&quot;{ collapsed: appStore.sidebarCollapsed }&quot;&gt;
+    &lt;button @click=&quot;appStore.toggleSidebar&quot;&gt;切换侧边栏&lt;/button&gt;
+    &lt;p&gt;项目数：{{ projectStore.projectCount }}&lt;/p&gt;
+    &lt;button @click=&quot;projectStore.fetchProjects&quot;&gt;加载项目&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { useAppStore } from &#39;../stores/app&#39;
+import { useProjectStore } from &#39;../stores/project&#39;
+const appStore = useAppStore()
+const projectStore = useProjectStore()
+&lt;/script&gt;</code></pre>
+<p><strong>运行方式</strong>：配置三个
+store，组件中调用；切换侧边栏后刷新页面状态保留（持久化）。</p>
+<hr />
+<h2 id="四实践复盘要点">四、实践复盘要点</h2>
+<table>
+<thead>
+<tr>
+<th>常见问题</th>
+<th>解决</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>解构 store 丢失响应式</td>
+<td>用 storeToRefs</td>
+</tr>
+<tr>
+<td>store 间循环引用</td>
+<td>在 action 内调用，不在顶层</td>
+</tr>
+<tr>
+<td>刷新后状态丢失</td>
+<td>用 localStorage 持久化</td>
+</tr>
+<tr>
+<td>组合式 store 无 $reset</td>
+<td>自行实现 reset action</td>
+</tr>
+<tr>
+<td>持久化大对象性能差</td>
+<td>只持久化必要状态</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
+<div class="visual">
+  <div class="visual-title">图示 2：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">第 13 次课：Pinia 进阶与状态管理实践</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K13-1 多 store（user/project/app 分类）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K13-2 store 间引用（action 内 useXxxStore）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K13-3 状态持久化（localStorage / $subscribe / 插件）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K13-4 $reset / $patch / $subscribe</span>
+<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K13-5 综合实践（CTTS 三 store 方案）</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>多 store</td>
+<td>按职责分类</td>
+</tr>
+<tr>
+<td>store 间引用</td>
+<td>action 内调用</td>
+</tr>
+<tr>
+<td>持久化</td>
+<td>localStorage + $subscribe</td>
+</tr>
+<tr>
+<td>$reset</td>
+<td>重置到初始</td>
+</tr>
+<tr>
+<td>$patch</td>
+<td>批量改</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六复习思考题">六、复习思考题</h2>
+<ol type="1">
+<li>多个 store 如何按职责划分？</li>
+<li>store 间如何互相调用？要注意什么？</li>
+<li>状态持久化有哪些方式？各有什么利弊？</li>
+<li>$reset、$patch、$subscribe 各自作用？</li>
+<li>组合式 store 为什么没有默认 $reset？</li>
+</ol>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,465 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>组件基础与组件通信</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 07 次课 · 教学资料</div>
+      <h1>组件基础与组件通信</h1>
+      <p>学生复习资料与代码示例 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 07 次课</span>
+        <span class="hero-chip"><b>主题</b>组件基础与组件通信</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一学习导读">一、学习导读</a>
+<ul>
+<li><a href="#11-本节定位">1.1 本节定位</a></li>
+<li><a href="#12-先修基础">1.2 先修基础</a></li>
+<li><a href="#13-学习目标">1.3 学习目标</a></li>
+</ul></li>
+<li><a href="#二知识点详解">二、知识点详解</a>
+<ul>
+<li><a href="#知识点-k7-1组件基础与注册">知识点 K7-1：组件基础与注册</a></li>
+<li><a href="#知识点-k7-2props">知识点 K7-2：props</a></li>
+<li><a href="#知识点-k7-3emits">知识点 K7-3：emits</a></li>
+<li><a href="#知识点-k7-4父子组件通信综合">知识点 K7-4：父子组件通信综合</a></li>
+<li><a href="#知识点-k7-5组件-v-model">知识点 K7-5：组件 v-model</a></li>
+</ul></li>
+<li><a href="#四拓展阅读选学">四、拓展阅读（选学）</a>
+<ul>
+</ul></li>
+<li><a href="#五本节小结与知识结构图">五、本节小结与知识结构图</a>
+<ul>
+</ul></li>
+<li><a href="#六复习思考题">六、复习思考题</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 07 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
+<blockquote>
+<p>学生复习资料 ｜
+配套：<code>教学设计.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一学习导读">一、学习导读</h2>
+<h3 id="11-本节定位">1.1 本节定位</h3>
+<p>本节进入组件化开发，学习如何拆分组件、用 props/emits
+实现父子通信。这是构建复杂应用的核心能力。</p>
+<h3 id="12-先修基础">1.2 先修基础</h3>
+<table>
+<thead>
+<tr>
+<th>先修知识</th>
+<th>程度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 2~6 次课</td>
+<td>必须</td>
+<td>SFC、响应式、指令、列表渲染</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-学习目标">1.3 学习目标</h3>
+<ul>
+<li>✅ 掌握组件注册</li>
+<li>✅ 掌握 props 与 emits</li>
+<li>✅ 掌握父子通信</li>
+<li>✅ 了解组件 v-model</li>
+</ul>
+<hr />
+<h2 id="二知识点详解">二、知识点详解</h2>
+<h3 id="知识点-k7-1组件基础与注册">知识点 K7-1：组件基础与注册</h3>
+<h4 id="定义">定义</h4>
+<p><strong>组件</strong>是可复用的 Vue
+实例，把页面拆成独立可维护的单元。组件化就是把复杂页面拆成多个组件组合。</p>
+<h4 id="注册方式">注册方式</h4>
+<p><strong>局部注册</strong>（推荐，<code>&lt;script setup&gt;</code>
+下）：</p>
+<pre class="vue"><code>&lt;!-- 父组件 App.vue --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;HelloWorld msg=&quot;Hi&quot; /&gt;      &lt;!-- 直接使用 --&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import HelloWorld from &#39;./components/HelloWorld.vue&#39;   &lt;!-- 导入即用，无需注册 --&gt;
+&lt;/script&gt;</code></pre>
+<p><strong>全局注册</strong>（main.js，少用）：</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createApp } <span class="im">from</span> <span class="st">&#39;vue&#39;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> App <span class="im">from</span> <span class="st">&#39;./App.vue&#39;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> MyComp <span class="im">from</span> <span class="st">&#39;./MyComp.vue&#39;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">createApp</span>(App)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;MyComp&#39;</span><span class="op">,</span> MyComp)   <span class="co">// 全局注册，任意地方可用</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">mount</span>(<span class="st">&#39;#app&#39;</span>)</span></code></pre></div>
+<h4 id="组件命名">组件命名</h4>
+<ul>
+<li>PascalCase（推荐）：<code>HelloWorld</code>，模板用
+<code>&lt;HelloWorld /&gt;</code> 或
+<code>&lt;hello-world /&gt;</code>。</li>
+<li>kebab-case：<code>hello-world</code>。</li>
+<li><code>&lt;script setup&gt;</code> 中 import 的组件名即使用名。</li>
+</ul>
+<h4 id="易错点">易错点</h4>
+<ul>
+<li><strong>全局注册过多组件</strong>：全局注册的组件无法
+Tree-shaking，增大体积，优先局部注册。</li>
+<li><strong>组件名与 HTML 原生标签冲突</strong>：避免用
+<code>header</code>/<code>footer</code> 等原生标签名作组件名（用
+PascalCase 区分）。</li>
+</ul>
+<h4 id="小结">小结</h4>
+<p>组件化拆分页面；<code>&lt;script setup&gt;</code> 下 import
+即用（局部注册，推荐）；全局注册用 <code>app.component</code>。</p>
+<hr />
+<h3 id="知识点-k7-2props">知识点 K7-2：props</h3>
+<h4 id="定义-1">定义</h4>
+<p><strong>props</strong> 是父组件传给子组件的数据，子组件用
+<code>defineProps</code> 声明接收。props
+是<strong>单向数据流</strong>，子组件不应直接修改。</p>
+<h4 id="用法">用法</h4>
+<pre class="vue"><code>&lt;!-- 子组件 UserInfo.vue --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;姓名：{{ name }}&lt;/p&gt;
+    &lt;p&gt;年龄：{{ age }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+// 字符串数组声明（仅声明）
+defineProps([&#39;name&#39;, &#39;age&#39;])
+
+// 对象声明（带类型/默认值/必填/校验）
+defineProps({
+  name: { type: String, required: true },
+  age: { type: Number, default: 18 },
+  status: { type: String, validator: (v) =&gt; [&#39;active&#39;, &#39;inactive&#39;].includes(v) }
+})
+&lt;/script&gt;</code></pre>
+<pre class="vue"><code>&lt;!-- 父组件 App.vue --&gt;
+&lt;template&gt;
+  &lt;UserInfo name=&quot;张三&quot; :age=&quot;20&quot; status=&quot;active&quot; /&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import UserInfo from &#39;./UserInfo.vue&#39;
+&lt;/script&gt;</code></pre>
+<h4 id="props-校验">props 校验</h4>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>类型：String/Number/Boolean/Array/Object/Function 等</td>
+</tr>
+<tr>
+<td><code>required: true</code></td>
+<td>必填</td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td>默认值（对象/数组需用工厂函数 <code>() =&gt; []</code>）</td>
+</tr>
+<tr>
+<td><code>validator</code></td>
+<td>自定义校验函数</td>
+</tr>
+</tbody>
+</table>
+<h4 id="单向数据流">单向数据流</h4>
+<p>props 从父流向子，子组件<strong>不能直接修改 props</strong>。若需基于
+props 派生数据，用 computed 或本地 ref 拷贝。</p>
+<h4 id="易错点-1">易错点</h4>
+<ul>
+<li><strong>子组件直接改 props</strong>：Vue 警告，应 emit
+通知父改。</li>
+<li><strong>对象/数组默认值直接写</strong>：<code>default: []</code>
+报错，应 <code>default: () =&gt; []</code>。</li>
+<li><strong>解构 props
+丢失响应式</strong>：<code>const { name } = props</code> 后 name
+不响应式，需用 <code>toRefs</code>。</li>
+</ul>
+<h4 id="小结-1">小结</h4>
+<p>props 父传子，单向数据流，子不能直接改；用 defineProps
+声明类型/默认/必填/校验。</p>
+<hr />
+<h3 id="知识点-k7-3emits">知识点 K7-3：emits</h3>
+<h4 id="定义-2">定义</h4>
+<p><strong>emits</strong> 是子组件向父组件传递数据的方式，子组件用
+<code>defineEmits</code> 声明，用
+<code>$emit</code>（或返回的函数）触发事件，父组件用
+<code>@事件名</code> 监听。</p>
+<h4 id="用法-1">用法</h4>
+<pre class="vue"><code>&lt;!-- 子组件 Counter.vue --&gt;
+&lt;template&gt;
+  &lt;button @click=&quot;increment&quot;&gt;+1 ({{ count }})&lt;/button&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const props = defineProps({ init: { type: Number, default: 0 } })
+const emit = defineEmits([&#39;change&#39;])          // 声明事件
+const count = ref(props.init)
+const increment = () =&gt; {
+  count.value++
+  emit(&#39;change&#39;, count.value)                  // 触发事件，传数据
+}
+&lt;/script&gt;</code></pre>
+<pre class="vue"><code>&lt;!-- 父组件 App.vue --&gt;
+&lt;template&gt;
+  &lt;Counter :init=&quot;0&quot; @change=&quot;onChange&quot; /&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import Counter from &#39;./Counter.vue&#39;
+import { ref } from &#39;vue&#39;
+const result = ref(0)
+const onChange = (val) =&gt; { result.value = val }   // 接收子组件数据
+&lt;/script&gt;</code></pre>
+<h4 id="易错点-2">易错点</h4>
+<ul>
+<li><strong>忘声明 emits</strong>：<code>&lt;script setup&gt;</code>
+中不声明也能用，但声明后更清晰且能校验，推荐声明。</li>
+<li><strong>事件名用驼峰</strong>：推荐用
+kebab-case（<code>'change'</code>/<code>'update:value'</code>），模板监听用
+<code>@change</code>。</li>
+</ul>
+<h4 id="小结-2">小结</h4>
+<p>emits 子传父：子用 defineEmits 声明 + emit 触发；父用
+<code>@事件名</code> 监听接收数据。</p>
+<hr />
+<h3 id="知识点-k7-4父子组件通信综合">知识点 K7-4：父子组件通信综合</h3>
+<h4 id="定义-3">定义</h4>
+<p>父子通信是组件化开发的核心：父传子用 props，子传父用
+emits，形成数据流动闭环。</p>
+<h4 id="通信方案">通信方案</h4>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>父 → 子</td>
+<td>props</td>
+<td>父传数据给子</td>
+</tr>
+<tr>
+<td>子 → 父</td>
+<td>emits</td>
+<td>子触发事件，父监听</td>
+</tr>
+<tr>
+<td>跨层</td>
+<td>provide / inject</td>
+<td>祖先传后代（后续课程）</td>
+</tr>
+<tr>
+<td>全局</td>
+<td>状态管理（Pinia）</td>
+<td>第 12 次课</td>
+</tr>
+</tbody>
+</table>
+<h4 id="综合示例">综合示例</h4>
+<p>见 K7-2、K7-3 组合：父传 <code>init</code> 给子（props），子变化时
+emit <code>change</code> 给父，父更新数据。</p>
+<h4 id="易错点-3">易错点</h4>
+<ul>
+<li><strong>用 props 反向传数据</strong>：props 只能父传子，子传父必须
+emit。</li>
+<li><strong>跨多层用 props 逐层透传</strong>：层数多时改用
+provide/inject 或状态管理。</li>
+</ul>
+<h4 id="小结-3">小结</h4>
+<p>父传子 props，子传父 emits；跨层用
+provide/inject，全局用状态管理。</p>
+<hr />
+<h3 id="知识点-k7-5组件-v-model">知识点 K7-5：组件 v-model</h3>
+<h4 id="定义-4">定义</h4>
+<p><strong>组件 v-model</strong>
+是父子组件双向绑定的语法糖，让组件像表单元素一样支持 v-model。</p>
+<h4 id="原理">原理</h4>
+<p><code>&lt;Child v-model="x" /&gt;</code> 等价于：</p>
+<pre class="vue"><code>&lt;Child :modelValue=&quot;x&quot; @update:modelValue=&quot;x = $event&quot; /&gt;</code></pre>
+<p>即：父传 <code>modelValue</code>（props），子 emit
+<code>update:modelValue</code> 通知父更新。</p>
+<h4 id="用法vue-34-推荐-definemodel">用法（Vue 3.4+ 推荐
+defineModel）</h4>
+<pre class="vue"><code>&lt;!-- 子组件 MyInput.vue --&gt;
+&lt;template&gt;
+  &lt;input :value=&quot;model&quot; @input=&quot;model = $event.target.value&quot; /&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { defineModel } from &#39;vue&#39;      // Vue 3.4+
+const model = defineModel()              // 自动声明 modelValue + update:modelValue
+&lt;/script&gt;</code></pre>
+<pre class="vue"><code>&lt;!-- 父组件 --&gt;
+&lt;template&gt;
+  &lt;MyInput v-model=&quot;text&quot; /&gt;            &lt;!-- 双向绑定 --&gt;
+  &lt;p&gt;{{ text }}&lt;/p&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+import MyInput from &#39;./MyInput.vue&#39;
+const text = ref(&#39;&#39;)
+&lt;/script&gt;</code></pre>
+<h4 id="多个-v-model">多个 v-model</h4>
+<pre class="vue"><code>&lt;Child v-model:title=&quot;t&quot; v-model:author=&quot;a&quot; /&gt;
+&lt;!-- 子组件用 defineModel(&#39;title&#39;)、defineModel(&#39;author&#39;) --&gt;</code></pre>
+<h4 id="易错点-4">易错点</h4>
+<ul>
+<li><strong>Vue 3.4 以下无 defineModel</strong>：需手动
+<code>props: modelValue</code> +
+<code>emit('update:modelValue', val)</code>。</li>
+<li><strong>事件名必须 <code>update:modelValue</code></strong>：v-model
+默认绑定 modelValue，更新事件名固定。</li>
+</ul>
+<h4 id="小结-4">小结</h4>
+<p>组件 v-model = <code>:modelValue</code> +
+<code>@update:modelValue</code>；Vue 3.4+ 用 defineModel 简化；支持多
+v-model。</p>
+<hr />
+<h2
+id="三综合示例ctts-frontend-loginform-组件">三、综合示例：CTTS-Frontend
+LoginForm 组件</h2>
+<p><strong>子组件 LoginForm.vue</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;form @submit.prevent=&quot;onSubmit&quot;&gt;
+    &lt;input v-model.trim=&quot;form.username&quot; placeholder=&quot;用户名&quot; /&gt;
+    &lt;input v-model.trim=&quot;form.password&quot; type=&quot;password&quot; placeholder=&quot;密码&quot; /&gt;
+    &lt;button type=&quot;submit&quot;&gt;登录&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { reactive } from &#39;vue&#39;
+defineProps({ initName: { type: String, default: &#39;&#39; } })   // 父传初始用户名
+const emit = defineEmits([&#39;submit&#39;])                        // 声明事件
+const form = reactive({ username: &#39;&#39;, password: &#39;&#39; })
+const onSubmit = () =&gt; {
+  emit(&#39;submit&#39;, { username: form.username, password: form.password })  // 子传父
+}
+&lt;/script&gt;</code></pre>
+<p><strong>父组件 App.vue</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div class=&quot;app&quot;&gt;
+    &lt;LoginForm :init-name=&quot;defaultName&quot; @submit=&quot;onLogin&quot; /&gt;
+    &lt;p v-if=&quot;msg&quot;&gt;{{ msg }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+import LoginForm from &#39;./components/LoginForm.vue&#39;
+const defaultName = ref(&#39;admin&#39;)
+const msg = ref(&#39;&#39;)
+const onLogin = (data) =&gt; {                                  // 接收子组件数据
+  msg.value = `登录：${data.username} / ${data.password}`
+}
+&lt;/script&gt;</code></pre>
+<p><strong>运行方式</strong>：在
+<code>src/components/LoginForm.vue</code> 与 <code>src/App.vue</code>
+分别创建，<code>npm run dev</code> 提交表单，父组件显示登录信息。注意
+props 用 kebab-case 传递（<code>init-name</code>）。</p>
+<hr />
+<h2 id="四拓展阅读选学">四、拓展阅读（选学）</h2>
+<ol type="1">
+<li><strong>provide / inject</strong>：跨层通信，第 9
+次课综合实践会用。</li>
+<li><strong>透传 Attributes</strong>：<code>$attrs</code> 与
+<code>inheritAttrs</code>。</li>
+<li><strong>defineModel 详细用法</strong>：Vue 3.4+ 新特性，简化组件
+v-model。</li>
+</ol>
+<hr />
+<h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
+<div class="visual">
+  <div class="visual-title">图示 1：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">第 7 次课：组件基础与组件通信</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K7-1 组件注册（局部 import 即用 / 全局 app.component）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K7-2 props（defineProps，类型/默认/必填/校验，单向流）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K7-3 emits（defineEmits + emit 触发，子传父）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K7-4 父子通信（父传子 props，子传父 emits）</span>
+<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K7-5 组件 v-model（modelValue + update:modelValue / defineModel）</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>注册</td>
+<td><code>&lt;script setup&gt;</code> import 即用</td>
+</tr>
+<tr>
+<td>父传子</td>
+<td>props</td>
+</tr>
+<tr>
+<td>子传父</td>
+<td>emits</td>
+</tr>
+<tr>
+<td>props 单向</td>
+<td>子不能直接改，emit 通知父</td>
+</tr>
+<tr>
+<td>组件 v-model</td>
+<td>modelValue + update:modelValue</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六复习思考题">六、复习思考题</h2>
+<ol type="1">
+<li>局部注册与全局注册的区别？推荐哪种？</li>
+<li>props 为什么是单向数据流？子组件要改怎么办？</li>
+<li>emits 如何实现子传父？写出一个完整示例。</li>
+<li>组件 v-model 的原理是什么？</li>
+<li>父子通信有哪些方式？分别适合什么场景？</li>
+</ol>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

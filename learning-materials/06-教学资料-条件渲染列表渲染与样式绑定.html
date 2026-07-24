@@ -1,0 +1,461 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>条件渲染列表渲染与样式绑定</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 06 次课 · 教学资料</div>
+      <h1>条件渲染列表渲染与样式绑定</h1>
+      <p>学生复习资料与代码示例 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 06 次课</span>
+        <span class="hero-chip"><b>主题</b>条件渲染列表渲染与样式绑定</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一学习导读">一、学习导读</a>
+<ul>
+<li><a href="#11-本节定位">1.1 本节定位</a></li>
+<li><a href="#12-先修基础">1.2 先修基础</a></li>
+<li><a href="#13-学习目标">1.3 学习目标</a></li>
+</ul></li>
+<li><a href="#二知识点详解">二、知识点详解</a>
+<ul>
+<li><a href="#知识点-k6-1条件渲染">知识点 K6-1：条件渲染</a></li>
+<li><a href="#知识点-k6-2列表渲染-v-for-与-key">知识点 K6-2：列表渲染 v-for 与 :key</a></li>
+<li><a href="#知识点-k6-3列表更新检测">知识点 K6-3：列表更新检测</a></li>
+<li><a href="#知识点-k6-4class-绑定">知识点 K6-4：class 绑定</a></li>
+<li><a href="#知识点-k6-5style-绑定">知识点 K6-5：style 绑定</a></li>
+</ul></li>
+<li><a href="#四拓展阅读选学">四、拓展阅读（选学）</a>
+<ul>
+</ul></li>
+<li><a href="#五本节小结与知识结构图">五、本节小结与知识结构图</a>
+<ul>
+</ul></li>
+<li><a href="#六复习思考题">六、复习思考题</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 06 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
+<blockquote>
+<p>学生复习资料 ｜
+配套：<code>教学设计.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一学习导读">一、学习导读</h2>
+<h3 id="11-本节定位">1.1 本节定位</h3>
+<p>本节深入条件渲染、列表渲染与样式绑定，是构建真实页面的关键技能。</p>
+<h3 id="12-先修基础">1.2 先修基础</h3>
+<table>
+<thead>
+<tr>
+<th>先修知识</th>
+<th>程度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 3~5 次课</td>
+<td>必须</td>
+<td>v-if/v-for/v-bind 基础、响应式</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-学习目标">1.3 学习目标</h3>
+<ul>
+<li>✅ 深入掌握 v-if/v-show 选择</li>
+<li>✅ 掌握 v-for 与 :key、列表更新检测</li>
+<li>✅ 掌握 :class/:style 动态绑定</li>
+</ul>
+<hr />
+<h2 id="二知识点详解">二、知识点详解</h2>
+<h3 id="知识点-k6-1条件渲染">知识点 K6-1：条件渲染</h3>
+<h4 id="定义">定义</h4>
+<ul>
+<li><code>v-if</code>/<code>v-else-if</code>/<code>v-else</code>：条件为真渲染，为假删除
+DOM。</li>
+<li><code>v-show</code>：始终渲染，通过 <code>display: none</code>
+切换显隐。</li>
+<li><code>&lt;template v-if&gt;</code>：对多元素分组条件渲染（不产生额外
+DOM）。</li>
+</ul>
+<h4 id="用法">用法</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;p v-if=&quot;score &gt;= 90&quot;&gt;优秀&lt;/p&gt;
+  &lt;p v-else-if=&quot;score &gt;= 60&quot;&gt;及格&lt;/p&gt;
+  &lt;p v-else&gt;不及格&lt;/p&gt;
+
+  &lt;div v-show=&quot;visible&quot;&gt;v-show 始终在 DOM&lt;/div&gt;
+
+  &lt;template v-if=&quot;loading&quot;&gt;
+    &lt;p&gt;加载中...&lt;/p&gt;
+    &lt;p&gt;请稍候&lt;/p&gt;
+  &lt;/template&gt;
+&lt;/template&gt;</code></pre>
+<h4 id="v-if-vs-v-show">v-if vs v-show</h4>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>v-if</th>
+<th>v-show</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实现</td>
+<td>删除/重建 DOM</td>
+<td>切 display</td>
+</tr>
+<tr>
+<td>初始</td>
+<td>假则不渲染</td>
+<td>始终渲染</td>
+</tr>
+<tr>
+<td>切换开销</td>
+<td>高</td>
+<td>低</td>
+</tr>
+<tr>
+<td>初始开销</td>
+<td>低</td>
+<td>高</td>
+</tr>
+<tr>
+<td>场景</td>
+<td>一次性/少切换</td>
+<td>频繁切换</td>
+</tr>
+</tbody>
+</table>
+<h4 id="易错点">易错点</h4>
+<ul>
+<li><strong>v-if/v-else 不紧邻</strong>：中间插入元素会使 v-else
+失效。</li>
+<li><strong>v-show 用于 <code>&lt;template&gt;</code></strong>：v-show
+不支持 template，v-if 支持。</li>
+<li><strong>v-show 不支持 v-else</strong>。</li>
+</ul>
+<h4 id="小结">小结</h4>
+<p>频繁切换用 v-show，一次性用 v-if；多元素分组用
+<code>&lt;template v-if&gt;</code>。</p>
+<hr />
+<h3 id="知识点-k6-2列表渲染-v-for-与-key">知识点 K6-2：列表渲染 v-for 与
+:key</h3>
+<h4 id="定义-1">定义</h4>
+<p><code>v-for</code> 遍历数组/对象/数字渲染列表，<code>:key</code>
+提供唯一稳定标识。</p>
+<h4 id="用法-1">用法</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;!-- 数组 --&gt;
+  &lt;li v-for=&quot;(item, index) in list&quot; :key=&quot;item.id&quot;&gt;
+    {{ index }} - {{ item.title }}
+  &lt;/li&gt;
+  &lt;!-- 对象 --&gt;
+  &lt;li v-for=&quot;(value, key, index) in obj&quot; :key=&quot;key&quot;&gt;{{ key }}: {{ value }}&lt;/li&gt;
+  &lt;!-- 数字 --&gt;
+  &lt;span v-for=&quot;n in 5&quot; :key=&quot;n&quot;&gt;{{ n }} &lt;/span&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const list = ref([{ id: 1, title: &#39;A&#39; }, { id: 2, title: &#39;B&#39; }])
+const obj = ref({ name: &#39;Vue&#39;, version: 3 })
+&lt;/script&gt;</code></pre>
+<h4 id="key-规则">:key 规则</h4>
+<ul>
+<li>✅ 唯一且稳定：用数据 id（<code>:key="item.id"</code>）。</li>
+<li>❌ 用 index：增删时错位、性能差。</li>
+<li>❌ 用随机数：每次变，失去复用。</li>
+</ul>
+<h4 id="易错点-1">易错点</h4>
+<ul>
+<li><strong>忘加 :key</strong>：Vue 警告，影响更新。</li>
+<li><strong>v-for 与 v-if 同级</strong>：Vue 3 中 v-if
+优先级高会出错，用 computed 过滤。</li>
+</ul>
+<h4 id="小结-1">小结</h4>
+<p>v-for 遍历数组/对象/数字，必须提供唯一稳定 :key，避免与 v-if
+同级。</p>
+<hr />
+<h3 id="知识点-k6-3列表更新检测">知识点 K6-3：列表更新检测</h3>
+<h4 id="定义-2">定义</h4>
+<p>Vue 通过响应式系统检测数组变化触发更新。方法分两类：</p>
+<ul>
+<li><strong>变异方法</strong>（修改原数组，触发更新）：<code>push</code>/<code>pop</code>/<code>shift</code>/<code>unshift</code>/<code>splice</code>/<code>sort</code>/<code>reverse</code>。</li>
+<li><strong>非变异方法</strong>（返回新数组，需替换）：<code>filter</code>/<code>map</code>/<code>concat</code>/<code>slice</code>。</li>
+</ul>
+<h4 id="用法-2">用法</h4>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { ref } <span class="im">from</span> <span class="st">&#39;vue&#39;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> list <span class="op">=</span> <span class="fu">ref</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>])</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>list<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="fu">push</span>(<span class="dv">4</span>)              <span class="co">// 变异，触发更新</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>list<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="fu">splice</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>)         <span class="co">// 变异，触发更新</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>list<span class="op">.</span><span class="at">value</span> <span class="op">=</span> list<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="fu">filter</span>(x <span class="kw">=&gt;</span> x <span class="op">&gt;</span> <span class="dv">1</span>)  <span class="co">// 非变异，替换触发更新</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Vue 3 Proxy 能直接监测索引与 length</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>list<span class="op">.</span><span class="at">value</span>[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">99</span>              <span class="co">// Vue 3 触发更新（Vue 2 不能）</span></span></code></pre></div>
+<h4 id="vue-2-vs-vue-3">Vue 2 vs Vue 3</h4>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>Vue 2</th>
+<th>Vue 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>list[0] = x</code></td>
+<td>不触发更新（需 Vue.set）</td>
+<td>触发更新（Proxy）</td>
+</tr>
+<tr>
+<td><code>list.length = 0</code></td>
+<td>不触发</td>
+<td>触发</td>
+</tr>
+</tbody>
+</table>
+<h4 id="易错点-2">易错点</h4>
+<ul>
+<li><strong>非变异方法直接调用不替换</strong>：<code>list.value.filter(...)</code>
+不赋值回 list，原数组不变，视图不更新。</li>
+<li><strong>Vue 2 思维用 Vue.set</strong>：Vue 3
+不需要，直接索引赋值即可。</li>
+</ul>
+<h4 id="小结-2">小结</h4>
+<p>变异方法直接触发更新；非变异方法需替换原数组；Vue 3 Proxy
+能监测索引与 length 修改。</p>
+<hr />
+<h3 id="知识点-k6-4class-绑定">知识点 K6-4：class 绑定</h3>
+<h4 id="定义-3">定义</h4>
+<p><code>:class</code> 动态绑定
+class，支持对象、数组、字符串语法，可与普通 class 共存。</p>
+<h4 id="用法-3">用法</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;!-- 对象语法 --&gt;
+  &lt;div :class=&quot;{ active: isActive, &#39;text-danger&#39;: hasError }&quot;&gt;&lt;/div&gt;
+  &lt;!-- 数组语法 --&gt;
+  &lt;div :class=&quot;[baseClass, isActive ? &#39;active&#39; : &#39;&#39;]&quot;&gt;&lt;/div&gt;
+  &lt;!-- 数组+对象混合 --&gt;
+  &lt;div :class=&quot;[baseClass, { active: isActive }]&quot;&gt;&lt;/div&gt;
+  &lt;!-- 与普通 class 共存 --&gt;
+  &lt;div class=&quot;box&quot; :class=&quot;{ active: isActive }&quot;&gt;&lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const isActive = ref(true)
+const hasError = ref(false)
+const baseClass = ref(&#39;base&#39;)
+&lt;/script&gt;</code></pre>
+<h4 id="易错点-3">易错点</h4>
+<ul>
+<li><strong>对象语法键名含短横线需引号</strong>：<code>{ 'text-danger': bool }</code>。</li>
+<li><strong>数组语法用布尔而非类名</strong>：<code>[isActive]</code>
+会把 true/false 当类名，应 <code>[isActive ? 'active' : '']</code>
+或对象语法。</li>
+</ul>
+<h4 id="小结-3">小结</h4>
+<p>:class
+支持对象（<code>{类名: 布尔}</code>）、数组（<code>[类名]</code>）、混合语法，与普通
+class 合并。</p>
+<hr />
+<h3 id="知识点-k6-5style-绑定">知识点 K6-5：style 绑定</h3>
+<h4 id="定义-4">定义</h4>
+<p><code>:style</code> 动态绑定内联样式，支持对象、数组语法。</p>
+<h4 id="用法-4">用法</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;!-- 对象语法（驼峰） --&gt;
+  &lt;div :style=&quot;{ color: textColor, fontSize: size + &#39;px&#39; }&quot;&gt;&lt;/div&gt;
+  &lt;!-- 短横线（需引号） --&gt;
+  &lt;div :style=&quot;{ &#39;background-color&#39;: bg }&quot;&gt;&lt;/div&gt;
+  &lt;!-- 数组语法（合并多个样式对象） --&gt;
+  &lt;div :style=&quot;[baseStyle, activeStyle]&quot;&gt;&lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const textColor = ref(&#39;red&#39;)
+const size = ref(16)
+const bg = ref(&#39;#eee&#39;)
+const baseStyle = ref({ margin: &#39;10px&#39; })
+const activeStyle = ref({ color: &#39;green&#39; })
+&lt;/script&gt;</code></pre>
+<h4 id="易错点-4">易错点</h4>
+<ul>
+<li><strong>属性名驼峰 vs
+短横线</strong>：<code>fontSize</code>（驼峰）或
+<code>'font-size'</code>（短横线引号），不能写 <code>font-size</code>
+不加引号。</li>
+<li><strong>值需带单位</strong>：<code>fontSize: 16</code> 不生效，应
+<code>16 + 'px'</code> 或 <code>'16px'</code>。</li>
+</ul>
+<h4 id="小结-4">小结</h4>
+<p>:style
+对象语法用驼峰或引号短横线；值需带单位；数组语法合并多样式。</p>
+<hr />
+<h2
+id="三综合示例ctts-frontend-任务列表条件展示与分页">三、综合示例：CTTS-Frontend
+任务列表条件展示与分页</h2>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div class=&quot;tasks&quot;&gt;
+    &lt;h2&gt;任务列表&lt;/h2&gt;
+    &lt;select v-model=&quot;statusFilter&quot;&gt;
+      &lt;option value=&quot;&quot;&gt;全部&lt;/option&gt;
+      &lt;option value=&quot;进行中&quot;&gt;进行中&lt;/option&gt;
+      &lt;option value=&quot;已完成&quot;&gt;已完成&lt;/option&gt;
+      &lt;option value=&quot;未开始&quot;&gt;未开始&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;ul v-if=&quot;pagedTasks.length&quot;&gt;
+      &lt;li v-for=&quot;t in pagedTasks&quot; :key=&quot;t.id&quot; :class=&quot;statusClass(t.status)&quot;&gt;
+        {{ t.title }} &lt;span class=&quot;status&quot;&gt;{{ t.status }}&lt;/span&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p v-else&gt;暂无数据&lt;/p&gt;
+
+    &lt;div class=&quot;pager&quot;&gt;
+      &lt;button @click=&quot;prev&quot; :disabled=&quot;page === 1&quot;&gt;上一页&lt;/button&gt;
+      &lt;span&gt;第 {{ page }} / {{ totalPages }} 页&lt;/span&gt;
+      &lt;button @click=&quot;next&quot; :disabled=&quot;page === totalPages&quot;&gt;下一页&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, computed } from &#39;vue&#39;
+const pageSize = 2
+const page = ref(1)
+const statusFilter = ref(&#39;&#39;)
+const tasks = ref([
+  { id: 1, title: &#39;任务一&#39;, status: &#39;进行中&#39; },
+  { id: 2, title: &#39;任务二&#39;, status: &#39;已完成&#39; },
+  { id: 3, title: &#39;任务三&#39;, status: &#39;未开始&#39; },
+  { id: 4, title: &#39;任务四&#39;, status: &#39;进行中&#39; }
+])
+
+const filtered = computed(() =&gt;
+  tasks.value.filter(t =&gt; statusFilter.value === &#39;&#39; || t.status === statusFilter.value)
+)
+const totalPages = computed(() =&gt; Math.max(1, Math.ceil(filtered.value.length / pageSize)))
+const pagedTasks = computed(() =&gt; {
+  const start = (page.value - 1) * pageSize
+  return filtered.value.slice(start, start + pageSize)
+})
+const statusClass = (status) =&gt; ({ &#39;s-doing&#39;: status === &#39;进行中&#39;, &#39;s-done&#39;: status === &#39;已完成&#39; })
+
+const prev = () =&gt; { if (page.value &gt; 1) page.value-- }
+const next = () =&gt; { if (page.value &lt; totalPages.value) page.value++ }
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.tasks { max-width: 600px; margin: 20px auto; font-family: system-ui; }
+ul { list-style: none; padding: 0; }
+li { padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
+.s-doing { color: #e6a23c; }
+.s-done { color: #42b883; }
+.status { font-size: 13px; }
+.pager { margin-top: 16px; }
+button { padding: 6px 14px; margin: 0 6px; }
+&lt;/style&gt;</code></pre>
+<p><strong>运行方式</strong>：替换
+<code>src/App.vue</code>，筛选状态、翻页均可工作，状态不同颜色不同。</p>
+<hr />
+<h2 id="四拓展阅读选学">四、拓展阅读（选学）</h2>
+<ol type="1">
+<li><strong><code>&lt;component :is&gt;</code> 与动态组件</strong>（第 8
+次课讲）。</li>
+<li><strong>v-memo</strong> 性能优化指令。</li>
+<li><strong>CSS Modules 与 scoped
+选择器深度</strong>：<code>:deep()</code>。</li>
+</ol>
+<hr />
+<h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
+<div class="visual">
+  <div class="visual-title">图示 1：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">第 6 次课：条件渲染、列表渲染与样式绑定</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K6-1 条件渲染（v-if/v-else/v-show，频繁切用 show）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K6-2 v-for + :key（唯一稳定，不用 index）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K6-3 列表更新检测（变异触发，非变异替换，Vue3 监测索引）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K6-4 :class（对象/数组/混合，与普通 class 共存）</span>
+<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K6-5 :style（对象驼峰/短横线引号，值带单位）</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v-if/v-show</td>
+<td>频繁切 show，一次性 if</td>
+</tr>
+<tr>
+<td>:key</td>
+<td>唯一稳定，用 id</td>
+</tr>
+<tr>
+<td>变异方法</td>
+<td>直接触发更新</td>
+</tr>
+<tr>
+<td>非变异方法</td>
+<td>需替换原数组</td>
+</tr>
+<tr>
+<td>:class</td>
+<td>对象 <code>{类: 布尔}</code></td>
+</tr>
+<tr>
+<td>:style</td>
+<td>驼峰或引号短横线</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六复习思考题">六、复习思考题</h2>
+<ol type="1">
+<li>v-if 与 v-show 的区别与选择？</li>
+<li>为什么 :key 不用 index？</li>
+<li>变异方法与非变异方法的区别？举例。</li>
+<li>:class 对象语法与数组语法怎么用？</li>
+<li>:style 的属性名书写规则是什么？</li>
+</ol>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,375 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pinia状态管理基础</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 12 次课 · 教学设计</div>
+      <h1>Pinia状态管理基础</h1>
+      <p>教师教案与课堂组织 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 12 次课</span>
+        <span class="hero-chip"><b>主题</b>Pinia状态管理基础</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一课程信息">一、课程信息</a>
+<ul>
+</ul></li>
+<li><a href="#二教学目标">二、教学目标</a>
+<ul>
+<li><a href="#知识目标">知识目标</a></li>
+<li><a href="#能力目标">能力目标</a></li>
+<li><a href="#素质目标课程思政">素质目标（课程思政）</a></li>
+</ul></li>
+<li><a href="#三主要知识点纲要">三、主要知识点纲要</a>
+<ul>
+</ul></li>
+<li><a href="#四项目任务或案例任务">四、项目任务或案例任务</a>
+<ul>
+</ul></li>
+<li><a href="#五课堂互动设计">五、课堂互动设计</a>
+<ul>
+<li><a href="#互动-1小组讨论哪些数据放-pinia">互动 1：小组讨论——哪些数据放 Pinia</a></li>
+<li><a href="#互动-2pinia-vs-vuex">互动 2：Pinia vs Vuex</a></li>
+</ul></li>
+<li><a href="#六课程思政融入点">六、课程思政融入点</a>
+<ul>
+</ul></li>
+<li><a href="#七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5 分钟）</a>
+<ul>
+</ul></li>
+<li><a href="#八课后任务">八、课后任务</a>
+<ul>
+</ul></li>
+<li><a href="#九对应岗位能力或面试考点">九、对应岗位能力或面试考点</a>
+<ul>
+</ul></li>
+<li><a href="#十教学资料与题库索引">十、教学资料与题库索引</a>
+<ul>
+</ul></li>
+<li><a href="#附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 12 次课 <span>｜</span> <strong>文档：</strong>教学设计</p>
+<blockquote>
+<p>所属模块：M5 Pinia 状态管理 ｜ 课程：《MVVM前端框架开发技术》
+配套资料：见同文件夹内
+<code>教学资料.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一课程信息">一、课程信息</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>次序</td>
+<td>第 12 次课（全课程 16 次之第 12）</td>
+</tr>
+<tr>
+<td>学时</td>
+<td>2 学时（90 分钟）</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>理论课</td>
+</tr>
+<tr>
+<td>所属模块</td>
+<td>M5 Pinia 状态管理</td>
+</tr>
+<tr>
+<td>教学主题</td>
+<td>Pinia 状态管理基础</td>
+</tr>
+<tr>
+<td>先修基础</td>
+<td>第 1~11 次课（组件化、响应式、路由守卫）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="二教学目标">二、教学目标</h2>
+<h3 id="知识目标">知识目标</h3>
+<ol type="1">
+<li>理解 Pinia 的定位与对比 Vuex 的优势。</li>
+<li>掌握 <code>defineStore</code> 定义 store。</li>
+<li>掌握 state（定义/读取/修改）。</li>
+<li>掌握 getters（计算状态）。</li>
+<li>掌握 actions（同步/异步方法）。</li>
+</ol>
+<h3 id="能力目标">能力目标</h3>
+<ol type="1">
+<li>能创建 Pinia store 管理全局状态。</li>
+<li>能在组件中读取与修改 store 状态。</li>
+<li>能创建 CTTS-Frontend 的 userStore（管理
+Token/用户信息/登录状态）。</li>
+</ol>
+<h3 id="素质目标课程思政">素质目标（课程思政）</h3>
+<ol type="1">
+<li>培养数据管理意识——全局状态是前端架构的核心。</li>
+<li>建立"单一数据源"思维——共享状态集中管理避免混乱。</li>
+</ol>
+<hr />
+<h2 id="三主要知识点纲要">三、主要知识点纲要</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>知识点</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K12-1</td>
+<td>Pinia 简介与对比 Vuex</td>
+<td>Vue3 官方推荐；无 mutations；TS 友好；更简洁</td>
+</tr>
+<tr>
+<td>K12-2</td>
+<td>defineStore 定义 store</td>
+<td>安装；createPinia；<code>defineStore('名字', 配置)</code></td>
+</tr>
+<tr>
+<td>K12-3</td>
+<td>state</td>
+<td>定义状态；组件读取；修改方式（直接改/$patch）</td>
+</tr>
+<tr>
+<td>K12-4</td>
+<td>getters</td>
+<td>计算状态；类似 computed；依赖 state</td>
+</tr>
+<tr>
+<td>K12-5</td>
+<td>actions</td>
+<td>定义方法；同步/异步；修改 state</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="四项目任务或案例任务">四、项目任务或案例任务</h2>
+<p><strong>本次课任务</strong>：创建 CTTS-Frontend 的 userStore，管理
+Token、用户信息、登录状态，提供 login/logout action。</p>
+<hr />
+<h2 id="五课堂互动设计">五、课堂互动设计</h2>
+<h3 id="互动-1小组讨论哪些数据放-pinia">互动 1：小组讨论——哪些数据放
+Pinia</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>"哪些数据应该放 Pinia，哪些放组件本地？"</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>多组件共享的放 Pinia（用户信息/Token/全局 UI
+状态）；组件私有放本地</td>
+</tr>
+</tbody>
+</table>
+<h3 id="互动-2pinia-vs-vuex">互动 2：Pinia vs Vuex</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>"Pinia 相比 Vuex 少了什么？为什么更简单？"</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>Pinia 去掉了 mutations，异步直接在 actions 写；TS 更友好</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六课程思政融入点">六、课程思政融入点</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>融入点</td>
+<td>数据管理意识——全局状态是前端架构核心</td>
+</tr>
+<tr>
+<td>技术关联</td>
+<td>集中管理共享状态，避免组件间数据混乱</td>
+</tr>
+<tr>
+<td>引导问题</td>
+<td>"没有状态管理，多个组件共享用户信息会怎样？"</td>
+</tr>
+<tr>
+<td>预期价值目标</td>
+<td>培养架构意识与单一数据源思维</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5
+分钟）</h2>
+<p><strong>判断题</strong>：</p>
+<ol type="1">
+<li>Pinia 是 Vue3 官方推荐的状态管理库。（✓）</li>
+<li>Pinia 需要 mutations 修改状态。（✗）</li>
+<li>getters 类似 computed。（✓）</li>
+<li>actions 可以是异步函数。（✓）</li>
+</ol>
+<blockquote>
+<p>详细题目见 <code>题库.md</code>。</p>
+</blockquote>
+<hr />
+<h2 id="八课后任务">八、课后任务</h2>
+<ol type="1">
+<li>通读 <code>教学资料.md</code>，掌握 Pinia store 定义与使用。</li>
+<li>完善 userStore：增加修改密码 action。</li>
+<li>思考：Pinia 与 Vuex 的区别（200 字）。</li>
+</ol>
+<hr />
+<h2 id="九对应岗位能力或面试考点">九、对应岗位能力或面试考点</h2>
+<table>
+<thead>
+<tr>
+<th>岗位能力/面试考点</th>
+<th>对应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pinia 与 Vuex 区别（高频）</td>
+<td>K12-1</td>
+</tr>
+<tr>
+<td>store 定义与使用</td>
+<td>K12-2~K12-5</td>
+</tr>
+<tr>
+<td>state/getters/actions</td>
+<td>K12-3、K12-4、K12-5</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="十教学资料与题库索引">十、教学资料与题库索引</h2>
+<table>
+<thead>
+<tr>
+<th>资料类型</th>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学生复习资料</td>
+<td><code>教学资料.md</code></td>
+<td>5 个知识点详解 + userStore 综合示例 + 知识结构图</td>
+</tr>
+<tr>
+<td>考试题库</td>
+<td><code>题库.md</code></td>
+<td>78 题，含答案解析与评分标准</td>
+</tr>
+<tr>
+<td>课程总览</td>
+<td><code>../00 课程设计总览.md</code></td>
+<td>课程整体框架</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</h2>
+<table>
+<thead>
+<tr>
+<th>时段</th>
+<th>内容</th>
+<th>时长</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0~15 min</td>
+<td>K12-1 Pinia 简介 + 互动 2</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>15~35 min</td>
+<td>K12-2 defineStore + K12-3 state</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>35~55 min</td>
+<td>K12-4 getters + 互动 1</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>55~75 min</td>
+<td>K12-5 actions + 项目任务</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>75~85 min</td>
+<td>随堂练习</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>85~90 min</td>
+<td>小结 + 课后任务</td>
+<td>5 min</td>
+</tr>
+</tbody>
+</table>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

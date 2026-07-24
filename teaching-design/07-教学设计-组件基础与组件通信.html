@@ -1,0 +1,383 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>组件基础与组件通信</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 07 次课 · 教学设计</div>
+      <h1>组件基础与组件通信</h1>
+      <p>教师教案与课堂组织 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 07 次课</span>
+        <span class="hero-chip"><b>主题</b>组件基础与组件通信</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一课程信息">一、课程信息</a>
+<ul>
+</ul></li>
+<li><a href="#二教学目标">二、教学目标</a>
+<ul>
+<li><a href="#知识目标">知识目标</a></li>
+<li><a href="#能力目标">能力目标</a></li>
+<li><a href="#素质目标课程思政">素质目标（课程思政）</a></li>
+</ul></li>
+<li><a href="#三主要知识点纲要">三、主要知识点纲要</a>
+<ul>
+</ul></li>
+<li><a href="#四项目任务或案例任务">四、项目任务或案例任务</a>
+<ul>
+</ul></li>
+<li><a href="#五课堂互动设计">五、课堂互动设计</a>
+<ul>
+<li><a href="#互动-1接口设计讨论props-还是-provideinject">互动 1：接口设计讨论——props 还是 provide/inject</a></li>
+<li><a href="#互动-2props-单向数据流纠错">互动 2：props 单向数据流纠错</a></li>
+</ul></li>
+<li><a href="#六课程思政融入点">六、课程思政融入点</a>
+<ul>
+</ul></li>
+<li><a href="#七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5 分钟）</a>
+<ul>
+</ul></li>
+<li><a href="#八课后任务">八、课后任务</a>
+<ul>
+</ul></li>
+<li><a href="#九对应岗位能力或面试考点">九、对应岗位能力或面试考点</a>
+<ul>
+</ul></li>
+<li><a href="#十教学资料与题库索引">十、教学资料与题库索引</a>
+<ul>
+</ul></li>
+<li><a href="#附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 07 次课 <span>｜</span> <strong>文档：</strong>教学设计</p>
+<blockquote>
+<p>所属模块：M3 组件化开发 ｜ 课程：《MVVM前端框架开发技术》
+配套资料：见同文件夹内
+<code>教学资料.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一课程信息">一、课程信息</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>次序</td>
+<td>第 7 次课（全课程 16 次之第 7）</td>
+</tr>
+<tr>
+<td>学时</td>
+<td>2 学时（90 分钟）</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>理论课</td>
+</tr>
+<tr>
+<td>所属模块</td>
+<td>M3 组件化开发</td>
+</tr>
+<tr>
+<td>教学主题</td>
+<td>组件基础与组件通信</td>
+</tr>
+<tr>
+<td>先修基础</td>
+<td>第 1~6 次课（SFC、指令、响应式、列表渲染）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="二教学目标">二、教学目标</h2>
+<h3 id="知识目标">知识目标</h3>
+<ol type="1">
+<li>理解组件化思想，掌握组件的局部与全局注册。</li>
+<li>掌握 <code>props</code>（定义/类型/默认值/必填/校验）。</li>
+<li>掌握 <code>emits</code> 自定义事件（子传父）。</li>
+<li>掌握父子组件通信（父传子 props、子传父 emits）。</li>
+<li>了解组件 v-model 的基本用法。</li>
+</ol>
+<h3 id="能力目标">能力目标</h3>
+<ol type="1">
+<li>能拆分页面为组件并正确注册使用。</li>
+<li>能用 props 接收父组件数据并校验。</li>
+<li>能用 emits 向父组件传递数据。</li>
+<li>能拆分 CTTS-Frontend 登录页为 LoginForm 组件，实现父子通信。</li>
+</ol>
+<h3 id="素质目标课程思政">素质目标（课程思政）</h3>
+<ol type="1">
+<li>培养组件化思维——分而治之是工程方法论的核心。</li>
+<li>建立接口契约意识——props/emits 是组件间契约，体现协作精神。</li>
+</ol>
+<hr />
+<h2 id="三主要知识点纲要">三、主要知识点纲要</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>知识点</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K7-1</td>
+<td>组件基础与注册</td>
+<td>组件定义；局部注册（import +
+用）；全局注册（app.component）；命名</td>
+</tr>
+<tr>
+<td>K7-2</td>
+<td>props</td>
+<td><code>defineProps</code>；类型/默认值/必填/校验；单向数据流</td>
+</tr>
+<tr>
+<td>K7-3</td>
+<td>emits</td>
+<td><code>defineEmits</code>；子传父；<code>$emit</code> 触发事件</td>
+</tr>
+<tr>
+<td>K7-4</td>
+<td>父子通信综合</td>
+<td>父传子 props、子传父 emits；通信方案选择</td>
+</tr>
+<tr>
+<td>K7-5</td>
+<td>组件 v-model</td>
+<td><code>defineModel</code>/modelValue + update:modelValue；双向</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="四项目任务或案例任务">四、项目任务或案例任务</h2>
+<p><strong>本次课任务</strong>：拆分 CTTS-Frontend 登录页为 LoginForm
+组件，父组件 App 传初始值（props），子组件提交时 emit
+事件传登录数据给父组件。</p>
+<hr />
+<h2 id="五课堂互动设计">五、课堂互动设计</h2>
+<h3 id="互动-1接口设计讨论props-还是-provideinject">互动
+1：接口设计讨论——props 还是 provide/inject</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>"父传子用 props，那跨多层怎么办？什么时候用 provide/inject？"</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>父子用 props/emits；跨层用
+provide/inject（后续课程）；全局用状态管理（Pinia，第 12 次）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="互动-2props-单向数据流纠错">互动 2：props 单向数据流纠错</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>"子组件直接改 props 会怎样？"</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>Vue 警告，props 单向流动，子组件不能直接改，应 emit 通知父改</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六课程思政融入点">六、课程思政融入点</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>融入点</td>
+<td>组件化思维——分而治之是工程方法论</td>
+</tr>
+<tr>
+<td>技术关联</td>
+<td>把复杂页面拆成可复用组件，降低复杂度、提升复用</td>
+</tr>
+<tr>
+<td>引导问题</td>
+<td>"一整页几百行代码 vs 拆成 5 个组件，哪种更好维护？"</td>
+</tr>
+<tr>
+<td>预期价值目标</td>
+<td>培养组件化与分而治之的工程思维</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5
+分钟）</h2>
+<p><strong>判断题</strong>：</p>
+<ol type="1">
+<li>props 是单向数据流，子组件不应直接修改。（✓）</li>
+<li>子组件用 emits 向父组件传数据。（✓）</li>
+<li><code>&lt;script setup&gt;</code> 中 import
+的组件需手动注册。（✗）</li>
+<li>props 可以设置类型与必填校验。（✓）</li>
+</ol>
+<blockquote>
+<p>详细题目见 <code>题库.md</code>。</p>
+</blockquote>
+<hr />
+<h2 id="八课后任务">八、课后任务</h2>
+<ol type="1">
+<li>通读 <code>教学资料.md</code>，掌握组件注册、props、emits、组件
+v-model。</li>
+<li>完善 LoginForm 组件：增加"记住我"checkbox，提交时一并 emit。</li>
+<li>思考：props 与 emits 各自的数据流向（200 字）。</li>
+</ol>
+<hr />
+<h2 id="九对应岗位能力或面试考点">九、对应岗位能力或面试考点</h2>
+<table>
+<thead>
+<tr>
+<th>岗位能力/面试考点</th>
+<th>对应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>组件通信方式（props/emits，高频）</td>
+<td>K7-2、K7-3、K7-4</td>
+</tr>
+<tr>
+<td>props 单向数据流（高频）</td>
+<td>K7-2</td>
+</tr>
+<tr>
+<td>组件 v-model 原理</td>
+<td>K7-5</td>
+</tr>
+<tr>
+<td>组件注册方式</td>
+<td>K7-1</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="十教学资料与题库索引">十、教学资料与题库索引</h2>
+<table>
+<thead>
+<tr>
+<th>资料类型</th>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学生复习资料</td>
+<td><code>教学资料.md</code></td>
+<td>5 个知识点详解 + LoginForm 综合示例 + 知识结构图</td>
+</tr>
+<tr>
+<td>考试题库</td>
+<td><code>题库.md</code></td>
+<td>78 题，含答案解析与评分标准</td>
+</tr>
+<tr>
+<td>课程总览</td>
+<td><code>../00 课程设计总览.md</code></td>
+<td>课程整体框架</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</h2>
+<table>
+<thead>
+<tr>
+<th>时段</th>
+<th>内容</th>
+<th>时长</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0~15 min</td>
+<td>K7-1 组件基础与注册</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>15~40 min</td>
+<td>K7-2 props + 互动 2</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td>40~60 min</td>
+<td>K7-3 emits + K7-4 父子通信 + 互动 1</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>60~75 min</td>
+<td>K7-5 组件 v-model</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>75~85 min</td>
+<td>项目任务（拆分 LoginForm）+ 随堂练习</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>85~90 min</td>
+<td>小结 + 课后任务</td>
+<td>5 min</td>
+</tr>
+</tbody>
+</table>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

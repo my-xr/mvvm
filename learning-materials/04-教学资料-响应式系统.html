@@ -1,0 +1,600 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>响应式系统</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 04 次课 · 教学资料</div>
+      <h1>响应式系统</h1>
+      <p>学生复习资料与代码示例 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 04 次课</span>
+        <span class="hero-chip"><b>主题</b>响应式系统</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一学习导读">一、学习导读</a>
+<ul>
+<li><a href="#11-本节定位">1.1 本节定位</a></li>
+<li><a href="#12-先修基础">1.2 先修基础</a></li>
+<li><a href="#13-学习目标">1.3 学习目标</a></li>
+</ul></li>
+<li><a href="#二知识点详解">二、知识点详解</a>
+<ul>
+<li><a href="#知识点-k4-1ref">知识点 K4-1：ref</a></li>
+<li><a href="#知识点-k4-2reactive">知识点 K4-2：reactive</a></li>
+<li><a href="#知识点-k4-3computed">知识点 K4-3：computed</a></li>
+<li><a href="#知识点-k4-4watch">知识点 K4-4：watch</a></li>
+<li><a href="#知识点-k4-5watcheffect">知识点 K4-5：watchEffect</a></li>
+<li><a href="#知识点-k4-6响应式原理proxy">知识点 K4-6：响应式原理（Proxy）</a></li>
+</ul></li>
+<li><a href="#四拓展阅读选学">四、拓展阅读（选学）</a>
+<ul>
+</ul></li>
+<li><a href="#五本节小结与知识结构图">五、本节小结与知识结构图</a>
+<ul>
+</ul></li>
+<li><a href="#六复习思考题">六、复习思考题</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 04 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
+<blockquote>
+<p>学生复习资料 ｜
+配套：<code>教学设计.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一学习导读">一、学习导读</h2>
+<h3 id="11-本节定位">1.1 本节定位</h3>
+<p>本节深入 Vue 3 响应式系统，是 Vue 的核心。学完后能根据场景选择
+ref/reactive，用 computed 派生数据，用 watch 响应数据变化。</p>
+<h3 id="12-先修基础">1.2 先修基础</h3>
+<table>
+<thead>
+<tr>
+<th>先修知识</th>
+<th>程度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 2~3 次课</td>
+<td>必须</td>
+<td>ref 初体验、模板指令</td>
+</tr>
+<tr>
+<td>ES6 对象/箭头函数</td>
+<td>熟悉</td>
+<td>对象解构、this</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-学习目标">1.3 学习目标</h3>
+<ul>
+<li>✅ 掌握 ref 与 reactive 的区别与选择</li>
+<li>✅ 掌握 computed 计算属性与缓存</li>
+<li>✅ 掌握 watch 与 watchEffect</li>
+<li>✅ 了解 Proxy 响应式原理</li>
+</ul>
+<hr />
+<h2 id="二知识点详解">二、知识点详解</h2>
+<h3 id="知识点-k4-1ref">知识点 K4-1：ref</h3>
+<h4 id="定义">定义</h4>
+<p><strong><code>ref</code></strong>
+创建响应式数据，可包装基本类型或对象。返回 Ref 对象
+<code>{ value }</code>，JS 中用 <code>.value</code>
+访问，模板中自动解包。</p>
+<h4 id="原理">原理</h4>
+<p><code>ref</code> 内部用 <code>RefImpl</code> 类包装值，通过 get/set
+拦截实现对 <code>.value</code> 读写追踪。基本类型用
+<code>Object.defineProperty</code> 或直接拦截；对象类型会再用
+<code>reactive</code> 转换。</p>
+<h4 id="用法">用法</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;p&gt;{{ count }}&lt;/p&gt;              &lt;!-- 模板自动解包 --&gt;
+  &lt;button @click=&quot;count.value++&quot;&gt;+1&lt;/button&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const count = ref(0)              // 基本类型
+const user = ref({ name: &#39;张三&#39; }) // 对象（也可用 reactive）
+// JS 访问：
+console.log(count.value)          // 0
+console.log(user.value.name)      // 张三
+&lt;/script&gt;</code></pre>
+<h4 id="易错点">易错点</h4>
+<ul>
+<li><strong>JS 中忘 <code>.value</code></strong>：<code>count++</code>
+报错，须 <code>count.value++</code>。</li>
+<li><strong>模板中多写
+<code>.value</code></strong>：<code>{{ count.value }}</code> 显示
+undefined。</li>
+<li><strong>重新赋值覆盖</strong>：<code>count = 1</code> 丢失响应式，应
+<code>count.value = 1</code>。</li>
+</ul>
+<h4 id="小结">小结</h4>
+<p>ref 适合基本类型（也支持对象），JS 用
+<code>.value</code>，模板自动解包。</p>
+<hr />
+<h3 id="知识点-k4-2reactive">知识点 K4-2：reactive</h3>
+<h4 id="定义-1">定义</h4>
+<p><strong><code>reactive</code></strong> 创建对象类型的响应式数据，返回
+Proxy 代理对象，直接访问属性无需 <code>.value</code>。</p>
+<h4 id="原理-1">原理</h4>
+<p><code>reactive</code> 用 ES6 <code>Proxy</code>
+包裹对象，拦截属性的读/写/增/删，实现深度响应式。</p>
+<h4 id="用法-1">用法</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;p&gt;{{ state.name }} - {{ state.age }}&lt;/p&gt;
+  &lt;button @click=&quot;state.age++&quot;&gt;长大&lt;/button&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { reactive } from &#39;vue&#39;
+const state = reactive({ name: &#39;张三&#39;, age: 18 })
+// 直接访问属性，无需 .value
+state.age++                      // ✅ 正确
+&lt;/script&gt;</code></pre>
+<h4 id="ref-vs-reactive">ref vs reactive</h4>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>ref</th>
+<th>reactive</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>适合类型</td>
+<td>基本类型（也支持对象）</td>
+<td>对象/数组</td>
+</tr>
+<tr>
+<td>访问方式</td>
+<td>JS 用 <code>.value</code></td>
+<td>直接访问属性</td>
+</tr>
+<tr>
+<td>模板解包</td>
+<td>自动解包</td>
+<td>无需解包</td>
+</tr>
+<tr>
+<td>重新赋值</td>
+<td><code>x.value = newVal</code>（保留响应式）</td>
+<td>不能整体替换（会丢失响应式），应改属性</td>
+</tr>
+</tbody>
+</table>
+<h4 id="易错点-1">易错点</h4>
+<ul>
+<li><strong>解构丢失响应式</strong>：<code>let { name } = state</code>
+后 <code>name</code> 不再响应式。需用 <code>toRefs</code>：
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { toRefs } <span class="im">from</span> <span class="st">&#39;vue&#39;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> state <span class="op">=</span> <span class="fu">reactive</span>({ <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;张三&#39;</span><span class="op">,</span> <span class="dt">age</span><span class="op">:</span> <span class="dv">18</span> })</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> { name<span class="op">,</span> age } <span class="op">=</span> <span class="fu">toRefs</span>(state)   <span class="co">// 解构后仍是响应式</span></span></code></pre></div></li>
+<li><strong>整体替换丢失响应式</strong>：<code>state = { new: 1 }</code>
+会覆盖变量丢失响应式；应逐属性改或用 <code>Object.assign</code>。</li>
+<li><strong>基本类型用 reactive</strong>：<code>reactive(0)</code>
+无效，基本类型必须用 ref。</li>
+</ul>
+<h4 id="小结-1">小结</h4>
+<p>reactive 适合对象，直接访问属性；解构需 toRefs；不能整体替换。</p>
+<hr />
+<h3 id="知识点-k4-3computed">知识点 K4-3：computed</h3>
+<h4 id="定义-2">定义</h4>
+<p><strong><code>computed</code></strong>
+创建计算属性，基于其他响应式数据派生新值，具有<strong>缓存</strong>特性——只有依赖变化时才重新计算。</p>
+<h4 id="原理-2">原理</h4>
+<p>computed 返回一个只读
+Ref。首次访问时计算并缓存；当依赖的响应式数据变化时，标记为脏，下次访问才重算。无依赖变化时直接返回缓存值。</p>
+<h4 id="用法-2">用法</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;p&gt;单价：{{ price }}&lt;/p&gt;
+  &lt;p&gt;数量：{{ count }}&lt;/p&gt;
+  &lt;p&gt;总价：{{ total }}&lt;/p&gt;           &lt;!-- 缓存，依赖不变不重算 --&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref, computed } from &#39;vue&#39;
+const price = ref(50)
+const count = ref(2)
+const total = computed(() =&gt; price.value * count.value)
+// total 是只读 Ref，访问 total.value
+&lt;/script&gt;</code></pre>
+<p><strong>可写 computed</strong>（少见，需提供 get/set）：</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> fullName <span class="op">=</span> <span class="fu">computed</span>({</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">get</span><span class="op">:</span> () <span class="kw">=&gt;</span> firstName<span class="op">.</span><span class="at">value</span> <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> lastName<span class="op">.</span><span class="at">value</span><span class="op">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span><span class="op">:</span> (val) <span class="kw">=&gt;</span> {</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    [firstName<span class="op">.</span><span class="at">value</span><span class="op">,</span> lastName<span class="op">.</span><span class="at">value</span>] <span class="op">=</span> val<span class="op">.</span><span class="fu">split</span>(<span class="st">&#39; &#39;</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<h4 id="computed-vs-methods">computed vs methods</h4>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>computed</th>
+<th>methods</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>缓存</td>
+<td>有（依赖不变不重算）</td>
+<td>无（每次调用都执行）</td>
+</tr>
+<tr>
+<td>调用</td>
+<td>像属性（不加括号）</td>
+<td>像方法（加括号）</td>
+</tr>
+<tr>
+<td>适用</td>
+<td>派生数据</td>
+<td>事件处理、动作</td>
+</tr>
+</tbody>
+</table>
+<h4 id="易错点-2">易错点</h4>
+<ul>
+<li><strong>在 computed
+中做副作用</strong>（如发请求、改数据）：computed 应为纯计算，副作用用
+watch。</li>
+<li><strong>computed 解构丢失缓存</strong>：computed 返回 Ref，解构
+<code>.value</code> 后失去缓存。</li>
+<li><strong>循环依赖</strong>：computed A 依赖 B，B 又依赖
+A，会死循环。</li>
+</ul>
+<h4 id="小结-2">小结</h4>
+<p>computed 派生数据且带缓存，依赖不变不重算；应保持纯函数，副作用用
+watch。</p>
+<hr />
+<h3 id="知识点-k4-4watch">知识点 K4-4：watch</h3>
+<h4 id="定义-3">定义</h4>
+<p><strong><code>watch</code></strong>
+侦听一个或多个响应式数据，当其变化时执行回调，可获取新旧值。</p>
+<h4 id="原理与用法">原理与用法</h4>
+<pre class="vue"><code>&lt;script setup&gt;
+import { ref, watch } from &#39;vue&#39;
+const count = ref(0)
+
+// 侦听 ref
+watch(count, (newVal, oldVal) =&gt; {
+  console.log(`${oldVal} → ${newVal}`)
+})
+
+// 侦听 reactive 属性（需用函数返回）
+const state = reactive({ name: &#39;张三&#39; })
+watch(() =&gt; state.name, (newVal) =&gt; {
+  console.log(&#39;name 变为&#39;, newVal)
+})
+
+// 侦听多个源
+watch([count, () =&gt; state.name], ([newCount, newName]) =&gt; {
+  console.log(newCount, newName)
+})
+
+// 选项：deep 深度侦听，immediate 立即执行
+watch(state, (newVal) =&gt; { ... }, { deep: true, immediate: true })
+&lt;/script&gt;</code></pre>
+<h4 id="关键选项">关键选项</h4>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deep: true</code></td>
+<td>深度侦听对象内部变化</td>
+</tr>
+<tr>
+<td><code>immediate: true</code></td>
+<td>立即执行一次回调</td>
+</tr>
+<tr>
+<td><code>flush: 'post'</code></td>
+<td>在组件更新后执行</td>
+</tr>
+</tbody>
+</table>
+<h4 id="易错点-3">易错点</h4>
+<ul>
+<li><strong>侦听 reactive 属性直接写
+<code>state.name</code></strong>：无效，必须用函数
+<code>() =&gt; state.name</code> 返回该属性。</li>
+<li><strong>侦听 reactive 对象默认是深度</strong>：但侦听 ref
+对象（包对象）默认非深度，需 <code>deep: true</code>。</li>
+<li><strong>忘加 immediate
+导致初始不执行</strong>：若需初始化时执行一次，加
+<code>immediate: true</code>。</li>
+</ul>
+<h4 id="小结-3">小结</h4>
+<p>watch
+显式侦听数据源，可获新旧值，适合在数据变化时执行副作用（如请求、日志）。</p>
+<hr />
+<h3 id="知识点-k4-5watcheffect">知识点 K4-5：watchEffect</h3>
+<h4 id="定义-4">定义</h4>
+<p><strong><code>watchEffect</code></strong>
+立即执行一次回调，并自动收集回调中用到的响应式依赖，当依赖变化时重新执行。</p>
+<h4 id="用法-3">用法</h4>
+<pre class="vue"><code>&lt;script setup&gt;
+import { ref, watchEffect } from &#39;vue&#39;
+const count = ref(0)
+
+watchEffect(() =&gt; {
+  console.log(&#39;count 是&#39;, count.value)   // 自动追踪 count
+})
+// 立即输出 &quot;count 是 0&quot;
+// count 变化时再次执行
+&lt;/script&gt;</code></pre>
+<h4 id="watch-vs-watcheffect">watch vs watchEffect</h4>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>watch</th>
+<th>watchEffect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>触发时机</td>
+<td>依赖变化时</td>
+<td>立即执行 + 依赖变化时</td>
+</tr>
+<tr>
+<td>依赖指定</td>
+<td>显式指定侦听源</td>
+<td>自动收集</td>
+</tr>
+<tr>
+<td>获取旧值</td>
+<td>能</td>
+<td>不能</td>
+</tr>
+<tr>
+<td>适用</td>
+<td>需要旧值/明确侦听源</td>
+<td>仅需响应变化执行副作用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="易错点-4">易错点</h4>
+<ul>
+<li><strong>期望获取旧值</strong>：watchEffect 无法获取旧值，需要旧值用
+watch。</li>
+<li><strong>依赖追踪不稳定</strong>：回调中用条件分支访问不同响应式数据，依赖会动态变化。</li>
+</ul>
+<h4 id="小结-4">小结</h4>
+<p>watchEffect
+立即执行并自动收集依赖，适合不需旧值的副作用；需旧值或明确源用
+watch。</p>
+<hr />
+<h3 id="知识点-k4-6响应式原理proxy">知识点
+K4-6：响应式原理（Proxy）</h3>
+<h4 id="定义-5">定义</h4>
+<p>Vue 3 响应式基于 ES6 <code>Proxy</code>：用 <code>reactive()</code>
+包裹对象后，对该对象属性的读写会被 Proxy
+拦截，从而实现"依赖收集"与"触发更新"。</p>
+<h4 id="原理简化">原理（简化）</h4>
+<div class="visual">
+  <div class="visual-title">图示 1：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">读取属性（get） <span class="tree-token">─</span><span class="tree-token">─</span><span class="arrow-token">▶</span> 收集依赖（谁用了这个属性）</span>
+<span class="diagram-line">修改属性（set） <span class="tree-token">─</span><span class="tree-token">─</span><span class="arrow-token">▶</span> 触发更新（通知依赖重新执行/渲染）</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<p>简化示意：</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 简化版响应式原理（仅示意，非 Vue 源码）</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">reactive</span>(obj) {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">new</span> <span class="bu">Proxy</span>(obj<span class="op">,</span> {</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">get</span>(target<span class="op">,</span> key) {</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">track</span>(target<span class="op">,</span> key)        <span class="co">// 收集依赖</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> target[key]</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">set</span>(target<span class="op">,</span> key<span class="op">,</span> value) {</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      target[key] <span class="op">=</span> value</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">trigger</span>(target<span class="op">,</span> key)      <span class="co">// 触发更新</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="kw">true</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h4 id="vue-2-vs-vue-3">Vue 2 vs Vue 3</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Vue 2</th>
+<th>Vue 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>技术</td>
+<td><code>Object.defineProperty</code></td>
+<td><code>Proxy</code></td>
+</tr>
+<tr>
+<td>新增属性</td>
+<td>需 <code>Vue.set</code></td>
+<td>自动响应</td>
+</tr>
+<tr>
+<td>删除属性</td>
+<td>需 <code>Vue.delete</code></td>
+<td>自动响应</td>
+</tr>
+<tr>
+<td>数组索引修改</td>
+<td>需特殊方法</td>
+<td>自动响应</td>
+</tr>
+</tbody>
+</table>
+<h4 id="小结-5">小结</h4>
+<p>Vue 3 用 Proxy 实现响应式，能监测属性增删与数组索引修改，比 Vue 2
+更全面。</p>
+<hr />
+<h2
+id="三综合示例ctts-frontend-任务列表过滤与状态监听">三、综合示例：CTTS-Frontend
+任务列表过滤与状态监听</h2>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div class=&quot;tasks&quot;&gt;
+    &lt;h2&gt;任务列表&lt;/h2&gt;
+    &lt;input v-model=&quot;keyword&quot; placeholder=&quot;搜索任务&quot; /&gt;
+    &lt;ul&gt;
+      &lt;li v-for=&quot;t in filteredTasks&quot; :key=&quot;t.id&quot;&gt;
+        {{ t.title }} - {{ t.status }}
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;已完成：{{ doneCount }} 个&lt;/p&gt;
+    &lt;button @click=&quot;finishFirst&quot;&gt;完成第一个&lt;/button&gt;
+    &lt;p v-if=&quot;log&quot;&gt;日志：{{ log }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, reactive, computed, watch } from &#39;vue&#39;
+
+const keyword = ref(&#39;&#39;)
+const tasks = reactive([
+  { id: 1, title: &#39;任务一：搭建项目&#39;, status: &#39;进行中&#39; },
+  { id: 2, title: &#39;任务二：实现登录&#39;, status: &#39;未开始&#39; },
+  { id: 3, title: &#39;任务三：接口联调&#39;, status: &#39;进行中&#39; }
+])
+
+// computed：搜索过滤
+const filteredTasks = computed(() =&gt;
+  tasks.filter(t =&gt; t.title.includes(keyword.value))
+)
+
+// computed：统计已完成数量
+const doneCount = computed(() =&gt; tasks.filter(t =&gt; t.status === &#39;已完成&#39;).length)
+
+const log = ref(&#39;&#39;)
+// watch：监听任务数组变化（深度）
+watch(tasks, () =&gt; {
+  log.value = `任务状态变化，当前已完成 ${doneCount.value} 个`
+}, { deep: true })
+
+const finishFirst = () =&gt; {
+  const t = tasks.find(x =&gt; x.status !== &#39;已完成&#39;)
+  if (t) t.status = &#39;已完成&#39;
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.tasks { max-width: 600px; margin: 20px auto; font-family: system-ui; }
+ul { list-style: none; padding: 0; }
+li { padding: 10px 0; border-bottom: 1px solid #eee; }
+input { padding: 6px; margin-bottom: 10px; }
+&lt;/style&gt;</code></pre>
+<p><strong>运行方式</strong>：替换
+<code>src/App.vue</code>，输入搜索关键词列表实时过滤；点击"完成第一个"按钮，任务状态变化，watch
+触发记录日志，doneCount 自动更新。</p>
+<hr />
+<h2 id="四拓展阅读选学">四、拓展阅读（选学）</h2>
+<ol type="1">
+<li><strong>toRef / toRefs</strong>：把 reactive 属性转为
+ref，便于解构保持响应式。</li>
+<li><strong>shallowRef /
+shallowReactive</strong>：只对第一层响应式，性能优化。</li>
+<li><strong>依赖收集与触发更新细节</strong>：<code>track</code>/<code>trigger</code>/<code>effect</code>，见
+Vue 源码 <code>@vue/reactivity</code>。</li>
+</ol>
+<hr />
+<h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
+<div class="visual">
+  <div class="visual-title">图示 2：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">第 4 次课：响应式系统</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K4-1 ref（基本类型，.value，模板解包）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K4-2 reactive（对象，直接访问，解构用 toRefs）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K4-3 computed（派生数据，缓存，纯函数）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K4-4 watch（显式源，新旧值，deep/immediate）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K4-5 watchEffect（立即执行，自动收集，无旧值）</span>
+<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K4-6 原理（Proxy，依赖收集与触发）</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ref vs reactive</td>
+<td>基本/整体替换用 ref，对象用 reactive</td>
+</tr>
+<tr>
+<td>reactive 解构</td>
+<td>用 toRefs 保持响应式</td>
+</tr>
+<tr>
+<td>computed</td>
+<td>派生数据 + 缓存，纯函数</td>
+</tr>
+<tr>
+<td>watch</td>
+<td>需旧值/明确源</td>
+</tr>
+<tr>
+<td>watchEffect</td>
+<td>立即执行 + 自动依赖</td>
+</tr>
+<tr>
+<td>原理</td>
+<td>Proxy 拦截读写</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六复习思考题">六、复习思考题</h2>
+<ol type="1">
+<li>ref 和 reactive 的区别？如何选择？</li>
+<li>为什么 reactive 解构会丢失响应式？如何解决？</li>
+<li>computed 相比 methods 的优势是什么？</li>
+<li>watch 和 watchEffect 的区别？分别适合什么场景？</li>
+<li>简述 Vue 3 用 Proxy 实现响应式的基本原理。</li>
+</ol>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

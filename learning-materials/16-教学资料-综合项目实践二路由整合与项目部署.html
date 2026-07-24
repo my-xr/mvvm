@@ -1,0 +1,394 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>综合项目实践二路由整合与项目部署</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 16 次课 · 教学资料</div>
+      <h1>综合项目实践二路由整合与项目部署</h1>
+      <p>学生复习资料与代码示例 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 16 次课</span>
+        <span class="hero-chip"><b>主题</b>综合项目实践二路由整合与项目部署</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一学习导读">一、学习导读</a>
+<ul>
+<li><a href="#11-本节定位">1.1 本节定位</a></li>
+<li><a href="#12-先修基础">1.2 先修基础</a></li>
+<li><a href="#13-学习目标">1.3 学习目标</a></li>
+</ul></li>
+<li><a href="#二知识点详解">二、知识点详解</a>
+<ul>
+<li><a href="#知识点-k16-1路由整合与权限守卫">知识点 K16-1：路由整合与权限守卫</a></li>
+<li><a href="#知识点-k16-2状态管理整合">知识点 K16-2：状态管理整合</a></li>
+<li><a href="#知识点-k16-3接口联调完善">知识点 K16-3：接口联调完善</a></li>
+<li><a href="#知识点-k16-4vite-build-构建">知识点 K16-4：vite build 构建</a></li>
+<li><a href="#知识点-k16-5部署与答辩">知识点 K16-5：部署与答辩</a></li>
+<li><a href="#整合检查清单">整合检查清单</a></li>
+<li><a href="#构建部署步骤">构建部署步骤</a></li>
+<li><a href="#答辩演示流程">答辩演示流程</a></li>
+</ul></li>
+<li><a href="#四项目交付验收标准">四、项目交付验收标准</a>
+<ul>
+</ul></li>
+<li><a href="#五本节小结与知识结构图">五、本节小结与知识结构图</a>
+<ul>
+</ul></li>
+<li><a href="#六复习思考题">六、复习思考题</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 16 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
+<blockquote>
+<p>学生复习资料 ｜ 配套：<code>教学设计.md</code>、<code>题库.md</code>
+本节为实践课，资料以整合方案与构建部署步骤为主。</p>
+</blockquote>
+<hr />
+<h2 id="一学习导读">一、学习导读</h2>
+<h3 id="11-本节定位">1.1 本节定位</h3>
+<p>本节是课程最后一次课，整合 CTTS-Frontend
+全部功能，构建部署并答辩，完成完整交付。</p>
+<h3 id="12-先修基础">1.2 先修基础</h3>
+<table>
+<thead>
+<tr>
+<th>先修知识</th>
+<th>程度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 1~15 次课</td>
+<td>必须</td>
+<td>全部技能</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-学习目标">1.3 学习目标</h3>
+<ul>
+<li>✅ 整合路由/状态/接口</li>
+<li>✅ 构建与部署</li>
+<li>✅ 项目演示答辩</li>
+</ul>
+<hr />
+<h2 id="二知识点详解">二、知识点详解</h2>
+<h3 id="知识点-k16-1路由整合与权限守卫">知识点
+K16-1：路由整合与权限守卫</h3>
+<h4 id="定义">定义</h4>
+<p>整合全部页面路由，配置 meta 权限与全局守卫，形成完整导航体系。</p>
+<h4 id="完整路由表">完整路由表</h4>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/router/index.js</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createRouter<span class="op">,</span> createWebHistory } <span class="im">from</span> <span class="st">&#39;vue-router&#39;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Layout <span class="im">from</span> <span class="st">&#39;../views/Layout.vue&#39;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/login&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/Login.vue&#39;</span>)<span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;登录&#39;</span> } }<span class="op">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/&#39;</span><span class="op">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">component</span><span class="op">:</span> Layout<span class="op">,</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">meta</span><span class="op">:</span> { <span class="dt">requireAuth</span><span class="op">:</span> <span class="kw">true</span> }<span class="op">,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">children</span><span class="op">:</span> [</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span> <span class="dt">redirect</span><span class="op">:</span> <span class="st">&#39;/projects&#39;</span> }<span class="op">,</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;projects&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/Projects.vue&#39;</span>)<span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;项目列表&#39;</span> } }<span class="op">,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;projects/:id/tasks&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/TaskList.vue&#39;</span>)<span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;任务列表&#39;</span> } }<span class="op">,</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;tasks/:id&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/TaskDetail.vue&#39;</span>)<span class="op">,</span> <span class="dt">props</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;任务详情&#39;</span> } }<span class="op">,</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;tasks/:id/submit&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/SubmitForm.vue&#39;</span>)<span class="op">,</span> <span class="dt">props</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;成果提交&#39;</span> } }<span class="op">,</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;reviews&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/Reviews.vue&#39;</span>)<span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;评审列表&#39;</span><span class="op">,</span> <span class="dt">role</span><span class="op">:</span> <span class="st">&#39;teacher&#39;</span> } }<span class="op">,</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;reviews/:id&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/ReviewDetail.vue&#39;</span>)<span class="op">,</span> <span class="dt">props</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;评审详情&#39;</span><span class="op">,</span> <span class="dt">role</span><span class="op">:</span> <span class="st">&#39;teacher&#39;</span> } }<span class="op">,</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;admin/users&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/Users.vue&#39;</span>)<span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;用户管理&#39;</span><span class="op">,</span> <span class="dt">role</span><span class="op">:</span> <span class="st">&#39;admin&#39;</span> } }<span class="op">,</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;profile&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/Profile.vue&#39;</span>)<span class="op">,</span> <span class="dt">meta</span><span class="op">:</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;个人中心&#39;</span> } }</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/:pathMatch(.*)*&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/NotFound.vue&#39;</span>) }</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> <span class="fu">createRouter</span>({ <span class="dt">history</span><span class="op">:</span> <span class="fu">createWebHistory</span>()<span class="op">,</span> routes })</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>router<span class="op">.</span><span class="fu">beforeEach</span>((to) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="at">title</span> <span class="op">=</span> to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">title</span> <span class="op">||</span> <span class="st">&#39;CTTS&#39;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">useUserStore</span>()</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">requireAuth</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>userStore<span class="op">.</span><span class="at">isLogin</span>) <span class="cf">return</span> <span class="st">&#39;/login&#39;</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">role</span> <span class="op">&amp;&amp;</span> userStore<span class="op">.</span><span class="at">role</span> <span class="op">!==</span> to<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">role</span>) <span class="cf">return</span> <span class="st">&#39;/projects&#39;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> router</span></code></pre></div>
+<h4 id="小结">小结</h4>
+<p>整合全部路由 + meta 权限 + beforeEach 守卫 + 404，形成完整导航。</p>
+<hr />
+<h3 id="知识点-k16-2状态管理整合">知识点 K16-2：状态管理整合</h3>
+<h4 id="定义-1">定义</h4>
+<p>将 userStore/projectStore/appStore 接入各页面，实现全局状态共享。</p>
+<h4 id="整合要点">整合要点</h4>
+<ul>
+<li><strong>userStore</strong>：登录页调 login；Header
+读用户名与退出；守卫读 isLogin/role。</li>
+<li><strong>projectStore</strong>：项目列表页调 fetchProjects
+缓存数据。</li>
+<li><strong>appStore</strong>：布局组件侧边栏折叠状态。</li>
+</ul>
+<h4 id="小结-1">小结</h4>
+<p>三 store 接入对应页面，实现登录态、数据缓存、UI 状态全局共享。</p>
+<hr />
+<h3 id="知识点-k16-3接口联调完善">知识点 K16-3：接口联调完善</h3>
+<h4 id="定义-2">定义</h4>
+<p>将 Mock 数据替换为真实后端接口，完成前后端联调。</p>
+<h4 id="流程">流程</h4>
+<ol type="1">
+<li>确认后端接口已就绪（CTTS 后端）。</li>
+<li>移除 api 函数中的 Mock 兜底，改为真实
+<code>request.get/post</code>。</li>
+<li>配置 Vite proxy 指向后端地址。</li>
+<li>联调测试各页面数据交互。</li>
+<li>处理字段不一致、错误码等问题。</li>
+</ol>
+<h4 id="小结-2">小结</h4>
+<p>Mock 替换为真实接口，配置 proxy，联调测试，处理契约问题。</p>
+<hr />
+<h3 id="知识点-k16-4vite-build-构建">知识点 K16-4：vite build 构建</h3>
+<h4 id="定义-3">定义</h4>
+<p><code>vite build</code> 把项目构建为生产环境静态文件，输出到
+<code>dist</code> 目录。</p>
+<h4 id="构建命令">构建命令</h4>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build</span></code></pre></div>
+<h4 id="构建产物">构建产物</h4>
+<div class="visual">
+  <div class="visual-title">图示 1：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">dist/</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> index.html</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> assets/</span>
+<span class="diagram-line"><span class="tree-token">│</span>   <span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> index-xxxx.js      # 打包后的 JS（含哈希）</span>
+<span class="diagram-line"><span class="tree-token">│</span>   <span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> index-xxxx.css     # 打包后的 CSS</span>
+<span class="diagram-line"><span class="tree-token">│</span>   <span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> ...                # 其他资源</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<h4 id="预览构建结果">预览构建结果</h4>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run preview            <span class="co"># 启动预览服务器查看构建产物</span></span></code></pre></div>
+<h4 id="构建优化">构建优化</h4>
+<ul>
+<li><strong>代码分割</strong>：路由懒加载自动分割 chunk。</li>
+<li><strong>Tree-shaking</strong>：移除未用代码。</li>
+<li><strong>压缩</strong>：JS/CSS 压缩。</li>
+<li><strong>base 路径</strong>：部署到子路径时配置
+<code>vite.config.js</code> 的 <code>base</code>。</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// vite.config.js</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> <span class="fu">defineConfig</span>({</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">base</span><span class="op">:</span> <span class="st">&#39;/ctts/&#39;</span><span class="op">,</span>           <span class="co">// 部署到子路径</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">plugins</span><span class="op">:</span> [<span class="fu">vue</span>()]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<h4 id="易错点">易错点</h4>
+<ul>
+<li><strong>构建报错</strong>：检查语法错误、未导入的组件。</li>
+<li><strong>资源路径 404</strong>：部署到子路径需配置 base。</li>
+<li><strong>环境变量</strong>：开发与生产 API 地址不同，用
+<code>.env</code> 文件管理。</li>
+</ul>
+<h4 id="小结-3">小结</h4>
+<p><code>npm run build</code> 构建到 dist；<code>npm run preview</code>
+预览；注意 base 路径与环境变量。</p>
+<hr />
+<h3 id="知识点-k16-5部署与答辩">知识点 K16-5：部署与答辩</h3>
+<h4 id="部署方式">部署方式</h4>
+<p><strong>方式一：静态服务器（Nginx）</strong></p>
+<pre class="nginx"><code>server {
+  listen 80;
+  server_name your-domain.com;
+  root /path/to/dist;
+  index index.html;
+  location / {
+    try_files $uri $uri/ /index.html;     # history 模式回退
+  }
+  location /api/ {
+    proxy_pass http://backend:8080/;      # 代理后端 API
+  }
+}</code></pre>
+<p><strong>方式二：Vercel/Netlify 等平台</strong></p>
+<ul>
+<li>上传 dist 或连接 git 仓库自动部署。</li>
+<li>配置 SPA 路由回退（Rewrite to index.html）。</li>
+</ul>
+<p><strong>方式三：简易预览</strong></p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run preview <span class="at">--</span> <span class="at">--port</span> 4173</span></code></pre></div>
+<h4 id="history-模式部署注意">history 模式部署注意</h4>
+<ul>
+<li>服务器需配置所有路径回退到 <code>index.html</code>，否则刷新
+404。</li>
+<li>Nginx 用 <code>try_files $uri $uri/ /index.html</code>。</li>
+</ul>
+<h4 id="答辩要点">答辩要点</h4>
+<ol type="1">
+<li><strong>功能演示</strong>：展示登录、列表、详情、提交、评审、用户管理等核心流程。</li>
+<li><strong>技术讲解</strong>：说明架构（组件化/路由/状态/请求）与技术选型。</li>
+<li><strong>问题应对</strong>：回答老师与同学提问。</li>
+<li><strong>总结反思</strong>：项目亮点、不足、改进方向。</li>
+</ol>
+<h4 id="小结-4">小结</h4>
+<p>部署用
+Nginx（配置回退）或平台；答辩展示功能、讲解架构、应对提问。</p>
+<hr />
+<h2
+id="三综合示例完整整合与部署流程">三、综合示例：完整整合与部署流程</h2>
+<h3 id="整合检查清单">整合检查清单</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />路由表完整（10 个页面 + meta + 守卫
++ 404）</label></li>
+<li><label><input type="checkbox" />三 store
+接入（user/project/app）</label></li>
+<li><label><input type="checkbox" />api 模块全部对接（Mock
+替换）</label></li>
+<li><label><input type="checkbox" />Vite proxy 配置</label></li>
+<li><label><input type="checkbox" />全部页面可运行</label></li>
+<li><label><input type="checkbox" />构建无报错</label></li>
+</ul>
+<h3 id="构建部署步骤">构建部署步骤</h3>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 确认代码无误</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run dev                 <span class="co"># 本地测试</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 构建</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build               <span class="co"># 生成 dist</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 预览检查</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run preview             <span class="co"># 预览构建结果</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. 部署</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 方式一：复制 dist 到 Nginx 静态目录，配置 try_files</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 方式二：上传到 Vercel/Netlify</span></span></code></pre></div>
+<h3 id="答辩演示流程">答辩演示流程</h3>
+<div class="visual">
+  <div class="visual-title">图示 2：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">登录 <span class="arrow-token">→</span> 项目列表 <span class="arrow-token">→</span> 任务列表 <span class="arrow-token">→</span> 任务详情 <span class="arrow-token">→</span> 成果提交 <span class="arrow-token">→</span> 评审 <span class="arrow-token">→</span> 用户管理 <span class="arrow-token">→</span> 退出</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<hr />
+<h2 id="四项目交付验收标准">四、项目交付验收标准</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>功能完整度</td>
+<td>10 个页面齐全，核心业务流程打通</td>
+</tr>
+<tr>
+<td>组件质量</td>
+<td>组件拆分合理，复用性好</td>
+</tr>
+<tr>
+<td>代码规范</td>
+<td>命名规范，结构清晰，有注释</td>
+</tr>
+<tr>
+<td>接口联调</td>
+<td>全部 api 对接，错误处理完善</td>
+</tr>
+<tr>
+<td>构建部署</td>
+<td>可构建，可部署，可访问</td>
+</tr>
+<tr>
+<td>答辩表现</td>
+<td>能清晰演示与讲解</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
+<div class="visual">
+  <div class="visual-title">图示 3：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">第 16 次课：综合项目实践二</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K16-1 路由整合（全路由表 + meta + 守卫 + 404）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K16-2 状态整合（三 store 接入页面）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K16-3 接口联调（Mock 替换真实接口）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K16-4 vite build（构建 dist + 预览）</span>
+<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K16-5 部署与答辩（Nginx/平台 + 演示）</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>路由整合</td>
+<td>全路由 + meta + 守卫</td>
+</tr>
+<tr>
+<td>状态整合</td>
+<td>三 store 接入</td>
+</tr>
+<tr>
+<td>构建</td>
+<td>npm run build → dist</td>
+</tr>
+<tr>
+<td>部署</td>
+<td>Nginx 配置 try_files</td>
+</tr>
+<tr>
+<td>答辩</td>
+<td>演示 + 讲解 + 应答</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六复习思考题">六、复习思考题</h2>
+<ol type="1">
+<li>如何整合全部路由与权限守卫？</li>
+<li>三 store 如何接入各页面？</li>
+<li><code>npm run build</code> 产物在哪？如何预览？</li>
+<li>history 模式部署后刷新 404 如何解决？</li>
+<li>项目答辩应准备哪些内容？</li>
+</ol>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

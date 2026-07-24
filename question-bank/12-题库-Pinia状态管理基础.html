@@ -1,0 +1,713 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pinia状态管理基础</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 12 次课 · 题库</div>
+      <h1>Pinia状态管理基础</h1>
+      <p>考试题库与参考解析 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 12 次课</span>
+        <span class="hero-chip"><b>主题</b>Pinia状态管理基础</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2 分）</a>
+<ul>
+<li><a href="#11-单项选择题30-题">1.1 单项选择题（30 题）</a></li>
+<li><a href="#12-多项选择题10-题">1.2 多项选择题（10 题）</a></li>
+</ul></li>
+<li><a href="#二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1 分）</a>
+<ul>
+</ul></li>
+<li><a href="#三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2 分）</a>
+<ul>
+</ul></li>
+<li><a href="#四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</a>
+<ul>
+</ul></li>
+<li><a href="#五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#题库统计与组卷说明">题库统计与组卷说明</a>
+<ul>
+<li><a href="#题量统计">题量统计</a></li>
+<li><a href="#难度分布">难度分布</a></li>
+<li><a href="#知识点覆盖">知识点覆盖</a></li>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 12 次课 <span>｜</span> <strong>文档：</strong>题库</p>
+<blockquote>
+<p>配套：<code>教学设计.md</code>、<code>教学资料.md</code>（同文件夹）
+题量：40 选择 + 20 判断 + 10 填空 + 4 论述/简答 + 2 程序阅读/补全 + 2
+编程/接口设计 = <strong>78 题</strong>
+全部含参考答案与解析；主观题另附评分标准。 难度：★ 基础 / ★★ 提高 / ★★★
+综合 ｜ 编号：<code>12-题型-序号</code></p>
+</blockquote>
+<hr />
+<h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
+分）</h2>
+<h3 id="11-单项选择题30-题">1.1 单项选择题（30 题）</h3>
+<section class="question-card"><p><strong>12-选择-001</strong>（★ 知识点：K12-1） Vue 3
+官方推荐的状态管理库是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Vuex</span></li><li><span class="option-label">B</span><span>Redux</span></li><li><span class="option-label">C</span><span>Pinia</span></li><li><span class="option-label">D</span><span>MobX</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：Pinia 是 Vue3
+官方推荐状态管理。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-002</strong>（★ 知识点：K12-1） 相比 Vuex，Pinia
+去掉了？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>state</span></li><li><span class="option-label">B</span><span>getters</span></li><li><span class="option-label">C</span><span>mutations</span></li><li><span class="option-label">D</span><span>actions</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：Pinia 无
+mutations，直接改 state。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-003</strong>（★ 知识点：K12-1） 安装 Pinia 的命令是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>npm install vuex</code></span></li><li><span class="option-label">B</span><span><code>npm install pinia</code></span></li><li><span class="option-label">C</span><span><code>npm install redux</code></span></li><li><span class="option-label">D</span><span><code>npm install store</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>npm install pinia</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-004</strong>（★ 知识点：K12-2） 定义 store 用的 API
+是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>createStore</code></span></li><li><span class="option-label">B</span><span><code>defineStore</code></span></li><li><span class="option-label">C</span><span><code>useStore</code></span></li><li><span class="option-label">D</span><span><code>new Store</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>defineStore</code> 定义 store。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-005</strong>（★ 知识点：K12-2） 在 main.js 挂载 Pinia
+用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>app.use(Vuex)</code></span></li><li><span class="option-label">B</span><span><code>app.use(createPinia())</code></span></li><li><span class="option-label">C</span><span><code>app.use(pinia)</code></span></li><li><span class="option-label">D</span><span><code>app.pinia()</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>app.use(createPinia())</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-006</strong>（★ 知识点：K12-3） Pinia 的 state
+应定义为？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>对象</span></li><li><span class="option-label">B</span><span>函数返回对象</span></li><li><span class="option-label">C</span><span>数组</span></li><li><span class="option-label">D</span><span>字符串</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：state
+用函数返回对象（保证实例独立）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-007</strong>（★ 知识点：K12-3） 组件中修改 Pinia
+state 的方式，错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>直接改 <code>store.x = 1</code></span></li><li><span class="option-label">B</span><span><code>$patch</code></span></li><li><span class="option-label">C</span><span>action</span></li><li><span class="option-label">D</span><span>通过 mutations</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：Pinia 无
+mutations。A/B/C 都可。D 错误。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-008</strong>（★ 知识点：K12-3） 解构 store 的 state
+保持响应式，应使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>storeToRefs</code></span></li><li><span class="option-label">B</span><span><code>toRefs</code></span></li><li><span class="option-label">C</span><span><code>ref</code></span></li><li><span class="option-label">D</span><span><code>reactive</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：<code>storeToRefs</code> 解构 store
+状态保持响应式。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-009</strong>（★ 知识点：K12-4） Pinia 的 getters
+类似？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>ref</span></li><li><span class="option-label">B</span><span>computed</span></li><li><span class="option-label">C</span><span>watch</span></li><li><span class="option-label">D</span><span>methods</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：getters 类似
+computed，有缓存。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-010</strong>（★ 知识点：K12-4） getters 中访问其他
+getter 用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>state</code></span></li><li><span class="option-label">B</span><span><code>this</code></span></li><li><span class="option-label">C</span><span><code>store</code></span></li><li><span class="option-label">D</span><span><code>$getters</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：getters 间互访用
+<code>this</code>（需普通函数）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-011</strong>（★ 知识点：K12-5） Pinia 的 actions
+用于？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>定义状态</span></li><li><span class="option-label">B</span><span>定义计算属性</span></li><li><span class="option-label">C</span><span>定义方法（同步/异步）</span></li><li><span class="option-label">D</span><span>定义路由</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：actions
+是方法，可同步可异步。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-012</strong>（★ 知识点：K12-5） actions 中访问 state
+用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>state</code></span></li><li><span class="option-label">B</span><span><code>this</code></span></li><li><span class="option-label">C</span><span><code>store</code></span></li><li><span class="option-label">D</span><span><code>$state</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：actions 用
+<code>this</code> 访问 state/getters。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-013</strong>（★ 知识点：K12-5） 关于
+actions，正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>不能是异步函数</span></li><li><span class="option-label">B</span><span>可以是异步函数</span></li><li><span class="option-label">C</span><span>不能修改
+state</span></li><li><span class="option-label">D</span><span>必须通过 mutations</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：actions
+可异步，直接改 state。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-014</strong>（★ 知识点：K12-2）
+<code>defineStore</code> 的第一个参数是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>状态对象</span></li><li><span class="option-label">B</span><span>store 的唯一 id</span></li><li><span class="option-label">C</span><span>组件名</span></li><li><span class="option-label">D</span><span>路径</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：第一个参数是唯一
+id。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-015</strong>（★ 知识点：K12-3） 批量修改 state 用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>$set</code></span></li><li><span class="option-label">B</span><span><code>$patch</code></span></li><li><span class="option-label">C</span><span><code>$update</code></span></li><li><span class="option-label">D</span><span><code>$change</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>$patch</code>
+批量修改 state。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-016</strong>（★ 知识点：K12-1） 关于 Pinia 与
+Vuex，正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Pinia 需要 mutations</span></li><li><span class="option-label">B</span><span>Pinia 无 mutations，直接改
+state</span></li><li><span class="option-label">C</span><span>Vuex 不需要 mutations</span></li><li><span class="option-label">D</span><span>两者完全相同</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Pinia 无 mutations。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-017</strong>（★ 知识点：K12-2） 组件中使用 store
+的写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>import store from 'pinia'</code></span></li><li><span class="option-label">B</span><span><code>const store = useXxxStore()</code></span></li><li><span class="option-label">C</span><span><code>this.$store</code></span></li><li><span class="option-label">D</span><span><code>store.xxx</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>const store = useXxxStore()</code>。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-018</strong>（★ 知识点：K12-3）
+<code>state: () =&gt; ({ count: 0 })</code> 中用函数的原因是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>语法要求</span></li><li><span class="option-label">B</span><span>保证每个 store 实例 state 独立</span></li><li><span class="option-label">C</span><span>性能更好</span></li><li><span class="option-label">D</span><span>必须用</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：函数返回新对象，保证实例独立。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-019</strong>（★ 知识点：K12-4） getters
+的特点不包括？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>有缓存</span></li><li><span class="option-label">B</span><span>依赖 state</span></li><li><span class="option-label">C</span><span>类似 computed</span></li><li><span class="option-label">D</span><span>能直接修改
+state</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：getters
+只读计算，不修改 state。D 不属于特点。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-020</strong>（★ 知识点：K12-5） 异步 action
+中发请求后更新 state，正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>用 mutations</span></li><li><span class="option-label">B</span><span>直接 this.xxx = data</span></li><li><span class="option-label">C</span><span>不能更新</span></li><li><span class="option-label">D</span><span>用 $patch 才行</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：异步 action 中直接
+<code>this.xxx = data</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-021</strong>（★★ 知识点：K12-3）
+下列解构会丢失响应式的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>const { token } = storeToRefs(userStore)</code></span></li><li><span class="option-label">B</span><span><code>const { token } = userStore</code></span></li><li><span class="option-label">C</span><span><code>const token = userStore.token</code></span></li><li><span class="option-label">D</span><span>B 和 C 都丢失</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：B/C
+直接解构/赋值丢失响应式，需 storeToRefs。D 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-022</strong>（★★ 知识点：K12-4） getters
+中用箭头函数访问其他 getter 会？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>正常</span></li><li><span class="option-label">B</span><span>this 指向错误，无法访问</span></li><li><span class="option-label">C</span><span>报错终止</span></li><li><span class="option-label">D</span><span>自动修复</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：箭头函数无
+this，访问其他 getter 应用普通函数。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-023</strong>（★★ 知识点：K12-5） actions
+用箭头函数定义会？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>正常</span></li><li><span class="option-label">B</span><span>this 指向错误，无法访问 state</span></li><li><span class="option-label">C</span><span>报错</span></li><li><span class="option-label">D</span><span>自动绑定</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：箭头函数无
+this，actions 应用普通函数。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-024</strong>（★★ 知识点：K12-3）
+<code>userStore.$patch({ token: 'a', name: 'x' })</code> 的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>只改 token</span></li><li><span class="option-label">B</span><span>批量改 token 与 name</span></li><li><span class="option-label">C</span><span>重置 state</span></li><li><span class="option-label">D</span><span>报错</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：$patch
+批量修改多个字段。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-025</strong>（★★ 知识点：K12-2） Pinia 的 store
+之间的关系是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>嵌套父子</span></li><li><span class="option-label">B</span><span>平级独立</span></li><li><span class="option-label">C</span><span>只能一个</span></li><li><span class="option-label">D</span><span>必须互相依赖</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Pinia store
+平级独立（不像 Vuex modules 嵌套）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-026</strong>（★★ 知识点：K12 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Pinia 是 Vue3 推荐</span></li><li><span class="option-label">B</span><span>无 mutations</span></li><li><span class="option-label">C</span><span>actions 可异步</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-027</strong>（★★ 知识点：K12 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>state 用函数返回对象</span></li><li><span class="option-label">B</span><span>getters 类似 computed</span></li><li><span class="option-label">C</span><span>actions 必须用箭头函数</span></li><li><span class="option-label">D</span><span>解构用 storeToRefs</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：C 错误，actions
+用普通函数。A、B、D 正确。选 C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-028</strong>（★★ 知识点：K12 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Pinia store 平级独立</span></li><li><span class="option-label">B</span><span>直接改 state 允许</span></li><li><span class="option-label">C</span><span>getters 有缓存</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-029</strong>（★★ 知识点：K12 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Pinia 需要 mutations</span></li><li><span class="option-label">B</span><span>defineStore 定义 store</span></li><li><span class="option-label">C</span><span>$patch 批量改</span></li><li><span class="option-label">D</span><span>actions 用 this</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A 错误，Pinia 无
+mutations。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-030</strong>（★★ 知识点：K12 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>state 函数返回保证实例独立</span></li><li><span class="option-label">B</span><span>getters 间用 this 互访</span></li><li><span class="option-label">C</span><span>storeToRefs
+解构保持响应式</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<h3 id="12-多项选择题10-题">1.2 多项选择题（10 题）</h3>
+<section class="question-card"><p><strong>12-选择-031</strong>（★★ 知识点：K12-1） Pinia 相比 Vuex
+的优势有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>无 mutations</span></li><li><span class="option-label">B</span><span>TS 友好</span></li><li><span class="option-label">C</span><span>store 平级独立</span></li><li><span class="option-label">D</span><span>体积更小</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项都是优势。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-032</strong>（★★ 知识点：K12-2） store
+配置包含？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>state</span></li><li><span class="option-label">B</span><span>getters</span></li><li><span class="option-label">C</span><span>actions</span></li><li><span class="option-label">D</span><span>mutations</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 是
+Pinia 配置；无 mutations。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-033</strong>（★★ 知识点：K12-3） 修改 Pinia state
+的方式有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>直接改</span></li><li><span class="option-label">B</span><span>$patch</span></li><li><span class="option-label">C</span><span>action</span></li><li><span class="option-label">D</span><span>mutations</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 可；D
+无。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-034</strong>（★★ 知识点：K12-4） 关于
+getters，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>类似 computed</span></li><li><span class="option-label">B</span><span>有缓存</span></li><li><span class="option-label">C</span><span>依赖 state</span></li><li><span class="option-label">D</span><span>能修改 state</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，只读。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-035</strong>（★★ 知识点：K12-5） 关于
+actions，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>可同步可异步</span></li><li><span class="option-label">B</span><span>用 this 访问 state</span></li><li><span class="option-label">C</span><span>用普通函数定义</span></li><li><span class="option-label">D</span><span>必须通过 mutations</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-036</strong>（★★ 知识点：K12 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>defineStore 定义 store</span></li><li><span class="option-label">B</span><span>state 函数返回</span></li><li><span class="option-label">C</span><span>storeToRefs 解构保持响应式</span></li><li><span class="option-label">D</span><span>Pinia 需 mutations</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-037</strong>（★★ 知识点：K12 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Pinia 是 Vue3 官方推荐</span></li><li><span class="option-label">B</span><span>getters 有缓存</span></li><li><span class="option-label">C</span><span>actions 可异步</span></li><li><span class="option-label">D</span><span>解构 state 不需 storeToRefs</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，需 storeToRefs。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-038</strong>（★★ 知识点：K12 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>store 平级独立</span></li><li><span class="option-label">B</span><span>$patch 批量改</span></li><li><span class="option-label">C</span><span>actions
+用普通函数</span></li><li><span class="option-label">D</span><span>getters 用箭头函数访问 this</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，箭头函数无 this。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-039</strong>（★★ 知识点：K12 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>createPinia 在 main.js 挂载</span></li><li><span class="option-label">B</span><span>state
+保证实例独立</span></li><li><span class="option-label">C</span><span>getters 间用 this</span></li><li><span class="option-label">D</span><span>mutations 必需</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-选择-040</strong>（★★ 知识点：K12 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>userStore.token 直接读</span></li><li><span class="option-label">B</span><span>userStore.$patch
+批量改</span></li><li><span class="option-label">C</span><span>storeToRefs 解构响应式</span></li><li><span class="option-label">D</span><span>actions 不能异步</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，可异步。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<h2 id="二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1
+分）</h2>
+<section class="question-card"><p><strong>12-判断-001</strong>（★）Pinia 是 Vue3 官方推荐状态管理库。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-002</strong>（★）Pinia 需要 mutations 修改 state。（
+）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：无 mutations。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-003</strong>（★）state 用函数返回对象。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-004</strong>（★）getters 类似 computed 有缓存。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-005</strong>（★）actions 可以是异步函数。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-006</strong>（★）actions 用 this 访问 state。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-007</strong>（★）解构 store 状态需 storeToRefs
+保持响应式。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-008</strong>（★）defineStore 第一个参数是唯一 id。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-009</strong>（★）Pinia store 平级独立。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-010</strong>（★）$patch 可批量修改 state。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-011</strong>（★）getters 能直接修改 state。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：只读计算。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-012</strong>（★）Pinia 直接改 state 允许。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-013</strong>（★★）actions 用箭头函数定义能正常访问
+this。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：箭头无 this。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-014</strong>（★★）getters 间互访用
+this（普通函数）。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-015</strong>（★★）<code>const { token } = userStore</code>
+解构保持响应式。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：丢失响应式。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-016</strong>（★★）Pinia 比 Vuex 更简洁。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-017</strong>（★★）createPinia 在 main.js 用 app.use
+挂载。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-018</strong>（★★）异步 action 不能修改 state。（
+）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：可修改。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-019</strong>（★★）Pinia store 嵌套父子结构。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：平级独立。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-判断-020</strong>（★★）state
+用对象而非函数也能正常工作。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：必须函数返回。</p>
+</blockquote></section>
+<hr />
+<h2 id="三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2
+分）</h2>
+<section class="question-card"><p><strong>12-填空-001</strong>（★）Vue3 官方推荐状态管理库是
+<code>________</code>。</p><blockquote>
+<p><strong>答案：Pinia</strong> <strong>解析</strong>：Pinia。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-填空-002</strong>（★）定义 store 用
+<code>define________</code>。</p><blockquote>
+<p><strong>答案：Store</strong> <strong>解析</strong>：defineStore。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-填空-003</strong>（★）Pinia 没有
+<code>________</code>（Vuex 中用于改 state 的概念）。</p><blockquote>
+<p><strong>答案：mutations</strong> <strong>解析</strong>：无
+mutations。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-填空-004</strong>（★）state 应定义为 <code>________</code>
+返回对象。</p><blockquote>
+<p><strong>答案：函数</strong> <strong>解析</strong>：函数返回。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-填空-005</strong>（★）getters 类似
+<code>________</code>（计算属性）。</p><blockquote>
+<p><strong>答案：computed</strong> <strong>解析</strong>：computed。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-填空-006</strong>（★）actions 用 <code>________</code>
+访问 state。</p><blockquote>
+<p><strong>答案：this</strong> <strong>解析</strong>：this。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-填空-007</strong>（★）解构 store 状态保持响应式用
+<code>________</code>。</p><blockquote>
+<p><strong>答案：storeToRefs</strong>
+<strong>解析</strong>：storeToRefs。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-填空-008</strong>（★）批量修改 state 用
+<code>$________</code>。</p><blockquote>
+<p><strong>答案：patch</strong> <strong>解析</strong>：$patch。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-填空-009</strong>（★）在 main.js 挂载 Pinia 用
+<code>app.use(create________())</code>。</p><blockquote>
+<p><strong>答案：Pinia</strong> <strong>解析</strong>：createPinia。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>12-填空-010</strong>（★）actions 可以是 <code>________</code>
+函数（同步或异步）。</p><blockquote>
+<p><strong>答案：异步</strong> <strong>解析</strong>：可异步。</p>
+</blockquote></section>
+<hr />
+<h2 id="四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</h2>
+<section class="question-card"><p><strong>12-论述-001</strong>（★★ 知识点：K12-1，分值：8 分）
+<strong>题目</strong>：比较 Pinia 与 Vuex，说明 Pinia 的优势。</p>
+<p><strong>要求</strong>： （1）区别（4 分）。 （2）Pinia 优势（4
+分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）区别（4 分）：Pinia 无
+mutations，直接改 state；Vuex 必须通过 mutations。Pinia store
+平级独立；Vuex 用 modules 嵌套。Pinia TS 友好；Vuex 较弱。 （2）优势（4
+分）：更简洁（无 mutations）；TS 友好；store
+平级易维护；体积更小；学习成本低。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-论述-002</strong>（★★ 知识点：K12-2/K12-3，分值：8 分）
+<strong>题目</strong>：说明 store 的定义与 state 的使用，为何 state
+用函数返回。</p>
+<p><strong>要求</strong>： （1）store 定义（3 分）。 （2）state
+使用与修改（3 分）。 （3）函数返回原因（2 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）定义（3
+分）：<code>defineStore('id', { state, getters, actions })</code>，id
+唯一。 （2）使用与修改（3 分）：组件
+<code>const store = useXxxStore()</code> 读取
+<code>store.xxx</code>；修改可直接改、$patch、action。 （3）函数返回（2
+分）：保证每个 store 实例的 state 独立，避免引用共享。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-论述-003</strong>（★★ 知识点：K12-4/K12-5，分值：8 分）
+<strong>题目</strong>：说明 getters 与 actions 的作用与注意事项。</p>
+<p><strong>要求</strong>： （1）getters 作用与注意（4 分）。
+（2）actions 作用与注意（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）getters（4 分）：基于 state
+的计算状态，有缓存，类似 computed。注意：只读不改；getter 间互访用
+this（普通函数，非箭头）。 （2）actions（4 分）：store
+的方法，可同步可异步，封装业务逻辑。注意：用 this 访问
+state；用普通函数定义（箭头无 this）；异步用 async/await。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-论述-004</strong>（★★ 知识点：K12 综合，分值：6 分）
+<strong>题目</strong>：哪些数据应该放 Pinia，哪些放组件本地？为什么解构
+store 状态要用 storeToRefs？</p>
+<p><strong>要求</strong>： （1）数据放置原则（3 分）。 （2）storeToRefs
+原因（3 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）原则（3 分）：多组件共享的放
+Pinia（用户信息/Token/全局 UI
+状态）；组件私有的放本地（组件内表单、临时状态）。 （2）storeToRefs（3
+分）：直接解构 store 状态会丢失响应式（变成普通值）；storeToRefs
+把状态转为 ref，解构后仍保持响应式。</p>
+<p><strong>评分标准</strong>：共 6 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<h2 id="五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</h2>
+<section class="question-card"><p><strong>12-程序-001</strong>（★★ 知识点：K12-2/K12-5，分值：10 分）
+<strong>题目</strong>：补全 store 定义代码空缺。</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { ______A______ } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">______B______</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({ <span class="dt">token</span><span class="op">:</span> <span class="st">&#39;&#39;</span> })<span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">actions</span><span class="op">:</span> {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">login</span>(token) {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      ______C______<span class="op">.</span><span class="at">token</span> <span class="op">=</span> token</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p><strong>要求</strong>： （1）A：导入的 API。（3 分） （2）B：定义
+store 的 API。（3 分） （3）C：actions 中访问 state 的关键字。（4
+分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>defineStore</code>（3
+分）。 （2）B = <code>defineStore</code>（3 分）。 （3）C =
+<code>this</code>（4 分）。</p>
+<p><strong>评分标准</strong>：共 10 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-程序-002</strong>（★★ 知识点：K12-3/K12-4，分值：12 分）
+<strong>题目</strong>：补全组件中使用 store 的代码空缺。</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;p&gt;Token：{{ userStore.______A______ }}&lt;/p&gt;
+  &lt;p&gt;是否登录：{{ userStore.______B______ }}&lt;/p&gt;
+  &lt;button @click=&quot;userStore.______C______(&#39;abc&#39;)&quot;&gt;登录&lt;/button&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { useUserStore } from &#39;../stores/user&#39;
+const userStore = ______D______
+&lt;/script&gt;</code></pre>
+<p>已知 store：</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>state<span class="op">:</span> () <span class="kw">=&gt;</span> ({ <span class="dt">token</span><span class="op">:</span> <span class="st">&#39;&#39;</span> })</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>getters<span class="op">:</span> { <span class="dt">isLogin</span><span class="op">:</span> (s) <span class="kw">=&gt;</span> <span class="op">!!</span>s<span class="op">.</span><span class="at">token</span> }</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>actions<span class="op">:</span> { <span class="fu">login</span>(t) { <span class="kw">this</span><span class="op">.</span><span class="at">token</span> <span class="op">=</span> t } }</span></code></pre></div>
+<p><strong>要求</strong>： （1）A：state 字段。（3 分） （2）B：getter
+名。（3 分） （3）C：action 名。（3 分） （4）D：调用 store。（3
+分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>token</code>（3 分）。
+（2）B = <code>isLogin</code>（3 分）。 （3）C = <code>login</code>（3
+分）。 （4）D = <code>useUserStore()</code>（3 分）。</p>
+<p><strong>评分标准</strong>：共 12 分，每空 3 分。</p>
+</blockquote></section>
+<hr />
+<h2 id="六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</h2>
+<section class="question-card"><p><strong>12-编程-001</strong>（★★ 知识点：K12 综合，分值：15 分）
+<strong>题目</strong>：创建一个计数器 store，含
+state（count）、getter（double，两倍）、action（increment/add），并在组件中使用。</p>
+<p><strong>要求</strong>： （1）store 定义（state/getter/action）。（7
+分） （2）组件使用（读取/调用）。（8 分）</p><blockquote>
+<p><strong>参考答案</strong>： store：</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useCounterStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;counter&#39;</span><span class="op">,</span> {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({ <span class="dt">count</span><span class="op">:</span> <span class="dv">0</span> })<span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">getters</span><span class="op">:</span> { <span class="dt">double</span><span class="op">:</span> (s) <span class="kw">=&gt;</span> s<span class="op">.</span><span class="at">count</span> <span class="op">*</span> <span class="dv">2</span> }<span class="op">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">actions</span><span class="op">:</span> {</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">increment</span>() { <span class="kw">this</span><span class="op">.</span><span class="at">count</span><span class="op">++</span> }<span class="op">,</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add</span>(n) { <span class="kw">this</span><span class="op">.</span><span class="at">count</span> <span class="op">+=</span> n }</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p>组件：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;p&gt;{{ counter.count }} / 双倍：{{ counter.double }}&lt;/p&gt;
+  &lt;button @click=&quot;counter.increment&quot;&gt;+1&lt;/button&gt;
+  &lt;button @click=&quot;counter.add(10)&quot;&gt;+10&lt;/button&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { useCounterStore } from &#39;../stores/counter&#39;
+const counter = useCounterStore()
+&lt;/script&gt;</code></pre>
+<p>评分：store 三部分（7 分）；组件读/调用（8 分）。</p>
+<p><strong>评分标准</strong>：共 15 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>12-编程-002</strong>（★★★ 知识点：K12 综合，分值：20 分）
+<strong>题目</strong>：创建 CTTS-Frontend 的 userStore，要求：</p>
+<ul>
+<li>state：token、userInfo（含 id/username/role）；</li>
+<li>getters：isLogin、username、role；</li>
+<li>actions：login（接收 token+userInfo 并存储到
+localStorage）、logout（清空并移除 localStorage）；</li>
+<li>在 Login.vue 与 Header.vue 中使用。</li>
+</ul>
+<p><strong>要求</strong>： （1）store 完整定义（state/getters/actions +
+localStorage）。（8 分） （2）Login.vue 登录调用。（6 分）
+（3）Header.vue 显示用户与退出。（6 分）</p><blockquote>
+<p><strong>参考答案</strong>：见教学资料综合示例（userStore）。
+评分：store 含三部分+localStorage（8 分）；Login 调用 await login +
+跳转（6 分）；Header 显示 username + logout（6 分）。</p>
+<p><strong>评分标准</strong>：共 20 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<h2 id="题库统计与组卷说明">题库统计与组卷说明</h2>
+<h3 id="题量统计">题量统计</h3>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>数量</th>
+<th>分值</th>
+<th>小计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择题（单选 30 + 多选 10）</td>
+<td>40</td>
+<td>每题 2 分</td>
+<td>80 分</td>
+</tr>
+<tr>
+<td>判断题</td>
+<td>20</td>
+<td>每题 1 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>填空题</td>
+<td>10</td>
+<td>每题 2 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>论述/简答题</td>
+<td>4</td>
+<td>6~8 分</td>
+<td>30 分</td>
+</tr>
+<tr>
+<td>程序阅读/补全题</td>
+<td>2</td>
+<td>10~12 分</td>
+<td>22 分</td>
+</tr>
+<tr>
+<td>编程/接口设计题</td>
+<td>2</td>
+<td>15~20 分</td>
+<td>35 分</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>78</strong></td>
+<td>—</td>
+<td><strong>207 分</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="难度分布">难度分布</h3>
+<table>
+<thead>
+<tr>
+<th>难度</th>
+<th>题量（约）</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★ 基础</td>
+<td>40</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>★★ 提高</td>
+<td>34</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>★★★ 综合</td>
+<td>4</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="知识点覆盖">知识点覆盖</h3>
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>覆盖题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K12-1 Pinia 简介</td>
+<td>12</td>
+</tr>
+<tr>
+<td>K12-2 defineStore</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K12-3 state</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K12-4 getters</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K12-5 actions</td>
+<td>14</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本题库已确保每题答案唯一明确、无歧义选项，全部含解析，主观题含评分标准，可直接录入考试系统题库。</p>
+</blockquote>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

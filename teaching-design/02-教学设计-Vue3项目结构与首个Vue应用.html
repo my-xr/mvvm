@@ -1,0 +1,454 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vue3项目结构与首个Vue应用</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 02 次课 · 教学设计</div>
+      <h1>Vue3项目结构与首个Vue应用</h1>
+      <p>教师教案与课堂组织 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 02 次课</span>
+        <span class="hero-chip"><b>主题</b>Vue3项目结构与首个Vue应用</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一课程信息">一、课程信息</a>
+<ul>
+</ul></li>
+<li><a href="#二教学目标">二、教学目标</a>
+<ul>
+<li><a href="#知识目标">知识目标</a></li>
+<li><a href="#能力目标">能力目标</a></li>
+<li><a href="#素质目标课程思政">素质目标（课程思政）</a></li>
+</ul></li>
+<li><a href="#三主要知识点纲要">三、主要知识点纲要</a>
+<ul>
+</ul></li>
+<li><a href="#四项目任务或案例任务">四、项目任务或案例任务</a>
+<ul>
+<li><a href="#贯穿项目任务ctts-frontend-首页">贯穿项目任务：CTTS-Frontend 首页</a></li>
+</ul></li>
+<li><a href="#五课堂互动设计">五、课堂互动设计</a>
+<ul>
+<li><a href="#互动-1代码阅读对比-options-api-与-composition-api">互动 1：代码阅读——对比 Options API 与 Composition API</a></li>
+<li><a href="#互动-2ref-的-value-之谜">互动 2：ref 的 .value 之谜</a></li>
+</ul></li>
+<li><a href="#六课程思政融入点">六、课程思政融入点</a>
+<ul>
+</ul></li>
+<li><a href="#七课堂练习或随堂测验">七、课堂练习或随堂测验</a>
+<ul>
+<li><a href="#随堂练习5-分钟">随堂练习（5 分钟）</a></li>
+</ul></li>
+<li><a href="#八课后任务">八、课后任务</a>
+<ul>
+</ul></li>
+<li><a href="#九对应岗位能力或面试考点">九、对应岗位能力或面试考点</a>
+<ul>
+</ul></li>
+<li><a href="#十教学资料与题库索引">十、教学资料与题库索引</a>
+<ul>
+</ul></li>
+<li><a href="#附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 02 次课 <span>｜</span> <strong>文档：</strong>教学设计</p>
+<blockquote>
+<p>所属模块：M1 前端框架认知与 Vue3 入门 ｜
+课程：《MVVM前端框架开发技术》 配套资料：见同文件夹内
+<code>教学资料.md</code>（学生复习资料）、<code>题库.md</code>（78
+题考试题库）</p>
+</blockquote>
+<hr />
+<h2 id="一课程信息">一、课程信息</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>次序</td>
+<td>第 2 次课（全课程 16 次之第 2）</td>
+</tr>
+<tr>
+<td>学时</td>
+<td>2 学时（90 分钟）</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>理论课</td>
+</tr>
+<tr>
+<td>所属模块</td>
+<td>M1 前端框架认知与 Vue3 入门</td>
+</tr>
+<tr>
+<td>教学主题</td>
+<td>Vue3 项目结构与首个 Vue 应用</td>
+</tr>
+<tr>
+<td>先修基础</td>
+<td>第 1 次课内容（前端演进、MVVM、Node.js/npm、Vite 创建项目）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="二教学目标">二、教学目标</h2>
+<h3 id="知识目标">知识目标</h3>
+<ol type="1">
+<li>掌握 Vite 创建的 Vue 3 项目目录结构与各文件职责。</li>
+<li>理解 SFC（单文件组件）的三段式结构：<code>&lt;template&gt;</code> /
+<code>&lt;script setup&gt;</code> / <code>&lt;style&gt;</code>。</li>
+<li>掌握 <code>&lt;script setup&gt;</code> 语法的特点与基本用法。</li>
+<li>初步体验响应式：理解 <code>ref</code> 的作用与 <code>.value</code>
+的使用规则。</li>
+<li>能够编写并运行一个包含静态数据与响应式交互的 Vue 页面。</li>
+</ol>
+<h3 id="能力目标">能力目标</h3>
+<ol type="1">
+<li>能够看懂并描述 Vue 3 项目的文件加载链路（index.html → main.js →
+App.vue）。</li>
+<li>能够独立编写一个 SFC 组件，正确使用三段式结构。</li>
+<li>能够使用 <code>ref</code>
+创建响应式数据并在模板中使用，实现简单的数据驱动交互。</li>
+<li>能够创建 CTTS-Frontend 首页，展示欢迎信息与静态项目列表。</li>
+</ol>
+<h3 id="素质目标课程思政">素质目标（课程思政）</h3>
+<ol type="1">
+<li>培养工程规范意识——项目结构是团队协作的基础，规范目录与文件命名是工程师的基本素养。</li>
+<li>建立"关注点分离"思维——SFC
+三段式把结构、逻辑、样式分离又聚合，体现工程美学。</li>
+<li>体会"数据驱动"的第一印象——通过 ref 体验"改数据、视图自动变"，建立
+MVVM 直觉。</li>
+</ol>
+<hr />
+<h2 id="三主要知识点纲要">三、主要知识点纲要</h2>
+<blockquote>
+<p>详细讲解内容见同文件夹 <code>教学资料.md</code>，此处为纲要。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>知识点</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K2-1</td>
+<td>Vue3 项目目录结构</td>
+<td>public/src/node_modules、package.json、vite.config.js、index.html
+的职责与加载链路</td>
+</tr>
+<tr>
+<td>K2-2</td>
+<td>SFC 单文件组件</td>
+<td><code>.vue</code>
+文件三段式：<code>&lt;template&gt;</code>（结构）/<code>&lt;script setup&gt;</code>（逻辑）/<code>&lt;style&gt;</code>（样式）</td>
+</tr>
+<tr>
+<td>K2-3</td>
+<td><code>&lt;script setup&gt;</code> 语法</td>
+<td>顶层即 setup；声明的变量/函数自动暴露给模板；无需
+return；导入即用</td>
+</tr>
+<tr>
+<td>K2-4</td>
+<td>响应式初体验 ref</td>
+<td><code>ref()</code> 创建响应式数据；JS 中用 <code>.value</code>
+访问；模板中自动解包；适合基本类型</td>
+</tr>
+<tr>
+<td>K2-5</td>
+<td>首个页面开发</td>
+<td>创建 CTTS-Frontend 首页：欢迎信息 + 静态项目列表 +
+简单交互（点击计数）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="四项目任务或案例任务">四、项目任务或案例任务</h2>
+<h3 id="贯穿项目任务ctts-frontend-首页">贯穿项目任务：CTTS-Frontend
+首页</h3>
+<p><strong>本次课任务</strong>：</p>
+<ol type="1">
+<li>在第 1 次课创建的 CTTS-Frontend
+项目基础上，理清项目结构与文件加载链路。</li>
+<li>编写 <code>App.vue</code> 作为首页，展示"CTTS-Frontend
+校园实训任务管理系统"欢迎信息。</li>
+<li>在首页用静态数据渲染一个项目列表（3~5 个实训项目），并用
+<code>ref</code> 实现一个"访问次数"计数器，体会数据驱动。</li>
+</ol>
+<p><strong>预期成果</strong>：</p>
+<ul>
+<li>浏览器显示 CTTS-Frontend 首页，含标题、项目列表、计数器按钮。</li>
+<li>点击按钮，访问次数自动 +1（无需手动操作 DOM）。</li>
+</ul>
+<blockquote>
+<p>📌 本节课开始写真正的 Vue 代码，重点是 SFC 结构与 ref
+响应式初体验，不引入组件拆分（第 7 次课讲）。</p>
+</blockquote>
+<hr />
+<h2 id="五课堂互动设计">五、课堂互动设计</h2>
+<h3 id="互动-1代码阅读对比-options-api-与-composition-api">互动
+1：代码阅读——对比 Options API 与 Composition API</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>给出功能相同的两段计数器代码（Options API vs
+<code>&lt;script setup&gt;</code>），请学生指出哪种更简洁、为什么</td>
+</tr>
+<tr>
+<td>组织方式</td>
+<td>全班对比阅读，举手发言</td>
+</tr>
+<tr>
+<td>预期学生输出</td>
+<td><code>&lt;script setup&gt;</code> 更简洁，不用写
+data/methods/return</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>引出 <code>&lt;script setup&gt;</code> 是 Composition API
+语法糖，减少样板代码；同时强调二者都能用</td>
+</tr>
+</tbody>
+</table>
+<h3 id="互动-2ref-的-value-之谜">互动 2：ref 的 <code>.value</code>
+之谜</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>"为什么 <code>ref(0)</code> 在 JS 里要写
+<code>count.value++</code>，但在模板里直接写 <code>{{ count }}</code>
+就行？"</td>
+</tr>
+<tr>
+<td>组织方式</td>
+<td>提问后给 1 分钟思考，再讲解</td>
+</tr>
+<tr>
+<td>预期学生输出</td>
+<td>学生可能猜测"模板自动处理了"</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>讲清"模板自动解包（unwrap）"机制；JS 中 ref 是对象
+<code>{value: x}</code>，必须 <code>.value</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六课程思政融入点">六、课程思政融入点</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>融入点</td>
+<td>项目目录与文件命名规范——看似琐碎，实则是团队协作的基石</td>
+</tr>
+<tr>
+<td>技术关联</td>
+<td>Vue 项目约定俗成的目录结构（src/components、src/assets 等）让任何
+Vue 工程师都能快速接手项目</td>
+</tr>
+<tr>
+<td>引导问题</td>
+<td>"如果每个人随便命名文件夹和文件，新人接手项目会多痛苦？规范带来什么价值？"</td>
+</tr>
+<tr>
+<td>预期价值目标</td>
+<td>树立工程规范意识，体会"约定优于配置"的工程哲学</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="七课堂练习或随堂测验">七、课堂练习或随堂测验</h2>
+<h3 id="随堂练习5-分钟">随堂练习（5 分钟）</h3>
+<p><strong>判断题（口头快速作答）</strong>：</p>
+<ol type="1">
+<li><code>.vue</code> 文件必须包含
+<code>&lt;template&gt;</code>、<code>&lt;script&gt;</code>、<code>&lt;style&gt;</code>
+三段，缺一不可。（✗）</li>
+<li><code>&lt;script setup&gt;</code>
+中声明的变量可以直接在模板中使用，无需 return。（✓）</li>
+<li><code>ref</code> 创建的数据在 JavaScript 中通过 <code>.value</code>
+访问。（✓）</li>
+<li><code>index.html</code> 是 Vue 项目的 JS 入口文件。（✗）</li>
+</ol>
+<blockquote>
+<p>详细题目与解析见
+<code>题库.md</code>。此处仅作课堂快速互动，不计分。</p>
+</blockquote>
+<hr />
+<h2 id="八课后任务">八、课后任务</h2>
+<ol type="1">
+<li><strong>阅读</strong>：通读同文件夹
+<code>教学资料.md</code>，重点掌握项目结构、SFC
+三段式、<code>&lt;script setup&gt;</code>、ref。</li>
+<li><strong>动手</strong>：在 CTTS-Frontend
+首页基础上，把项目列表数据改为 <code>ref</code>
+包装的数组，并增加一个"重置"按钮把列表恢复初始状态。</li>
+<li><strong>思考</strong>：用 200
+字描述"<code>&lt;script setup&gt;</code> 相比 Options API
+的优势"，下次课抽查。</li>
+<li><strong>预习</strong>：浏览 Vue 官方文档"模板语法"章节，为第 3
+次课做准备。</li>
+</ol>
+<hr />
+<h2 id="九对应岗位能力或面试考点">九、对应岗位能力或面试考点</h2>
+<table>
+<thead>
+<tr>
+<th>岗位能力/面试考点</th>
+<th>本次课对应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>看懂前端项目结构与入口链路（协作基础）</td>
+<td>K2-1</td>
+</tr>
+<tr>
+<td>编写标准 SFC 组件（前端工程师日常）</td>
+<td>K2-2、K2-3</td>
+</tr>
+<tr>
+<td>理解 <code>&lt;script setup&gt;</code> 与 Options API
+区别（面试高频）</td>
+<td>K2-3</td>
+</tr>
+<tr>
+<td>ref 与 .value 的使用规则（面试常考易错点）</td>
+<td>K2-4</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="十教学资料与题库索引">十、教学资料与题库索引</h2>
+<table>
+<thead>
+<tr>
+<th>资料类型</th>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学生复习资料</td>
+<td><code>教学资料.md</code>（同文件夹）</td>
+<td>5 个知识点详解 + CTTS-Frontend 首页综合示例 + 知识结构图 +
+复习思考题</td>
+</tr>
+<tr>
+<td>考试题库</td>
+<td><code>题库.md</code>（同文件夹）</td>
+<td>78 题，含答案解析与评分标准</td>
+</tr>
+<tr>
+<td>课程总览</td>
+<td><code>../00 课程设计总览.md</code></td>
+<td>课程整体框架与 16 次课进度</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</h2>
+<table>
+<thead>
+<tr>
+<th>时段</th>
+<th>内容</th>
+<th>时长</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0~10 min</td>
+<td>回顾第 1 次课 + 项目结构 K2-1</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>10~35 min</td>
+<td>K2-2 SFC 三段式 + K2-3 <code>&lt;script setup&gt;</code> + 互动
+1</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td>35~55 min</td>
+<td>K2-4 ref 响应式初体验 + 互动 2</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>55~80 min</td>
+<td>K2-5 开发 CTTS-Frontend 首页（动手）</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td>80~85 min</td>
+<td>随堂练习</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>85~90 min</td>
+<td>小结 + 课后任务</td>
+<td>5 min</td>
+</tr>
+</tbody>
+</table>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

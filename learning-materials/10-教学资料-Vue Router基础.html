@@ -1,0 +1,484 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vue Router基础</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 10 次课 · 教学资料</div>
+      <h1>Vue Router基础</h1>
+      <p>学生复习资料与代码示例 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 10 次课</span>
+        <span class="hero-chip"><b>主题</b>Vue Router基础</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一学习导读">一、学习导读</a>
+<ul>
+<li><a href="#11-本节定位">1.1 本节定位</a></li>
+<li><a href="#12-先修基础">1.2 先修基础</a></li>
+<li><a href="#13-学习目标">1.3 学习目标</a></li>
+</ul></li>
+<li><a href="#二知识点详解">二、知识点详解</a>
+<ul>
+<li><a href="#知识点-k10-1路由概念与安装">知识点 K10-1：路由概念与安装</a></li>
+<li><a href="#知识点-k10-2路由配置与组件">知识点 K10-2：路由配置与组件</a></li>
+<li><a href="#知识点-k10-3userouter-与-useroute">知识点 K10-3：useRouter 与 useRoute</a></li>
+<li><a href="#知识点-k10-4动态路由与参数">知识点 K10-4：动态路由与参数</a></li>
+<li><a href="#知识点-k10-5嵌套路由">知识点 K10-5：嵌套路由</a></li>
+</ul></li>
+<li><a href="#三综合示例ctts-frontend-路由配置">三、综合示例：CTTS-Frontend 路由配置</a>
+<ul>
+</ul></li>
+<li><a href="#四拓展阅读选学">四、拓展阅读（选学）</a>
+<ul>
+</ul></li>
+<li><a href="#五本节小结与知识结构图">五、本节小结与知识结构图</a>
+<ul>
+</ul></li>
+<li><a href="#六复习思考题">六、复习思考题</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 10 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
+<blockquote>
+<p>学生复习资料 ｜
+配套：<code>教学设计.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一学习导读">一、学习导读</h2>
+<h3 id="11-本节定位">1.1 本节定位</h3>
+<p>本节学习 Vue Router 4，实现 SPA
+多页面导航，是前端应用的核心能力。</p>
+<h3 id="12-先修基础">1.2 先修基础</h3>
+<table>
+<thead>
+<tr>
+<th>先修知识</th>
+<th>程度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 2~9 次课</td>
+<td>必须</td>
+<td>组件化、组件库</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-学习目标">1.3 学习目标</h3>
+<ul>
+<li>✅ 掌握 Router 安装与配置</li>
+<li>✅ 掌握 router-view/router-link</li>
+<li>✅ 掌握 useRouter/useRoute</li>
+<li>✅ 掌握动态路由与嵌套路由</li>
+</ul>
+<hr />
+<h2 id="二知识点详解">二、知识点详解</h2>
+<h3 id="知识点-k10-1路由概念与安装">知识点 K10-1：路由概念与安装</h3>
+<h4 id="定义">定义</h4>
+<p><strong>前端路由</strong>是 SPA（单页应用）中不刷新页面、通过 JS
+切换页面内容的机制。Vue Router 是 Vue 官方路由库，当前版本 Vue Router
+4。</p>
+<h4 id="hash-与-history-模式">hash 与 history 模式</h4>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>URL 形式</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hash</td>
+<td><code>http://x.com/#/projects</code></td>
+<td>带 #，兼容好，无需服务器配置</td>
+</tr>
+<tr>
+<td>history</td>
+<td><code>http://x.com/projects</code></td>
+<td>干净，需服务器配置回退到 index.html</td>
+</tr>
+</tbody>
+</table>
+<h4 id="安装">安装</h4>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install vue-router</span></code></pre></div>
+<h4 id="创建路由">创建路由</h4>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/router/index.js</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createRouter<span class="op">,</span> createWebHistory } <span class="im">from</span> <span class="st">&#39;vue-router&#39;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Home <span class="im">from</span> <span class="st">&#39;../views/Home.vue&#39;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> Home }<span class="op">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/about&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/About.vue&#39;</span>) }   <span class="co">// 懒加载</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> <span class="fu">createRouter</span>({</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">history</span><span class="op">:</span> <span class="fu">createWebHistory</span>()<span class="op">,</span>   <span class="co">// history 模式；hash 用 createWebHashHistory()</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  routes</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> router</span></code></pre></div>
+<h4 id="挂载到应用">挂载到应用</h4>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/main.js</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createApp } <span class="im">from</span> <span class="st">&#39;vue&#39;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> App <span class="im">from</span> <span class="st">&#39;./App.vue&#39;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> router <span class="im">from</span> <span class="st">&#39;./router&#39;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">createApp</span>(App)<span class="op">.</span><span class="fu">use</span>(router)<span class="op">.</span><span class="fu">mount</span>(<span class="st">&#39;#app&#39;</span>)</span></code></pre></div>
+<h4 id="易错点">易错点</h4>
+<ul>
+<li><strong>history 模式部署 404</strong>：服务器需配置所有路径回退到
+index.html。</li>
+<li><strong>忘在 main.js 挂载 router</strong>：<code>.use(router)</code>
+不能少。</li>
+</ul>
+<h4 id="小结">小结</h4>
+<p>Vue Router 4 用 createRouter 创建，createWebHistory 选模式；在
+main.js <code>.use(router)</code> 挂载。</p>
+<hr />
+<h3 id="知识点-k10-2路由配置与组件">知识点 K10-2：路由配置与组件</h3>
+<h4 id="定义-1">定义</h4>
+<p>路由配置用 <code>routes</code> 数组，每项含
+<code>path</code>（路径）与
+<code>component</code>（组件）。<code>&lt;router-view&gt;</code>
+是路由出口，<code>&lt;router-link&gt;</code> 是导航链接。</p>
+<h4 id="用法">用法</h4>
+<pre class="vue"><code>&lt;!-- App.vue --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;nav&gt;
+      &lt;router-link to=&quot;/&quot;&gt;首页&lt;/router-link&gt;
+      &lt;router-link to=&quot;/about&quot;&gt;关于&lt;/router-link&gt;
+    &lt;/nav&gt;
+    &lt;router-view /&gt;        &lt;!-- 路由匹配的组件在此渲染 --&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+<h4 id="router-link-属性">router-link 属性</h4>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>to</code></td>
+<td>目标路径（字符串或对象）</td>
+</tr>
+<tr>
+<td><code>active-class</code></td>
+<td>激活时的 class</td>
+</tr>
+<tr>
+<td><code>replace</code></td>
+<td>替换历史记录（不留下返回记录）</td>
+</tr>
+</tbody>
+</table>
+<pre class="vue"><code>&lt;router-link to=&quot;/projects&quot;&gt;项目&lt;/router-link&gt;
+&lt;router-link :to=&quot;{ path: &#39;/user&#39;, query: { id: 1 } }&quot;&gt;用户&lt;/router-link&gt;</code></pre>
+<h4 id="路由懒加载">路由懒加载</h4>
+<p><code>component: () =&gt; import('./X.vue')</code>
+按需加载，减小首屏体积。</p>
+<h4 id="易错点-1">易错点</h4>
+<ul>
+<li><strong>忘写
+<code>&lt;router-view&gt;</code></strong>：路由匹配的组件无处渲染。</li>
+<li><strong>path 不以 / 开头</strong>：除相对嵌套外，path 应以 /
+开头。</li>
+</ul>
+<h4 id="小结-1">小结</h4>
+<p>routes 配置 path+component；<code>&lt;router-view&gt;</code>
+是出口；<code>&lt;router-link to&gt;</code> 导航；大组件懒加载。</p>
+<hr />
+<h3 id="知识点-k10-3userouter-与-useroute">知识点 K10-3：useRouter 与
+useRoute</h3>
+<h4 id="定义-2">定义</h4>
+<ul>
+<li><strong><code>useRouter</code></strong>：获取路由实例，用于编程式导航（push/replace/go）。</li>
+<li><strong><code>useRoute</code></strong>：获取当前路由信息（params/query/path
+等）。</li>
+</ul>
+<h4 id="用法-1">用法</h4>
+<pre class="vue"><code>&lt;script setup&gt;
+import { useRouter, useRoute } from &#39;vue-router&#39;
+const router = useRouter()
+const route = useRoute()
+
+const goProjects = () =&gt; {
+  router.push(&#39;/projects&#39;)                       // 字符串
+  router.push({ path: &#39;/user&#39;, query: { id: 1 } })  // 对象
+}
+
+const showInfo = () =&gt; {
+  console.log(route.path)          // 当前路径
+  console.log(route.params.id)     // 动态参数
+  console.log(route.query.keyword) // 查询参数
+}
+&lt;/script&gt;</code></pre>
+<h4 id="push-vs-replace">push vs replace</h4>
+<ul>
+<li><code>push</code>：压入历史，可返回。</li>
+<li><code>replace</code>：替换历史，不可返回。</li>
+</ul>
+<h4 id="易错点-2">易错点</h4>
+<ul>
+<li><strong>混淆 useRouter 与 useRoute</strong>：useRouter
+用于导航（动作），useRoute 用于获取信息（数据）。</li>
+<li><strong>在 setup 外使用</strong>：useRouter/useRoute 必须在 setup
+或组件内调用。</li>
+</ul>
+<h4 id="小结-2">小结</h4>
+<p>useRouter 做编程式导航（push/replace）；useRoute
+获取当前路由信息（params/query）。</p>
+<hr />
+<h3 id="知识点-k10-4动态路由与参数">知识点 K10-4：动态路由与参数</h3>
+<h4 id="定义-3">定义</h4>
+<p><strong>动态路由</strong>用 <code>:参数名</code> 匹配 URL 片段，如
+<code>/tasks/:id</code> 匹配 <code>/tasks/5</code>，参数通过
+<code>route.params.id</code> 获取。</p>
+<h4 id="用法-2">用法</h4>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/tasks/:id&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> TaskDetail<span class="op">,</span> <span class="dt">props</span><span class="op">:</span> <span class="kw">true</span> }   <span class="co">// props:true 把 params 作为 props</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+<pre class="vue"><code>&lt;!-- TaskDetail.vue --&gt;
+&lt;template&gt;
+  &lt;p&gt;任务 ID：{{ $route.params.id }}&lt;/p&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { useRoute } from &#39;vue-router&#39;
+const route = useRoute()
+console.log(route.params.id)
+&lt;/script&gt;</code></pre>
+<h4 id="props-传参推荐">props 传参（推荐）</h4>
+<p><code>props: true</code> 让路由参数作为组件 props
+传入，组件与路由解耦：</p>
+<pre class="vue"><code>&lt;script setup&gt;
+defineProps([&#39;id&#39;])   // 直接接收，不依赖 $route
+&lt;/script&gt;
+&lt;template&gt;
+  &lt;p&gt;任务 ID：{{ id }}&lt;/p&gt;
+&lt;/template&gt;</code></pre>
+<h4 id="易错点-3">易错点</h4>
+<ul>
+<li><strong>参数名不一致</strong>：路由定义 <code>:id</code>，获取应用
+<code>route.params.id</code>。</li>
+<li><strong>多个动态段</strong>：<code>/users/:userId/posts/:postId</code>，分别取
+<code>params.userId</code>、<code>params.postId</code>。</li>
+</ul>
+<h4 id="小结-3">小结</h4>
+<p>动态路由 <code>:参数名</code> 匹配 URL；<code>route.params</code>
+获取；<code>props: true</code> 解耦传参。</p>
+<hr />
+<h3 id="知识点-k10-5嵌套路由">知识点 K10-5：嵌套路由</h3>
+<h4 id="定义-4">定义</h4>
+<p><strong>嵌套路由</strong>用 <code>children</code>
+配置子路由，在父组件内用子 <code>&lt;router-view&gt;</code>
+渲染，适合主从结构（如用户中心下有资料/密码子页）。</p>
+<h4 id="用法-3">用法</h4>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/user&#39;</span><span class="op">,</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">component</span><span class="op">:</span> UserLayout<span class="op">,</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">children</span><span class="op">:</span> [</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> UserProfile }<span class="op">,</span>                 <span class="co">// /user</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;profile&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> UserProfile }<span class="op">,</span>           <span class="co">// /user/profile</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;password&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> ChangePassword }        <span class="co">// /user/password</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+<pre class="vue"><code>&lt;!-- UserLayout.vue --&gt;
+&lt;template&gt;
+  &lt;div class=&quot;user-layout&quot;&gt;
+    &lt;nav&gt;
+      &lt;router-link to=&quot;/user/profile&quot;&gt;资料&lt;/router-link&gt;
+      &lt;router-link to=&quot;/user/password&quot;&gt;密码&lt;/router-link&gt;
+    &lt;/nav&gt;
+    &lt;router-view /&gt;          &lt;!-- 子路由渲染处 --&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+<h4 id="路径拼接规则">路径拼接规则</h4>
+<ul>
+<li>子路由 path 以 <code>/</code> 开头：绝对路径，不与父拼接。</li>
+<li>子路由 path 不以 <code>/</code> 开头：相对，拼接父 path（如父
+<code>/user</code> + 子 <code>profile</code> =
+<code>/user/profile</code>）。</li>
+</ul>
+<h4 id="易错点-4">易错点</h4>
+<ul>
+<li><strong>忘在父组件写子
+<code>&lt;router-view&gt;</code></strong>：子路由无处渲染。</li>
+<li><strong>子 path 加了 <code>/</code> 但想拼接</strong>：以 /
+开头是绝对路径，不拼接。</li>
+</ul>
+<h4 id="小结-4">小结</h4>
+<p>嵌套路由用 <code>children</code>，父组件内放子
+<code>&lt;router-view&gt;</code>；子 path 不以 / 开头则与父拼接。</p>
+<hr />
+<h2 id="三综合示例ctts-frontend-路由配置">三、综合示例：CTTS-Frontend
+路由配置</h2>
+<p><strong>src/router/index.js</strong>：</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createRouter<span class="op">,</span> createWebHistory } <span class="im">from</span> <span class="st">&#39;vue-router&#39;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Layout <span class="im">from</span> <span class="st">&#39;../views/Layout.vue&#39;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/&#39;</span><span class="op">,</span> <span class="dt">redirect</span><span class="op">:</span> <span class="st">&#39;/projects&#39;</span> }<span class="op">,</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/login&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/Login.vue&#39;</span>) }<span class="op">,</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/&#39;</span><span class="op">,</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">component</span><span class="op">:</span> Layout<span class="op">,</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">children</span><span class="op">:</span> [</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;projects&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/Projects.vue&#39;</span>) }<span class="op">,</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;tasks/:id&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/TaskDetail.vue&#39;</span>)<span class="op">,</span> <span class="dt">props</span><span class="op">:</span> <span class="kw">true</span> }<span class="op">,</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;user&#39;</span><span class="op">,</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/User.vue&#39;</span>)<span class="op">,</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        <span class="dt">children</span><span class="op">:</span> [</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>          { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;profile&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/UserProfile.vue&#39;</span>) }<span class="op">,</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>          { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;password&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/ChangePassword.vue&#39;</span>) }</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> <span class="fu">createRouter</span>({</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  <span class="dt">history</span><span class="op">:</span> <span class="fu">createWebHistory</span>()<span class="op">,</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  routes</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> router</span></code></pre></div>
+<p><strong>Layout.vue（含导航与子 router-view）</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div class=&quot;layout&quot;&gt;
+    &lt;nav&gt;
+      &lt;router-link to=&quot;/projects&quot;&gt;项目&lt;/router-link&gt;
+      &lt;router-link to=&quot;/user/profile&quot;&gt;个人中心&lt;/router-link&gt;
+    &lt;/nav&gt;
+    &lt;router-view /&gt;      &lt;!-- 子页面渲染 --&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+<p><strong>TaskDetail.vue（动态路由 + props）</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;p&gt;任务详情，ID = {{ id }}&lt;/p&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+defineProps([&#39;id&#39;])   // 通过 props:true 接收动态参数
+&lt;/script&gt;</code></pre>
+<p><strong>main.js</strong>：</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createApp } <span class="im">from</span> <span class="st">&#39;vue&#39;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> App <span class="im">from</span> <span class="st">&#39;./App.vue&#39;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> router <span class="im">from</span> <span class="st">&#39;./router&#39;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">createApp</span>(App)<span class="op">.</span><span class="fu">use</span>(router)<span class="op">.</span><span class="fu">mount</span>(<span class="st">&#39;#app&#39;</span>)</span></code></pre></div>
+<p><strong>App.vue</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;router-view /&gt;
+&lt;/template&gt;</code></pre>
+<p><strong>运行方式</strong>：创建对应 views
+组件，<code>npm run dev</code>，访问
+<code>/projects</code>、<code>/tasks/5</code>、<code>/user/profile</code>
+等路径，页面切换不刷新。</p>
+<hr />
+<h2 id="四拓展阅读选学">四、拓展阅读（选学）</h2>
+<ol type="1">
+<li><strong>导航守卫</strong>（beforeEach）：第 11 次课详讲。</li>
+<li><strong>路由元信息 meta</strong>：第 11 次课讲权限控制。</li>
+<li><strong>路由懒加载分组</strong>：<code>import(/* webpackChunkName */ './X.vue')</code>。</li>
+</ol>
+<hr />
+<h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
+<div class="visual">
+  <div class="visual-title">图示 1：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">第 10 次课：Vue Router 基础</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K10-1 概念与安装（SPA 路由，hash/history，createRouter）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K10-2 配置与组件（routes，router-view，router-link，懒加载）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K10-3 useRouter/useRoute（编程式导航，获取参数）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K10-4 动态路由（:id，route.params，props:true）</span>
+<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K10-5 嵌套路由（children，子 router-view，路径拼接）</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建</td>
+<td>createRouter + createWebHistory</td>
+</tr>
+<tr>
+<td>出口</td>
+<td><code>&lt;router-view&gt;</code></td>
+</tr>
+<tr>
+<td>导航</td>
+<td><code>&lt;router-link to&gt;</code> / router.push</td>
+</tr>
+<tr>
+<td>获取信息</td>
+<td>useRoute（params/query）</td>
+</tr>
+<tr>
+<td>动态路由</td>
+<td><code>:id</code> + props:true</td>
+</tr>
+<tr>
+<td>嵌套</td>
+<td>children + 子 router-view</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六复习思考题">六、复习思考题</h2>
+<ol type="1">
+<li>前端路由与后端路由的区别？SPA 如何实现页面切换？</li>
+<li>hash 与 history 模式的区别？如何选择？</li>
+<li>useRouter 与 useRoute 的区别？</li>
+<li>动态路由如何定义与获取参数？props:true 有何好处？</li>
+<li>嵌套路由如何配置？子 path 拼接规则是什么？</li>
+</ol>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

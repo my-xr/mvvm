@@ -1,0 +1,1519 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="pandoc">
+  <title>前端框架认知与 Vue3 开发环境搭建</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+<button class="toc-float-toggle" type="button" aria-label="显示目录" title="显示目录">目录</button>
+  <header class="hero">
+  <div class="hero-inner">
+    <div class="course-name">MVVM前端框架开发技术</div>
+    <div class="kicker">第 1 次课 · 题库</div>
+    <h1>前端框架认知与 Vue3 开发环境搭建</h1>
+    <p>围绕 Vue 3、MVVM 思想与前端工程化环境，建立从框架认知到项目启动的第一步能力。</p>
+    <div class="hero-meta">
+      <span class="hero-chip"><b>课程</b> MVVM前端框架开发技术</span>
+      <span class="hero-chip"><b>次课</b> 01</span>
+      <span class="hero-chip"><b>文档</b> 题库</span>
+      <span class="hero-chip"><b>技术线</b> Vue 3 + Vite</span>
+    </div>
+  </div>
+</header>
+  <div class="layout"><aside class="sidebar"><div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button" aria-label="隐藏目录" title="隐藏/显示目录">收起</button></div><ul>
+<li><a href="#一选择题共-40-题每题-2-分"
+id="toc-一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2 分）</a>
+<ul>
+<li><a href="#单项选择题30-题" id="toc-单项选择题30-题">1.1
+单项选择题（30 题）</a></li>
+<li><a href="#多项选择题10-题" id="toc-多项选择题10-题">1.2
+多项选择题（10 题）</a></li>
+</ul></li>
+<li><a href="#二判断题共-20-题每题-1-分"
+id="toc-二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1
+分）</a></li>
+<li><a href="#三填空题共-10-题每题-2-分"
+id="toc-三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2
+分）</a></li>
+<li><a href="#四论述-简答题共-4-题"
+id="toc-四论述-简答题共-4-题">四、论述 / 简答题（共 4 题）</a></li>
+<li><a href="#五程序阅读-补全题共-2-题"
+id="toc-五程序阅读-补全题共-2-题">五、程序阅读 / 补全题（共 2
+题）</a></li>
+<li><a href="#六编程-接口设计题共-2-题"
+id="toc-六编程-接口设计题共-2-题">六、编程 / 接口设计题（共 2
+题）</a></li>
+<li><a href="#题库统计与组卷说明"
+id="toc-题库统计与组卷说明">题库统计与组卷说明</a>
+<ul>
+<li><a href="#题量统计" id="toc-题量统计">题量统计</a></li>
+<li><a href="#难度分布" id="toc-难度分布">难度分布</a></li>
+<li><a href="#知识点覆盖" id="toc-知识点覆盖">知识点覆盖</a></li>
+</ul></li>
+</ul></aside><main class="content"><article class="article"><p class="doc-meta">
+文档类型：题库 ｜ 来源：<code>题库.md</code> ｜ 次课编号：01
+</p>
+<blockquote>
+<p>配套：<code>教学设计.md</code>、<code>教学资料.md</code>（同文件夹）
+题量：40 选择 + 20 判断 + 10 填空 + 4 论述/简答 + 2 程序阅读/补全 + 2
+编程/接口设计 = <strong>78 题</strong>
+全部题目含参考答案与解析；主观题（论述/简答、程序阅读/补全、编程/接口设计）另附评分标准。
+难度标注：★ 基础 / ★★ 提高 / ★★★ 综合
+题目编号规则：<code>01-题型-序号</code></p>
+</blockquote>
+<hr />
+<h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
+分）</h2>
+<h3 id="单项选择题30-题">1.1 单项选择题（30 题）</h3>
+<div class="question-card">
+<p><strong>01-选择-001</strong>（★ 知识点：K1-1 前端演进）
+前端开发演进的正确顺序是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> jQuery → 原生 JS → MVVM
+框架</li>
+<li><span class="option-label">B</span> 原生 JS → MVVM 框架 →
+jQuery</li>
+<li><span class="option-label">C</span> 原生 JS → jQuery → MVVM
+框架</li>
+<li><span class="option-label">D</span> MVVM 框架 → jQuery → 原生
+JS</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：前端演进顺序为”原生
+JS → jQuery（封装 DOM）→ MVVM
+框架（数据驱动）“。驱动演进的根本动力是前端复杂度上升。C 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-002</strong>（★ 知识点：K1-1 前端演进）
+驱动前端从”原生 JS 操作 DOM”演进到”使用框架”的根本动力是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> 浏览器版本升级</li>
+<li><span class="option-label">B</span> 前端应用复杂度不断上升</li>
+<li><span class="option-label">C</span> JavaScript 语法更新</li>
+<li><span class="option-label">D</span> HTML 标准变化</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：随页面交互复杂度上升，直接操作 DOM
+越发力不从心，才催生了封装（jQuery）和框架（MVVM）。根本动力是复杂度上升，B
+正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-003</strong>（★ 知识点：K1-1 前端演进） 下列关于
+jQuery 的说法，正确的是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> jQuery 是一个 MVVM 框架</li>
+<li><span class="option-label">B</span> jQuery 实现了数据双向绑定</li>
+<li><span class="option-label">C</span> jQuery 封装了 DOM
+操作，但本质仍是命令式</li>
+<li><span class="option-label">D</span> jQuery
+已经完全被淘汰，无人使用</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：jQuery 只是封装了 DOM
+操作，仍是命令式，没有数据驱动与双向绑定，不是 MVVM
+框架。它也未被完全淘汰，简单页面仍适用。C 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-004</strong>（★ 知识点：K1-2 MVVM） MVVM 中，“M”
+代表的是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> Manager</li>
+<li><span class="option-label">B</span> Model</li>
+<li><span class="option-label">C</span> Module</li>
+<li><span class="option-label">D</span> Method</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：MVVM =
+Model-View-ViewModel，M 代表 Model（模型/数据）。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-005</strong>（★ 知识点：K1-2 MVVM） 在 MVVM
+架构中，连接 Model 与 View 的桥梁是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> Controller</li>
+<li><span class="option-label">B</span> Router</li>
+<li><span class="option-label">C</span> ViewModel</li>
+<li><span class="option-label">D</span> Service</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：MVVM 中 ViewModel 是 Model 与 View 之间的桥梁，负责数据绑定、事件处理与自动同步。Controller 是 MVC 的概念。C 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-006</strong>（★ 知识点：K1-2 MVVM）
+在 MVVM 中，ViewModel 最核心的作用是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> 强制所有数据只能单向流动</li>
+<li><span class="option-label">B</span> 在数据和视图之间建立绑定关系，并处理交互同步</li>
+<li><span class="option-label">C</span> 提供依赖注入容器</li>
+<li><span class="option-label">D</span> 实现控制反转</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：ViewModel 负责连接 Model 与 View。数据变化时驱动视图更新；用户输入或触发事件时，再由 ViewModel 更新数据。Vue 中表单双向绑定通常通过 <code>v-model</code> 实现，但并不表示所有数据都必须双向同步。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-007</strong>（★ 知识点：K1-2 MVVM） 在 MVVM
+中，开发者的主要工作变为？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> 手动操作 DOM 更新视图</li>
+<li><span class="option-label">B</span> 操作
+Model（数据），由框架自动更新视图</li>
+<li><span class="option-label">C</span> 编写 SQL 语句</li>
+<li><span class="option-label">D</span> 配置服务器</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：MVVM
+让开发者聚焦于数据（Model），视图由框架自动维护，无需手动操作
+DOM。这是与原生 JS 的本质区别。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-008</strong>（★ 知识点：K1-2 MVVM） 在 Vue 中，承担
+ViewModel 角色的是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> HTML 文件</li>
+<li><span class="option-label">B</span> Vue 实例/组件本身</li>
+<li><span class="option-label">C</span> 浏览器</li>
+<li><span class="option-label">D</span> Node.js</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：在 Vue 中，Vue
+实例/组件本身就是
+ViewModel，负责把数据与视图绑定起来。<code>&lt;script setup&gt;</code>
+里的响应式数据是 Model，<code>&lt;template&gt;</code> 是 View。B
+正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-009</strong>（★ 知识点：K1-3 Vue3） Vue
+框架的创建者是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> Jordan Walke</li>
+<li><span class="option-label">B</span> 尤雨溪（Evan You）</li>
+<li><span class="option-label">C</span> Misko Hevery</li>
+<li><span class="option-label">D</span> Dan Abramov</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vue
+由华人尤雨溪（Evan You）于 2014 年创建。Jordan Walke 创建了 React；Misko
+Hevery 创建了 Angular；Dan Abramov 是 Redux/React 核心贡献者。B
+正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-010</strong>（★ 知识点：K1-3 Vue3） Vue 3 推荐使用的
+API 风格是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> Options API</li>
+<li><span class="option-label">B</span> Composition API</li>
+<li><span class="option-label">C</span> Class API</li>
+<li><span class="option-label">D</span> Hooks API</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vue 3 推荐
+Composition API（配合
+<code>&lt;script setup&gt;</code>），把相关逻辑聚合，便于复用。Options
+API 仍支持但是 Vue 2 风格。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-011</strong>（★ 知识点：K1-3 Vue3） Vue 3
+用于实现响应式的底层技术是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span>
+<code>Object.defineProperty</code></li>
+<li><span class="option-label">B</span> <code>Proxy</code></li>
+<li><span class="option-label">C</span> <code>Reflect.set</code></li>
+<li><span class="option-label">D</span>
+<code>MutationObserver</code></li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vue 3 用 ES6
+<code>Proxy</code> 替代 Vue 2 的 <code>Object.defineProperty</code>
+实现响应式，能监测属性增删，性能更好。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-012</strong>（★ 知识点：K1-3 Vue3） 下列哪一项不是
+Vue 3 相比 Vue 2 的改进？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> 引入 Composition API</li>
+<li><span class="option-label">B</span> 用 Proxy 实现响应式</li>
+<li><span class="option-label">C</span> 包体积更小、性能提升</li>
+<li><span class="option-label">D</span> 移除了对单文件组件的支持</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：Vue 3
+仍支持单文件组件（SFC），并未移除。A、B、C 都是 Vue 3 的真实改进。D
+错误，故选 D。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-013</strong>（★ 知识点：K1-4 Node.js） 关于
+Node.js，下列说法正确的是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> Node.js 是一个浏览器</li>
+<li><span class="option-label">B</span> Node.js 是一个 JavaScript
+运行时</li>
+<li><span class="option-label">C</span> Node.js 是一个前端 UI 库</li>
+<li><span class="option-label">D</span> Node.js 只能用来写 CSS</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Node.js 是基于 V8
+引擎的 JavaScript 运行时，让 JS
+能脱离浏览器在本机/服务器运行。它不是浏览器，也不是 UI 库。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-014</strong>（★ 知识点：K1-4 Node.js）
+在前端开发中，安装 Node.js 的主要目的是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> 用它来操作 DOM</li>
+<li><span class="option-label">B</span> 运行前端工程化工具（如
+Vite）</li>
+<li><span class="option-label">C</span> 替代浏览器查看网页</li>
+<li><span class="option-label">D</span> 编写 HTML 标签</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：前端装 Node.js
+主要是为了运行 Vite、Webpack 等工程化工具及使用 npm 管理依赖。Node.js
+没有 DOM 环境，不能操作 DOM。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-015</strong>（★ 知识点：K1-4 npm） npm 的全称是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> Node Project Manager</li>
+<li><span class="option-label">B</span> Node Package Manager</li>
+<li><span class="option-label">C</span> Network Package Module</li>
+<li><span class="option-label">D</span> New Programming Method</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：npm 全称 Node Package
+Manager，是 Node.js 的包管理工具，随 Node.js 一起安装。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-016</strong>（★ 知识点：K1-4 npm）
+下列命令中，用于安装项目依赖的是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> <code>npm create</code></li>
+<li><span class="option-label">B</span> <code>npm install</code></li>
+<li><span class="option-label">C</span> <code>npm run</code></li>
+<li><span class="option-label">D</span> <code>npm config</code></li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>npm install</code> 根据
+<code>package.json</code> 下载依赖到
+<code>node_modules</code>。<code>npm create</code>
+用于创建项目；<code>npm run</code> 运行脚本；<code>npm config</code>
+配置 npm。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-017</strong>（★ 知识点：K1-5 Vite） Vite
+的发音同以下哪个单词？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> vit</li>
+<li><span class="option-label">B</span> veet（同 view 的音）</li>
+<li><span class="option-label">C</span> vite-t</li>
+<li><span class="option-label">D</span> vight</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vite 发音 /viːt/，同
+veet（接近”view”的音），由尤雨溪团队开发。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-018</strong>（★ 知识点：K1-5 Vite） 使用 Vite 创建
+Vue 3 项目的命令是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span>
+<code>npm install vue</code></li>
+<li><span class="option-label">B</span>
+<code>npm create vite@latest</code></li>
+<li><span class="option-label">C</span>
+<code>npm run vue create</code></li>
+<li><span class="option-label">D</span>
+<code>npm init webpack</code></li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vite 官方脚手架命令是
+<code>npm create vite@latest</code>，交互选择 Vue + JavaScript
+即可生成项目。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-019</strong>（★ 知识点：K1-5 Vite） Vite 创建的 Vue 3
+项目中，启动开发服务器的命令是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> <code>npm start</code></li>
+<li><span class="option-label">B</span> <code>npm run dev</code></li>
+<li><span class="option-label">C</span> <code>npm serve</code></li>
+<li><span class="option-label">D</span>
+<code>npm run start vue</code></li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vite
+项目默认脚本中开发服务器命令是 <code>npm run dev</code>（对应
+<code>package.json</code> 里的 <code>scripts.dev</code>）。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-020</strong>（★ 知识点：K1-5 项目结构） Vite 创建的
+Vue 3 项目中，HTML 入口文件是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> <code>src/main.js</code></li>
+<li><span class="option-label">B</span> <code>src/App.vue</code></li>
+<li><span class="option-label">C</span> <code>index.html</code></li>
+<li><span class="option-label">D</span> <code>vite.config.js</code></li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：C</strong>
+<strong>解析</strong>：<code>index.html</code> 是 SPA 的 HTML 外壳，也是
+Vite 的入口文件，里面挂载点 <code>#app</code> 和加载
+<code>/src/main.js</code> 的脚本。C 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-021</strong>（★ 知识点：K1-5 项目结构） Vite 创建的
+Vue 3 项目中，创建 Vue 应用并挂载的入口 JS 文件是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> <code>index.html</code></li>
+<li><span class="option-label">B</span> <code>src/main.js</code></li>
+<li><span class="option-label">C</span> <code>src/App.vue</code></li>
+<li><span class="option-label">D</span> <code>package.json</code></li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>src/main.js</code> 中
+<code>createApp(App).mount('#app')</code> 创建应用并挂载到
+<code>#app</code>。它是 JS 入口。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-022</strong>（★ 知识点：K1-5 项目结构） Vue 3
+项目的根组件文件通常是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> <code>main.js</code></li>
+<li><span class="option-label">B</span> <code>index.html</code></li>
+<li><span class="option-label">C</span> <code>App.vue</code></li>
+<li><span class="option-label">C</span> <code>style.css</code></li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：C</strong>
+<strong>解析</strong>：<code>src/App.vue</code>
+是根组件，包含整个应用的顶层模板。<code>main.js</code> 引入它并挂载。C
+正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-023</strong>（★★ 知识点：K1-1/K1-2） 下列关于”原生 JS
+操作 DOM”与”MVVM 数据驱动”的区别，说法正确的是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> 两者都需要手动操作 DOM</li>
+<li><span class="option-label">B</span> 原生 JS 手动操作 DOM，MVVM
+只管数据、视图自动更新</li>
+<li><span class="option-label">C</span> MVVM 需要手动操作 DOM，原生 JS
+不需要</li>
+<li><span class="option-label">D</span> 两者都不涉及 DOM</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：原生 JS
+是命令式，手动操作 DOM；MVVM 是声明式，开发者管数据，框架自动更新视图。B
+正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-024</strong>（★★ 知识点：K1-2 MVVM） 关于 MVVM
+中“数据绑定”和“表单双向绑定”，下列说法正确的是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> MVVM 表示所有数据都必须双向同步</li>
+<li><span class="option-label">B</span> 数据变化可以驱动视图更新；用户输入通常经事件或 <code>v-model</code> 由 ViewModel 回写数据</li>
+<li><span class="option-label">C</span> View 可以直接修改 Model，绕过 ViewModel</li>
+<li><span class="option-label">D</span> 双向绑定需要开发者手动查询 DOM 并同步数据</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：MVVM 更准确地说是通过数据绑定和响应式机制连接 Model 与 View。普通展示多是“数据→视图”，表单输入可通过 <code>v-model</code> 或事件处理形成“视图→数据”的回写。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-025</strong>（★★ 知识点：K1-3 Vue3） 关于 Composition
+API 与 Options API，下列说法正确的是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> Vue 3 移除了 Options API</li>
+<li><span class="option-label">B</span> Composition API 是 Vue 3
+推荐的代码组织方式</li>
+<li><span class="option-label">C</span> Composition API 和 Options API
+不能共存</li>
+<li><span class="option-label">D</span> Options API 性能优于 Composition
+API</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vue 3 推荐
+Composition API，但仍支持 Options API，二者可共存。性能与 API
+风格无关，Composition API 优势在逻辑组织与复用。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-026</strong>（★★ 知识点：K1-3 Vue3）
+<code>&lt;script setup&gt;</code> 是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> Vue 2 的写法</li>
+<li><span class="option-label">B</span> Composition API
+的语法糖，更简洁</li>
+<li><span class="option-label">C</span> 一种路由配置</li>
+<li><span class="option-label">D</span> 一种状态管理工具</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>&lt;script setup&gt;</code> 是 Composition
+API 的语法糖，减少样板代码，是 Vue 3 推荐的单文件组件写法。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-027</strong>（★★ 知识点：K1-4 Node.js） 浏览器中的
+JavaScript 与 Node.js 中的 JavaScript 的主要区别是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> 语法完全不同</li>
+<li><span class="option-label">B</span> 浏览器中能操作 DOM，Node.js
+中能读写文件、起服务</li>
+<li><span class="option-label">C</span> Node.js 中能操作
+DOM，浏览器中能读写文件</li>
+<li><span class="option-label">D</span> 两者没有任何区别</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：浏览器 JS 能操作
+DOM/BOM 但不能读写本地文件；Node.js 能读写文件、起服务但无 DOM
+环境。语法都是 JS。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-028</strong>（★★ 知识点：K1-4 npm） 关于
+<code>node_modules</code> 目录，下列说法正确的是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> 它是源代码目录，必须提交到
+git</li>
+<li><span class="option-label">B</span> 它是依赖目录，由
+<code>npm install</code> 生成，通常不纳入版本控制</li>
+<li><span class="option-label">C</span> 它是构建产物目录</li>
+<li><span class="option-label">D</span>
+它可以手动删除依赖后无需重装</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>node_modules</code> 存放项目依赖，由
+<code>npm install</code> 生成，体积大，通常用 <code>.gitignore</code>
+排除，不提交 git；删除后需重新 <code>npm install</code>。B 正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-029</strong>（★★ 知识点：K1-5 Vite） 关于 Vite
+启动速度快的原因，下列说法正确的是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> Vite
+启动时把所有模块打包后再启动</li>
+<li><span class="option-label">B</span> Vite 利用浏览器原生
+ESM，按需编译，启动几乎不打包</li>
+<li><span class="option-label">C</span> Vite 不需要任何依赖</li>
+<li><span class="option-label">D</span> Vite 用了 Webpack 内核</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vite 利用浏览器原生
+ES
+模块，按需加载编译，启动时几乎不打包，所以极快。传统工具（Webpack）启动时全量打包才慢。B
+正确。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-030</strong>（★★ 知识点：K1-5 Vite） 执行
+<code>npm run dev</code> 后，默认访问开发服务器的地址通常是？</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span>
+<code>http://localhost:3000</code></li>
+<li><span class="option-label">B</span>
+<code>http://localhost:8080</code></li>
+<li><span class="option-label">C</span>
+<code>http://localhost:5173</code></li>
+<li><span class="option-label">D</span>
+<code>http://localhost:8000</code></li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：Vite 默认端口是
+5173（Vue 默认端口 8080 多为 Vue CLI/Webpack）。被占用时 Vite
+会自动切换端口，看终端输出即可。C 正确。</p>
+</blockquote>
+</div>
+<h3 id="多项选择题10-题">1.2 多项选择题（10 题）</h3>
+<div class="question-card">
+<p><strong>01-选择-031</strong>（★★ 知识点：K1-1 前端演进）
+下列属于”驱动前端演进”因素的有？（多选）</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> 前端应用复杂度上升</li>
+<li><span class="option-label">B</span> 直接操作 DOM 繁琐易错</li>
+<li><span class="option-label">C</span> 状态管理变得困难</li>
+<li><span class="option-label">D</span> HTML 标签数量减少</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：复杂度上升、DOM
+操作繁琐、状态管理困难都是演进动力。HTML 标签数量并未减少，D 错误。选
+A、B、C。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-032</strong>（★★ 知识点：K1-2 MVVM） MVVM
+的三部分包括？（多选）</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> Model</li>
+<li><span class="option-label">B</span> View</li>
+<li><span class="option-label">C</span> ViewModel</li>
+<li><span class="option-label">D</span> Controller</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：MVVM = Model +
+View + ViewModel。Controller 属于 MVC，不属于 MVVM。选 A、B、C。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-033</strong>（★★ 知识点：K1-3 Vue3） 下列属于 Vue 3
+相比 Vue 2 改进的有？（多选）</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> 引入 Composition API</li>
+<li><span class="option-label">B</span> 用 Proxy 实现响应式</li>
+<li><span class="option-label">C</span> 性能提升、包体积更小</li>
+<li><span class="option-label">D</span> 移除了对 TypeScript 的支持</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 都是
+Vue 3 的改进。Vue 3 源码用 TS 重写，对 TS 支持更好，并未移除支持，D
+错误。选 A、B、C。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-034</strong>（★★ 知识点：K1-3 Vue3 生态） 下列属于
+Vue 3 官方/推荐生态的有？（多选）</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> Vue Router 4</li>
+<li><span class="option-label">B</span> Pinia</li>
+<li><span class="option-label">C</span> Vite</li>
+<li><span class="option-label">D</span> Webpack（Vue 3
+官方推荐构建工具）</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：Vue Router
+4（路由）、Pinia（状态管理）、Vite（构建工具）是 Vue 3 推荐生态。Webpack
+是传统工具，Vue 3 官方推荐 Vite 而非 Webpack，D 错误。选 A、B、C。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-035</strong>（★★ 知识点：K1-4 Node.js/npm） 下列关于
+Node.js 与 npm 的说法，正确的有？（多选）</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> Node.js 是 JavaScript
+运行时</li>
+<li><span class="option-label">B</span> npm 随 Node.js 一起安装</li>
+<li><span class="option-label">C</span> npm 用于管理第三方包</li>
+<li><span class="option-label">D</span> Node.js 自带 DOM 环境</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：Node.js 是 JS
+运行时（A）；npm 随 Node.js 安装（B）；npm 管理包（C）。Node.js 没有 DOM
+环境（浏览器才有），D 错误。选 A、B、C。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-036</strong>（★★ 知识点：K1-5 Vite） 使用 Vite 创建
+Vue 3 项目后，必须执行的步骤有？（多选）</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span>
+<code>npm install</code>（安装依赖）</li>
+<li><span class="option-label">B</span>
+<code>npm run dev</code>（启动开发服务器，开发时）</li>
+<li><span class="option-label">C</span>
+<code>npm run build</code>（每次开发都要构建）</li>
+<li><span class="option-label">D</span> 手动修改 <code>index.html</code>
+才能运行</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：A、B</strong> <strong>解析</strong>：创建后需
+<code>npm install</code> 装依赖、<code>npm run dev</code>
+启动开发服务器。<code>npm run build</code>
+是部署时才用，开发阶段不必每次构建（C 错）；<code>index.html</code>
+无需手动改即可运行（D 错）。选 A、B。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-037</strong>（★★ 知识点：K1-5 项目结构） Vite 创建的
+Vue 3 项目中，属于源代码目录 <code>src/</code> 下的文件有？（多选）</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> <code>App.vue</code></li>
+<li><span class="option-label">B</span> <code>main.js</code></li>
+<li><span class="option-label">C</span> <code>style.css</code></li>
+<li><span class="option-label">D</span> <code>package.json</code></li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：A、B、C</strong>
+<strong>解析</strong>：<code>App.vue</code>、<code>main.js</code>、<code>style.css</code>
+都在 <code>src/</code> 下。<code>package.json</code> 在项目根目录，不在
+<code>src/</code> 下，D 错误。选 A、B、C。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-038</strong>（★★ 知识点：K1-2/K1-3）
+下列说法正确的有？（多选）</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> Vue 实例/组件在 MVVM 中承担
+ViewModel 角色</li>
+<li><span class="option-label">B</span> <code>&lt;template&gt;</code>
+部分对应 View</li>
+<li><span class="option-label">C</span> 响应式数据对应 Model</li>
+<li><span class="option-label">D</span>
+开发者需要手动写代码同步数据与视图</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：Vue 组件是
+ViewModel（A），<code>&lt;template&gt;</code> 是 View（B），响应式数据是
+Model（C）。MVVM 下数据与视图由框架自动同步，开发者无需手动写同步代码（D
+错误）。选 A、B、C。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-039</strong>（★★ 知识点：K1-4 npm 镜像） 国内 npm
+安装依赖很慢时，可采取的措施有？（多选）</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span>
+切换为国内镜像（如淘宝镜像）</li>
+<li><span class="option-label">B</span> 检查 Node.js 版本是否过低</li>
+<li><span class="option-label">C</span> 确认网络连接正常</li>
+<li><span class="option-label">D</span> 删除 <code>node_modules</code>
+后再也不安装</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：A、B、C</strong>
+<strong>解析</strong>：切换国内镜像（A）、检查 Node
+版本（B）、确认网络（C）都是合理措施。D
+删除后不重装会导致项目无法运行，错误。选 A、B、C。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-选择-040</strong>（★★ 知识点：K1-1/K1-2/K1-3 综合）
+下列说法正确的有？（多选）</p>
+<div class="option-list">
+<ul>
+<li><span class="option-label">A</span> 框架让开发者聚焦数据而非
+DOM</li>
+<li><span class="option-label">B</span> MVVM 通过数据绑定与响应式机制实现数据驱动视图，并可处理交互回写</li>
+<li><span class="option-label">C</span> Vue 3 推荐使用 Composition API +
+<code>&lt;script setup&gt;</code></li>
+<li><span class="option-label">D</span> Vue 由华人尤雨溪创建</li>
+</ul>
+</div>
+<blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项均正确。A 体现数据驱动；B 是 MVVM 中 ViewModel 的绑定与同步职责；C 是 Vue 3 推荐写法；D 是 Vue 作者事实。全选。</p>
+</blockquote>
+</div>
+<h2 id="二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1
+分）</h2>
+<div class="question-card">
+<p><strong>01-判断-001</strong>（★ 知识点：K1-1） jQuery 是一个 MVVM
+框架，实现了数据双向绑定。（ ）</p>
+<blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：jQuery 只是封装了 DOM
+操作，本质仍是命令式，没有数据驱动与双向绑定，不是 MVVM 框架。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-002</strong>（★ 知识点：K1-1）
+前端演进的根本动力是前端应用复杂度不断上升。（ ）</p>
+<blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：复杂度上升促使从”操作
+DOM”走向”数据驱动”，是演进根本动力。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-003</strong>（★ 知识点：K1-2） MVVM
+中，开发者主要操作的是 Model（数据），而不是 DOM。（ ）</p>
+<blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：MVVM
+让开发者聚焦数据，视图由框架自动更新，这是与原生 JS 的本质区别。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-004</strong>（★ 知识点：K1-2） MVVM 的 ViewModel
+需要开发者手动编写数据与视图同步的代码。（ ）</p>
+<blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：数据绑定、响应式更新和表单交互回写主要由框架完成，开发者通常无需手动编写 DOM 同步代码。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-005</strong>（★ 知识点：K1-3） Vue
+是由华人尤雨溪（Evan You）创建的开源前端框架。（ ）</p>
+<blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：Vue 由尤雨溪于 2014
+年创建并开源，是华人独立发起的全球主流框架。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-006</strong>（★ 知识点：K1-3） Vue 3 推荐使用 Options
+API 作为主要开发方式。（ ）</p>
+<blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：Vue 3 推荐
+Composition API（配合 <code>&lt;script setup&gt;</code>），Options API
+是 Vue 2 风格，仍支持但非推荐主线。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-007</strong>（★ 知识点：K1-3） Vue 3 使用 Proxy 替代
+Vue 2 的 <code>Object.defineProperty</code> 实现响应式。（ ）</p>
+<blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：Vue 3 用 ES6 Proxy
+实现响应式，能监测属性增删，性能更好。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-008</strong>（★ 知识点：K1-4） Node.js
+是一个浏览器，用来查看网页。（ ）</p>
+<blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：Node.js 是 JavaScript
+运行时，不是浏览器。它让 JS 脱离浏览器运行。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-009</strong>（★ 知识点：K1-4） npm 随 Node.js
+一起安装，无需单独安装。（ ）</p>
+<blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：安装 Node.js 后 npm
+自动可用，<code>npm -v</code> 可验证。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-010</strong>（★ 知识点：K1-4） 浏览器中的 JavaScript
+能直接读写本地任意文件。（ ）</p>
+<blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：浏览器 JS
+受安全限制，不能直接读写本地文件；Node.js 才能读写文件。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-011</strong>（★ 知识点：K1-5）
+<code>npm create vite@latest</code> 命令用于创建一个新的 Vite 项目。（
+）</p>
+<blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：这是 Vite
+官方脚手架命令，交互选择框架与语言后生成项目骨架。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-012</strong>（★ 知识点：K1-5） Vite
+创建的项目必须先执行 <code>npm install</code> 安装依赖，才能
+<code>npm run dev</code>。（ ）</p>
+<blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：不装依赖直接
+<code>npm run dev</code> 会报
+<code>'vite' 不是内部或外部命令</code>，必须先
+<code>npm install</code>。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-013</strong>（★ 知识点：K1-5） Vite 项目的 HTML
+入口是 <code>index.html</code>，JS 入口是 <code>src/main.js</code>。（
+）</p>
+<blockquote>
+<p><strong>答案：✓</strong>
+<strong>解析</strong>：<code>index.html</code> 是 SPA 外壳，内含
+<code>&lt;script type="module" src="/src/main.js"&gt;</code>，加载
+<code>main.js</code> 创建应用。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-014</strong>（★ 知识点：K1-5）
+<code>node_modules</code> 目录应该提交到 git 仓库长期保存。（ ）</p>
+<blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：<code>node_modules</code> 体积大，通常用
+<code>.gitignore</code> 排除，不提交 git。克隆项目后
+<code>npm install</code> 重建。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-015</strong>（★ 知识点：K1-3）
+<code>&lt;script setup&gt;</code> 是 Composition API
+的语法糖，用于简化单文件组件写法。（ ）</p>
+<blockquote>
+<p><strong>答案：✓</strong>
+<strong>解析</strong>：<code>&lt;script setup&gt;</code>
+减少样板代码，是 Composition API 的推荐写法。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-016</strong>（★★ 知识点：K1-2） MVVM
+中双向绑定意味着所有数据都必须双向同步。（ ）</p>
+<blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：双向绑定通常用于表单（<code>v-model</code>）；很多场景是单向（数据→视图）。并非所有数据都双向。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-017</strong>（★★ 知识点：K1-3） Vue 3 完全移除了对
+Options API 的支持，旧代码无法运行。（ ）</p>
+<blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：Vue 3 仍支持 Options
+API，旧代码可运行；只是推荐用 Composition API。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-018</strong>（★★ 知识点：K1-5） Vite
+启动快是因为它启动时把所有模块全部打包。（ ）</p>
+<blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：恰恰相反，Vite
+利用浏览器原生 ESM 按需编译，启动几乎不打包，才快。全量打包是 Webpack
+的方式。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-019</strong>（★★ 知识点：K1-4） 国内使用 npm
+安装依赖慢时，可切换为国内镜像（如淘宝镜像）加速。（ ）</p>
+<blockquote>
+<p><strong>答案：✓</strong>
+<strong>解析</strong>：<code>npm config set registry https://registry.npmmirror.com</code>
+可切换镜像加速。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-判断-020</strong>（★★ 知识点：K1-5） SPA 项目可以直接双击
+<code>index.html</code> 用文件方式打开运行。（ ）</p>
+<blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：SPA
+必须通过开发服务器（<code>localhost:5173</code>）访问，直接双击文件会因
+ESM 模块加载协议报错。</p>
+</blockquote>
+</div>
+<h2 id="三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2
+分）</h2>
+<div class="question-card">
+<p><strong>01-填空-001</strong>（★ 知识点：K1-2） MVVM 的三个组成部分是
+Model、________ 和 ViewModel。</p>
+<blockquote>
+<p><strong>答案：View</strong> <strong>解析</strong>：MVVM = Model +
+View + ViewModel，中间是 View（视图/界面）。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-填空-002</strong>（★ 知识点：K1-2） MVVM 强调通过 ________ 机制，让数据变化驱动视图更新，并让表单输入或事件处理结果回写数据。</p>
+<blockquote>
+<p><strong>答案：数据绑定（或响应式绑定）</strong> <strong>解析</strong>：MVVM 强调 ViewModel 在 Model 与 View 之间建立绑定关系；在 Vue 中，普通展示主要是数据驱动视图，表单输入常通过 <code>v-model</code> 实现双向绑定。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-填空-003</strong>（★ 知识点：K1-3） Vue 框架的创建者是华人
+________（英文名 Evan You）。</p>
+<blockquote>
+<p><strong>答案：尤雨溪</strong> <strong>解析</strong>：尤雨溪（Evan
+You）于 2014 年创建 Vue，是华人独立发起的全球主流框架。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-填空-004</strong>（★ 知识点：K1-3） Vue 3 推荐使用的 API
+风格是 ________ API（填中文或英文均可）。</p>
+<blockquote>
+<p><strong>答案：Composition（组合式）</strong>
+<strong>解析</strong>：Vue 3 推荐 Composition API（组合式 API），配合
+<code>&lt;script setup&gt;</code> 使用。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-填空-005</strong>（★ 知识点：K1-3） Vue 3 使用 ES6 的
+________ 替代 Vue 2 的 <code>Object.defineProperty</code>
+实现响应式。</p>
+<blockquote>
+<p><strong>答案：Proxy</strong> <strong>解析</strong>：Vue 3 用 Proxy
+实现响应式，能监测属性增删，性能更好。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-填空-006</strong>（★ 知识点：K1-4） Node.js 是一个基于 V8
+引擎的 JavaScript ________，让 JS 能脱离浏览器运行。</p>
+<blockquote>
+<p><strong>答案：运行时</strong> <strong>解析</strong>：Node.js 是
+JavaScript 运行时（runtime），使 JS 能在本机/服务器运行。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-填空-007</strong>（★ 知识点：K1-4） npm 的全称是 Node
+________ Manager。</p>
+<blockquote>
+<p><strong>答案：Package</strong> <strong>解析</strong>：npm = Node
+Package Manager，Node.js 的包管理工具。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-填空-008</strong>（★ 知识点：K1-5） 使用 Vite 创建 Vue 3
+项目的命令是 <code>npm ________ vite@latest</code>。</p>
+<blockquote>
+<p><strong>答案：create</strong>
+<strong>解析</strong>：<code>npm create vite@latest</code> 是 Vite
+官方脚手架命令。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-填空-009</strong>（★ 知识点：K1-5） Vite
+项目中，启动开发服务器的命令是 <code>npm run ________</code>。</p>
+<blockquote>
+<p><strong>答案：dev</strong>
+<strong>解析</strong>：<code>npm run dev</code> 对应
+<code>package.json</code> 中 <code>scripts.dev</code>，启动 Vite
+开发服务器。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-填空-010</strong>（★ 知识点：K1-5） Vite 创建的 Vue 3
+项目中，根组件文件是 <code>src/________</code>。</p>
+<blockquote>
+<p><strong>答案：App.vue</strong>
+<strong>解析</strong>：<code>src/App.vue</code> 是根组件，被
+<code>main.js</code> 引入并挂载到 <code>#app</code>。</p>
+</blockquote>
+</div>
+<h2 id="四论述-简答题共-4-题">四、论述 / 简答题（共 4 题）</h2>
+<div class="question-card">
+<p><strong>01-论述-001</strong>（★★ 知识点：K1-1/K1-2，分值：6 分）
+<strong>题目</strong>：请简述前端开发从”原生 JS”到”MVVM
+框架”的演进过程，并说明演进的根本动力是什么。</p>
+<p><strong>要求</strong>： （1）写出演进的三个阶段及各阶段特点。（4 分）
+（2）说明演进的根本动力。（2 分）</p>
+<blockquote>
+<p><strong>参考答案</strong>： （1）三阶段（每阶段 1.33 分，答出 3 个得
+4 分，满 4 分止）： - <strong>原生 JS 阶段</strong>：直接操作 DOM（如
+<code>document.getElementById</code>），繁琐易错、难维护； -
+<strong>jQuery 阶段</strong>：封装 DOM 操作与
+AJAX，链式调用简化代码，但本质仍是命令式操作 DOM； - <strong>MVVM
+框架阶段</strong>：数据驱动视图，声明式开发，开发者管数据、框架管
+DOM，可维护性大幅提升。 （2）根本动力（2
+分）：前端应用复杂度不断上升，直接操作 DOM
+的方式越来越力不从心，催生了封装与框架。</p>
+<p><strong>评分标准</strong>：共 6 分。三阶段答全得 4 分（少一阶段扣
+1.33 分）；根本动力答出”复杂度上升”得 2 分。意思相近即可给分。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-论述-002</strong>（★★ 知识点：K1-2，分值：8 分）
+<strong>题目</strong>：什么是 MVVM？请解释 Model、View、ViewModel
+各自的职责，并说明数据绑定与表单双向绑定的关系。</p>
+<p><strong>要求</strong>： （1）解释 MVVM 的含义。（2 分） （2）分别说明
+Model、View、ViewModel 的职责。（3 分） （3）解释数据绑定与表单双向绑定的关系。（3
+分）</p>
+<blockquote>
+<p><strong>参考答案</strong>： （1）MVVM 含义（2 分）：MVVM
+是一种前端架构思想，把应用分为 Model-View-ViewModel
+三部分，通过数据绑定与响应式机制实现数据、视图和用户输入之间的自动同步。 （2）三者职责（每点 1
+分，共 3 分）： -
+<strong>Model（模型）</strong>：数据，如商品列表、任务信息、用户输入内容；
+- <strong>View（视图）</strong>：用户看到的界面，即 HTML 页面； -
+<strong>ViewModel（视图模型）</strong>：连接 Model 与 View
+的桥梁，负责数据绑定、事件处理与自动同步。 （3）数据绑定与表单双向绑定关系（3
+分）：数据→视图是基础方向：Model 数据变化时，ViewModel 通过响应式机制自动更新 View，无需手动操作
+DOM；视图→数据来自用户输入或事件处理，表单场景常通过 <code>v-model</code> 把输入回写到
+Model。不能理解为所有数据都必须双向同步。</p>
+<p><strong>评分标准</strong>：共 8
+分，按小题分值给分。第（3）点需答出“数据驱动视图”“交互回写数据”和“并非所有数据都双向同步”才得满分。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-论述-003</strong>（★★ 知识点：K1-3，分值：8 分）
+<strong>题目</strong>：Vue 3 相比 Vue 2 有哪些主要改进？请至少列出 4
+点并简要说明。</p>
+<p><strong>要求</strong>： （1）列出至少 4 项 Vue 3 的改进。（4 分）
+（2）对每项改进简要说明其意义。（4 分）</p>
+<blockquote>
+<p><strong>参考答案</strong>（每点”改进 + 意义”共 2 分，答出 4 点得 8
+分）： - <strong>Composition
+API</strong>：新的代码组织方式，把相关逻辑聚合，适合复杂组件复用（意义：解决
+Options API 逻辑分散问题）； - <strong><code>&lt;script setup&gt;</code>
+语法糖</strong>：更简洁的 SFC 写法，减少样板代码（意义：提升开发体验）；
+- <strong>Proxy 响应式</strong>：用 Proxy 替代
+<code>Object.defineProperty</code>，能监测属性增删，性能更好（意义：响应式更全面、更快）；
+- <strong>性能提升</strong>：包体积更小、渲染更快、Tree-shaking
+更好（意义：用户体验与构建优化）； - <strong>TypeScript
+支持</strong>：源码用 TS 重写，对 TS 支持更友好（意义：类型安全）； -
+<strong>生态升级</strong>：Vue Router 4、Pinia（替代
+Vuex）、Vite（意义：现代化生态）。</p>
+<p><strong>评分标准</strong>：共 8 分。每答出 1 项改进（1
+分）并说明意义（1 分）得 2 分，答出 4 项满分。列出多于 4
+项不额外加分。意思相近即可给分。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-论述-004</strong>（★★ 知识点：K1-4/K1-5，分值：8 分）
+<strong>题目</strong>：为什么搭建 Vue 3 项目前必须先安装 Node.js？请说明
+Node.js、npm、Vite 三者的关系，并描述用 Vite 创建并启动一个 Vue 3
+项目的完整流程。</p>
+<p><strong>要求</strong>： （1）说明为什么前端开发需要 Node.js。（2 分）
+（2）说明 Node.js、npm、Vite 三者关系。（3 分）
+（3）描述创建并启动项目的完整流程（命令与步骤）。（3 分）</p>
+<blockquote>
+<p><strong>参考答案</strong>： （1）为什么需要 Node.js（2
+分）：前端工程化工具（如 Vite）都是用 Node.js 运行的程序；npm 也随
+Node.js 安装。没有 Node.js 就无法运行 Vite、无法用 npm
+安装依赖，所以必须先装。 （2）三者关系（每点 1 分，共 3 分）： -
+<strong>Node.js</strong> 是 JS 运行时，提供运行环境； -
+<strong>npm</strong> 是随 Node.js 安装的包管理工具，负责下载与管理依赖；
+- <strong>Vite</strong> 是运行在 Node.js 上的构建工具，通过 npm
+安装/调用，用于创建和构建 Vue 项目。 （3）完整流程（每步 0.75 分，共 3
+分）： 1. <code>npm create vite@latest ctts-frontend</code>（选 Vue +
+JavaScript）； 2. <code>cd ctts-frontend</code>； 3.
+<code>npm install</code>（安装依赖）； 4.
+<code>npm run dev</code>（启动开发服务器，浏览器访问
+<code>localhost:5173</code>）。</p>
+<p><strong>评分标准</strong>：共 8
+分，按小题分值给分。第（3）题步骤可用文字或命令描述，关键 4
+步齐全得满分，缺一步扣 0.75 分。</p>
+</blockquote>
+</div>
+<h2 id="五程序阅读-补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</h2>
+<div class="question-card">
+<p><strong>01-程序-001</strong>（★★ 知识点：K1-5，分值：10 分）
+<strong>题目</strong>：阅读以下 Vite 创建的 Vue 3 项目的入口文件
+<code>src/main.js</code>，回答问题并补全代码。</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createApp } <span class="im">from</span> <span class="st">&#39;vue&#39;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> App <span class="im">from</span> <span class="st">&#39;./App.vue&#39;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="st">&#39;./style.css&#39;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>______A______<span class="op">.</span><span class="fu">mount</span>(<span class="st">&#39;#app&#39;</span>)</span></code></pre></div>
+<p><strong>要求</strong>： （1）说明第 1 行
+<code>import { createApp } from 'vue'</code> 的作用。（3 分）
+（2）说明第 2 行 <code>import App from './App.vue'</code> 的作用。（3
+分） （3）在 A 处补全代码，使 Vue 应用挂载到 <code>id="app"</code>
+的元素上。（4 分）</p>
+<blockquote>
+<p><strong>参考答案</strong>： （1）第 1 行作用（3 分）：从
+<code>vue</code> 包中按需引入 <code>createApp</code>
+方法，<code>createApp</code> 用于创建一个 Vue 应用实例。 （2）第 2
+行作用（3 分）：引入当前项目的根组件 <code>App.vue</code>（即
+<code>src/App.vue</code>），作为 Vue 应用的根组件。 （3）A 处补全（4
+分）：<code>createApp(App)</code> 补全后完整代码：</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createApp } <span class="im">from</span> <span class="st">&#39;vue&#39;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> App <span class="im">from</span> <span class="st">&#39;./App.vue&#39;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="st">&#39;./style.css&#39;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">createApp</span>(App)<span class="op">.</span><span class="fu">mount</span>(<span class="st">&#39;#app&#39;</span>)</span></code></pre></div>
+<p><strong>评分标准</strong>：共 10
+分。第（1）（2）题意思相近即给分；第（3）题必须写出
+<code>createApp(App)</code>（大小写敏感）得 4 分，写成
+<code>createApp(App).mount('#app')</code> 也对。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-程序-002</strong>（★★ 知识点：K1-5，分值：12 分）
+<strong>题目</strong>：下面是一个 Vite 项目的
+<code>index.html</code>（已删除部分内容），请阅读并补全。</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">&quot;zh-CN&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">&quot;UTF-8&quot;</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;icon&quot;</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;image/svg+xml&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/vite.svg&quot;</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content</span><span class="op">=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>CTTS-Frontend<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;______A______&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> type=</span><span class="st">&quot;______B______&quot;</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;/src/______C______&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div>
+<p><strong>要求</strong>： （1）说明 <code>&lt;div id="A"&gt;</code>
+这个 div 的作用，并补全 A。（4 分） （2）补全 B，并说明为什么
+<code>type</code> 要用这个值。（4 分） （3）补全 C（入口 JS
+文件路径）。（4 分）</p>
+<blockquote>
+<p><strong>参考答案</strong>： （1）A 的作用与补全（4 分）：A =
+<code>app</code>。这个 div 是 Vue 应用的<strong>挂载点</strong>，Vue
+应用创建后会渲染到这个 div 内部（<code>mount('#app')</code> 对应此处的
+<code>id="app"</code>）。作用 2 分，补全 2 分。 （2）B 补全与原因（4
+分）：B = <code>module</code>。原因：Vite 使用浏览器原生 ES
+模块（ESM）加载 JS，<code>type="module"</code> 表示该脚本按 ES
+模块处理，支持 <code>import/export</code> 语法。补全 2 分，原因 2 分。
+（3）C 补全（4 分）：C = <code>main.js</code>。<code>/src/main.js</code>
+是项目入口 JS 文件，<code>createApp(App).mount('#app')</code>
+在其中执行。</p>
+<p><strong>评分标准</strong>：共 12 分，按小题分值给分。A 必须是
+<code>app</code>（与 main.js 中 <code>mount('#app')</code> 对应）；B
+必须是 <code>module</code>；C 必须是 <code>main.js</code>（或
+<code>/src/main.js</code>）。</p>
+</blockquote>
+</div>
+<h2 id="六编程-接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</h2>
+<div class="question-card">
+<p><strong>01-编程-001</strong>（★★ 知识点：K1-4/K1-5，分值：15 分）
+<strong>题目</strong>：请写出在 Windows 系统上从零开始用 Vite
+创建并运行一个名为 <code>ctts-frontend</code> 的 Vue 3 项目（JavaScript
+版）的完整命令序列，并说明每条命令的作用。</p>
+<p><strong>要求</strong>：
+（1）写出从验证环境到启动项目的完整命令序列。（9 分）
+（2）说明每条命令的作用。（6 分）</p>
+<p><strong>输入输出说明</strong>： - 假设已安装 Node.js 20.19+ 或
+22.12+，工作目录为 <code>D:\lessson</code>。 - 项目名
+<code>ctts-frontend</code>，使用 Vue + JavaScript 模板。</p>
+<blockquote>
+<p><strong>参考答案</strong>： （1）完整命令序列（每条 1.5 分，共 9
+分）：</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 验证环境</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">node</span> <span class="at">-v</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 验证 npm</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> <span class="at">-v</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. （可选）设置国内镜像</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> config set registry https://registry.npmmirror.com</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. 进入工作目录</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> D:<span class="dt">\l</span>essson</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. 创建 Vite + Vue3 项目（交互选 Vue + JavaScript）</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> create vite@latest ctts-frontend</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. 进入项目目录</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ctts-frontend</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. 安装依赖</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 8. 启动开发服务器</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run dev</span></code></pre></div>
+<p>（2）每条命令作用（每条 0.75 分，共 6 分）： -
+<code>node -v</code>：查看 Node.js 版本，确认满足 Vite 要求（20.19+ 或
+22.12+）； - <code>npm -v</code>：查看 npm 版本，确认包管理工具就绪； -
+<code>npm config set registry ...</code>：切换国内镜像加速依赖下载（可选）；
+- <code>cd D:\lessson</code>：进入工作目录，准备创建项目； -
+<code>npm create vite@latest ctts-frontend</code>：用 Vite
+脚手架生成项目骨架（选 Vue + JS）； -
+<code>cd ctts-frontend</code>：进入新项目目录； -
+<code>npm install</code>：根据 <code>package.json</code> 下载依赖到
+<code>node_modules</code>； - <code>npm run dev</code>：启动 Vite
+开发服务器，浏览器访问 <code>localhost:5173</code>。</p>
+<p><strong>评分标准</strong>：共 15
+分，按小题分值给分。命令序列关键步骤（create / cd / install /
+dev）齐全即可，环境验证与镜像设置漏 1 条扣 1.5
+分。命令作用描述意思相近即给分。可用 <code>-- --template vue</code>
+省略交互也算对。</p>
+</blockquote>
+</div>
+<div class="question-card">
+<p><strong>01-编程-002</strong>（★★★ 知识点：K1-1/K1-2/K1-5
+综合，分值：20 分） <strong>题目</strong>：结合 CTTS-Frontend
+项目，完成以下综合任务，体现对前端演进、MVVM 与项目搭建的理解。</p>
+<p><strong>业务场景</strong>：CTTS-Frontend
+是校园实训任务管理系统前端，需要展示一个任务列表。本节课已完成项目骨架搭建，现要求分析并设计首个页面的数据与视图关系。</p>
+<p><strong>要求</strong>： （1）用 200 字以内分析：如果用原生 JS
+实现一个”任务列表 + 搜索过滤”页面，会遇到哪些痛点？MVVM
+框架（Vue）如何解决？（6 分） （2）从 MVVM 角度，指出该页面中的
+Model、View、ViewModel 分别对应什么。（6 分） （3）写出用 Vite
+已创建的项目中，修改 <code>src/App.vue</code>
+显示一个静态任务列表的完整代码（三段式：<code>&lt;script setup&gt;</code>
++ <code>&lt;template&gt;</code> +
+<code>&lt;style&gt;</code>），任务数据写在组件内（不需接口）。（8
+分）</p>
+<blockquote>
+<p><strong>参考答案</strong>： （1）痛点与 MVVM 解决（6 分）： - 原生 JS
+痛点（3 分）：需手动操作 DOM（清空列表、逐个创建
+<code>li</code>）、数据与视图耦合、搜索过滤时要手动重渲染、状态一多易混乱难维护。
+- MVVM 解决（3 分）：数据驱动视图，只需维护任务数据数组与搜索关键词，用
+<code>v-for</code> 渲染列表、<code>computed</code>
+计算过滤结果，数据变化视图自动更新，无需手动操作 DOM。 （2）MVVM
+三角色对应（每点 2 分，共 6 分）： -
+<strong>Model</strong>：任务数据数组（如
+<code>tasks = [{id, title, status}]</code>）和搜索关键词
+<code>keyword</code>； -
+<strong>View</strong>：<code>&lt;template&gt;</code> 中的界面（输入框 +
+任务列表 ul/li）； - <strong>ViewModel</strong>：Vue
+组件本身（<code>&lt;script setup&gt;</code>
+中的响应式数据与计算属性），负责把数据绑定到视图。 （3）完整代码（8
+分）：</p>
+<pre class="vue"><code>&lt;script setup&gt;
+import { ref, computed } from &#39;vue&#39;
+
+// Model：任务数据与搜索关键词
+const keyword = ref(&#39;&#39;)
+const tasks = ref([
+  { id: 1, title: &#39;任务一：搭建项目&#39;, status: &#39;进行中&#39; },
+  { id: 2, title: &#39;任务二：实现登录&#39;, status: &#39;未开始&#39; },
+  { id: 3, title: &#39;任务三：接口联调&#39;, status: &#39;未开始&#39; }
+])
+
+// ViewModel：计算过滤后的任务
+const filteredTasks = computed(() =&gt;
+  tasks.value.filter(t =&gt; t.title.includes(keyword.value))
+)
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div class=&quot;ctts-tasks&quot;&gt;
+    &lt;h1&gt;CTTS-Frontend 任务列表&lt;/h1&gt;
+    &lt;input v-model=&quot;keyword&quot; placeholder=&quot;搜索任务&quot; /&gt;
+    &lt;ul&gt;
+      &lt;li v-for=&quot;t in filteredTasks&quot; :key=&quot;t.id&quot;&gt;
+        {{ t.title }} — {{ t.status }}
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p v-if=&quot;filteredTasks.length === 0&quot;&gt;暂无匹配任务&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.ctts-tasks {
+  max-width: 600px;
+  margin: 40px auto;
+  font-family: system-ui, sans-serif;
+}
+input {
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+}
+li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  list-style: none;
+}
+&lt;/style&gt;</code></pre>
+<p>评分：三段式结构齐全（2 分）；<code>&lt;script setup&gt;</code> 中用
+<code>ref</code> 定义数据、<code>computed</code> 计算过滤（3
+分）；<code>&lt;template&gt;</code> 用
+<code>v-model</code>、<code>v-for</code>、<code>:key</code>（2
+分）；<code>&lt;style scoped&gt;</code> 存在（1
+分）。代码需可运行，语法正确。</p>
+<p><strong>评分标准</strong>：共 20
+分，按小题分值给分。第（1）题需答出”原生痛点 + MVVM
+解决”两方面；第（3）题代码须三段式齐全且可运行，<code>v-for</code>
+必须带 <code>:key</code>（缺 <code>:key</code> 扣 1
+分）。本题为本次课综合题，考察认知与基础编码能力。 说明：第（3）题用到的
+<code>ref</code>/<code>computed</code>/<code>v-for</code>/<code>v-model</code>
+等语法在第 3~6 次课详讲，本题只要求按示例写出可运行代码，体现 MVVM
+数据驱动思想即可。</p>
+</blockquote>
+</div>
+<h2 id="题库统计与组卷说明">题库统计与组卷说明</h2>
+<h3 id="题量统计">题量统计</h3>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>数量</th>
+<th>分值</th>
+<th>小计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择题（单选 30 + 多选 10）</td>
+<td>40</td>
+<td>每题 2 分</td>
+<td>80 分</td>
+</tr>
+<tr>
+<td>判断题</td>
+<td>20</td>
+<td>每题 1 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>填空题</td>
+<td>10</td>
+<td>每题 2 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>论述/简答题</td>
+<td>4</td>
+<td>6~8 分</td>
+<td>30 分</td>
+</tr>
+<tr>
+<td>程序阅读/补全题</td>
+<td>2</td>
+<td>10~12 分</td>
+<td>22 分</td>
+</tr>
+<tr>
+<td>编程/接口设计题</td>
+<td>2</td>
+<td>15~20 分</td>
+<td>35 分</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>78</strong></td>
+<td>—</td>
+<td><strong>207 分</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>📌 实际组卷时可按需抽取部分题目并按 100
+分制折算，或直接用于题库录入后由考试系统随机组卷。</p>
+</blockquote>
+<h3 id="难度分布">难度分布</h3>
+<table>
+<thead>
+<tr>
+<th>难度</th>
+<th>题量（约）</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★ 基础</td>
+<td>40</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>★★ 提高</td>
+<td>34</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>★★★ 综合</td>
+<td>4</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="知识点覆盖">知识点覆盖</h3>
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>覆盖题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K1-1 前端演进</td>
+<td>12</td>
+</tr>
+<tr>
+<td>K1-2 MVVM</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K1-3 Vue3 特性</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K1-4 Node.js/npm</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K1-5 Vite 项目</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本题库已确保每题答案唯一明确、无歧义选项、不靠文字游戏，全部含解析，主观题含评分标准，可直接录入考试系统题库。</p>
+</blockquote></article></main></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

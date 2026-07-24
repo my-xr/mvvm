@@ -1,0 +1,377 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pinia进阶与状态管理实践</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 13 次课 · 教学设计</div>
+      <h1>Pinia进阶与状态管理实践</h1>
+      <p>教师教案与课堂组织 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 13 次课</span>
+        <span class="hero-chip"><b>主题</b>Pinia进阶与状态管理实践</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一课程信息">一、课程信息</a>
+<ul>
+</ul></li>
+<li><a href="#二教学目标">二、教学目标</a>
+<ul>
+<li><a href="#知识目标">知识目标</a></li>
+<li><a href="#能力目标">能力目标</a></li>
+<li><a href="#素质目标课程思政">素质目标（课程思政）</a></li>
+</ul></li>
+<li><a href="#四项目任务或案例任务">四、项目任务或案例任务</a>
+<ul>
+</ul></li>
+<li><a href="#五课堂互动设计">五、课堂互动设计</a>
+<ul>
+<li><a href="#互动-1项目问题复盘状态管理踩坑">互动 1：项目问题复盘——状态管理踩坑</a></li>
+<li><a href="#互动-2状态分层讨论">互动 2：状态分层讨论</a></li>
+</ul></li>
+<li><a href="#六课程思政融入点">六、课程思政融入点</a>
+<ul>
+</ul></li>
+<li><a href="#七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5 分钟）</a>
+<ul>
+</ul></li>
+<li><a href="#八课后任务">八、课后任务</a>
+<ul>
+</ul></li>
+<li><a href="#九对应岗位能力或面试考点">九、对应岗位能力或面试考点</a>
+<ul>
+</ul></li>
+<li><a href="#十教学资料与题库索引">十、教学资料与题库索引</a>
+<ul>
+</ul></li>
+<li><a href="#附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 13 次课 <span>｜</span> <strong>文档：</strong>教学设计</p>
+<blockquote>
+<p>所属模块：M5 Pinia 状态管理 ｜ 课程：《MVVM前端框架开发技术》
+配套资料：见同文件夹内
+<code>教学资料.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一课程信息">一、课程信息</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>次序</td>
+<td>第 13 次课（全课程 16 次之第 13）</td>
+</tr>
+<tr>
+<td>学时</td>
+<td>2 学时（90 分钟）</td>
+</tr>
+<tr>
+<td>属性</td>
+<td><strong>实践课</strong></td>
+</tr>
+<tr>
+<td>所属模块</td>
+<td>M5 Pinia 状态管理</td>
+</tr>
+<tr>
+<td>教学主题</td>
+<td>Pinia 进阶与状态管理实践 — 完成 CTTS-Frontend 全局状态管理</td>
+</tr>
+<tr>
+<td>先修基础</td>
+<td>第 12 次课（Pinia 基础）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="二教学目标">二、教学目标</h2>
+<h3 id="知识目标">知识目标</h3>
+<ol type="1">
+<li>掌握多 store 管理（userStore/projectStore/appStore）。</li>
+<li>掌握 store 间相互引用。</li>
+<li>掌握状态持久化（localStorage）。</li>
+<li>掌握
+<code>$reset</code>/<code>$patch</code>/<code>$subscribe</code>。</li>
+</ol>
+<h3 id="能力目标">能力目标</h3>
+<ol type="1">
+<li>能为 CTTS-Frontend 设计完整状态管理方案。</li>
+<li>能实现 userStore（登录）、projectStore（项目数据缓存）、appStore（UI
+状态）。</li>
+<li>能实现状态持久化与恢复。</li>
+</ol>
+<h3 id="素质目标课程思政">素质目标（课程思政）</h3>
+<ol type="1">
+<li>培养架构意识——合理的状态管理让应用更健壮。</li>
+<li>建立"数据分层"思维——不同职责的状态分类管理。</li>
+</ol>
+<hr />
+<h2
+id="三主要知识点纲要实践复盘型">三、主要知识点纲要（实践复盘型）</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>知识点</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K13-1</td>
+<td>多 store 管理</td>
+<td>userStore/projectStore/appStore 分类；职责单一</td>
+</tr>
+<tr>
+<td>K13-2</td>
+<td>store 间相互引用</td>
+<td>action 中 <code>useXxxStore()</code> 调用其他 store</td>
+</tr>
+<tr>
+<td>K13-3</td>
+<td>状态持久化</td>
+<td>localStorage 存取；初始化从 localStorage 恢复</td>
+</tr>
+<tr>
+<td>K13-4</td>
+<td>$reset / $patch / $subscribe</td>
+<td>重置/批量改/监听变化</td>
+</tr>
+<tr>
+<td>K13-5</td>
+<td>综合实践组织</td>
+<td>状态管理方案设计与实现</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="四项目任务或案例任务">四、项目任务或案例任务</h2>
+<p><strong>本次课任务</strong>：完成 CTTS-Frontend
+全局状态管理——userStore（登录状态）、projectStore（项目数据缓存）、appStore（侧边栏折叠等
+UI 状态），并实现状态持久化。</p>
+<hr />
+<h2 id="五课堂互动设计">五、课堂互动设计</h2>
+<h3 id="互动-1项目问题复盘状态管理踩坑">互动
+1：项目问题复盘——状态管理踩坑</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动任务</td>
+<td>实践后分享一个状态管理踩坑点</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>汇总：解构丢失响应式、store 间循环引用、持久化时机等</td>
+</tr>
+</tbody>
+</table>
+<h3 id="互动-2状态分层讨论">互动 2：状态分层讨论</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>"项目列表数据放 store 还是组件本地？为什么？"</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>多组件共享/需缓存放 store；单页私有放本地</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六课程思政融入点">六、课程思政融入点</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>融入点</td>
+<td>架构意识——合理状态管理让应用健壮</td>
+</tr>
+<tr>
+<td>技术关联</td>
+<td>状态分层、持久化、职责单一体现架构能力</td>
+</tr>
+<tr>
+<td>引导问题</td>
+<td>"用户刷新页面后登录状态丢失，怎么解决？"</td>
+</tr>
+<tr>
+<td>预期价值目标</td>
+<td>培养架构思维与用户体验意识</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5
+分钟）</h2>
+<p><strong>判断题</strong>：</p>
+<ol type="1">
+<li>多个 store 应按职责分类管理。（✓）</li>
+<li>store 间可在 action 中互相调用。（✓）</li>
+<li>localStorage 可用于状态持久化。（✓）</li>
+<li>$reset 可重置 store 状态到初始值。（✓）</li>
+</ol>
+<blockquote>
+<p>详细题目见 <code>题库.md</code>。</p>
+</blockquote>
+<hr />
+<h2 id="八课后任务">八、课后任务</h2>
+<ol type="1">
+<li>完善 CTTS-Frontend 状态管理：增加 taskStore 管理任务数据。</li>
+<li>实现 appStore 侧边栏折叠状态持久化。</li>
+<li>思考：状态持久化的利弊（200 字）。</li>
+</ol>
+<hr />
+<h2 id="九对应岗位能力或面试考点">九、对应岗位能力或面试考点</h2>
+<table>
+<thead>
+<tr>
+<th>岗位能力/面试考点</th>
+<th>对应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>多 store 设计</td>
+<td>K13-1</td>
+</tr>
+<tr>
+<td>store 间通信</td>
+<td>K13-2</td>
+</tr>
+<tr>
+<td>状态持久化方案</td>
+<td>K13-3</td>
+</tr>
+<tr>
+<td>$reset/$patch/$subscribe</td>
+<td>K13-4</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="十教学资料与题库索引">十、教学资料与题库索引</h2>
+<table>
+<thead>
+<tr>
+<th>资料类型</th>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学生复习资料</td>
+<td><code>教学资料.md</code></td>
+<td>4 类 store 完整代码 + 持久化方案 + 复盘要点</td>
+</tr>
+<tr>
+<td>考试题库</td>
+<td><code>题库.md</code></td>
+<td>78 题，含答案解析与评分标准</td>
+</tr>
+<tr>
+<td>课程总览</td>
+<td><code>../00 课程设计总览.md</code></td>
+<td>课程整体框架</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</h2>
+<table>
+<thead>
+<tr>
+<th>时段</th>
+<th>内容</th>
+<th>时长</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0~10 min</td>
+<td>状态管理方案设计 + 互动 2</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>10~35 min</td>
+<td>userStore + projectStore + appStore 开发</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td>35~55 min</td>
+<td>状态持久化 + store 间引用</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>55~70 min</td>
+<td>$reset/$patch/$subscribe + 整合</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>70~85 min</td>
+<td>互动 1 复盘 + 随堂练习</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>85~90 min</td>
+<td>小结 + 课后任务</td>
+<td>5 min</td>
+</tr>
+</tbody>
+</table>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

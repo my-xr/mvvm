@@ -1,0 +1,755 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>条件渲染列表渲染与样式绑定</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 06 次课 · 题库</div>
+      <h1>条件渲染列表渲染与样式绑定</h1>
+      <p>考试题库与参考解析 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 06 次课</span>
+        <span class="hero-chip"><b>主题</b>条件渲染列表渲染与样式绑定</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2 分）</a>
+<ul>
+<li><a href="#11-单项选择题30-题">1.1 单项选择题（30 题）</a></li>
+<li><a href="#12-多项选择题10-题">1.2 多项选择题（10 题）</a></li>
+</ul></li>
+<li><a href="#二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1 分）</a>
+<ul>
+</ul></li>
+<li><a href="#三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2 分）</a>
+<ul>
+</ul></li>
+<li><a href="#四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</a>
+<ul>
+</ul></li>
+<li><a href="#五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#题库统计与组卷说明">题库统计与组卷说明</a>
+<ul>
+<li><a href="#题量统计">题量统计</a></li>
+<li><a href="#难度分布">难度分布</a></li>
+<li><a href="#知识点覆盖">知识点覆盖</a></li>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 06 次课 <span>｜</span> <strong>文档：</strong>题库</p>
+<blockquote>
+<p>配套：<code>教学设计.md</code>、<code>教学资料.md</code>（同文件夹）
+题量：40 选择 + 20 判断 + 10 填空 + 4 论述/简答 + 2 程序阅读/补全 + 2
+编程/接口设计 = <strong>78 题</strong>
+全部含参考答案与解析；主观题另附评分标准。 难度：★ 基础 / ★★ 提高 / ★★★
+综合 ｜ 编号：<code>06-题型-序号</code></p>
+</blockquote>
+<hr />
+<h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
+分）</h2>
+<h3 id="11-单项选择题30-题">1.1 单项选择题（30 题）</h3>
+<section class="question-card"><p><strong>06-选择-001</strong>（★ 知识点：K6-1） <code>v-show</code>
+控制显隐的实现方式是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>删除 DOM</span></li><li><span class="option-label">B</span><span>切换 <code>display</code></span></li><li><span class="option-label">C</span><span>修改
+<code>visibility</code></span></li><li><span class="option-label">D</span><span>修改 <code>opacity</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：v-show 通过切换
+<code>display: none</code> 控制显隐。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-002</strong>（★ 知识点：K6-1） <code>v-if</code>
+条件为假时，元素？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>隐藏（display:none）</span></li><li><span class="option-label">B</span><span>从 DOM 中删除</span></li><li><span class="option-label">C</span><span>变透明</span></li><li><span class="option-label">D</span><span>不变</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：v-if
+为假时删除元素（不占 DOM）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-003</strong>（★ 知识点：K6-1）
+频繁切换显隐，推荐使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>v-if</span></li><li><span class="option-label">B</span><span>v-else</span></li><li><span class="option-label">C</span><span>v-show</span></li><li><span class="option-label">D</span><span>v-for</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：频繁切换用
+v-show（不重建 DOM）。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-004</strong>（★ 知识点：K6-1） <code>v-else</code>
+必须紧跟在？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>任意元素后</span></li><li><span class="option-label">B</span><span><code>v-if</code> 或
+<code>v-else-if</code> 元素后</span></li><li><span class="option-label">C</span><span><code>v-for</code> 后</span></li><li><span class="option-label">D</span><span><code>v-show</code> 后</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：v-else 必须紧邻
+v-if/v-else-if，中间不能有其他元素。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-005</strong>（★ 知识点：K6-1）
+对多元素进行条件分组渲染（不产生额外 DOM），应使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;div v-if&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;template v-if&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;span v-if&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;group v-if&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>&lt;template v-if&gt;</code>
+对多元素分组，不渲染额外 DOM。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-006</strong>（★ 知识点：K6-2） <code>v-for</code> 的
+<code>:key</code> 应使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>数组索引 index</span></li><li><span class="option-label">B</span><span>随机数</span></li><li><span class="option-label">C</span><span>唯一稳定的标识（如 id）</span></li><li><span class="option-label">D</span><span>字符串 "key"</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：key
+应唯一稳定，用数据 id。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-007</strong>（★ 知识点：K6-2） 遍历对象时
+<code>v-for="(value, key) in obj"</code>，key 表示？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>属性值</span></li><li><span class="option-label">B</span><span>属性名</span></li><li><span class="option-label">C</span><span>索引</span></li><li><span class="option-label">D</span><span>对象</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：遍历对象时 value
+是属性值，key 是属性名。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-008</strong>（★ 知识点：K6-2） 下列关于 v-for 与 v-if
+同级的说法，正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>推荐同级</span></li><li><span class="option-label">B</span><span>Vue 3 中 v-if 优先级高，同级会出错</span></li><li><span class="option-label">C</span><span>v-for 优先级高，同级没问题</span></li><li><span class="option-label">D</span><span>同级性能更好</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vue 3 中 v-if
+优先级高于 v-for，同级会出错，应改用 computed。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-009</strong>（★ 知识点：K6-3）
+下列属于变异方法（修改原数组并触发更新）的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>filter</code></span></li><li><span class="option-label">B</span><span><code>map</code></span></li><li><span class="option-label">C</span><span><code>push</code></span></li><li><span class="option-label">D</span><span><code>slice</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：push
+修改原数组（变异），触发更新；filter/map/slice 返回新数组（非变异）。C
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-010</strong>（★ 知识点：K6-3）
+下列属于非变异方法（返回新数组）的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>push</code></span></li><li><span class="option-label">B</span><span><code>splice</code></span></li><li><span class="option-label">C</span><span><code>filter</code></span></li><li><span class="option-label">D</span><span><code>sort</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：filter
+返回新数组（非变异）；push/splice/sort 修改原数组（变异）。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-011</strong>（★ 知识点：K6-3） 使用
+<code>filter</code> 后想让视图更新，应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>直接调用
+<code>list.filter(...)</code></span></li><li><span class="option-label">B</span><span>把结果替换回原数组
+<code>list.value = list.value.filter(...)</code></span></li><li><span class="option-label">C</span><span>重新创建项目</span></li><li><span class="option-label">D</span><span>调用
+<code>Vue.set</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：非变异方法返回新数组，需替换原数组才触发更新。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-012</strong>（★ 知识点：K6-3） Vue 3 中
+<code>list.value[0] = 99</code>（list 是 ref 数组）会？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>不触发更新</span></li><li><span class="option-label">B</span><span>触发更新（Proxy 监测索引）</span></li><li><span class="option-label">C</span><span>报错</span></li><li><span class="option-label">D</span><span>删除元素</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vue 3 Proxy
+能监测索引修改，触发更新（Vue 2 不能）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-013</strong>（★ 知识点：K6-4）
+<code>:class="{ active: isActive }"</code> 是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>字符串语法</span></li><li><span class="option-label">B</span><span>对象语法</span></li><li><span class="option-label">C</span><span>数组语法</span></li><li><span class="option-label">D</span><span>数字语法</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>{类名: 布尔}</code> 是对象语法。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-014</strong>（★ 知识点：K6-4）
+<code>:class="[baseClass, { active: isActive }]"</code> 是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>对象语法</span></li><li><span class="option-label">B</span><span>数组语法</span></li><li><span class="option-label">C</span><span>数组+对象混合语法</span></li><li><span class="option-label">D</span><span>字符串语法</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong>
+<strong>解析</strong>：数组中含对象，是混合语法。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-015</strong>（★ 知识点：K6-4） 普通 class 与
+<code>:class</code> 共存时？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>互相覆盖</span></li><li><span class="option-label">B</span><span>合并生效</span></li><li><span class="option-label">C</span><span>只保留 :class</span></li><li><span class="option-label">D</span><span>只保留普通 class</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：普通 class 与 :class
+会合并。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-016</strong>（★ 知识点：K6-5）
+<code>:style="{ fontSize: size + 'px' }"</code> 中属性名用了？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>短横线</span></li><li><span class="option-label">B</span><span>驼峰命名</span></li><li><span class="option-label">C</span><span>下划线</span></li><li><span class="option-label">D</span><span>数字</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>fontSize</code>
+是驼峰命名（对应 CSS <code>font-size</code>）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-017</strong>（★ 知识点：K6-5） <code>:style</code>
+中使用短横线属性名 <code>background-color</code>，应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>直接写
+<code>background-color</code></span></li><li><span class="option-label">B</span><span>加引号 <code>'background-color'</code></span></li><li><span class="option-label">C</span><span>用驼峰 <code>backgroundColor</code></span></li><li><span class="option-label">D</span><span>B 或 C 都可以</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：短横线需引号
+<code>'background-color'</code>，或用驼峰
+<code>backgroundColor</code>。D 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-018</strong>（★ 知识点：K6-5）
+<code>:style="{ fontSize: 16 }"</code> 的结果是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>字体 16px</span></li><li><span class="option-label">B</span><span>不生效（缺单位）</span></li><li><span class="option-label">C</span><span>报错</span></li><li><span class="option-label">D</span><span>字体 16em</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：数值需带单位，<code>16</code> 不生效，应
+<code>16 + 'px'</code> 或 <code>'16px'</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-019</strong>（★ 知识点：K6-2）
+<code>v-for="n in 5"</code> 会渲染几次？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>4</span></li><li><span class="option-label">B</span><span>5</span></li><li><span class="option-label">C</span><span>6</span></li><li><span class="option-label">D</span><span>0</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>v-for="n in 5"</code> 遍历 1~5，渲染 5
+次。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-020</strong>（★ 知识点：K6-1）
+一次性、少切换的条件渲染，推荐用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>v-show</span></li><li><span class="option-label">B</span><span>v-if</span></li><li><span class="option-label">C</span><span>v-for</span></li><li><span class="option-label">D</span><span>v-bind</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：一次性/少切换用
+v-if（惰性，初始开销低）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-021</strong>（★★ 知识点：K6-2） 用 index 作 :key
+的问题不包括？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>列表增删时状态错乱</span></li><li><span class="option-label">B</span><span>性能差</span></li><li><span class="option-label">C</span><span>编译报错</span></li><li><span class="option-label">D</span><span>复用错位节点</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：用 index
+不会编译报错，但会状态错乱、性能差、复用错位。C 不是问题，故选 C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-022</strong>（★★ 知识点：K6-3） Vue 3 相比 Vue 2
+在数组更新检测上的优势是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>不再支持变异方法</span></li><li><span class="option-label">B</span><span>能监测索引与 length
+修改</span></li><li><span class="option-label">C</span><span>取消响应式</span></li><li><span class="option-label">D</span><span>性能更差</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vue 3 Proxy
+能监测索引与 length 修改，Vue 2 需 Vue.set。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-023</strong>（★★ 知识点：K6-4） 下列 :class
+写法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>:class="active: true"</code></span></li><li><span class="option-label">B</span><span><code>:class="{ active: isActive }"</code></span></li><li><span class="option-label">C</span><span><code>:class="{{ active }}"</code></span></li><li><span class="option-label">D</span><span><code>:class="class=active"</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：对象语法
+<code>{ active: isActive }</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-024</strong>（★★ 知识点：K6-5） <code>:style</code>
+数组语法的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>只能一个样式</span></li><li><span class="option-label">B</span><span>合并多个样式对象</span></li><li><span class="option-label">C</span><span>删除样式</span></li><li><span class="option-label">D</span><span>转换样式</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：数组语法
+<code>:style="[style1, style2]"</code> 合并多个样式对象。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-025</strong>（★★ 知识点：K6-1） <code>v-show</code>
+不支持的特性是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>与 v-else 配合</span></li><li><span class="option-label">B</span><span>切换 display</span></li><li><span class="option-label">C</span><span>始终在 DOM</span></li><li><span class="option-label">D</span><span>频繁切换</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：v-show 不支持
+v-else，也不支持 <code>&lt;template&gt;</code>。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-026</strong>（★★ 知识点：K6-2） 遍历数组时
+<code>v-for="(item, index) in list"</code>，第二个参数 index 是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>当前项</span></li><li><span class="option-label">B</span><span>索引（从 0）</span></li><li><span class="option-label">C</span><span>数组长度</span></li><li><span class="option-label">D</span><span>数组本身</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：index
+是当前项索引（从 0）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-027</strong>（★★ 知识点：K6-3）
+<code>list.value.push(4)</code> 会触发视图更新吗（list 是 ref 数组）？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>会（push 是变异方法）</span></li><li><span class="option-label">B</span><span>不会</span></li><li><span class="option-label">C</span><span>仅 Vue 2 会</span></li><li><span class="option-label">D</span><span>报错</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：push
+是变异方法，修改原数组并触发更新。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-028</strong>（★★ 知识点：K6-4）
+对象语法中类名含短横线（如 text-danger），应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>不加引号</span></li><li><span class="option-label">B</span><span>加引号
+<code>'text-danger'</code></span></li><li><span class="option-label">C</span><span>用驼峰</span></li><li><span class="option-label">D</span><span>用下划线</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：含短横线的类名作对象键需加引号。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-029</strong>（★★ 知识点：K6 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>v-show 切 display</span></li><li><span class="option-label">B</span><span>v-for 需 :key</span></li><li><span class="option-label">C</span><span>:class 支持对象语法</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-030</strong>（★★ 知识点：K6 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>v-if 为假时删除 DOM</span></li><li><span class="option-label">B</span><span>:key 推荐用 index</span></li><li><span class="option-label">C</span><span>push 是变异方法</span></li><li><span class="option-label">D</span><span>:style
+支持对象语法</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：B 错误，:key 不推荐用
+index。A、C、D 正确。选 B。</p>
+</blockquote></section>
+<hr />
+<h3 id="12-多项选择题10-题">1.2 多项选择题（10 题）</h3>
+<section class="question-card"><p><strong>06-选择-031</strong>（★★ 知识点：K6-1） 关于 v-if 与
+v-show，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>v-if 删除/重建 DOM</span></li><li><span class="option-label">B</span><span>v-show 切 display</span></li><li><span class="option-label">C</span><span>频繁切换推荐 v-show</span></li><li><span class="option-label">D</span><span>v-show 支持 v-else</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，v-show 不支持 v-else。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-032</strong>（★★ 知识点：K6-2） 关于
+:key，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>必须唯一</span></li><li><span class="option-label">B</span><span>必须稳定</span></li><li><span class="option-label">C</span><span>推荐用 id</span></li><li><span class="option-label">D</span><span>推荐用
+index</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-033</strong>（★★ 知识点：K6-3）
+下列属于变异方法的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>push</code></span></li><li><span class="option-label">B</span><span><code>splice</code></span></li><li><span class="option-label">C</span><span><code>sort</code></span></li><li><span class="option-label">D</span><span><code>filter</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
+是变异方法；filter 是非变异。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-034</strong>（★★ 知识点：K6-3）
+下列属于非变异方法的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>filter</code></span></li><li><span class="option-label">B</span><span><code>map</code></span></li><li><span class="option-label">C</span><span><code>slice</code></span></li><li><span class="option-label">D</span><span><code>push</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
+非变异；push 是变异。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-035</strong>（★★ 知识点：K6-4） :class
+支持的语法有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>对象语法</span></li><li><span class="option-label">B</span><span>数组语法</span></li><li><span class="option-label">C</span><span>字符串</span></li><li><span class="option-label">D</span><span>数字</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
+支持；数字不支持。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-036</strong>（★★ 知识点：K6-5） 关于
+:style，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>支持对象语法</span></li><li><span class="option-label">B</span><span>支持数组语法</span></li><li><span class="option-label">C</span><span>驼峰或引号短横线</span></li><li><span class="option-label">D</span><span>数值可不带单位</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，数值需带单位。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-037</strong>（★★ 知识点：K6-1/K6-2）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>v-if/v-else 必须紧邻</span></li><li><span class="option-label">B</span><span>v-for 需 :key</span></li><li><span class="option-label">C</span><span>v-if
+与 v-for 不应同级</span></li><li><span class="option-label">D</span><span>v-show 会删除 DOM</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，v-show 不删 DOM。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-038</strong>（★★ 知识点：K6-3）
+关于列表更新，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>变异方法触发更新</span></li><li><span class="option-label">B</span><span>非变异方法需替换原数组</span></li><li><span class="option-label">C</span><span>Vue 3 能监测索引修改</span></li><li><span class="option-label">D</span><span>Vue 3 需 Vue.set</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，Vue 3 不需要 Vue.set。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-039</strong>（★★ 知识点：K6 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>v-show 适合频繁切换</span></li><li><span class="option-label">B</span><span>:class 对象语法
+<code>{active: bool}</code></span></li><li><span class="option-label">C</span><span>push 是变异方法</span></li><li><span class="option-label">D</span><span>:style
+数值可不带单位</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-选择-040</strong>（★★ 知识点：K6 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;template v-if&gt;</code> 不产生额外
+DOM</span></li><li><span class="option-label">B</span><span>:key 推荐用 id</span></li><li><span class="option-label">C</span><span>:style 支持驼峰</span></li><li><span class="option-label">D</span><span>v-if 适合频繁切换</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，v-if 不适合频繁切换。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<h2 id="二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1
+分）</h2>
+<section class="question-card"><p><strong>06-判断-001</strong>（★）v-show 通过切换 display 控制显隐。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-002</strong>（★）v-if 为假时元素从 DOM 删除。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-003</strong>（★）频繁切换显隐推荐用 v-if。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：推荐 v-show。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-004</strong>（★）v-for 应为每项提供 :key。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-005</strong>（★）:key 推荐用数组索引 index。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：推荐用唯一稳定的
+id。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-006</strong>（★）push 是变异方法，会触发更新。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-007</strong>（★）filter
+是非变异方法，直接调用会更新视图。（ ）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：需替换原数组才更新。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-008</strong>（★）Vue 3 能监测数组索引修改。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：Proxy 监测。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-009</strong>（★）:class 支持对象语法。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-010</strong>（★）:style 属性名只能用短横线。（ ）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：可用驼峰或引号短横线。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-011</strong>（★）v-if 与 v-for 推荐同级使用。（
+）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：不应同级，Vue 3
+会出错。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-012</strong>（★）<code>&lt;template v-if&gt;</code>
+不产生额外 DOM。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-013</strong>（★★）v-else 可与 v-show 配合使用。（
+）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：v-show 不支持
+v-else。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-014</strong>（★★）普通 class 与 :class
+可共存并合并。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-015</strong>（★★）:style 数值需带单位。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-016</strong>（★★）<code>list.value = list.value.filter(...)</code>
+会触发更新。（ ）</p><blockquote>
+<p><strong>答案：✓</strong>
+<strong>解析</strong>：替换原数组触发更新。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-017</strong>（★★）sort 是变异方法。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-018</strong>（★★）:class 数组语法可混合对象。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确，如
+<code>[a, {active: bool}]</code>。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-019</strong>（★★）Vue 2 中 <code>list[0] = x</code>
+能直接触发更新。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：Vue 2 不能，需
+Vue.set。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-判断-020</strong>（★★）:style
+数组语法可合并多个样式对象。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<hr />
+<h2 id="三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2
+分）</h2>
+<section class="question-card"><p><strong>06-填空-001</strong>（★）v-show 通过切换
+<code>________</code> 控制显隐。</p><blockquote>
+<p><strong>答案：display</strong>
+<strong>解析</strong>：display:none。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-填空-002</strong>（★）v-if 为假时元素从
+<code>________</code> 中删除。</p><blockquote>
+<p><strong>答案：DOM</strong> <strong>解析</strong>：删除不占 DOM。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-填空-003</strong>（★）频繁切换显隐推荐用
+<code>v-________</code>。</p><blockquote>
+<p><strong>答案：show</strong> <strong>解析</strong>：v-show。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-填空-004</strong>（★）v-for 应绑定 <code>:________</code>
+提供唯一标识。</p><blockquote>
+<p><strong>答案：key</strong> <strong>解析</strong>：key。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-填空-005</strong>（★）修改原数组并触发更新的方法称为
+<code>________</code> 方法。</p><blockquote>
+<p><strong>答案：变异</strong> <strong>解析</strong>：如
+push/splice。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-填空-006</strong>（★）返回新数组需替换原数组才更新的方法称为
+<code>________</code> 方法。</p><blockquote>
+<p><strong>答案：非变异</strong> <strong>解析</strong>：如
+filter/map。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-填空-007</strong>（★）<code>:class="{ active: isActive }"</code>
+是 <code>________</code> 语法。</p><blockquote>
+<p><strong>答案：对象</strong> <strong>解析</strong>：对象语法。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-填空-008</strong>（★）<code>:style</code> 中
+<code>fontSize</code> 对应 CSS 属性 <code>________</code>。</p><blockquote>
+<p><strong>答案：font-size</strong>
+<strong>解析</strong>：驼峰转短横线。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-填空-009</strong>（★）多元素分组条件渲染不产生额外 DOM，用
+<code>&lt;________ v-if&gt;</code>。</p><blockquote>
+<p><strong>答案：template</strong> <strong>解析</strong>：template
+标签。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>06-填空-010</strong>（★）Vue 3 用 <code>________</code>
+监测数组索引修改。</p><blockquote>
+<p><strong>答案：Proxy</strong> <strong>解析</strong>：Proxy 代理。</p>
+</blockquote></section>
+<hr />
+<h2 id="四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</h2>
+<section class="question-card"><p><strong>06-论述-001</strong>（★★ 知识点：K6-1，分值：6 分）
+<strong>题目</strong>：比较 v-if 与 v-show，说明区别与适用场景。</p>
+<p><strong>要求</strong>： （1）实现区别（3 分）。 （2）性能区别（2
+分）。 （3）适用场景（1 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）实现（3 分）：v-if 删除/重建
+DOM（假时不占 DOM）；v-show 始终渲染，切 display。 （2）性能（2
+分）：v-if 切换开销大（重建）、初始开销小（惰性）；v-show
+切换开销小（仅样式）、初始开销大（始终渲染）。 （3）场景（1
+分）：频繁切换用 v-show，一次性/少切换用 v-if。</p>
+<p><strong>评分标准</strong>：共 6 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-论述-002</strong>（★★ 知识点：K6-2/K6-3，分值：8 分）
+<strong>题目</strong>：解释 :key 的作用及为何不用
+index；说明变异与非变异方法的区别。</p>
+<p><strong>要求</strong>： （1）:key 作用与不用 index 原因（4 分）。
+（2）变异 vs 非变异（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）（4 分）：:key 是节点唯一标识，帮助
+Vue 高效复用与更新。不用 index 因列表增删时 index
+重排，导致复用错位、状态错乱、性能差；应用唯一稳定 id。 （2）（4
+分）：变异方法（push/splice/sort
+等）修改原数组直接触发更新；非变异方法（filter/map/slice）返回新数组，需把结果替换回原数组才触发更新。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-论述-003</strong>（★★ 知识点：K6-4，分值：8 分）
+<strong>题目</strong>：说明 :class 的对象语法、数组语法及与普通 class
+共存的规则，举例。</p>
+<p><strong>要求</strong>： （1）对象语法（3 分）。 （2）数组语法（3
+分）。 （3）与普通 class 共存（2 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）对象语法（3
+分）：<code>:class="{ active: isActive, 'text-danger': hasError }"</code>，键为类名，值为布尔决定是否生效。
+（2）数组语法（3
+分）：<code>:class="[baseClass, isActive ? 'active' : '']"</code>，或混合
+<code>:class="[base, {active: isActive}]"</code>。 （3）共存（2
+分）：普通 class 与 :class 会合并，如
+<code>&lt;div class="box" :class="{active: isActive}"&gt;</code> 最终
+class 为 <code>box active</code>（当 isActive 为真）。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-论述-004</strong>（★★ 知识点：K6-3/K6-5 综合，分值：8 分）
+<strong>题目</strong>：说明 Vue 3 相比 Vue 2
+在数组更新检测上的改进，并说明 :style 的书写规则。</p>
+<p><strong>要求</strong>： （1）Vue 3 数组更新改进（4 分）。 （2）:style
+书写规则（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）改进（4 分）：Vue 3 用
+Proxy，能直接监测数组索引修改（<code>list[0]=x</code>）和 length
+修改（<code>list.length=0</code>），触发更新；Vue 2 用 defineProperty
+不能监测，需 Vue.set/this.$set。Vue 3 也仍支持变异方法触发更新。
+（2）:style 规则（4
+分）：支持对象语法，属性名用驼峰（<code>fontSize</code>）或引号包裹短横线（<code>'font-size'</code>）；数值需带单位（<code>'16px'</code>
+或 <code>16+'px'</code>）；数组语法可合并多个样式对象。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<h2 id="五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</h2>
+<section class="question-card"><p><strong>06-程序-001</strong>（★★ 知识点：K6 综合，分值：10 分）
+<strong>题目</strong>：找出 3 处错误并改正。</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;li v-for=&quot;item in list&quot; v-if=&quot;item.show&quot; :key=&quot;item.id&quot;&gt;{{ item.name }}&lt;/li&gt;
+    &lt;p :class=&quot;active: true&quot;&gt;文本&lt;/p&gt;
+    &lt;button @click=&quot;list.filter(x =&gt; x.show)&quot;&gt;筛选&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const list = ref([{ id: 1, name: &#39;A&#39;, show: true }])
+&lt;/script&gt;</code></pre>
+<p><strong>要求</strong>：指出 3 处错误并改正。（每处 3.33 分，共 10
+分）</p><blockquote>
+<p><strong>参考答案</strong>：</p>
+<ol type="1">
+<li><strong>v-for 与 v-if 同级</strong>（3.33 分）：应改用 computed
+过滤，<code>&lt;li v-for="item in showList" :key="item.id"&gt;</code>，定义
+<code>const showList = computed(() =&gt; list.value.filter(x =&gt; x.show))</code>。</li>
+<li><strong><code>:class="active: true"</code> 语法错误</strong>（3.33
+分）：应改为对象语法 <code>:class="{ active: true }"</code>。</li>
+<li><strong><code>list.filter(...)</code> 不替换不更新</strong>（3.33
+分）：应改为
+<code>list.value = list.value.filter(x =&gt; x.show)</code>（替换）或用变异方法。</li>
+</ol>
+<p><strong>评分标准</strong>：共 10 分，每处指出并改正得 3.33 分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-程序-002</strong>（★★ 知识点：K6-4/K6-5，分值：12 分）
+<strong>题目</strong>：补全样式绑定代码空缺。</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div :class=&quot;{ ______A______: isActive }&quot; :style=&quot;{ ______B______: color, fontSize: size + &#39;px&#39; }&quot;&gt;
+    文本
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const isActive = ref(true)
+const color = ref(&#39;red&#39;)
+const size = ref(16)
+&lt;/script&gt;</code></pre>
+<p><strong>要求</strong>： （1）A：类名 active。（4 分） （2）B：CSS
+属性 color（用驼峰或短横线均可，写出一种）。（4 分） （3）说明 fontSize
+对应的 CSS 属性。（4 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>active</code>（4
+分）：对象语法键。 （2）B = <code>color</code>（4 分）：color
+属性（也可写 <code>backgroundColor</code> 等，但题干变量是 color，应绑
+color）。 （3）fontSize 对应 CSS <code>font-size</code>（4
+分）：驼峰转短横线。</p>
+<p><strong>评分标准</strong>：共 12 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<h2 id="六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</h2>
+<section class="question-card"><p><strong>06-编程-001</strong>（★★ 知识点：K6-1/K6-4，分值：15 分）
+<strong>题目</strong>：编写组件，用一个按钮控制列表的显隐（频繁切换），列表项根据完成状态变色（已完成绿色，未完成灰色）。用
+v-show 与 :class。</p>
+<p><strong>要求</strong>： （1）按钮 + v-show 控制显隐（5 分）。
+（2）v-for 渲染列表 + :key（5 分）。 （3）:class 根据状态变色（5
+分）。</p><blockquote>
+<p><strong>参考答案</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click=&quot;visible = !visible&quot;&gt;{{ visible ? &#39;隐藏&#39; : &#39;显示&#39; }}&lt;/button&gt;
+    &lt;ul v-show=&quot;visible&quot;&gt;
+      &lt;li v-for=&quot;t in tasks&quot; :key=&quot;t.id&quot; :class=&quot;{ done: t.finished }&quot;&gt;{{ t.title }}&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const visible = ref(true)
+const tasks = ref([
+  { id: 1, title: &#39;任务一&#39;, finished: true },
+  { id: 2, title: &#39;任务二&#39;, finished: false }
+])
+&lt;/script&gt;
+&lt;style scoped&gt;
+.done { color: #42b883; }
+li { color: #999; padding: 6px 0; }
+&lt;/style&gt;</code></pre>
+<p>评分：v-show（5 分，用 v-if 扣 2 分）；v-for+:key（5 分，缺 key 扣
+1）；:class 状态变色（5 分）。</p>
+<p><strong>评分标准</strong>：共 15 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>06-编程-002</strong>（★★★ 知识点：K6 综合，分值：20 分）
+<strong>题目</strong>：实现 CTTS-Frontend 任务列表，要求：</p>
+<ul>
+<li>v-for 渲染任务（id/title/status），带 :key；</li>
+<li>下拉框筛选状态；</li>
+<li>:class 按状态变色（进行中橙色、已完成绿色）；</li>
+<li>分页（每页 2 条），上/下一页按钮，禁用边界；</li>
+<li>空数据用 v-if/v-else 提示。</li>
+</ul>
+<p><strong>要求</strong>： （1）数据 + v-for + :key。（4 分）
+（2）状态筛选（computed）。（4 分） （3）:class 状态变色。（4 分）
+（4）分页逻辑 + 按钮。（5 分） （5）空状态 v-if/v-else。（3 分）</p><blockquote>
+<p><strong>参考答案</strong>：见教学资料综合示例（任务列表条件展示与分页）。
+评分要点：数据 ref + v-for 带 :key（4 分）；computed 筛选（4
+分）；:class 对象按状态（4 分）；分页 page/totalPages/pagedTasks + 按钮
+disabled（5 分）；v-if/v-else 空状态（3 分）。</p>
+<p><strong>评分标准</strong>：共 20 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<h2 id="题库统计与组卷说明">题库统计与组卷说明</h2>
+<h3 id="题量统计">题量统计</h3>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>数量</th>
+<th>分值</th>
+<th>小计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择题（单选 30 + 多选 10）</td>
+<td>40</td>
+<td>每题 2 分</td>
+<td>80 分</td>
+</tr>
+<tr>
+<td>判断题</td>
+<td>20</td>
+<td>每题 1 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>填空题</td>
+<td>10</td>
+<td>每题 2 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>论述/简答题</td>
+<td>4</td>
+<td>6~8 分</td>
+<td>30 分</td>
+</tr>
+<tr>
+<td>程序阅读/补全题</td>
+<td>2</td>
+<td>10~12 分</td>
+<td>22 分</td>
+</tr>
+<tr>
+<td>编程/接口设计题</td>
+<td>2</td>
+<td>15~20 分</td>
+<td>35 分</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>78</strong></td>
+<td>—</td>
+<td><strong>207 分</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="难度分布">难度分布</h3>
+<table>
+<thead>
+<tr>
+<th>难度</th>
+<th>题量（约）</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★ 基础</td>
+<td>40</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>★★ 提高</td>
+<td>34</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>★★★ 综合</td>
+<td>4</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="知识点覆盖">知识点覆盖</h3>
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>覆盖题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K6-1 条件渲染</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K6-2 v-for/:key</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K6-3 列表更新检测</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K6-4 class 绑定</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K6-5 style 绑定</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本题库已确保每题答案唯一明确、无歧义选项，全部含解析，主观题含评分标准，可直接录入考试系统题库。</p>
+</blockquote>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

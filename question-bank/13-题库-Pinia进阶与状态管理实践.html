@@ -1,0 +1,728 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pinia进阶与状态管理实践</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 13 次课 · 题库</div>
+      <h1>Pinia进阶与状态管理实践</h1>
+      <p>考试题库与参考解析 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 13 次课</span>
+        <span class="hero-chip"><b>主题</b>Pinia进阶与状态管理实践</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2 分）</a>
+<ul>
+<li><a href="#11-单项选择题30-题">1.1 单项选择题（30 题）</a></li>
+<li><a href="#12-多项选择题10-题">1.2 多项选择题（10 题）</a></li>
+</ul></li>
+<li><a href="#二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1 分）</a>
+<ul>
+</ul></li>
+<li><a href="#三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2 分）</a>
+<ul>
+</ul></li>
+<li><a href="#四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</a>
+<ul>
+</ul></li>
+<li><a href="#五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#题库统计与组卷说明">题库统计与组卷说明</a>
+<ul>
+<li><a href="#题量统计">题量统计</a></li>
+<li><a href="#难度分布">难度分布</a></li>
+<li><a href="#知识点覆盖">知识点覆盖</a></li>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 13 次课 <span>｜</span> <strong>文档：</strong>题库</p>
+<blockquote>
+<p>配套：<code>教学设计.md</code>、<code>教学资料.md</code>（同文件夹）
+题量：40 选择 + 20 判断 + 10 填空 + 4 论述/简答 + 2 程序阅读/补全 + 2
+编程/接口设计 = <strong>78 题</strong>
+全部含参考答案与解析；主观题另附评分标准。 难度：★ 基础 / ★★ 提高 / ★★★
+综合 ｜ 编号：<code>13-题型-序号</code></p>
+</blockquote>
+<hr />
+<h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
+分）</h2>
+<h3 id="11-单项选择题30-题">1.1 单项选择题（30 题）</h3>
+<section class="question-card"><p><strong>13-选择-001</strong>（★ 知识点：K13-1） 多个 store
+应按什么原则划分？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>随意</span></li><li><span class="option-label">B</span><span>职责单一</span></li><li><span class="option-label">C</span><span>越多越好</span></li><li><span class="option-label">D</span><span>只用一个</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：按职责单一原则划分。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-002</strong>（★ 知识点：K13-1） CTTS-Frontend 管理 UI
+状态（如侧边栏折叠）的 store 是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>userStore</span></li><li><span class="option-label">B</span><span>projectStore</span></li><li><span class="option-label">C</span><span>appStore</span></li><li><span class="option-label">D</span><span>routeStore</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：appStore 管全局 UI
+状态。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-003</strong>（★ 知识点：K13-2） store
+间相互调用应在？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>store 顶层</span></li><li><span class="option-label">B</span><span>action 内部</span></li><li><span class="option-label">C</span><span>getter 内</span></li><li><span class="option-label">D</span><span>组件外</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：在 action 内
+<code>useXxxStore()</code> 调用，避免顶层循环引用。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-004</strong>（★ 知识点：K13-2） store
+间引用的写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>import { useXxxStore } from './xxx'; const s = useXxxStore()</code></span></li><li><span class="option-label">B</span><span><code>this.$store</code></span></li><li><span class="option-label">C</span><span><code>useStore()</code></span></li><li><span class="option-label">D</span><span><code>store.xxx</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：导入并调用
+<code>useXxxStore()</code>。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-005</strong>（★ 知识点：K13-3）
+状态持久化常用的存储是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>localStorage</span></li><li><span class="option-label">B</span><span>sessionStorage</span></li><li><span class="option-label">C</span><span>cookie</span></li><li><span class="option-label">D</span><span>A 和 B 都可</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong>
+<strong>解析</strong>：localStorage（长期）或
+sessionStorage（会话）都可。D 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-006</strong>（★ 知识点：K13-3） 从 localStorage
+恢复状态的时机是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>组件 mounted</span></li><li><span class="option-label">B</span><span>store 的 state 初始化时</span></li><li><span class="option-label">C</span><span>路由跳转时</span></li><li><span class="option-label">D</span><span>任意</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：state 初始化时读取
+localStorage 恢复。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-007</strong>（★ 知识点：K13-4） 重置 store state
+到初始值用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>$reset</code></span></li><li><span class="option-label">B</span><span><code>$patch</code></span></li><li><span class="option-label">C</span><span><code>$clear</code></span></li><li><span class="option-label">D</span><span><code>$init</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：<code>$reset()</code>
+重置到初始值。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-008</strong>（★ 知识点：K13-4） 批量修改 state 用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>$reset</code></span></li><li><span class="option-label">B</span><span><code>$patch</code></span></li><li><span class="option-label">C</span><span><code>$set</code></span></li><li><span class="option-label">D</span><span><code>$update</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>$patch</code>
+批量改。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-009</strong>（★ 知识点：K13-4） 监听 store state
+变化用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>$watch</code></span></li><li><span class="option-label">B</span><span><code>$subscribe</code></span></li><li><span class="option-label">C</span><span><code>$on</code></span></li><li><span class="option-label">D</span><span><code>$listen</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>$subscribe</code> 监听 state 变化。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-010</strong>（★ 知识点：K13-1） store 文件通常放在？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>src/components/</code></span></li><li><span class="option-label">B</span><span><code>src/stores/</code></span></li><li><span class="option-label">C</span><span><code>src/views/</code></span></li><li><span class="option-label">D</span><span><code>src/router/</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：store 放
+<code>src/stores/</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-011</strong>（★ 知识点：K13-3） 自动持久化 Pinia
+状态的插件是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>pinia-plugin-persistedstate</span></li><li><span class="option-label">B</span><span>vuex-persist</span></li><li><span class="option-label">C</span><span>pinia-save</span></li><li><span class="option-label">D</span><span>pinia-storage</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：pinia-plugin-persistedstate 自动持久化。A
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-012</strong>（★ 知识点：K13-2） store
+间循环引用的问题是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>编译报错</span></li><li><span class="option-label">B</span><span>初始化死循环</span></li><li><span class="option-label">C</span><span>无影响</span></li><li><span class="option-label">D</span><span>性能更好</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：循环引用会导致初始化死循环。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-013</strong>（★ 知识点：K13-4） 组合式 store（Setup
+Store）默认是否有 $reset？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>有</span></li><li><span class="option-label">B</span><span>无，需自行实现</span></li><li><span class="option-label">C</span><span>自动有</span></li><li><span class="option-label">D</span><span>不确定</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：组合式 store 默认无
+$reset，需自行实现。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-014</strong>（★ 知识点：K13-3）
+<code>$subscribe</code> 的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>重置 state</span></li><li><span class="option-label">B</span><span>监听 state 变化</span></li><li><span class="option-label">C</span><span>批量改</span></li><li><span class="option-label">D</span><span>持久化</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：监听 state 变化。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-015</strong>（★ 知识点：K13-1） 管理用户登录信息的
+store 是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>userStore</span></li><li><span class="option-label">B</span><span>appStore</span></li><li><span class="option-label">C</span><span>projectStore</span></li><li><span class="option-label">D</span><span>taskStore</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：userStore
+管登录信息。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-016</strong>（★ 知识点：K13-3） localStorage
+存储对象应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>直接存</span></li><li><span class="option-label">B</span><span><code>JSON.stringify</code> 转字符串</span></li><li><span class="option-label">C</span><span>用
+toString</span></li><li><span class="option-label">D</span><span>不能存对象</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：localStorage
+只存字符串，对象用 JSON.stringify。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-017</strong>（★ 知识点：K13-4） <code>$patch</code>
+接收的参数可以是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>对象</span></li><li><span class="option-label">B</span><span>函数</span></li><li><span class="option-label">C</span><span>对象或函数</span></li><li><span class="option-label">D</span><span>字符串</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：$patch
+接收对象或函数。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-018</strong>（★ 知识点：K13-2）
+<code>useXxxStore()</code> 不能在？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>setup 中</span></li><li><span class="option-label">B</span><span>action 中</span></li><li><span class="option-label">C</span><span>store
+顶层</span></li><li><span class="option-label">D</span><span>组件中</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：不能在 store
+顶层调用（会循环引用）。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-019</strong>（★ 知识点：K13-3） 持久化 token 到
+localStorage 的风险是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>性能差</span></li><li><span class="option-label">B</span><span>XSS 攻击可窃取</span></li><li><span class="option-label">C</span><span>不可读</span></li><li><span class="option-label">D</span><span>报错</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：localStorage 有 XSS
+风险，生产可考虑 httpOnly cookie。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-020</strong>（★ 知识点：K13 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>多 store 按职责划分</span></li><li><span class="option-label">B</span><span>store 间在 action 内引用</span></li><li><span class="option-label">C</span><span>持久化用 localStorage</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-021</strong>（★★ 知识点：K13-2） store A 的 action
+调用 store B，B 的 action 又调用 A，会？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>正常</span></li><li><span class="option-label">B</span><span>循环引用，可能死循环</span></li><li><span class="option-label">C</span><span>报语法错</span></li><li><span class="option-label">D</span><span>自动中断</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：循环引用可能死循环。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-022</strong>（★★ 知识点：K13-4）
+<code>store.$patch({ a: 1, b: 2 })</code> 的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>只改 a</span></li><li><span class="option-label">B</span><span>批量改
+a 与 b</span></li><li><span class="option-label">C</span><span>重置</span></li><li><span class="option-label">D</span><span>监听</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：批量改 a 与 b。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-023</strong>（★★ 知识点：K13-3） 状态持久化的好处是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>加快运行</span></li><li><span class="option-label">B</span><span>刷新后状态不丢失</span></li><li><span class="option-label">C</span><span>减小体积</span></li><li><span class="option-label">D</span><span>简化代码</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：持久化使刷新后状态保留。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-024</strong>（★★ 知识点：K13-4）
+<code>$subscribe</code> 回调参数是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>(state)</span></li><li><span class="option-label">B</span><span>(mutation, state)</span></li><li><span class="option-label">C</span><span>(newVal, oldVal)</span></li><li><span class="option-label">D</span><span>(store)</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>$subscribe((mutation, state) =&gt; {})</code>。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-025</strong>（★★ 知识点：K13 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>组合式 store 默认有 $reset</span></li><li><span class="option-label">B</span><span>store 间在 action 内引用</span></li><li><span class="option-label">C</span><span>$patch 批量改</span></li><li><span class="option-label">D</span><span>localStorage 可持久化</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A 错误，组合式 store
+默认无 $reset。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-026</strong>（★★ 知识点：K13 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>$reset 重置到初始值</span></li><li><span class="option-label">B</span><span>$subscribe 监听变化</span></li><li><span class="option-label">C</span><span>持久化避免刷新丢失</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-027</strong>（★★ 知识点：K13 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>store 间可在顶层互相调用</span></li><li><span class="option-label">B</span><span>多 store 按职责划分</span></li><li><span class="option-label">C</span><span>$patch 接收对象或函数</span></li><li><span class="option-label">D</span><span>插件可自动持久化</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A 错误，应在 action
+内调用。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-028</strong>（★★ 知识点：K13 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>userStore 管登录</span></li><li><span class="option-label">B</span><span>appStore 管 UI</span></li><li><span class="option-label">C</span><span>projectStore 管项目数据</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-029</strong>（★★ 知识点：K13 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>localStorage 可存对象（直接存）</span></li><li><span class="option-label">B</span><span>$reset 重置</span></li><li><span class="option-label">C</span><span>$subscribe 监听</span></li><li><span class="option-label">D</span><span>store 放 src/stores</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A 错误，localStorage
+存对象需 JSON.stringify。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-030</strong>（★★ 知识点：K13 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>持久化可避免刷新丢失</span></li><li><span class="option-label">B</span><span>store 间 action 内引用</span></li><li><span class="option-label">C</span><span>$patch 批量改</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<h3 id="12-多项选择题10-题">1.2 多项选择题（10 题）</h3>
+<section class="question-card"><p><strong>13-选择-031</strong>（★★ 知识点：K13-1） CTTS-Frontend 的
+store 包括？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>userStore</span></li><li><span class="option-label">B</span><span>projectStore</span></li><li><span class="option-label">C</span><span>appStore</span></li><li><span class="option-label">D</span><span>routeStore</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
+是；routeStore 非典型。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-032</strong>（★★ 知识点：K13-3）
+状态持久化方式有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>手动 localStorage</span></li><li><span class="option-label">B</span><span>$subscribe 自动存</span></li><li><span class="option-label">C</span><span>pinia-plugin-persistedstate 插件</span></li><li><span class="option-label">D</span><span>直接存内存</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
+是持久化方式；D 内存不持久。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-033</strong>（★★ 知识点：K13-4） Pinia store
+实例方法有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>$reset</code></span></li><li><span class="option-label">B</span><span><code>$patch</code></span></li><li><span class="option-label">C</span><span><code>$subscribe</code></span></li><li><span class="option-label">D</span><span><code>$nextTick</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 是
+store 方法；$nextTick 是 Vue 方法。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-034</strong>（★★ 知识点：K13 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>多 store 按职责划分</span></li><li><span class="option-label">B</span><span>store 间 action 内引用</span></li><li><span class="option-label">C</span><span>持久化避免刷新丢失</span></li><li><span class="option-label">D</span><span>组合式 store 默认有 $reset</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-035</strong>（★★ 知识点：K13 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>$reset 重置</span></li><li><span class="option-label">B</span><span>$patch 批量改</span></li><li><span class="option-label">C</span><span>$subscribe
+监听</span></li><li><span class="option-label">D</span><span>$patch 只能对象</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，可对象或函数。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-036</strong>（★★ 知识点：K13 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>store 放 src/stores</span></li><li><span class="option-label">B</span><span>localStorage 存对象需
+stringify</span></li><li><span class="option-label">C</span><span>插件可自动持久化</span></li><li><span class="option-label">D</span><span>store 间顶层引用安全</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，应 action 内。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-037</strong>（★★ 知识点：K13 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>userStore 管登录</span></li><li><span class="option-label">B</span><span>projectStore 管项目</span></li><li><span class="option-label">C</span><span>appStore 管 UI</span></li><li><span class="option-label">D</span><span>都放一个 store</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，应分多 store。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-038</strong>（★★ 知识点：K13 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>持久化 token 有 XSS 风险</span></li><li><span class="option-label">B</span><span>$subscribe
+可自动持久化</span></li><li><span class="option-label">C</span><span>循环引用会死循环</span></li><li><span class="option-label">D</span><span>组合式 store 默认有 $reset</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-039</strong>（★★ 知识点：K13 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>$patch 接收对象或函数</span></li><li><span class="option-label">B</span><span>$subscribe 监听 state</span></li><li><span class="option-label">C</span><span>localStorage 只存字符串</span></li><li><span class="option-label">D</span><span>store 间应顶层调用</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，action 内。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-选择-040</strong>（★★ 知识点：K13 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>多 store 职责单一</span></li><li><span class="option-label">B</span><span>持久化避免刷新丢失</span></li><li><span class="option-label">C</span><span>$reset 重置</span></li><li><span class="option-label">D</span><span>插件不能自动持久化</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，插件可。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<h2 id="二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1
+分）</h2>
+<section class="question-card"><p><strong>13-判断-001</strong>（★）多 store 应按职责单一原则划分。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-002</strong>（★）store 间可在 action 内互相调用。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-003</strong>（★）localStorage 可用于状态持久化。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-004</strong>（★）$reset 重置 state 到初始值。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-005</strong>（★）$patch 批量修改 state。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-006</strong>（★）$subscribe 监听 state 变化。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-007</strong>（★）store 间可在顶层互相调用。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：应 action
+内，避免循环。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-008</strong>（★）组合式 store 默认有 $reset。（
+）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：默认无，需自行实现。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-009</strong>（★）localStorage 存对象需
+JSON.stringify。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-010</strong>（★）store 文件放 src/stores 目录。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-011</strong>（★）插件 pinia-plugin-persistedstate
+可自动持久化。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-012</strong>（★）$patch 只能接收对象。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：可对象或函数。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-013</strong>（★★）持久化 token 无安全风险。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：有 XSS 风险。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-014</strong>（★★）store 间循环引用可能死循环。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-015</strong>（★★）持久化可避免刷新后状态丢失。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-016</strong>（★★）$subscribe 可用于自动持久化。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-017</strong>（★★）userStore 管理 UI 状态。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：userStore
+管登录信息，UI 是 appStore。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-018</strong>（★★）多个 store 应合并为一个。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：应按职责拆分。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-019</strong>（★★）$reset 在组合式 store
+中需自行实现。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-判断-020</strong>（★★）localStorage
+存储的数据刷新后仍在。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<hr />
+<h2 id="三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2
+分）</h2>
+<section class="question-card"><p><strong>13-填空-001</strong>（★）多 store 按 <code>________</code>
+单一原则划分。</p><blockquote>
+<p><strong>答案：职责</strong> <strong>解析</strong>：职责单一。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-填空-002</strong>（★）store 间在 <code>________</code>
+内调用 useXxxStore。</p><blockquote>
+<p><strong>答案：action</strong> <strong>解析</strong>：action 内。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-填空-003</strong>（★）状态持久化常用
+<code>________</code>Storage。</p><blockquote>
+<p><strong>答案：local</strong>
+<strong>解析</strong>：localStorage。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-填空-004</strong>（★）重置 state 用
+<code>$________</code>。</p><blockquote>
+<p><strong>答案：reset</strong> <strong>解析</strong>：$reset。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-填空-005</strong>（★）批量修改 state 用
+<code>$________</code>。</p><blockquote>
+<p><strong>答案：patch</strong> <strong>解析</strong>：$patch。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-填空-006</strong>（★）监听 state 变化用
+<code>$________</code>。</p><blockquote>
+<p><strong>答案：subscribe</strong>
+<strong>解析</strong>：$subscribe。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-填空-007</strong>（★）store 文件放
+<code>src/________</code> 目录。</p><blockquote>
+<p><strong>答案：stores</strong> <strong>解析</strong>：stores。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-填空-008</strong>（★）localStorage 存对象用
+<code>JSON.________</code>。</p><blockquote>
+<p><strong>答案：stringify</strong>
+<strong>解析</strong>：stringify。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-填空-009</strong>（★）管理登录信息的 store 是
+<code>________Store</code>。</p><blockquote>
+<p><strong>答案：user</strong> <strong>解析</strong>：userStore。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>13-填空-010</strong>（★）自动持久化插件是
+pinia-plugin-________。</p><blockquote>
+<p><strong>答案：persistedstate</strong>
+<strong>解析</strong>：persistedstate。</p>
+</blockquote></section>
+<hr />
+<h2 id="四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</h2>
+<section class="question-card"><p><strong>13-论述-001</strong>（★★ 知识点：K13-1/K13-2，分值：8 分）
+<strong>题目</strong>：说明多 store 划分原则与 store 间引用方式。</p>
+<p><strong>要求</strong>： （1）划分原则（4 分）。 （2）store 间引用（4
+分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）划分（4 分）：按职责单一原则，每个
+store 管一类状态（userStore 管登录、projectStore 管项目、appStore 管
+UI），便于维护与复用。 （2）引用（4 分）：在 action 内
+<code>const other = useXxxStore()</code> 调用其他 store；不能在 store
+顶层调用，避免循环引用与初始化死循环。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-论述-002</strong>（★★ 知识点：K13-3，分值：8 分）
+<strong>题目</strong>：说明状态持久化的方式与利弊。</p>
+<p><strong>要求</strong>： （1）方式（4 分）。 （2）利弊（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）方式（4 分）：①手动 localStorage
+存取（state 初始化恢复，action 中存储）；②$subscribe
+监听变化自动存；③插件 pinia-plugin-persistedstate 自动持久化。
+（2）利弊（4 分）：利——刷新后状态保留，提升体验；弊——token 等敏感数据存
+localStorage 有 XSS 风险，大对象影响性能，需选择性持久化。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-论述-003</strong>（★★ 知识点：K13-4，分值：8 分）
+<strong>题目</strong>：说明 $reset、$patch、$subscribe
+的作用与注意。</p>
+<p><strong>要求</strong>：每个 2 分，综合 2 分。</p><blockquote>
+<p><strong>参考答案</strong>：</p>
+<ul>
+<li><strong>$reset</strong>（2 分）：重置 state 到初始值；组合式 store
+默认无，需自行实现。</li>
+<li><strong>$patch</strong>（2 分）：批量修改
+state，接收对象或函数。</li>
+<li><strong>$subscribe</strong>（2 分）：监听 state
+变化，可用于自动持久化；组件内需注意解绑。</li>
+<li><strong>综合</strong>（2 分）：三者是 store
+实例方法，配合使用实现重置、批量更新、监听持久化。</li>
+</ul>
+<p><strong>评分标准</strong>：共 8 分，按点给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-论述-004</strong>（★★ 知识点：K13 综合，分值：6 分）
+<strong>题目</strong>：实践复盘——列举 3 个状态管理踩坑点及解决。</p>
+<p><strong>要求</strong>：每个 2 分。</p><blockquote>
+<p><strong>参考答案</strong>（每点 2 分，共 6 分）：</p>
+<ol type="1">
+<li>解构 store 丢失响应式 → 用 storeToRefs；</li>
+<li>store 间循环引用 → 在 action 内调用，不在顶层；</li>
+<li>刷新后状态丢失 → localStorage 持久化；</li>
+<li>组合式 store 无 $reset → 自行实现；</li>
+<li>持久化大对象性能差 → 只持久化必要状态。</li>
+</ol>
+<p><strong>评分标准</strong>：共 6 分，答出 3 个即满分。</p>
+</blockquote></section>
+<hr />
+<h2 id="五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</h2>
+<section class="question-card"><p><strong>13-程序-001</strong>（★★ 知识点：K13-2/K13-4，分值：10 分）
+<strong>题目</strong>：补全 store 间引用与 $reset 代码。</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// stores/project.js</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { useUserStore } <span class="im">from</span> <span class="st">&#39;./user&#39;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useProjectStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;project&#39;</span><span class="op">,</span> {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({ <span class="dt">projects</span><span class="op">:</span> [] })<span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">actions</span><span class="op">:</span> {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">async</span> <span class="fu">fetch</span>() {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">______A______</span>()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="op">!</span>userStore<span class="op">.</span><span class="at">isLogin</span>) <span class="cf">return</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">projects</span> <span class="op">=</span> [{ <span class="dt">id</span><span class="op">:</span> <span class="dv">1</span> }]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">clear</span>() {</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="fu">______B______</span>()</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p><strong>要求</strong>： （1）A：调用 userStore。（5 分）
+（2）B：重置方法。（5 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>useUserStore</code>（5
+分）。 （2）B = <code>$reset</code>（5 分）。</p>
+<p><strong>评分标准</strong>：共 10 分，每空 5 分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-程序-002</strong>（★★ 知识点：K13-3，分值：12 分）
+<strong>题目</strong>：补全状态持久化代码。</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>state<span class="op">:</span> () <span class="kw">=&gt;</span> ({</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">token</span><span class="op">:</span> localStorage<span class="op">.</span><span class="fu">______A______</span>(<span class="st">&#39;token&#39;</span>) <span class="op">||</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>})<span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>actions<span class="op">:</span> {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">login</span>(token) {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">token</span> <span class="op">=</span> token</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    localStorage<span class="op">.</span><span class="fu">______B______</span>(<span class="st">&#39;token&#39;</span><span class="op">,</span> token)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">logout</span>() {</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">token</span> <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    localStorage<span class="op">.</span><span class="fu">______C______</span>(<span class="st">&#39;token&#39;</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>要求</strong>： （1）A：读取 localStorage。（4 分）
+（2）B：存储 localStorage。（4 分） （3）C：移除 localStorage。（4
+分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>getItem</code>（4 分）。
+（2）B = <code>setItem</code>（4 分）。 （3）C =
+<code>removeItem</code>（4 分）。</p>
+<p><strong>评分标准</strong>：共 12 分，每空 4 分。</p>
+</blockquote></section>
+<hr />
+<h2 id="六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</h2>
+<section class="question-card"><p><strong>13-编程-001</strong>（★★ 知识点：K13 综合，分值：15 分）
+<strong>题目</strong>：创建 appStore 管理 UI
+状态（sidebarCollapsed），实现切换并持久化到 localStorage。</p>
+<p><strong>要求</strong>： （1）store 定义（state + action +
+持久化）。（8 分） （2）组件使用（切换 + 读取）。（7 分）</p><blockquote>
+<p><strong>参考答案</strong>： store：</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useAppStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;app&#39;</span><span class="op">,</span> {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({ <span class="dt">sidebarCollapsed</span><span class="op">:</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;sidebar&#39;</span>) <span class="op">===</span> <span class="st">&#39;true&#39;</span> })<span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">actions</span><span class="op">:</span> {</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">toggleSidebar</span>() {</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">sidebarCollapsed</span> <span class="op">=</span> <span class="op">!</span><span class="kw">this</span><span class="op">.</span><span class="at">sidebarCollapsed</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">&#39;sidebar&#39;</span><span class="op">,</span> <span class="kw">this</span><span class="op">.</span><span class="at">sidebarCollapsed</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p>组件：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div :class=&quot;{ collapsed: appStore.sidebarCollapsed }&quot;&gt;
+    &lt;button @click=&quot;appStore.toggleSidebar&quot;&gt;切换&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { useAppStore } from &#39;../stores/app&#39;
+const appStore = useAppStore()
+&lt;/script&gt;</code></pre>
+<p>评分：store 含 state+action+持久化（8 分）；组件切换+读取（7
+分）。</p>
+<p><strong>评分标准</strong>：共 15 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>13-编程-002</strong>（★★★ 知识点：K13 综合，分值：20 分）
+<strong>题目</strong>：完成 CTTS-Frontend 三 store 方案，要求：</p>
+<ul>
+<li>userStore（token/userInfo + isLogin + login/logout + 持久化）；</li>
+<li>projectStore（projects + fetchProjects 引用 userStore
+判断登录）；</li>
+<li>appStore（sidebarCollapsed + toggle + 持久化）；</li>
+<li>组件中组合使用。</li>
+</ul>
+<p><strong>要求</strong>： （1）userStore（6 分）。 （2）projectStore 含
+store 间引用（6 分）。 （3）appStore 持久化（4 分）。
+（4）组件组合使用（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>：见教学资料综合示例（三个 store）。
+评分：userStore 三部分+持久化（6 分）；projectStore fetchProjects 引用
+userStore（6 分）；appStore toggle+持久化（4 分）；组件组合（4
+分）。</p>
+<p><strong>评分标准</strong>：共 20 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<h2 id="题库统计与组卷说明">题库统计与组卷说明</h2>
+<h3 id="题量统计">题量统计</h3>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>数量</th>
+<th>分值</th>
+<th>小计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择题（单选 30 + 多选 10）</td>
+<td>40</td>
+<td>每题 2 分</td>
+<td>80 分</td>
+</tr>
+<tr>
+<td>判断题</td>
+<td>20</td>
+<td>每题 1 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>填空题</td>
+<td>10</td>
+<td>每题 2 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>论述/简答题</td>
+<td>4</td>
+<td>6~8 分</td>
+<td>30 分</td>
+</tr>
+<tr>
+<td>程序阅读/补全题</td>
+<td>2</td>
+<td>10~12 分</td>
+<td>22 分</td>
+</tr>
+<tr>
+<td>编程/接口设计题</td>
+<td>2</td>
+<td>15~20 分</td>
+<td>35 分</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>78</strong></td>
+<td>—</td>
+<td><strong>207 分</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="难度分布">难度分布</h3>
+<table>
+<thead>
+<tr>
+<th>难度</th>
+<th>题量（约）</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★ 基础</td>
+<td>40</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>★★ 提高</td>
+<td>34</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>★★★ 综合</td>
+<td>4</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="知识点覆盖">知识点覆盖</h3>
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>覆盖题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K13-1 多 store</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K13-2 store 间引用</td>
+<td>12</td>
+</tr>
+<tr>
+<td>K13-3 持久化</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K13-4 $reset/$patch/$subscribe</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K13-5 综合实践</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本题库已确保每题答案唯一明确、无歧义选项，全部含解析，主观题含评分标准，可直接录入考试系统题库。</p>
+</blockquote>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

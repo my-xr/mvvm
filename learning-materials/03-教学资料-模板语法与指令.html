@@ -1,0 +1,589 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>模板语法与指令</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 03 次课 · 教学资料</div>
+      <h1>模板语法与指令</h1>
+      <p>学生复习资料与代码示例 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 03 次课</span>
+        <span class="hero-chip"><b>主题</b>模板语法与指令</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一学习导读">一、学习导读</a>
+<ul>
+<li><a href="#11-本节定位">1.1 本节定位</a></li>
+<li><a href="#12-先修基础">1.2 先修基础</a></li>
+<li><a href="#13-学习目标">1.3 学习目标</a></li>
+</ul></li>
+<li><a href="#二知识点详解">二、知识点详解</a>
+<ul>
+<li><a href="#知识点-k3-1文本插值mustache">知识点 K3-1：文本插值（Mustache）</a></li>
+<li><a href="#知识点-k3-2属性绑定-v-bind">知识点 K3-2：属性绑定 v-bind</a></li>
+<li><a href="#知识点-k3-3事件绑定-v-on">知识点 K3-3：事件绑定 v-on</a></li>
+<li><a href="#知识点-k3-4双向绑定-v-model">知识点 K3-4：双向绑定 v-model</a></li>
+<li><a href="#知识点-k3-5条件渲染-v-if--v-show">知识点 K3-5：条件渲染 v-if / v-show</a></li>
+<li><a href="#知识点-k3-6列表渲染-v-for-与-key">知识点 K3-6：列表渲染 v-for 与 :key</a></li>
+<li><a href="#知识点-k3-7指令修饰符">知识点 K3-7：指令修饰符</a></li>
+</ul></li>
+<li><a href="#四拓展阅读选学">四、拓展阅读（选学）</a>
+<ul>
+</ul></li>
+<li><a href="#五本节小结与知识结构图">五、本节小结与知识结构图</a>
+<ul>
+</ul></li>
+<li><a href="#六复习思考题">六、复习思考题</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 03 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
+<blockquote>
+<p>学生复习资料 ｜
+配套：<code>教学设计.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一学习导读">一、学习导读</h2>
+<h3 id="11-本节定位">1.1 本节定位</h3>
+<p>本节系统学习 Vue
+模板语法与核心指令，是后续所有页面开发的基础。学完后能用指令实现数据绑定、条件渲染、列表渲染。</p>
+<h3 id="12-先修基础">1.2 先修基础</h3>
+<table>
+<thead>
+<tr>
+<th>先修知识</th>
+<th>程度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 2 次课</td>
+<td>必须</td>
+<td>SFC、<code>&lt;script setup&gt;</code>、ref</td>
+</tr>
+<tr>
+<td>HTML/JS</td>
+<td>熟悉</td>
+<td>属性、事件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-学习目标">1.3 学习目标</h3>
+<ul>
+<li>✅ 掌握
+<code>{{ }}</code>、<code>v-bind</code>、<code>v-on</code>、<code>v-model</code></li>
+<li>✅ 掌握 <code>v-if</code>/<code>v-show</code> 区别</li>
+<li>✅ 掌握 <code>v-for</code> 与 <code>:key</code></li>
+<li>✅ 了解指令修饰符</li>
+</ul>
+<hr />
+<h2 id="二知识点详解">二、知识点详解</h2>
+<h3 id="知识点-k3-1文本插值mustache">知识点
+K3-1：文本插值（Mustache）</h3>
+<h4 id="定义">定义</h4>
+<p><strong>文本插值</strong>用双花括号 <code>{{ }}</code>（Mustache
+语法）把响应式数据渲染到模板文本中，数据变化时文本自动更新。</p>
+<h4 id="原理">原理</h4>
+<p><code>{{ 表达式 }}</code>
+中的表达式会被求值并转成字符串显示。可放变量、运算、三元、方法调用等。</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;p&gt;{{ message }}&lt;/p&gt;              &lt;!-- 变量 --&gt;
+  &lt;p&gt;{{ count + 1 }}&lt;/p&gt;            &lt;!-- 运算 --&gt;
+  &lt;p&gt;{{ ok ? &#39;是&#39; : &#39;否&#39; }}&lt;/p&gt;     &lt;!-- 三元 --&gt;
+  &lt;p&gt;{{ sayHi() }}&lt;/p&gt;              &lt;!-- 方法调用 --&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const message = ref(&#39;Hello&#39;)
+const count = ref(10)
+const ok = ref(true)
+const sayHi = () =&gt; &#39;Hi&#39;
+&lt;/script&gt;</code></pre>
+<h4 id="易错点">易错点</h4>
+<ul>
+<li><strong><code>{{ }}</code> 不能用于 HTML
+属性</strong>：<code>&lt;img src="{{ url }}"&gt;</code> 是错的，应用
+<code>v-bind</code>：<code>&lt;img :src="url"&gt;</code>。</li>
+<li><strong><code>{{ }}</code> 输出纯文本</strong>：不会解析 HTML
+标签。要渲染 HTML 用 <code>v-html</code>（注意 XSS 风险）。</li>
+</ul>
+<h4 id="小结">小结</h4>
+<p><code>{{ }}</code> 用于文本内容渲染，响应式更新；不能用于属性。</p>
+<hr />
+<h3 id="知识点-k3-2属性绑定-v-bind">知识点 K3-2：属性绑定 v-bind</h3>
+<h4 id="定义-1">定义</h4>
+<p><strong><code>v-bind</code></strong> 用于将数据绑定到 HTML
+属性上，可简写为 <code>:</code>。</p>
+<h4 id="原理与用法">原理与用法</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;img v-bind:src=&quot;imgUrl&quot; /&gt;     &lt;!-- 完整写法 --&gt;
+  &lt;img :src=&quot;imgUrl&quot; /&gt;            &lt;!-- 简写（推荐） --&gt;
+  &lt;a :href=&quot;link&quot; :title=&quot;tip&quot;&gt;链接&lt;/a&gt;
+  &lt;button :disabled=&quot;isDisabled&quot;&gt;按钮&lt;/button&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const imgUrl = ref(&#39;/logo.png&#39;)
+const link = ref(&#39;https://vuejs.org&#39;)
+const tip = ref(&#39;Vue 官网&#39;)
+const isDisabled = ref(true)
+&lt;/script&gt;</code></pre>
+<p><strong>绑定 class</strong>（对象语法、数组语法）：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;!-- 对象语法：键为类名，值为布尔决定是否生效 --&gt;
+  &lt;div :class=&quot;{ active: isActive, &#39;text-danger&#39;: hasError }&quot;&gt;&lt;/div&gt;
+  &lt;!-- 数组语法 --&gt;
+  &lt;div :class=&quot;[baseClass, isActive ? &#39;active&#39; : &#39;&#39;]&quot;&gt;&lt;/div&gt;
+&lt;/template&gt;</code></pre>
+<p><strong>绑定 style</strong>（对象语法）：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div :style=&quot;{ color: textColor, fontSize: size + &#39;px&#39; }&quot;&gt;&lt;/div&gt;
+&lt;/template&gt;</code></pre>
+<h4 id="易错点-1">易错点</h4>
+<ul>
+<li><strong>属性名大小写</strong>：HTML
+属性不区分大小写，绑定自定义属性注意用短横线（kebab-case）。</li>
+<li><strong>class
+对象语法与字符串混用</strong>：<code>&lt;div class="base" :class="{active: isActive}"&gt;</code>
+可共存，普通 class 与 :class 会合并。</li>
+</ul>
+<h4 id="小结-1">小结</h4>
+<p><code>v-bind</code>（简写 <code>:</code>）绑定 HTML 属性，支持
+class/style 对象与数组语法。</p>
+<hr />
+<h3 id="知识点-k3-3事件绑定-v-on">知识点 K3-3：事件绑定 v-on</h3>
+<h4 id="定义-2">定义</h4>
+<p><strong><code>v-on</code></strong> 用于绑定 DOM 事件，可简写为
+<code>@</code>。</p>
+<h4 id="原理与用法-1">原理与用法</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;button v-on:click=&quot;handleClick&quot;&gt;点击&lt;/button&gt;   &lt;!-- 完整 --&gt;
+  &lt;button @click=&quot;handleClick&quot;&gt;点击&lt;/button&gt;        &lt;!-- 简写（推荐） --&gt;
+  &lt;button @click=&quot;count++&quot;&gt;+1&lt;/button&gt;              &lt;!-- 内联语句 --&gt;
+  &lt;button @click=&quot;say(&#39;hi&#39;, $event)&quot;&gt;传参+事件对象&lt;/button&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const count = ref(0)
+const handleClick = (e) =&gt; { console.log(&#39;事件对象&#39;, e) }
+const say = (msg, e) =&gt; { console.log(msg, e) }
+&lt;/script&gt;</code></pre>
+<p><strong>事件对象
+<code>$event</code></strong>：内联语句中要访问原生事件对象，用
+<code>$event</code>；方法直接作为事件处理时（<code>@click="handleClick"</code>），第一个参数即事件对象。</p>
+<h4 id="易错点-2">易错点</h4>
+<ul>
+<li><strong><code>@click="handleClick()"</code> vs
+<code>@click="handleClick"</code></strong>：前者立即调用（需手动传
+$event）；后者把方法引用交给事件，事件触发时调用（自动接收事件对象）。</li>
+<li><strong>方法名拼错</strong>：模板里方法名必须与 script
+中一致，否则报错。</li>
+</ul>
+<h4 id="小结-2">小结</h4>
+<p><code>v-on</code>（简写 <code>@</code>）绑定事件；内联语句用
+<code>$event</code> 访问事件对象。</p>
+<hr />
+<h3 id="知识点-k3-4双向绑定-v-model">知识点 K3-4：双向绑定 v-model</h3>
+<h4 id="定义-3">定义</h4>
+<p><strong><code>v-model</code></strong>
+在表单元素上实现双向绑定：数据→视图（更新
+value），视图→数据（输入同步回数据）。</p>
+<h4 id="原理-1">原理</h4>
+<p><code>v-model</code> 本质是 <code>:value</code> + <code>@input</code>
+的语法糖：</p>
+<pre class="vue"><code>&lt;input v-model=&quot;text&quot; /&gt;
+&lt;!-- 等价于 --&gt;
+&lt;input :value=&quot;text&quot; @input=&quot;text = $event.target.value&quot; /&gt;</code></pre>
+<h4 id="用法">用法</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;input v-model=&quot;text&quot; placeholder=&quot;输入&quot; /&gt;
+  &lt;p&gt;你输入了：{{ text }}&lt;/p&gt;
+
+  &lt;textarea v-model=&quot;desc&quot;&gt;&lt;/textarea&gt;
+
+  &lt;select v-model=&quot;selected&quot;&gt;
+    &lt;option value=&quot;a&quot;&gt;A&lt;/option&gt;
+    &lt;option value=&quot;b&quot;&gt;B&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;p&gt;选择了：{{ selected }}&lt;/p&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const text = ref(&#39;&#39;)
+const desc = ref(&#39;&#39;)
+const selected = ref(&#39;a&#39;)
+&lt;/script&gt;</code></pre>
+<h4 id="易错点-3">易错点</h4>
+<ul>
+<li><strong>v-model 只能用于表单元素</strong>（input/textarea/select
+等），不能用于普通 div。</li>
+<li><strong>单选/多选用 v-model</strong> 需配合 value 属性（第 5
+次课详讲）。</li>
+</ul>
+<h4 id="小结-3">小结</h4>
+<p><code>v-model</code> 实现表单双向绑定，是 <code>:value</code> +
+<code>@input</code> 语法糖。</p>
+<hr />
+<h3 id="知识点-k3-5条件渲染-v-if--v-show">知识点 K3-5：条件渲染 v-if /
+v-show</h3>
+<h4 id="定义-4">定义</h4>
+<ul>
+<li><strong><code>v-if</code></strong>：条件为真时渲染元素，为假时<strong>删除</strong>元素（不占
+DOM）。</li>
+<li><strong><code>v-show</code></strong>：通过切换
+<code>display: none</code> 控制显隐，元素<strong>始终存在于
+DOM</strong>。</li>
+</ul>
+<h4 id="原理与对比">原理与对比</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;p v-if=&quot;score &gt;= 60&quot;&gt;及格&lt;/p&gt;
+  &lt;p v-else-if=&quot;score &gt;= 50&quot;&gt;补考&lt;/p&gt;
+  &lt;p v-else&gt;不及格&lt;/p&gt;
+
+  &lt;div v-show=&quot;isVisible&quot;&gt;始终在 DOM，仅切 display&lt;/div&gt;
+&lt;/template&gt;</code></pre>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>v-if</th>
+<th>v-show</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实现方式</td>
+<td>删除/重建 DOM</td>
+<td>切换 display</td>
+</tr>
+<tr>
+<td>初始渲染</td>
+<td>假则不渲染</td>
+<td>始终渲染</td>
+</tr>
+<tr>
+<td>切换开销</td>
+<td>高（重建）</td>
+<td>低（仅样式）</td>
+</tr>
+<tr>
+<td>初始开销</td>
+<td>低（惰性）</td>
+<td>高（始终渲染）</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>一次性/少切换</td>
+<td>频繁切换</td>
+</tr>
+</tbody>
+</table>
+<h4 id="易错点-4">易错点</h4>
+<ul>
+<li><strong>v-if 与 v-else 之间不能有其他元素</strong>，否则 v-else
+失效。</li>
+<li><strong>v-if 与 v-for 不要同级使用</strong>（详见 K3-6）。</li>
+<li><strong>v-show 不支持 <code>&lt;template&gt;</code> 与
+v-else</strong>。</li>
+</ul>
+<h4 id="小结-4">小结</h4>
+<p>频繁切换用 v-show，一次性/少切换用 v-if。</p>
+<hr />
+<h3 id="知识点-k3-6列表渲染-v-for-与-key">知识点 K3-6：列表渲染 v-for 与
+:key</h3>
+<h4 id="定义-5">定义</h4>
+<p><strong><code>v-for</code></strong>
+根据数据遍历渲染一组元素，需为每项提供唯一稳定的 <code>:key</code>。</p>
+<h4 id="原理与用法-2">原理与用法</h4>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;!-- 遍历数组 --&gt;
+  &lt;li v-for=&quot;(item, index) in list&quot; :key=&quot;item.id&quot;&gt;
+    {{ index }} - {{ item.title }}
+  &lt;/li&gt;
+
+  &lt;!-- 遍历对象 --&gt;
+  &lt;li v-for=&quot;(value, key) in obj&quot; :key=&quot;key&quot;&gt;{{ key }}: {{ value }}&lt;/li&gt;
+
+  &lt;!-- 遍历数字 --&gt;
+  &lt;span v-for=&quot;n in 5&quot; :key=&quot;n&quot;&gt;{{ n }}&lt;/span&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const list = ref([
+  { id: 1, title: &#39;项目一&#39; },
+  { id: 2, title: &#39;项目二&#39; }
+])
+const obj = ref({ name: &#39;Vue&#39;, version: 3 })
+&lt;/script&gt;</code></pre>
+<h4 id="key-的重要性">:key 的重要性</h4>
+<p><code>:key</code> 帮助 Vue 识别每个节点，高效复用与更新。<strong>key
+必须唯一且稳定</strong>：</p>
+<ul>
+<li>✅ 用数据的唯一 id：<code>:key="item.id"</code></li>
+<li>❌ 用
+index：<code>:key="index"</code>（列表增删时会错位、性能差）</li>
+<li>❌ 用随机数（每次变，失去复用意义）</li>
+</ul>
+<h4 id="v-if-与-v-for-混用的坑">v-if 与 v-for 混用的坑</h4>
+<pre class="vue"><code>&lt;!-- ❌ 错误：Vue3 中 v-if 优先级高于 v-for，会取不到 item --&gt;
+&lt;li v-for=&quot;item in list&quot; v-if=&quot;item.active&quot; :key=&quot;item.id&quot;&gt;&lt;/li&gt;
+
+&lt;!-- ✅ 正确：用 computed 过滤 --&gt;
+&lt;li v-for=&quot;item in activeList&quot; :key=&quot;item.id&quot;&gt;&lt;/li&gt;</code></pre>
+<h4 id="易错点-5">易错点</h4>
+<ul>
+<li><strong>忘加 :key</strong>：Vue 会警告，影响更新。</li>
+<li><strong>用 index 作 key</strong>：列表插入/删除时状态错乱。</li>
+<li><strong>v-if 与 v-for 同级</strong>：Vue 3 报错或行为异常。</li>
+</ul>
+<h4 id="小结-5">小结</h4>
+<p><code>v-for</code> 遍历数组/对象/数字，必须提供唯一稳定的
+<code>:key</code>，避免与 v-if 同级。</p>
+<hr />
+<h3 id="知识点-k3-7指令修饰符">知识点 K3-7：指令修饰符</h3>
+<h4 id="定义-6">定义</h4>
+<p><strong>修饰符</strong>是以 <code>.</code>
+指明的特殊后缀，简化常见操作。</p>
+<h4 id="常用修饰符">常用修饰符</h4>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>用于</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.stop</code></td>
+<td>v-on</td>
+<td>阻止事件冒泡（<code>event.stopPropagation()</code>）</td>
+</tr>
+<tr>
+<td><code>.prevent</code></td>
+<td>v-on</td>
+<td>阻止默认行为（<code>event.preventDefault()</code>）</td>
+</tr>
+<tr>
+<td><code>.once</code></td>
+<td>v-on</td>
+<td>事件只触发一次</td>
+</tr>
+<tr>
+<td><code>.capture</code></td>
+<td>v-on</td>
+<td>使用捕获模式</td>
+</tr>
+<tr>
+<td><code>.self</code></td>
+<td>v-on</td>
+<td>仅事件源是元素自身才触发</td>
+</tr>
+<tr>
+<td><code>.enter</code>/<code>.esc</code> 等</td>
+<td>v-on</td>
+<td>按键修饰符（第 5 次课详讲）</td>
+</tr>
+<tr>
+<td><code>.lazy</code></td>
+<td>v-model</td>
+<td>失焦时才同步（非实时）</td>
+</tr>
+<tr>
+<td><code>.number</code></td>
+<td>v-model</td>
+<td>转为数字</td>
+</tr>
+<tr>
+<td><code>.trim</code></td>
+<td>v-model</td>
+<td>去首尾空格</td>
+</tr>
+</tbody>
+</table>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;form @submit.prevent=&quot;onSubmit&quot;&gt;       &lt;!-- 阻止默认提交 --&gt;
+    &lt;button @click.stop=&quot;doSomething&quot;&gt;    &lt;!-- 阻止冒泡 --&gt;
+    &lt;button @click.once=&quot;onceFn&quot;&gt;         &lt;!-- 只触发一次 --&gt;
+    &lt;input v-model.lazy=&quot;text&quot;&gt;           &lt;!-- 失焦同步 --&gt;
+    &lt;input v-model.number=&quot;num&quot;&gt;          &lt;!-- 转数字 --&gt;
+    &lt;input v-model.trim=&quot;text&quot;&gt;           &lt;!-- 去空格 --&gt;
+  &lt;/form&gt;
+&lt;/template&gt;</code></pre>
+<h4 id="易错点-6">易错点</h4>
+<ul>
+<li><strong>修饰符顺序</strong>：<code>@click.prevent.stop</code> 先
+prevent 再 stop，顺序影响行为。</li>
+<li><strong>修饰符只对对应指令有效</strong>：<code>.lazy</code> 只用于
+v-model，不能用于 v-on。</li>
+</ul>
+<h4 id="小结-6">小结</h4>
+<p>修饰符以 <code>.</code> 后缀简化常见操作，事件用
+.stop/.prevent/.once，表单用 .lazy/.number/.trim。</p>
+<hr />
+<h2
+id="三综合示例ctts-frontend-项目列表与搜索筛选">三、综合示例：CTTS-Frontend
+项目列表与搜索筛选</h2>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div class=&quot;projects&quot;&gt;
+    &lt;h2&gt;实训项目列表&lt;/h2&gt;
+    &lt;input v-model=&quot;keyword&quot; placeholder=&quot;搜索项目&quot; /&gt;
+    &lt;select v-model=&quot;statusFilter&quot;&gt;
+      &lt;option value=&quot;&quot;&gt;全部状态&lt;/option&gt;
+      &lt;option value=&quot;进行中&quot;&gt;进行中&lt;/option&gt;
+      &lt;option value=&quot;未开始&quot;&gt;未开始&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;ul v-if=&quot;filteredProjects.length&quot;&gt;
+      &lt;li v-for=&quot;p in filteredProjects&quot; :key=&quot;p.id&quot; :class=&quot;{ done: p.status === &#39;进行中&#39; }&quot;&gt;
+        &lt;span&gt;{{ p.title }}&lt;/span&gt;
+        &lt;span class=&quot;status&quot;&gt;{{ p.status }}&lt;/span&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p v-else&gt;暂无匹配项目&lt;/p&gt;
+
+    &lt;button @click=&quot;reset&quot;&gt;重置筛选&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, computed } from &#39;vue&#39;
+
+const keyword = ref(&#39;&#39;)
+const statusFilter = ref(&#39;&#39;)
+const projects = ref([
+  { id: 1, title: &#39;项目一：JavaWeb&#39;, status: &#39;进行中&#39; },
+  { id: 2, title: &#39;项目二：Vue3&#39;, status: &#39;进行中&#39; },
+  { id: 3, title: &#39;项目三：全栈联调&#39;, status: &#39;未开始&#39; }
+])
+
+const filteredProjects = computed(() =&gt;
+  projects.value.filter(p =&gt;
+    p.title.includes(keyword.value) &amp;&amp;
+    (statusFilter.value === &#39;&#39; || p.status === statusFilter.value)
+  )
+)
+
+const reset = () =&gt; {
+  keyword.value = &#39;&#39;
+  statusFilter.value = &#39;&#39;
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.projects { max-width: 600px; margin: 20px auto; font-family: system-ui; }
+ul { list-style: none; padding: 0; }
+li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
+li.done { color: #42b883; }
+.status { color: #999; font-size: 14px; }
+input, select { padding: 6px; margin: 0 8px 10px 0; }
+button { padding: 6px 16px; cursor: pointer; }
+&lt;/style&gt;</code></pre>
+<p><strong>运行方式</strong>：替换
+<code>src/App.vue</code>，<code>npm run dev</code>
+访问。输入关键词或选择状态，列表实时过滤；无匹配显示"暂无匹配项目"。</p>
+<hr />
+<h2 id="四拓展阅读选学">四、拓展阅读（选学）</h2>
+<ol type="1">
+<li><strong>v-model 在组件上的用法</strong>（组件 v-model，第 7
+次课讲）。</li>
+<li><strong>自定义指令</strong>：Vue
+允许自定义指令（<code>v-focus</code> 等），见官方文档"自定义指令"。</li>
+<li><strong>v-memo</strong>：Vue 3 新增，用于性能优化缓存子树。</li>
+</ol>
+<hr />
+<h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
+<div class="visual">
+  <div class="visual-title">图示 1：结构与流程重绘</div>
+  <div class="diagram-lines">
+<span class="diagram-line">第 3 次课：模板语法与指令</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K3-1 文本插值 {{ }}（响应式文本，不能用于属性）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K3-2 v-bind / : （属性绑定，class/style 对象数组）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K3-3 v-on / @ （事件绑定，$event）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K3-4 v-model （双向绑定 = :value + @input）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K3-5 v-if / v-show （条件渲染，频繁切用 show）</span>
+<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K3-6 v-for + :key （列表渲染，key 唯一稳定）</span>
+<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K3-7 修饰符 （.stop/.prevent/.once/.lazy/.number/.trim）</span>
+  </div>
+  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文本</td>
+<td><code>{{ }}</code> 渲染响应式文本</td>
+</tr>
+<tr>
+<td>属性</td>
+<td><code>:attr</code> 绑定属性</td>
+</tr>
+<tr>
+<td>事件</td>
+<td><code>@event</code> 绑定事件</td>
+</tr>
+<tr>
+<td>表单</td>
+<td><code>v-model</code> 双向绑定</td>
+</tr>
+<tr>
+<td>条件</td>
+<td>频繁切 v-show，一次性 v-if</td>
+</tr>
+<tr>
+<td>列表</td>
+<td><code>v-for</code> 必带 <code>:key</code>（用 id 不用 index）</td>
+</tr>
+<tr>
+<td>修饰符</td>
+<td><code>.</code> 后缀简化操作</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六复习思考题">六、复习思考题</h2>
+<ol type="1">
+<li><code>{{ }}</code> 能否用于 HTML 属性？为什么？</li>
+<li>v-if 与 v-show 的区别？分别适合什么场景？</li>
+<li>为什么 v-for 的 :key 不建议用 index？</li>
+<li>v-if 与 v-for 为什么不能同级使用？</li>
+<li>v-model 的本质是什么？用代码说明。</li>
+</ol>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

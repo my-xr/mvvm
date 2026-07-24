@@ -1,0 +1,420 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>模板语法与指令</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 03 次课 · 教学设计</div>
+      <h1>模板语法与指令</h1>
+      <p>教师教案与课堂组织 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 03 次课</span>
+        <span class="hero-chip"><b>主题</b>模板语法与指令</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一课程信息">一、课程信息</a>
+<ul>
+</ul></li>
+<li><a href="#二教学目标">二、教学目标</a>
+<ul>
+<li><a href="#知识目标">知识目标</a></li>
+<li><a href="#能力目标">能力目标</a></li>
+<li><a href="#素质目标课程思政">素质目标（课程思政）</a></li>
+</ul></li>
+<li><a href="#三主要知识点纲要">三、主要知识点纲要</a>
+<ul>
+</ul></li>
+<li><a href="#四项目任务或案例任务">四、项目任务或案例任务</a>
+<ul>
+</ul></li>
+<li><a href="#五课堂互动设计">五、课堂互动设计</a>
+<ul>
+<li><a href="#互动-1代码找错v-if-与-v-for-混用反例">互动 1：代码找错——v-if 与 v-for 混用反例</a></li>
+<li><a href="#互动-2v-if-vs-v-show-辩论">互动 2：v-if vs v-show 辩论</a></li>
+</ul></li>
+<li><a href="#六课程思政融入点">六、课程思政融入点</a>
+<ul>
+</ul></li>
+<li><a href="#七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5 分钟）</a>
+<ul>
+</ul></li>
+<li><a href="#八课后任务">八、课后任务</a>
+<ul>
+</ul></li>
+<li><a href="#九对应岗位能力或面试考点">九、对应岗位能力或面试考点</a>
+<ul>
+</ul></li>
+<li><a href="#十教学资料与题库索引">十、教学资料与题库索引</a>
+<ul>
+</ul></li>
+<li><a href="#附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 03 次课 <span>｜</span> <strong>文档：</strong>教学设计</p>
+<blockquote>
+<p>所属模块：M2 Vue3 核心语法 ｜ 课程：《MVVM前端框架开发技术》
+配套资料：见同文件夹内
+<code>教学资料.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一课程信息">一、课程信息</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>次序</td>
+<td>第 3 次课（全课程 16 次之第 3）</td>
+</tr>
+<tr>
+<td>学时</td>
+<td>2 学时（90 分钟）</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>理论课</td>
+</tr>
+<tr>
+<td>所属模块</td>
+<td>M2 Vue3 核心语法</td>
+</tr>
+<tr>
+<td>教学主题</td>
+<td>模板语法与指令</td>
+</tr>
+<tr>
+<td>先修基础</td>
+<td>第 1~2 次课（项目结构、SFC、ref 初体验）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="二教学目标">二、教学目标</h2>
+<h3 id="知识目标">知识目标</h3>
+<ol type="1">
+<li>掌握模板语法与文本插值（Mustache <code>{{ }}</code>）。</li>
+<li>掌握属性绑定 <code>v-bind</code>（简写 <code>:</code>）与事件绑定
+<code>v-on</code>（简写 <code>@</code>）。</li>
+<li>理解双向绑定 <code>v-model</code> 的基本用法。</li>
+<li>掌握条件渲染 <code>v-if</code> / <code>v-show</code>
+的区别与使用场景。</li>
+<li>掌握列表渲染 <code>v-for</code> 与 <code>:key</code> 的重要性。</li>
+<li>了解常用指令修饰符。</li>
+</ol>
+<h3 id="能力目标">能力目标</h3>
+<ol type="1">
+<li>能够使用 <code>{{ }}</code>、<code>v-bind</code>、<code>v-on</code>
+实现数据与视图的绑定。</li>
+<li>能够使用 <code>v-if</code>/<code>v-show</code> 控制元素显隐，使用
+<code>v-for</code> 渲染列表。</li>
+<li>能够用指令实现 CTTS-Frontend 的项目列表展示与搜索筛选。</li>
+</ol>
+<h3 id="素质目标课程思政">素质目标（课程思政）</h3>
+<ol type="1">
+<li>培养代码规范意识——指令使用要清晰简洁，避免滥用。</li>
+<li>建立"声明式"思维——用指令描述"想要什么"，而非"怎么做"。</li>
+</ol>
+<hr />
+<h2 id="三主要知识点纲要">三、主要知识点纲要</h2>
+<blockquote>
+<p>详细讲解见同文件夹 <code>教学资料.md</code>。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>知识点</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K3-1</td>
+<td>文本插值</td>
+<td>Mustache <code>{{ }}</code>，响应式更新；不能用于 HTML 属性</td>
+</tr>
+<tr>
+<td>K3-2</td>
+<td>属性绑定 v-bind</td>
+<td><code>v-bind:attr</code> 简写 <code>:attr</code>；绑定
+class/style/动态属性</td>
+</tr>
+<tr>
+<td>K3-3</td>
+<td>事件绑定 v-on</td>
+<td><code>v-on:event</code> 简写 <code>@event</code>；事件对象
+<code>$event</code>；方法与内联语句</td>
+</tr>
+<tr>
+<td>K3-4</td>
+<td>双向绑定 v-model</td>
+<td>表单双向绑定（基础）；<code>v-model</code> = <code>:value</code> +
+<code>@input</code></td>
+</tr>
+<tr>
+<td>K3-5</td>
+<td>条件渲染</td>
+<td><code>v-if</code>/<code>v-else</code>/<code>v-else-if</code>/<code>v-show</code>；v-if
+删除重建，v-show 切换 display</td>
+</tr>
+<tr>
+<td>K3-6</td>
+<td>列表渲染 v-for</td>
+<td>遍历数组/对象；<code>:key</code> 必须唯一稳定；避免与 v-if 同级</td>
+</tr>
+<tr>
+<td>K3-7</td>
+<td>指令修饰符</td>
+<td><code>.stop</code>/<code>.prevent</code>/<code>.once</code>/<code>.lazy</code>/<code>.number</code>/<code>.trim</code>
+等</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="四项目任务或案例任务">四、项目任务或案例任务</h2>
+<p><strong>本次课任务</strong>：用指令实现 CTTS-Frontend
+项目列表展示与搜索筛选——展示项目数组、用输入框搜索过滤、用 v-show
+切换列表/空状态提示。</p>
+<hr />
+<h2 id="五课堂互动设计">五、课堂互动设计</h2>
+<h3 id="互动-1代码找错v-if-与-v-for-混用反例">互动 1：代码找错——v-if 与
+v-for 混用反例</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>给出
+<code>&lt;li v-for="p in list" v-if="p.active"&gt;</code>，请学生指出问题</td>
+</tr>
+<tr>
+<td>组织方式</td>
+<td>全班讨论</td>
+</tr>
+<tr>
+<td>预期学生输出</td>
+<td>v-if 与 v-for 不应同级；v-if 优先级高导致 list 未定义报错</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>Vue 3 中 v-if 优先级高于 v-for，混用会出错；应用 computed 过滤</td>
+</tr>
+</tbody>
+</table>
+<h3 id="互动-2v-if-vs-v-show-辩论">互动 2：v-if vs v-show 辩论</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>"频繁切换显隐用哪个？只切换一次用哪个？为什么？"</td>
+</tr>
+<tr>
+<td>组织方式</td>
+<td>两派辩论</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>频繁切换用 v-show（不重建 DOM），一次性用 v-if（惰性渲染）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六课程思政融入点">六、课程思政融入点</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>融入点</td>
+<td>指令使用规范——简洁清晰，避免滥用（如 v-if/v-for 混用）</td>
+</tr>
+<tr>
+<td>技术关联</td>
+<td>规范的指令写法让模板可读、可维护</td>
+</tr>
+<tr>
+<td>引导问题</td>
+<td>"看到一段模板里 v-for 和 v-if 写在一起，你怎么看？"</td>
+</tr>
+<tr>
+<td>预期价值目标</td>
+<td>培养代码规范与可维护性意识</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5
+分钟）</h2>
+<p><strong>判断题</strong>：</p>
+<ol type="1">
+<li><code>{{ }}</code> 可用于 HTML 属性绑定。（✗）</li>
+<li><code>v-bind</code> 可简写为 <code>:</code>。（✓）</li>
+<li><code>v-if</code> 与 <code>v-show</code> 本质相同。（✗）</li>
+<li><code>v-for</code> 必须为每项提供 <code>:key</code>。（✓）</li>
+</ol>
+<blockquote>
+<p>详细题目见 <code>题库.md</code>。</p>
+</blockquote>
+<hr />
+<h2 id="八课后任务">八、课后任务</h2>
+<ol type="1">
+<li>通读 <code>教学资料.md</code>，掌握各指令用法与区别。</li>
+<li>完善 CTTS-Frontend 项目列表：增加"状态筛选"下拉框，用 computed
+过滤。</li>
+<li>思考：v-if 与 v-show 的区别及选择依据（200 字）。</li>
+</ol>
+<hr />
+<h2 id="九对应岗位能力或面试考点">九、对应岗位能力或面试考点</h2>
+<table>
+<thead>
+<tr>
+<th>岗位能力/面试考点</th>
+<th>对应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v-if 与 v-show 区别（高频面试题）</td>
+<td>K3-5</td>
+</tr>
+<tr>
+<td>v-for 与 key 的作用（高频面试题）</td>
+<td>K3-6</td>
+</tr>
+<tr>
+<td>v-bind/v-on 简写与用法</td>
+<td>K3-2、K3-3</td>
+</tr>
+<tr>
+<td>v-model 原理（= :value + @input）</td>
+<td>K3-4</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="十教学资料与题库索引">十、教学资料与题库索引</h2>
+<table>
+<thead>
+<tr>
+<th>资料类型</th>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学生复习资料</td>
+<td><code>教学资料.md</code></td>
+<td>7 个知识点详解 + 综合示例 + 知识结构图</td>
+</tr>
+<tr>
+<td>考试题库</td>
+<td><code>题库.md</code></td>
+<td>78 题，含答案解析与评分标准</td>
+</tr>
+<tr>
+<td>课程总览</td>
+<td><code>../00 课程设计总览.md</code></td>
+<td>课程整体框架</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</h2>
+<table>
+<thead>
+<tr>
+<th>时段</th>
+<th>内容</th>
+<th>时长</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0~10 min</td>
+<td>回顾 + K3-1 文本插值</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>10~30 min</td>
+<td>K3-2 v-bind + K3-3 v-on</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>30~45 min</td>
+<td>K3-4 v-model + K3-7 修饰符</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>45~65 min</td>
+<td>K3-5 条件渲染 + 互动 2</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>65~80 min</td>
+<td>K3-6 v-for + 互动 1 + 项目任务</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>80~85 min</td>
+<td>随堂练习</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>85~90 min</td>
+<td>小结 + 课后任务</td>
+<td>5 min</td>
+</tr>
+</tbody>
+</table>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,813 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>响应式系统</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 04 次课 · 题库</div>
+      <h1>响应式系统</h1>
+      <p>考试题库与参考解析 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 04 次课</span>
+        <span class="hero-chip"><b>主题</b>响应式系统</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2 分）</a>
+<ul>
+<li><a href="#11-单项选择题30-题">1.1 单项选择题（30 题）</a></li>
+<li><a href="#12-多项选择题10-题">1.2 多项选择题（10 题）</a></li>
+</ul></li>
+<li><a href="#二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1 分）</a>
+<ul>
+</ul></li>
+<li><a href="#三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2 分）</a>
+<ul>
+</ul></li>
+<li><a href="#四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</a>
+<ul>
+</ul></li>
+<li><a href="#五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#题库统计与组卷说明">题库统计与组卷说明</a>
+<ul>
+<li><a href="#题量统计">题量统计</a></li>
+<li><a href="#难度分布">难度分布</a></li>
+<li><a href="#知识点覆盖">知识点覆盖</a></li>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 04 次课 <span>｜</span> <strong>文档：</strong>题库</p>
+<blockquote>
+<p>配套：<code>教学设计.md</code>、<code>教学资料.md</code>（同文件夹）
+题量：40 选择 + 20 判断 + 10 填空 + 4 论述/简答 + 2 程序阅读/补全 + 2
+编程/接口设计 = <strong>78 题</strong>
+全部含参考答案与解析；主观题另附评分标准。 难度：★ 基础 / ★★ 提高 / ★★★
+综合 ｜ 编号：<code>04-题型-序号</code></p>
+</blockquote>
+<hr />
+<h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
+分）</h2>
+<h3 id="11-单项选择题30-题">1.1 单项选择题（30 题）</h3>
+<section class="question-card"><p><strong>04-选择-001</strong>（★ 知识点：K4-1） 在 JavaScript 中访问
+<code>ref</code> 的值，应使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>直接用变量名</span></li><li><span class="option-label">B</span><span><code>.value</code></span></li><li><span class="option-label">C</span><span><code>.data</code></span></li><li><span class="option-label">D</span><span><code>()</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：ref 返回 Ref 对象，JS
+中用 <code>.value</code> 访问。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-002</strong>（★ 知识点：K4-1） 在模板中显示
+<code>ref</code> 数据 <code>count</code>，正确写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>{{ count.value }}</code></span></li><li><span class="option-label">B</span><span><code>{{ count }}</code></span></li><li><span class="option-label">C</span><span><code>{{ count() }}</code></span></li><li><span class="option-label">D</span><span><code>{{ count.data }}</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：模板自动解包，直接
+<code>{{ count }}</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-003</strong>（★ 知识点：K4-2） <code>reactive</code>
+适合包装的数据类型是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>基本类型</span></li><li><span class="option-label">B</span><span>对象/数组</span></li><li><span class="option-label">C</span><span>字符串</span></li><li><span class="option-label">D</span><span>数字</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：reactive
+适合对象/数组；基本类型用 ref。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-004</strong>（★ 知识点：K4-2） <code>reactive</code>
+创建的对象，访问其属性的方式是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>必须用 <code>.value</code></span></li><li><span class="option-label">B</span><span>直接访问属性，无需 <code>.value</code></span></li><li><span class="option-label">C</span><span>必须用 <code>()</code></span></li><li><span class="option-label">D</span><span>必须用 <code>[]</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：reactive 返回 Proxy
+对象，直接访问属性，无需 <code>.value</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-005</strong>（★ 知识点：K4-2） <code>reactive</code>
+对象解构后，解构出的变量？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>仍是响应式</span></li><li><span class="option-label">B</span><span>丢失响应式</span></li><li><span class="option-label">C</span><span>变成 ref</span></li><li><span class="option-label">D</span><span>报错</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：reactive
+解构会丢失响应式，需用 <code>toRefs</code> 保持。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-006</strong>（★ 知识点：K4-2） 要保持 reactive
+解构后的响应式，应使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>toRef</code></span></li><li><span class="option-label">B</span><span><code>toRefs</code></span></li><li><span class="option-label">C</span><span><code>ref</code></span></li><li><span class="option-label">D</span><span><code>computed</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>toRefs</code>
+把 reactive 的所有属性转为 ref，解构后仍响应式。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-007</strong>（★ 知识点：K4-3） <code>computed</code>
+计算属性的特点是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>无缓存，每次都重算</span></li><li><span class="option-label">B</span><span>有缓存，依赖不变时不重算</span></li><li><span class="option-label">C</span><span>不能返回值</span></li><li><span class="option-label">D</span><span>只能用于事件</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：computed
+有缓存，依赖不变时返回缓存值，不重算。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-008</strong>（★ 知识点：K4-3） <code>computed</code>
+返回的对象类型是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>普通对象</span></li><li><span class="option-label">B</span><span>Ref 对象</span></li><li><span class="option-label">C</span><span>数组</span></li><li><span class="option-label">D</span><span>函数</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：computed 返回只读
+Ref，访问用 <code>.value</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-009</strong>（★ 知识点：K4-3） 下列应在 computed
+中避免的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>返回计算值</span></li><li><span class="option-label">B</span><span>做纯计算</span></li><li><span class="option-label">C</span><span>产生副作用（如发请求、改数据）</span></li><li><span class="option-label">D</span><span>依赖其他响应式数据</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：computed
+应为纯函数，副作用用 watch。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-010</strong>（★ 知识点：K4-4） <code>watch</code>
+侦听器的回调函数能获取？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>只有新值</span></li><li><span class="option-label">B</span><span>只有旧值</span></li><li><span class="option-label">C</span><span>新值和旧值</span></li><li><span class="option-label">D</span><span>无参数</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：watch 回调签名
+<code>(newVal, oldVal) =&gt; {}</code>，可获新旧值。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-011</strong>（★ 知识点：K4-4） 侦听
+<code>reactive</code> 对象的某个属性，正确写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>watch(state.name, cb)</code></span></li><li><span class="option-label">B</span><span><code>watch(() =&gt; state.name, cb)</code></span></li><li><span class="option-label">C</span><span><code>watch(state, cb)</code></span></li><li><span class="option-label">D</span><span><code>watch('state.name', cb)</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：侦听 reactive
+属性需用函数返回该属性：<code>() =&gt; state.name</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-012</strong>（★ 知识点：K4-4） 让 <code>watch</code>
+在初始化时立即执行一次，应加选项？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>deep: true</code></span></li><li><span class="option-label">B</span><span><code>immediate: true</code></span></li><li><span class="option-label">C</span><span><code>flush: 'post'</code></span></li><li><span class="option-label">D</span><span><code>once: true</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>immediate: true</code> 使 watch
+立即执行一次回调。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-013</strong>（★ 知识点：K4-4）
+深度侦听对象内部变化，应加选项？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>immediate: true</code></span></li><li><span class="option-label">B</span><span><code>deep: true</code></span></li><li><span class="option-label">C</span><span><code>flush: 'post'</code></span></li><li><span class="option-label">D</span><span><code>lazy: true</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>deep: true</code>
+深度侦听对象嵌套属性变化。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-014</strong>（★ 知识点：K4-5） 关于
+<code>watchEffect</code>，下列说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>不会立即执行</span></li><li><span class="option-label">B</span><span>立即执行一次并自动收集依赖</span></li><li><span class="option-label">C</span><span>能获取旧值</span></li><li><span class="option-label">D</span><span>需显式指定侦听源</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：watchEffect
+立即执行一次，自动收集回调中用到的响应式依赖。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-015</strong>（★ 知识点：K4-5）
+<code>watchEffect</code> 与 <code>watch</code> 的区别是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>watchEffect
+能获取旧值</span></li><li><span class="option-label">B</span><span>watchEffect 立即执行且自动收集依赖，无法获取旧值</span></li><li><span class="option-label">C</span><span>watch
+需手动指定源，watchEffect 不需要</span></li><li><span class="option-label">D</span><span>B 和 C 都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：watchEffect
+立即执行、自动收集依赖、无旧值；watch 显式指定源、有旧值。B、C 都对。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-016</strong>（★ 知识点：K4-6） Vue 3
+实现响应式使用的底层技术是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>Object.defineProperty</code></span></li><li><span class="option-label">B</span><span><code>Proxy</code></span></li><li><span class="option-label">C</span><span><code>Reflect</code></span></li><li><span class="option-label">D</span><span><code>Map</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Vue 3 用 ES6 Proxy
+实现响应式。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-017</strong>（★ 知识点：K4-6） 相比 Vue 2 的
+<code>Object.defineProperty</code>，Vue 3 的 Proxy 优势是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>性能更差</span></li><li><span class="option-label">B</span><span>能监测属性增删与数组索引修改</span></li><li><span class="option-label">C</span><span>不支持对象</span></li><li><span class="option-label">D</span><span>不能监听读写</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Proxy
+能监测属性增删、数组索引修改，Vue 2 需 Vue.set/Vue.delete。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-018</strong>（★ 知识点：K4-1） <code>ref</code>
+重新赋值且保留响应式，正确写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>count = 1</code></span></li><li><span class="option-label">B</span><span><code>count.value = 1</code></span></li><li><span class="option-label">C</span><span><code>count = ref(1)</code></span></li><li><span class="option-label">D</span><span><code>count.set(1)</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：修改 ref 值用
+<code>count.value = 1</code>，A/C 会覆盖变量丢失响应式。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-019</strong>（★ 知识点：K4-2） <code>reactive</code>
+对象整体替换会？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>保留响应式</span></li><li><span class="option-label">B</span><span>丢失响应式</span></li><li><span class="option-label">C</span><span>报错</span></li><li><span class="option-label">D</span><span>自动更新</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>state = { new: 1 }</code>
+会覆盖变量丢失响应式，应改属性或用 Object.assign。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-020</strong>（★ 知识点：K4-3） <code>computed</code>
+相比 <code>methods</code> 的优势是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>无缓存</span></li><li><span class="option-label">B</span><span>有缓存，依赖不变不重算</span></li><li><span class="option-label">C</span><span>执行更快但不缓存</span></li><li><span class="option-label">D</span><span>不能返回值</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：computed
+有缓存，依赖不变时返回缓存不重算，性能更好。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-021</strong>（★★ 知识点：K4-1/K4-2）
+基本类型（如数字）创建响应式，应使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>reactive</code></span></li><li><span class="option-label">B</span><span><code>ref</code></span></li><li><span class="option-label">C</span><span><code>computed</code></span></li><li><span class="option-label">D</span><span><code>watch</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：基本类型必须用
+ref，reactive 对基本类型无效。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-022</strong>（★★ 知识点：K4-2）
+下列代码会丢失响应式的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>state.age++</code></span></li><li><span class="option-label">B</span><span><code>Object.assign(state, { age: 20 })</code></span></li><li><span class="option-label">C</span><span><code>let { age } = state</code></span></li><li><span class="option-label">D</span><span><code>state.age = 20</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：解构 reactive
+会丢失响应式，C 错误。A/B/D 保留响应式。C 正确（选会丢失的）。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-023</strong>（★★ 知识点：K4-3）
+<code>const total = computed(() =&gt; price.value * count.value)</code>
+中，total 的类型是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>数字</span></li><li><span class="option-label">B</span><span>Ref 对象</span></li><li><span class="option-label">C</span><span>函数</span></li><li><span class="option-label">D</span><span>数组</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：computed 返回只读
+Ref，访问用 <code>total.value</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-024</strong>（★★ 知识点：K4-3） computed
+的缓存失效条件是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>每次渲染都失效</span></li><li><span class="option-label">B</span><span>依赖的响应式数据变化时失效</span></li><li><span class="option-label">C</span><span>永不失效</span></li><li><span class="option-label">D</span><span>定时失效</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：computed
+缓存依赖响应式数据，依赖变化时标记为脏，下次访问重算。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-025</strong>（★★ 知识点：K4-4）
+侦听多个数据源，<code>watch</code> 的第一个参数应为？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>单个 ref</span></li><li><span class="option-label">B</span><span>数组，如 <code>[ref1, () =&gt; state.x]</code></span></li><li><span class="option-label">C</span><span>字符串</span></li><li><span class="option-label">D</span><span>对象</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：侦听多个源用数组
+<code>[ref1, () =&gt; state.x]</code>，回调接收数组参数。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-026</strong>（★★ 知识点：K4-4） 侦听 <code>ref</code>
+对象（包装对象）的内部属性变化，默认行为是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>自动深度侦听</span></li><li><span class="option-label">B</span><span>默认非深度，需加 <code>deep: true</code></span></li><li><span class="option-label">C</span><span>无法侦听</span></li><li><span class="option-label">D</span><span>立即执行</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：侦听 ref
+对象（包对象）默认非深度，需 <code>deep: true</code>；侦听 reactive
+对象默认深度。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-027</strong>（★★ 知识点：K4-5） 下列场景适合用
+watchEffect 的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>需要旧值</span></li><li><span class="option-label">B</span><span>只需在数据变化时执行副作用，不需旧值</span></li><li><span class="option-label">C</span><span>需要明确指定侦听源</span></li><li><span class="option-label">D</span><span>不想立即执行</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：watchEffect
+适合不需旧值、自动收集依赖的副作用。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-028</strong>（★★ 知识点：K4-6） Vue 3
+响应式中"依赖收集"发生在？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>修改属性时</span></li><li><span class="option-label">B</span><span>读取属性时</span></li><li><span class="option-label">C</span><span>创建对象时</span></li><li><span class="option-label">D</span><span>销毁时</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：读取属性（get）时收集依赖（谁用了该属性）；修改（set）时触发更新。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-029</strong>（★★ 知识点：K4-6） Vue 3
+响应式中"触发更新"发生在？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>读取属性时</span></li><li><span class="option-label">B</span><span>修改属性时</span></li><li><span class="option-label">C</span><span>创建对象时</span></li><li><span class="option-label">D</span><span>渲染时</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：修改属性（set）时触发更新，通知依赖重新执行/渲染。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-030</strong>（★★ 知识点：K4 综合） 下列说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>ref 适合基本类型，reactive 适合对象</span></li><li><span class="option-label">B</span><span>computed 有缓存</span></li><li><span class="option-label">C</span><span>watch
+可获取新旧值</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<h3 id="12-多项选择题10-题">1.2 多项选择题（10 题）</h3>
+<section class="question-card"><p><strong>04-选择-031</strong>（★★ 知识点：K4-1/K4-2） 关于 ref 与
+reactive，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>ref 适合基本类型</span></li><li><span class="option-label">B</span><span>reactive 适合对象</span></li><li><span class="option-label">C</span><span>ref 用 .value 访问</span></li><li><span class="option-label">D</span><span>reactive 也用 .value 访问</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，reactive 直接访问属性。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-032</strong>（★★ 知识点：K4-2） 关于
+reactive，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>适合对象/数组</span></li><li><span class="option-label">B</span><span>直接访问属性</span></li><li><span class="option-label">C</span><span>解构会丢失响应式</span></li><li><span class="option-label">D</span><span>整体替换保留响应式</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，整体替换丢失响应式。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-033</strong>（★★ 知识点：K4-3） 关于
+computed，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>有缓存</span></li><li><span class="option-label">B</span><span>依赖不变不重算</span></li><li><span class="option-label">C</span><span>应为纯函数</span></li><li><span class="option-label">D</span><span>适合做副作用</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，副作用用 watch。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-034</strong>（★★ 知识点：K4-4） watch
+的常用选项有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>deep</code></span></li><li><span class="option-label">B</span><span><code>immediate</code></span></li><li><span class="option-label">C</span><span><code>flush</code></span></li><li><span class="option-label">D</span><span><code>lazy</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 是
+watch 选项。D 不是。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-035</strong>（★★ 知识点：K4-4/K4-5） 关于 watch 与
+watchEffect，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>watch 可获取新旧值</span></li><li><span class="option-label">B</span><span>watchEffect
+立即执行</span></li><li><span class="option-label">C</span><span>watchEffect 自动收集依赖</span></li><li><span class="option-label">D</span><span>watchEffect 能获取旧值</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，watchEffect 不能获取旧值。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-036</strong>（★★ 知识点：K4-6） 关于 Vue 3 Proxy
+响应式，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>能监测属性新增</span></li><li><span class="option-label">B</span><span>能监测属性删除</span></li><li><span class="option-label">C</span><span>能监测数组索引修改</span></li><li><span class="option-label">D</span><span>性能比 Vue 2 差</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，性能更好。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-037</strong>（★★ 知识点：K4-1） 会使 ref
+丢失响应式的操作有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>count.value = 1</code></span></li><li><span class="option-label">B</span><span><code>count = 1</code></span></li><li><span class="option-label">C</span><span><code>count = ref(0)</code></span></li><li><span class="option-label">D</span><span><code>let { value } = count</code> 后改 value</span></li></ul></div><blockquote>
+<p><strong>答案：B、C</strong> <strong>解析</strong>：B、C
+覆盖变量丢失响应式。A 正确保留；D 解构 .value 后不再响应式（也丢失）。选
+B、C、D（D 也丢失）。修正：B、C、D 都丢失响应式。选 B、C、D。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-038</strong>（★★ 知识点：K4-3） computed
+适合的场景有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>派生数据（如总价 = 单价 × 数量）</span></li><li><span class="option-label">B</span><span>过滤列表</span></li><li><span class="option-label">C</span><span>统计数量</span></li><li><span class="option-label">D</span><span>发起异步请求</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
+是派生数据适合 computed。D 副作用应用 watch/watchEffect。选
+A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-039</strong>（★★ 知识点：K4 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>ref 在 JS 中用 .value</span></li><li><span class="option-label">B</span><span>reactive 解构需
+toRefs</span></li><li><span class="option-label">C</span><span>computed 有缓存</span></li><li><span class="option-label">D</span><span>watch 可获新旧值</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项均正确。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-选择-040</strong>（★★ 知识点：K4 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>watchEffect 立即执行一次</span></li><li><span class="option-label">B</span><span>Vue 3 用 Proxy
+实现响应式</span></li><li><span class="option-label">C</span><span>reactive 适合对象</span></li><li><span class="option-label">D</span><span>computed 每次都重算无缓存</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，computed 有缓存。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<h2 id="二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1
+分）</h2>
+<section class="question-card"><p><strong>04-判断-001</strong>（★）ref 在 JS 中通过 <code>.value</code>
+访问。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-002</strong>（★）reactive 适合包装对象类型。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-003</strong>（★）reactive 对象解构后仍保持响应式。（
+）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：解构丢失响应式，需
+toRefs。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-004</strong>（★）computed 具有缓存特性。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-005</strong>（★）computed
+适合做副作用（如发请求）。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：computed
+应为纯函数，副作用用 watch。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-006</strong>（★）watch 回调可获取新旧值。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-007</strong>（★）watchEffect 会立即执行一次。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-008</strong>（★）watchEffect 能获取旧值。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：不能获取旧值。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-009</strong>（★）Vue 3 用 Proxy 实现响应式。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-010</strong>（★）基本类型可以用 reactive
+创建响应式。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：基本类型必须用
+ref。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-011</strong>（★）模板中 ref 自动解包。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-012</strong>（★）reactive 对象直接访问属性，无需
+<code>.value</code>。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-013</strong>（★★）<code>count = 1</code>（count 是
+ref）会保留响应式。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：会丢失响应式，应
+<code>count.value = 1</code>。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-014</strong>（★★）<code>toRefs</code> 可保持 reactive
+解构后的响应式。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-015</strong>（★★）computed 依赖不变时不重算。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确，有缓存。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-016</strong>（★★）侦听 reactive 属性可直接写
+<code>watch(state.name, cb)</code>。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：需用函数
+<code>() =&gt; state.name</code>。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-017</strong>（★★）<code>deep: true</code>
+用于深度侦听对象内部变化。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-018</strong>（★★）<code>immediate: true</code> 使
+watch 立即执行一次。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-019</strong>（★★）Vue 3 的 Proxy 能监测属性增删。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-判断-020</strong>（★★）reactive
+对象整体替换会保留响应式。（ ）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：整体替换丢失响应式。</p>
+</blockquote></section>
+<hr />
+<h2 id="三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2
+分）</h2>
+<section class="question-card"><p><strong>04-填空-001</strong>（★）ref 在 JS 中通过
+<code>.________</code> 访问真实值。</p><blockquote>
+<p><strong>答案：value</strong> <strong>解析</strong>：Ref 对象用
+.value。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-填空-002</strong>（★）<code>________</code>
+适合创建对象类型的响应式数据。（ref/reactive）</p><blockquote>
+<p><strong>答案：reactive</strong> <strong>解析</strong>：对象用
+reactive。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-填空-003</strong>（★）reactive 解构后要保持响应式，应使用
+<code>________</code> 函数。</p><blockquote>
+<p><strong>答案：toRefs</strong> <strong>解析</strong>：toRefs
+把属性转为 ref。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-填空-004</strong>（★）<code>________</code>
+计算属性具有缓存特性。</p><blockquote>
+<p><strong>答案：computed</strong> <strong>解析</strong>：computed
+有缓存。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-填空-005</strong>（★）<code>watch</code>
+回调签名能获取________值和________值。</p><blockquote>
+<p><strong>答案：新、旧</strong> <strong>解析</strong>：(newVal,
+oldVal)。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-填空-006</strong>（★）<code>________</code>
+会立即执行一次并自动收集依赖。</p><blockquote>
+<p><strong>答案：watchEffect</strong> <strong>解析</strong>：watchEffect
+立即执行+自动依赖。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-填空-007</strong>（★）侦听 reactive 属性需用
+<code>________</code> 返回该属性。</p><blockquote>
+<p><strong>答案：函数（箭头函数）</strong>
+<strong>解析</strong>：<code>() =&gt; state.name</code>。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-填空-008</strong>（★）让 watch 立即执行一次，加选项
+<code>immediate: ________</code>。</p><blockquote>
+<p><strong>答案：true</strong> <strong>解析</strong>：immediate:
+true。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-填空-009</strong>（★）深度侦听对象变化，加选项
+<code>deep: ________</code>。</p><blockquote>
+<p><strong>答案：true</strong> <strong>解析</strong>：deep: true。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>04-填空-010</strong>（★）Vue 3 用 ES6 <code>________</code>
+实现响应式。</p><blockquote>
+<p><strong>答案：Proxy</strong> <strong>解析</strong>：Proxy 代理。</p>
+</blockquote></section>
+<hr />
+<h2 id="四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</h2>
+<section class="question-card"><p><strong>04-论述-001</strong>（★★ 知识点：K4-1/K4-2，分值：8 分）
+<strong>题目</strong>：比较 ref 与 reactive 的区别，并说明如何选择。</p>
+<p><strong>要求</strong>： （1）说明两者区别（4 分）。
+（2）说明选择原则（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）区别（每点 1 分，共 4 分）：</p>
+<ul>
+<li>ref 适合基本类型（也支持对象），reactive 适合对象/数组；</li>
+<li>ref 返回 Ref 对象，JS 中用 <code>.value</code> 访问；reactive 返回
+Proxy，直接访问属性；</li>
+<li>ref 在模板自动解包，reactive 无需解包；</li>
+<li>ref 可整体替换（<code>.value = newVal</code>），reactive
+整体替换会丢失响应式。 （2）选择原则（4 分）：基本类型用
+ref；对象/数组用 reactive；若需整体替换或解构传递，用 ref 包装对象或用
+toRefs。实践中可统一用 ref（包括对象）简化心智。</li>
+</ul>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-论述-002</strong>（★★ 知识点：K4-3，分值：8 分）
+<strong>题目</strong>：解释 computed 的缓存机制，并说明 computed 与
+methods 的区别。</p>
+<p><strong>要求</strong>： （1）说明 computed 缓存机制（4 分）。
+（2）说明与 methods 区别（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）缓存机制（4 分）：computed 返回只读
+Ref，首次访问时计算并缓存结果；当其依赖的响应式数据未变化时，再次访问直接返回缓存不重算；只有依赖变化时才标记为脏、下次访问重算。这避免了重复计算，提升性能。
+（2）与 methods 区别（每点 2 分，共 4 分）：</p>
+<ul>
+<li>computed 有缓存（依赖不变不重算），methods 每次调用都执行；</li>
+<li>computed 像属性使用（不加括号），methods 像方法（加括号）；computed
+适合派生数据，methods 适合事件/动作。</li>
+</ul>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-论述-003</strong>（★★ 知识点：K4-4/K4-5，分值：8 分）
+<strong>题目</strong>：比较 watch 与 watchEffect
+的区别，并说明各自适用场景。</p>
+<p><strong>要求</strong>： （1）说明区别（5 分）。 （2）说明适用场景（3
+分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）区别（每点 1.67 分，共 5 分）：</p>
+<ul>
+<li>触发时机：watch 依赖变化时触发；watchEffect 立即执行一次 +
+依赖变化时触发；</li>
+<li>依赖指定：watch 显式指定侦听源；watchEffect
+自动收集回调中用到的响应式数据；</li>
+<li>获取旧值：watch 能获取新旧值；watchEffect 不能获取旧值；</li>
+<li>选项：watch 支持 deep/immediate 等；watchEffect 无需指定源。
+（2）适用场景（3
+分）：需要旧值、需明确侦听源、需精细控制（如深度/立即）用
+watch；只需在数据变化时执行副作用、不需旧值用 watchEffect。</li>
+</ul>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-论述-004</strong>（★★ 知识点：K4-6，分值：6 分）
+<strong>题目</strong>：简述 Vue 3 响应式原理，并说明相比 Vue 2
+的优势。</p>
+<p><strong>要求</strong>： （1）简述 Proxy 响应式原理（3 分）。
+（2）说明相比 Vue 2 优势（3 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）原理（3 分）：Vue 3 用
+<code>reactive()</code> 通过 ES6 <code>Proxy</code>
+包裹对象，拦截属性的读（get）和写（set）。读取时"收集依赖"（记录谁用了该属性），修改时"触发更新"（通知依赖重新执行/渲染），从而实现响应式。
+（2）相比 Vue 2 优势（每点 1 分，共 3 分）：</p>
+<ul>
+<li>能监测属性新增/删除（Vue 2 需 Vue.set/Vue.delete）；</li>
+<li>能监测数组索引修改（Vue 2 需特殊方法）；</li>
+<li>性能更好，代理整个对象而非逐属性拦截。</li>
+</ul>
+<p><strong>评分标准</strong>：共 6 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<h2 id="五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</h2>
+<section class="question-card"><p><strong>04-程序-001</strong>（★★ 知识点：K4 综合，分值：10 分）
+<strong>题目</strong>：阅读代码，找出 3 处错误并改正。</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;p&gt;{{ user.name }}&lt;/p&gt;
+  &lt;button @click=&quot;age++&quot;&gt;+1&lt;/button&gt;
+  &lt;p&gt;总价：{{ total }}&lt;/p&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { reactive, computed } from &#39;vue&#39;
+const user = reactive({ name: &#39;张三&#39;, age: 18 })
+const age = user.age
+const total = computed(() =&gt; { fetch(&#39;/api&#39;) })
+&lt;/script&gt;</code></pre>
+<p><strong>要求</strong>：指出 3 处错误并改正。（每处 3.33 分，共 10
+分）</p><blockquote>
+<p><strong>参考答案</strong>：</p>
+<ol type="1">
+<li><strong><code>const age = user.age</code>
+解构丢失响应式</strong>（3.33 分）：<code>age</code>
+不再响应式，应改为直接用 <code>user.age</code>（模板
+<code>user.age</code>）或用 <code>toRefs</code>。</li>
+<li><strong><code>@click="age++"</code> 无法触发响应式</strong>（3.33
+分）：因 age 已丢失响应式，应改为
+<code>@click="user.age++"</code>。</li>
+<li><strong><code>computed</code> 中做了副作用（fetch）</strong>（3.33
+分）：computed 应为纯函数，副作用用
+watch/watchEffect，应改为返回计算值，如
+<code>computed(() =&gt; price.value * count.value)</code>。</li>
+</ol>
+<p><strong>评分标准</strong>：共 10 分，每处指出并改正得 3.33
+分，只指出未改正得一半。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-程序-002</strong>（★★ 知识点：K4-4，分值：12 分）
+<strong>题目</strong>：补全 watch 代码空缺。</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;input v-model=&quot;state.name&quot; /&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { reactive, watch } from &#39;vue&#39;
+const state = reactive({ name: &#39;张三&#39;, age: 18 })
+
+watch(______A______, (newVal) =&gt; {
+  console.log(&#39;name 变为&#39;, newVal)
+})
+
+watch(state, (newVal) =&gt; {
+  console.log(&#39;state 变化&#39;)
+}, { ______B______: true })   // 深度侦听
+&lt;/script&gt;</code></pre>
+<p><strong>要求</strong>： （1）补全 A：侦听 state.name 属性。（5 分）
+（2）补全 B：深度侦听选项。（4 分） （3）说明 A 为什么不能直接写
+<code>state.name</code>。（3 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A =
+<code>() =&gt; state.name</code>（5 分）：用函数返回该属性。 （2）B =
+<code>deep</code>（4 分）：深度侦听。 （3）原因（3 分）：直接写
+<code>state.name</code>
+传的是当前值的快照（字符串），不是响应式引用，watch
+无法追踪其变化；用函数 <code>() =&gt; state.name</code> 才能让 watch
+在每次执行时重新读取，从而追踪变化。</p>
+<p><strong>评分标准</strong>：共 12 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<h2 id="六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</h2>
+<section class="question-card"><p><strong>04-编程-001</strong>（★★ 知识点：K4-3，分值：15 分）
+<strong>题目</strong>：编写一个购物车组件，用 reactive
+存储商品（name/price/count），用 computed 计算总价，提供加减按钮。</p>
+<p><strong>要求</strong>： （1）reactive 数据结构正确。（4 分）
+（2）computed 计算总价。（5 分） （3）加减按钮可工作（模板+方法）。（6
+分）</p><blockquote>
+<p><strong>参考答案</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;{{ product.name }} ¥{{ product.price }} × {{ product.count }}&lt;/p&gt;
+    &lt;button @click=&quot;product.count--&quot; :disabled=&quot;product.count &lt;= 0&quot;&gt;-&lt;/button&gt;
+    &lt;button @click=&quot;product.count++&quot;&gt;+&lt;/button&gt;
+    &lt;p&gt;总价：¥{{ total }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { reactive, computed } from &#39;vue&#39;
+const product = reactive({ name: &#39;Vue书&#39;, price: 50, count: 1 })
+const total = computed(() =&gt; product.price * product.count)
+&lt;/script&gt;
+&lt;style scoped&gt;
+button { margin: 0 6px; padding: 6px 16px; }
+&lt;/style&gt;</code></pre>
+<p>评分：reactive 数据（4 分）；computed 总价（5 分）；加减按钮（6
+分）。注意直接改 product.count 保留响应式。</p>
+<p><strong>评分标准</strong>：共 15 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>04-编程-002</strong>（★★★ 知识点：K4 综合，分值：20 分）
+<strong>题目</strong>：编写 CTTS-Frontend 任务列表，要求：</p>
+<ul>
+<li>用 reactive 存储任务数组（id/title/status）；</li>
+<li>用 ref 存储搜索关键词；</li>
+<li>用 computed 过滤任务（按 title）；</li>
+<li>用 computed 统计已完成数量；</li>
+<li>用 watch（深度）监听任务变化，记录日志；</li>
+<li>提供"完成第一个"按钮。</li>
+</ul>
+<p><strong>要求</strong>： （1）reactive + ref 数据。（4 分）
+（2）computed 过滤 + 统计。（6 分） （3）watch 深度监听记录日志。（5
+分） （4）按钮与方法 + 模板渲染。（5 分）</p><blockquote>
+<p><strong>参考答案</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;input v-model=&quot;keyword&quot; placeholder=&quot;搜索&quot; /&gt;
+    &lt;ul&gt;
+      &lt;li v-for=&quot;t in filtered&quot; :key=&quot;t.id&quot;&gt;{{ t.title }} - {{ t.status }}&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;已完成：{{ doneCount }}&lt;/p&gt;
+    &lt;button @click=&quot;finishFirst&quot;&gt;完成第一个&lt;/button&gt;
+    &lt;p v-if=&quot;log&quot;&gt;日志：{{ log }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref, reactive, computed, watch } from &#39;vue&#39;
+const keyword = ref(&#39;&#39;)
+const tasks = reactive([
+  { id: 1, title: &#39;任务一&#39;, status: &#39;进行中&#39; },
+  { id: 2, title: &#39;任务二&#39;, status: &#39;未开始&#39; }
+])
+const filtered = computed(() =&gt; tasks.filter(t =&gt; t.title.includes(keyword.value)))
+const doneCount = computed(() =&gt; tasks.filter(t =&gt; t.status === &#39;已完成&#39;).length)
+const log = ref(&#39;&#39;)
+watch(tasks, () =&gt; {
+  log.value = `任务变化，已完成 ${doneCount.value} 个`
+}, { deep: true })
+const finishFirst = () =&gt; {
+  const t = tasks.find(x =&gt; x.status !== &#39;已完成&#39;)
+  if (t) t.status = &#39;已完成&#39;
+}
+&lt;/script&gt;
+&lt;style scoped&gt;
+ul { list-style: none; padding: 0; }
+li { padding: 8px 0; border-bottom: 1px solid #eee; }
+&lt;/style&gt;</code></pre>
+<p>评分：reactive+ref（4 分）；computed 双用（6 分）；watch 深度+日志（5
+分）；按钮方法+模板（5 分）。</p>
+<p><strong>评分标准</strong>：共 20 分，按小题给分。代码须可运行，watch
+须带 deep。</p>
+</blockquote></section>
+<hr />
+<h2 id="题库统计与组卷说明">题库统计与组卷说明</h2>
+<h3 id="题量统计">题量统计</h3>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>数量</th>
+<th>分值</th>
+<th>小计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择题（单选 30 + 多选 10）</td>
+<td>40</td>
+<td>每题 2 分</td>
+<td>80 分</td>
+</tr>
+<tr>
+<td>判断题</td>
+<td>20</td>
+<td>每题 1 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>填空题</td>
+<td>10</td>
+<td>每题 2 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>论述/简答题</td>
+<td>4</td>
+<td>6~8 分</td>
+<td>30 分</td>
+</tr>
+<tr>
+<td>程序阅读/补全题</td>
+<td>2</td>
+<td>10~12 分</td>
+<td>22 分</td>
+</tr>
+<tr>
+<td>编程/接口设计题</td>
+<td>2</td>
+<td>15~20 分</td>
+<td>35 分</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>78</strong></td>
+<td>—</td>
+<td><strong>207 分</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="难度分布">难度分布</h3>
+<table>
+<thead>
+<tr>
+<th>难度</th>
+<th>题量（约）</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★ 基础</td>
+<td>40</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>★★ 提高</td>
+<td>34</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>★★★ 综合</td>
+<td>4</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="知识点覆盖">知识点覆盖</h3>
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>覆盖题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K4-1 ref</td>
+<td>12</td>
+</tr>
+<tr>
+<td>K4-2 reactive</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K4-3 computed</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K4-4 watch</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K4-5 watchEffect</td>
+<td>10</td>
+</tr>
+<tr>
+<td>K4-6 原理</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本题库已确保每题答案唯一明确、无歧义选项，全部含解析，主观题含评分标准，可直接录入考试系统题库。</p>
+</blockquote>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

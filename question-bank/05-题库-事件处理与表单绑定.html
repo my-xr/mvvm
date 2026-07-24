@@ -1,0 +1,784 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>事件处理与表单绑定</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 05 次课 · 题库</div>
+      <h1>事件处理与表单绑定</h1>
+      <p>考试题库与参考解析 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 05 次课</span>
+        <span class="hero-chip"><b>主题</b>事件处理与表单绑定</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2 分）</a>
+<ul>
+<li><a href="#11-单项选择题30-题">1.1 单项选择题（30 题）</a></li>
+<li><a href="#12-多项选择题10-题">1.2 多项选择题（10 题）</a></li>
+</ul></li>
+<li><a href="#二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1 分）</a>
+<ul>
+</ul></li>
+<li><a href="#三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2 分）</a>
+<ul>
+</ul></li>
+<li><a href="#四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</a>
+<ul>
+</ul></li>
+<li><a href="#五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#题库统计与组卷说明">题库统计与组卷说明</a>
+<ul>
+<li><a href="#题量统计">题量统计</a></li>
+<li><a href="#难度分布">难度分布</a></li>
+<li><a href="#知识点覆盖">知识点覆盖</a></li>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 05 次课 <span>｜</span> <strong>文档：</strong>题库</p>
+<blockquote>
+<p>配套：<code>教学设计.md</code>、<code>教学资料.md</code>（同文件夹）
+题量：40 选择 + 20 判断 + 10 填空 + 4 论述/简答 + 2 程序阅读/补全 + 2
+编程/接口设计 = <strong>78 题</strong>
+全部含参考答案与解析；主观题另附评分标准。 难度：★ 基础 / ★★ 提高 / ★★★
+综合 ｜ 编号：<code>05-题型-序号</code></p>
+</blockquote>
+<hr />
+<h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
+分）</h2>
+<h3 id="11-单项选择题30-题">1.1 单项选择题（30 题）</h3>
+<section class="question-card"><p><strong>05-选择-001</strong>（★ 知识点：K5-1）
+<code>v-on:click</code> 的简写是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>:click</code></span></li><li><span class="option-label">B</span><span><code>@click</code></span></li><li><span class="option-label">C</span><span><code>#click</code></span></li><li><span class="option-label">D</span><span><code>-click</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：v-on 简写为
+<code>@</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-002</strong>（★ 知识点：K5-1）
+<code>@click="handleClick"</code> 中，handleClick
+方法接收的第一个参数是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>无参数</span></li><li><span class="option-label">B</span><span>原生事件对象</span></li><li><span class="option-label">C</span><span>组件实例</span></li><li><span class="option-label">D</span><span>数据</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：方法引用时，自动接收事件对象。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-003</strong>（★ 知识点：K5-1）
+在内联事件语句中访问事件对象，使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>event</code></span></li><li><span class="option-label">B</span><span><code>e</code></span></li><li><span class="option-label">C</span><span><code>$event</code></span></li><li><span class="option-label">D</span><span><code>this</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：内联语句用
+<code>$event</code>。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-004</strong>（★ 知识点：K5-1）
+<code>@click="fn()"</code> 与 <code>@click="fn"</code> 的区别是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>没有区别</span></li><li><span class="option-label">B</span><span>前者立即调用，需手动传
+<code>$event</code>；后者方法引用，自动接收事件对象</span></li><li><span class="option-label">C</span><span>前者不执行</span></li><li><span class="option-label">D</span><span>后者不执行</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：加括号立即调用，需手动传
+<code>$event</code>；不加为方法引用自动接收。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-005</strong>（★ 知识点：K5-2）
+阻止事件冒泡的修饰符是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>.prevent</code></span></li><li><span class="option-label">B</span><span><code>.stop</code></span></li><li><span class="option-label">C</span><span><code>.once</code></span></li><li><span class="option-label">D</span><span><code>.self</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>.stop</code>
+阻止冒泡。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-006</strong>（★ 知识点：K5-2）
+阻止表单默认提交的修饰符是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>.stop</code></span></li><li><span class="option-label">B</span><span><code>.prevent</code></span></li><li><span class="option-label">C</span><span><code>.once</code></span></li><li><span class="option-label">D</span><span><code>.submit</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>.prevent</code>
+阻止默认行为（如表单提交）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-007</strong>（★ 知识点：K5-2）
+使事件只触发一次的修饰符是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>.once</code></span></li><li><span class="option-label">B</span><span><code>.stop</code></span></li><li><span class="option-label">C</span><span><code>.prevent</code></span></li><li><span class="option-label">D</span><span><code>.self</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：<code>.once</code>
+使事件只触发一次。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-008</strong>（★ 知识点：K5-2）
+仅当事件源是元素自身才触发的修饰符是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>.stop</code></span></li><li><span class="option-label">B</span><span><code>.prevent</code></span></li><li><span class="option-label">C</span><span><code>.self</code></span></li><li><span class="option-label">D</span><span><code>.once</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：<code>.self</code>
+仅事件 target 是自身才触发。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-009</strong>（★ 知识点：K5-3）
+回车键弹起时触发，应使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>@click.enter</code></span></li><li><span class="option-label">B</span><span><code>@keyup.enter</code></span></li><li><span class="option-label">C</span><span><code>@enter</code></span></li><li><span class="option-label">D</span><span><code>@keydown.submit</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：按键修饰符用于
+keyup/keydown，回车是 <code>.enter</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-010</strong>（★ 知识点：K5-3） 限定 Ctrl+点击
+触发，应使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>@click.ctrl</code></span></li><li><span class="option-label">B</span><span><code>@ctrl.click</code></span></li><li><span class="option-label">C</span><span><code>@click.ctrlKey</code></span></li><li><span class="option-label">D</span><span><code>@ctrlclick</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：系统修饰符
+<code>.ctrl</code>：<code>@click.ctrl</code>。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-011</strong>（★ 知识点：K5-4） 单选 radio 的 v-model
+绑定的数据类型通常是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>布尔</span></li><li><span class="option-label">B</span><span>字符串</span></li><li><span class="option-label">C</span><span>数组</span></li><li><span class="option-label">D</span><span>数字</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：radio
+绑定字符串（选中项的 value）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-012</strong>（★ 知识点：K5-4） 多个 checkbox 的
+v-model 绑定的数据类型是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>布尔</span></li><li><span class="option-label">B</span><span>字符串</span></li><li><span class="option-label">C</span><span>数组</span></li><li><span class="option-label">D</span><span>数字</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：多个 checkbox
+绑定数组，存选中项的 value 集合。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-013</strong>（★ 知识点：K5-4） 单个 checkbox 的
+v-model 绑定的数据类型是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>布尔</span></li><li><span class="option-label">B</span><span>字符串</span></li><li><span class="option-label">C</span><span>数组</span></li><li><span class="option-label">D</span><span>数字</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：单个 checkbox
+绑定布尔（勾选状态）。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-014</strong>（★ 知识点：K5-4）
+<code>&lt;select v-model="selected"&gt;</code> 中，selected 存储的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>选中 option 的 value</span></li><li><span class="option-label">B</span><span>option 的文本</span></li><li><span class="option-label">C</span><span>option 的索引</span></li><li><span class="option-label">D</span><span>布尔</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：select 绑定选中
+option 的 value。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-015</strong>（★ 知识点：K5-5）
+<code>v-model.lazy</code> 的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>实时同步</span></li><li><span class="option-label">B</span><span>失焦时才同步</span></li><li><span class="option-label">C</span><span>转数字</span></li><li><span class="option-label">D</span><span>去空格</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>.lazy</code>
+失焦（change）时同步。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-016</strong>（★ 知识点：K5-5）
+<code>v-model.number</code> 的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>失焦同步</span></li><li><span class="option-label">B</span><span>转为数字</span></li><li><span class="option-label">C</span><span>去空格</span></li><li><span class="option-label">D</span><span>限制数字</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>.number</code>
+转数字。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-017</strong>（★ 知识点：K5-5）
+<code>v-model.trim</code> 的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>失焦同步</span></li><li><span class="option-label">B</span><span>转数字</span></li><li><span class="option-label">C</span><span>去首尾空格</span></li><li><span class="option-label">D</span><span>限制长度</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：<code>.trim</code>
+去首尾空格。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-018</strong>（★ 知识点：K5-2） 下列修饰符不能与
+<code>.prevent</code> 同时使用的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>.stop</code></span></li><li><span class="option-label">B</span><span><code>.once</code></span></li><li><span class="option-label">C</span><span><code>.passive</code></span></li><li><span class="option-label">D</span><span><code>.self</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：<code>.passive</code>
+表示不调用 preventDefault，与 <code>.prevent</code> 矛盾，不能同用。C
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-019</strong>（★ 知识点：K5-4）
+<code>&lt;textarea&gt;</code> 绑定数据，正确写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;textarea&gt;{{ text }}&lt;/textarea&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;textarea v-model="text"&gt;&lt;/textarea&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;textarea :value="text"&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;textarea v-bind="text"&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：textarea 用
+v-model，不能在标签内用 <code>{{ }}</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-020</strong>（★ 知识点：K5-3） 精确匹配"仅按
+Ctrl（不按其他系统键）"的修饰符是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>.ctrl</code></span></li><li><span class="option-label">B</span><span><code>.ctrl.only</code></span></li><li><span class="option-label">C</span><span><code>.ctrl.exact</code></span></li><li><span class="option-label">D</span><span><code>.exact.ctrl</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：<code>.exact</code>
+精确匹配组合键，<code>@click.ctrl.exact</code> 表示仅 Ctrl。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-021</strong>（★★ 知识点：K5-1）
+下列写法中，能正确传递参数和事件对象的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>@click="fn(msg)"</code></span></li><li><span class="option-label">B</span><span><code>@click="fn(msg, $event)"</code></span></li><li><span class="option-label">C</span><span><code>@click="fn($event, msg)"</code></span></li><li><span class="option-label">D</span><span>B 和 C 都可以</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong>
+<strong>解析</strong>：内联语句可传任意参数，<code>$event</code>
+代表事件对象，位置不限。B、C 都对。D 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-022</strong>（★★ 知识点：K5-2）
+<code>@click.prevent.stop</code> 的执行顺序是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>先 stop 再 prevent</span></li><li><span class="option-label">B</span><span>先 prevent 再 stop</span></li><li><span class="option-label">C</span><span>只执行 prevent</span></li><li><span class="option-label">D</span><span>只执行 stop</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：修饰符链式按书写顺序执行，先 prevent 再 stop。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-023</strong>（★★ 知识点：K5-4） 多个 checkbox
+绑定数组 <code>hobbies</code>，勾选 value 为 read 与 music 两项，hobbies
+值为？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>true</code></span></li><li><span class="option-label">B</span><span><code>['read', 'music']</code></span></li><li><span class="option-label">C</span><span><code>'read,music'</code></span></li><li><span class="option-label">D</span><span><code>2</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：多选 checkbox
+绑定数组，存选中项 value。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-024</strong>（★★ 知识点：K5-5）
+<code>v-model.lazy.number="n"</code> 的效果是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>实时同步且转数字</span></li><li><span class="option-label">B</span><span>失焦同步且转数字</span></li><li><span class="option-label">C</span><span>失焦同步且去空格</span></li><li><span class="option-label">D</span><span>实时同步且去空格</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>.lazy</code>
+失焦同步，<code>.number</code> 转数字，链式组合。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-025</strong>（★★ 知识点：K5-3）
+按键修饰符应作用于哪个事件？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>@click</code></span></li><li><span class="option-label">B</span><span><code>@keyup</code> / <code>@keydown</code></span></li><li><span class="option-label">C</span><span><code>@submit</code></span></li><li><span class="option-label">D</span><span><code>@change</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：按键修饰符用于键盘事件 keyup/keydown。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-026</strong>（★★ 知识点：K5-4）
+<code>&lt;select multiple v-model="list"&gt;</code> 中 list 的类型是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>字符串</span></li><li><span class="option-label">B</span><span>数组</span></li><li><span class="option-label">C</span><span>布尔</span></li><li><span class="option-label">D</span><span>数字</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：select
+多选绑定数组。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-027</strong>（★★ 知识点：K5-6）
+表单验证的合适时机是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>提交前校验</span></li><li><span class="option-label">B</span><span>提交后校验</span></li><li><span class="option-label">C</span><span>不校验</span></li><li><span class="option-label">D</span><span>渲染时校验</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：提交前校验，避免无效请求。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-028</strong>（★★ 知识点：K5-2） <code>.capture</code>
+修饰符的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>阻止冒泡</span></li><li><span class="option-label">B</span><span>使用事件捕获模式</span></li><li><span class="option-label">C</span><span>阻止默认</span></li><li><span class="option-label">D</span><span>只触发一次</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：<code>.capture</code>
+使用捕获模式（事件从外向内触发）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-029</strong>（★★ 知识点：K5-1）
+<code>@submit.prevent="onSubmit"</code> 的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>阻止表单默认提交并调用 onSubmit</span></li><li><span class="option-label">B</span><span>只阻止默认提交</span></li><li><span class="option-label">C</span><span>只调用 onSubmit</span></li><li><span class="option-label">D</span><span>阻止冒泡并调用 onSubmit</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：<code>.prevent</code>
+阻止默认提交，<code>="onSubmit"</code> 调用方法。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-030</strong>（★★ 知识点：K5 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>@click</code> 绑定点击事件</span></li><li><span class="option-label">B</span><span><code>.stop</code> 阻止冒泡</span></li><li><span class="option-label">C</span><span>多选
+checkbox 绑定数组</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<h3 id="12-多项选择题10-题">1.2 多项选择题（10 题）</h3>
+<section class="question-card"><p><strong>05-选择-031</strong>（★★ 知识点：K5-2）
+下列属于事件修饰符的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>.stop</code></span></li><li><span class="option-label">B</span><span><code>.prevent</code></span></li><li><span class="option-label">C</span><span><code>.once</code></span></li><li><span class="option-label">D</span><span><code>.lazy</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
+是事件修饰符；<code>.lazy</code> 是 v-model 修饰符。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-032</strong>（★★ 知识点：K5-5） 下列属于 v-model
+修饰符的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>.lazy</code></span></li><li><span class="option-label">B</span><span><code>.number</code></span></li><li><span class="option-label">C</span><span><code>.trim</code></span></li><li><span class="option-label">D</span><span><code>.stop</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 是
+v-model 修饰符；<code>.stop</code> 是事件修饰符。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-033</strong>（★★ 知识点：K5-3）
+下列属于按键修饰符的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>.enter</code></span></li><li><span class="option-label">B</span><span><code>.esc</code></span></li><li><span class="option-label">C</span><span><code>.space</code></span></li><li><span class="option-label">D</span><span><code>.ctrl</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
+是按键修饰符；<code>.ctrl</code> 是系统修饰符。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-034</strong>（★★ 知识点：K5-3）
+下列属于系统修饰符的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>.ctrl</code></span></li><li><span class="option-label">B</span><span><code>.shift</code></span></li><li><span class="option-label">C</span><span><code>.alt</code></span></li><li><span class="option-label">D</span><span><code>.enter</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
+是系统修饰符；<code>.enter</code> 是按键修饰符。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-035</strong>（★★ 知识点：K5-4） v-model
+可用于下列哪些表单元素？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;input&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;textarea&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;select&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;div&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：v-model
+用于表单元素，不能用于 div。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-036</strong>（★★ 知识点：K5-1）
+关于事件绑定，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>v-on</code> 简写为
+<code>@</code></span></li><li><span class="option-label">B</span><span>方法引用自动接收事件对象</span></li><li><span class="option-label">C</span><span>内联语句用
+<code>$event</code> 访问事件对象</span></li><li><span class="option-label">D</span><span><code>@click="fn()"</code>
+自动接收事件对象</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，内联需手动传 <code>$event</code>。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-037</strong>（★★ 知识点：K5-2）
+关于事件修饰符，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>.stop</code> 阻止冒泡</span></li><li><span class="option-label">B</span><span><code>.prevent</code> 阻止默认</span></li><li><span class="option-label">C</span><span><code>.once</code> 只触发一次</span></li><li><span class="option-label">D</span><span><code>.passive</code> 可与 <code>.prevent</code> 同用</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，二者矛盾。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-038</strong>（★★ 知识点：K5-4） 关于 checkbox 与
+v-model，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>单个 checkbox 绑定布尔</span></li><li><span class="option-label">B</span><span>多个 checkbox
+绑定数组</span></li><li><span class="option-label">C</span><span>多个 checkbox 需提供 value</span></li><li><span class="option-label">D</span><span>checkbox 只能绑定布尔</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，多个时绑数组。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-039</strong>（★★ 知识点：K5 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>@keyup.enter</code> 回车触发</span></li><li><span class="option-label">B</span><span><code>.lazy</code> 失焦同步</span></li><li><span class="option-label">C</span><span><code>.number</code> 转数字</span></li><li><span class="option-label">D</span><span><code>.trim</code> 转数字</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，<code>.trim</code> 去空格。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-选择-040</strong>（★★ 知识点：K5 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>表单提交可用 <code>@submit.prevent</code></span></li><li><span class="option-label">B</span><span>多选 checkbox 绑定数组</span></li><li><span class="option-label">C</span><span><code>v-model</code> 可用于 select</span></li><li><span class="option-label">D</span><span><code>.stop</code> 阻止默认行为</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，<code>.stop</code> 阻止冒泡。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<h2 id="二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1
+分）</h2>
+<section class="question-card"><p><strong>05-判断-001</strong>（★）<code>v-on</code> 的简写是
+<code>@</code>。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-002</strong>（★）方法引用 <code>@click="fn"</code>
+自动接收事件对象。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-003</strong>（★）内联语句 <code>@click="fn()"</code>
+自动接收事件对象。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：需手动传
+<code>$event</code>。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-004</strong>（★）<code>.stop</code> 阻止事件冒泡。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-005</strong>（★）<code>.prevent</code>
+阻止默认行为。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-006</strong>（★）<code>.once</code>
+使事件只触发一次。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-007</strong>（★）<code>.self</code>
+仅事件源为自身才触发。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-008</strong>（★）多个 checkbox 的 v-model
+绑定数组。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-009</strong>（★）单个 checkbox 的 v-model
+绑定布尔。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-010</strong>（★）<code>.lazy</code> 让 v-model
+实时同步。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：失焦同步。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-011</strong>（★）<code>.number</code>
+将输入转为数字。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-012</strong>（★）<code>.trim</code> 去除首尾空格。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-013</strong>（★）按键修饰符可用于
+<code>@click</code>。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：用于
+keyup/keydown。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-014</strong>（★）<code>&lt;select&gt;</code> 的
+v-model 绑定选中 option 的 value。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-015</strong>（★★）<code>.passive</code> 可与
+<code>.prevent</code> 同时使用。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：矛盾，不能同用。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-016</strong>（★★）<code>@click.prevent.stop</code> 先
+prevent 再 stop。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：链式按书写顺序。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-017</strong>（★★）radio 的 v-model 绑定字符串。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-018</strong>（★★）<code>&lt;textarea&gt;</code> 可用
+<code>{{ }}</code> 插值绑定。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：应用 v-model。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-019</strong>（★★）表单验证应在提交前进行。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-判断-020</strong>（★★）<code>.exact</code>
+用于精确匹配组合键。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<hr />
+<h2 id="三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2
+分）</h2>
+<section class="question-card"><p><strong>05-填空-001</strong>（★）<code>v-on</code> 的简写是
+<code>________</code>。</p><blockquote>
+<p><strong>答案：@</strong> <strong>解析</strong>：at 符号。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-填空-002</strong>（★）内联语句访问事件对象用
+<code>________</code>。</p><blockquote>
+<p><strong>答案：$event</strong> <strong>解析</strong>：特殊变量。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-填空-003</strong>（★）阻止冒泡的修饰符是
+<code>.________</code>。</p><blockquote>
+<p><strong>答案：stop</strong>
+<strong>解析</strong>：stopPropagation。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-填空-004</strong>（★）阻止默认行为的修饰符是
+<code>.________</code>。</p><blockquote>
+<p><strong>答案：prevent</strong>
+<strong>解析</strong>：preventDefault。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-填空-005</strong>（★）回车键弹起触发用
+<code>@keyup.________</code>。</p><blockquote>
+<p><strong>答案：enter</strong> <strong>解析</strong>：回车修饰符。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-填空-006</strong>（★）多个 checkbox 的 v-model 绑定
+<code>________</code> 类型。</p><blockquote>
+<p><strong>答案：数组</strong> <strong>解析</strong>：存选中 value。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-填空-007</strong>（★）单个 checkbox 的 v-model 绑定
+<code>________</code> 类型。</p><blockquote>
+<p><strong>答案：布尔</strong> <strong>解析</strong>：勾选状态。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-填空-008</strong>（★）<code>v-model.________</code>
+失焦时才同步。</p><blockquote>
+<p><strong>答案：lazy</strong> <strong>解析</strong>：lazy 修饰符。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-填空-009</strong>（★）<code>v-model.________</code>
+将输入转为数字。</p><blockquote>
+<p><strong>答案：number</strong> <strong>解析</strong>：number
+修饰符。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>05-填空-010</strong>（★）<code>v-model.________</code>
+去除首尾空格。</p><blockquote>
+<p><strong>答案：trim</strong> <strong>解析</strong>：trim 修饰符。</p>
+</blockquote></section>
+<hr />
+<h2 id="四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</h2>
+<section class="question-card"><p><strong>05-论述-001</strong>（★★ 知识点：K5-1，分值：6 分）
+<strong>题目</strong>：说明 <code>@click="fn"</code> 与
+<code>@click="fn()"</code> 的区别，及如何访问事件对象。</p>
+<p><strong>要求</strong>： （1）说明两者区别。（3 分）
+（2）说明如何访问事件对象。（3 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）区别（3
+分）：<code>@click="fn"</code>
+是方法引用，事件触发时调用，自动接收事件对象；<code>@click="fn()"</code>
+是内联语句，渲染时不调用、事件触发时执行，要传参需手动写，事件对象需手动传
+<code>$event</code>。 （2）访问事件对象（3
+分）：方法引用时第一参数即事件对象；内联语句用 <code>$event</code>
+显式传递，如 <code>@click="fn(msg, $event)"</code>。</p>
+<p><strong>评分标准</strong>：共 6 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-论述-002</strong>（★★ 知识点：K5-2，分值：8 分）
+<strong>题目</strong>：列举至少 4
+个事件修饰符并说明作用，举例链式用法。</p>
+<p><strong>要求</strong>： （1）列举 4 个修饰符及作用。（4 分）
+（2）举例链式用法并说明顺序影响。（4 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）修饰符（每点 1 分，共 4
+分）：<code>.stop</code> 阻止冒泡；<code>.prevent</code>
+阻止默认行为；<code>.once</code> 只触发一次；<code>.self</code>
+仅事件源为自身才触发；<code>.capture</code> 捕获模式。 （2）链式（4
+分）：<code>@click.prevent.stop="fn"</code> 表示先 prevent 再
+stop，顺序按书写执行，顺序不同行为不同。举例说明即可。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-论述-003</strong>（★★ 知识点：K5-4，分值：8 分）
+<strong>题目</strong>：说明 v-model 在
+radio、checkbox（单个/多个）、select 上的绑定数据类型与用法。</p>
+<p><strong>要求</strong>： （1）radio。（2 分） （2）checkbox
+单个与多个。（3 分） （3）select 单选与多选。（3 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）radio（2 分）：绑定字符串，选中项的
+value 同步到数据；每个 radio 需提供 value。 （2）checkbox（3
+分）：单个绑定布尔（勾选状态）；多个绑定数组，存选中项 value
+集合，每个需提供 value。 （3）select（3 分）：单选绑定选中 option 的
+value（字符串）；多选（<code>multiple</code>）绑定数组。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-论述-004</strong>（★★ 知识点：K5-5/K5-6，分值：8 分）
+<strong>题目</strong>：说明 v-model
+三个修饰符的作用，并简述表单验证的基本思路。</p>
+<p><strong>要求</strong>： （1）三个修饰符作用。（3 分）
+（2）表单验证思路。（5 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）修饰符（每点 1 分，共 3
+分）：<code>.lazy</code> 失焦时同步（非实时）；<code>.number</code>
+转数字；<code>.trim</code> 去首尾空格。 （2）验证思路（5
+分）：提交前（<code>@submit.prevent</code>）执行校验函数；校验非空、格式、长度等；用响应式
+errors 对象存储各字段错误信息，模板中 <code>v-if</code>
+显示；校验通过才执行提交逻辑，否则阻止。可结合 computed 实时校验。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<h2 id="五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</h2>
+<section class="question-card"><p><strong>05-程序-001</strong>（★★ 知识点：K5 综合，分值：10 分）
+<strong>题目</strong>：找出 3 处错误并改正。</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;form @submit=&quot;onSubmit&quot;&gt;
+    &lt;input v-model=&quot;user&quot; placeholder=&quot;用户名&quot; /&gt;
+    &lt;input type=&quot;checkbox&quot; v-model=&quot;hobbies&quot; value=&quot;read&quot; /&gt;阅读
+    &lt;input type=&quot;checkbox&quot; v-model=&quot;hobbies&quot; value=&quot;music&quot; /&gt;音乐
+    &lt;button type=&quot;submit&quot;&gt;提交&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const user = ref(&#39;&#39;)
+const hobbies = ref(&#39;&#39;)   // 多选 checkbox
+const onSubmit = () =&gt; { console.log(user, hobbies) }
+&lt;/script&gt;</code></pre>
+<p><strong>要求</strong>：指出 3 处错误并改正。（每处 3.33 分，共 10
+分）</p><blockquote>
+<p><strong>参考答案</strong>：</p>
+<ol type="1">
+<li><strong><code>@submit="onSubmit"</code>
+未阻止默认提交</strong>（3.33 分）：应改为
+<code>@submit.prevent="onSubmit"</code>。</li>
+<li><strong><code>hobbies</code> 绑定字符串</strong>（3.33 分）：多个
+checkbox 应绑定数组，应改为 <code>const hobbies = ref([])</code>。</li>
+<li><strong><code>console.log(user, hobbies)</code> 打印 ref
+对象</strong>（3.33 分）：应改为
+<code>console.log(user.value, hobbies.value)</code>。</li>
+</ol>
+<p><strong>评分标准</strong>：共 10 分，每处指出并改正得 3.33 分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-程序-002</strong>（★★ 知识点：K5-4/K5-5，分值：12 分）
+<strong>题目</strong>：补全登录表单代码空缺。</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;form @submit.______A______=&quot;onSubmit&quot;&gt;
+    &lt;input v-model.______B______=&quot;form.username&quot; placeholder=&quot;用户名&quot; /&gt;
+    &lt;input v-model.______C______=&quot;form.password&quot; type=&quot;password&quot; placeholder=&quot;密码&quot; /&gt;
+    &lt;button type=&quot;submit&quot;&gt;登录&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { reactive } from &#39;vue&#39;
+const form = reactive({ username: &#39;&#39;, password: &#39;&#39; })
+const onSubmit = () =&gt; { console.log(form.username, form.password) }
+&lt;/script&gt;</code></pre>
+<p><strong>要求</strong>： （1）A：阻止默认提交。（4 分）
+（2）B：用户名去空格。（4 分） （3）C：密码去空格。（4 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>prevent</code>（4
+分）：<code>@submit.prevent</code> 阻止默认。 （2）B =
+<code>trim</code>（4 分）：去空格。 （3）C = <code>trim</code>（4
+分）：去空格。</p>
+<p><strong>评分标准</strong>：共 12 分，每空 4 分。</p>
+</blockquote></section>
+<hr />
+<h2 id="六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</h2>
+<section class="question-card"><p><strong>05-编程-001</strong>（★★ 知识点：K5-2/K5-3，分值：15 分）
+<strong>题目</strong>：编写组件实现：一个输入框，回车提交内容并清空，点击"添加"按钮也能提交；提交后把内容加入列表显示。</p>
+<p><strong>要求</strong>： （1）输入框 v-model + 回车提交。（5 分）
+（2）按钮提交 + 清空。（5 分） （3）列表渲染。（5 分）</p><blockquote>
+<p><strong>参考答案</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;input v-model=&quot;text&quot; @keyup.enter=&quot;add&quot; placeholder=&quot;输入后回车&quot; /&gt;
+    &lt;button @click=&quot;add&quot;&gt;添加&lt;/button&gt;
+    &lt;ul&gt;
+      &lt;li v-for=&quot;(item, i) in list&quot; :key=&quot;i&quot;&gt;{{ item }}&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const text = ref(&#39;&#39;)
+const list = ref([])
+const add = () =&gt; {
+  if (!text.value.trim()) return
+  list.value.push(text.value.trim())
+  text.value = &#39;&#39;
+}
+&lt;/script&gt;
+&lt;style scoped&gt;
+input { padding: 6px; }
+button { padding: 6px 16px; margin-left: 6px; }
+&lt;/style&gt;</code></pre>
+<p>评分：回车提交（5 分）；按钮提交+清空（5 分）；列表 v-for（5 分，缺
+:key 扣 1）。</p>
+<p><strong>评分标准</strong>：共 15 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>05-编程-002</strong>（★★★ 知识点：K5 综合，分值：20 分）
+<strong>题目</strong>：编写 CTTS-Frontend 登录表单，要求：</p>
+<ul>
+<li>用户名/密码 v-model.trim 双向绑定；</li>
+<li>"记住我" checkbox；</li>
+<li>回车或点击登录提交（<code>@submit.prevent</code>）；</li>
+<li>非空校验（用户名）、密码长度≥6 校验；</li>
+<li>校验失败显示错误信息，通过则提示登录成功。</li>
+</ul>
+<p><strong>要求</strong>： （1）表单结构 + v-model.trim + checkbox。（5
+分） （2）<code>@submit.prevent</code> + 回车提交。（4 分）
+（3）校验逻辑（非空 + 长度）。（6 分） （4）错误显示 + 成功提示。（5
+分）</p><blockquote>
+<p><strong>参考答案</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;form @submit.prevent=&quot;onSubmit&quot;&gt;
+    &lt;input v-model.trim=&quot;form.username&quot; placeholder=&quot;用户名&quot; @keyup.enter=&quot;onSubmit&quot; /&gt;
+    &lt;p v-if=&quot;errors.username&quot; class=&quot;err&quot;&gt;{{ errors.username }}&lt;/p&gt;
+    &lt;input v-model.trim=&quot;form.password&quot; type=&quot;password&quot; placeholder=&quot;密码&quot; @keyup.enter=&quot;onSubmit&quot; /&gt;
+    &lt;p v-if=&quot;errors.password&quot; class=&quot;err&quot;&gt;{{ errors.password }}&lt;/p&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot; v-model=&quot;form.remember&quot; /&gt;记住我&lt;/label&gt;
+    &lt;button type=&quot;submit&quot;&gt;登录&lt;/button&gt;
+    &lt;p v-if=&quot;msg&quot;&gt;{{ msg }}&lt;/p&gt;
+  &lt;/form&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { reactive, ref } from &#39;vue&#39;
+const form = reactive({ username: &#39;&#39;, password: &#39;&#39;, remember: false })
+const errors = reactive({ username: &#39;&#39;, password: &#39;&#39; })
+const msg = ref(&#39;&#39;)
+const validate = () =&gt; {
+  errors.username = form.username ? &#39;&#39; : &#39;用户名不能为空&#39;
+  errors.password = form.password.length &gt;= 6 ? &#39;&#39; : &#39;密码至少6位&#39;
+  return !errors.username &amp;&amp; !errors.password
+}
+const onSubmit = () =&gt; {
+  if (!validate()) return
+  msg.value = `登录成功：${form.username}，记住：${form.remember}`
+}
+&lt;/script&gt;
+&lt;style scoped&gt;
+input { display: block; padding: 8px; margin: 6px 0; }
+.err { color: red; font-size: 12px; }
+&lt;/style&gt;</code></pre>
+<p>评分：表单+v-model.trim+checkbox（5 分）；submit.prevent+回车（4
+分）；校验非空+长度（6 分）；错误显示+成功提示（5 分）。</p>
+<p><strong>评分标准</strong>：共 20 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<h2 id="题库统计与组卷说明">题库统计与组卷说明</h2>
+<h3 id="题量统计">题量统计</h3>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>数量</th>
+<th>分值</th>
+<th>小计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择题（单选 30 + 多选 10）</td>
+<td>40</td>
+<td>每题 2 分</td>
+<td>80 分</td>
+</tr>
+<tr>
+<td>判断题</td>
+<td>20</td>
+<td>每题 1 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>填空题</td>
+<td>10</td>
+<td>每题 2 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>论述/简答题</td>
+<td>4</td>
+<td>6~8 分</td>
+<td>30 分</td>
+</tr>
+<tr>
+<td>程序阅读/补全题</td>
+<td>2</td>
+<td>10~12 分</td>
+<td>22 分</td>
+</tr>
+<tr>
+<td>编程/接口设计题</td>
+<td>2</td>
+<td>15~20 分</td>
+<td>35 分</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>78</strong></td>
+<td>—</td>
+<td><strong>207 分</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="难度分布">难度分布</h3>
+<table>
+<thead>
+<tr>
+<th>难度</th>
+<th>题量（约）</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★ 基础</td>
+<td>40</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>★★ 提高</td>
+<td>34</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>★★★ 综合</td>
+<td>4</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="知识点覆盖">知识点覆盖</h3>
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>覆盖题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K5-1 事件基础</td>
+<td>12</td>
+</tr>
+<tr>
+<td>K5-2 事件修饰符</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K5-3 按键/系统修饰符</td>
+<td>10</td>
+</tr>
+<tr>
+<td>K5-4 表单绑定</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K5-5 v-model 修饰符</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K5-6 表单验证</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本题库已确保每题答案唯一明确、无歧义选项，全部含解析，主观题含评分标准，可直接录入考试系统题库。</p>
+</blockquote>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

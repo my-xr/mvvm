@@ -1,0 +1,381 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>组件化开发综合实践</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 09 次课 · 教学设计</div>
+      <h1>组件化开发综合实践</h1>
+      <p>教师教案与课堂组织 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 09 次课</span>
+        <span class="hero-chip"><b>主题</b>组件化开发综合实践</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一课程信息">一、课程信息</a>
+<ul>
+</ul></li>
+<li><a href="#二教学目标">二、教学目标</a>
+<ul>
+<li><a href="#知识目标">知识目标</a></li>
+<li><a href="#能力目标">能力目标</a></li>
+<li><a href="#素质目标课程思政">素质目标（课程思政）</a></li>
+</ul></li>
+<li><a href="#四项目任务或案例任务">四、项目任务或案例任务</a>
+<ul>
+</ul></li>
+<li><a href="#五课堂互动设计">五、课堂互动设计</a>
+<ul>
+<li><a href="#互动-1组件拆分讨论">互动 1：组件拆分讨论</a></li>
+<li><a href="#互动-2项目任务复盘">互动 2：项目任务复盘</a></li>
+</ul></li>
+<li><a href="#六课程思政融入点">六、课程思政融入点</a>
+<ul>
+</ul></li>
+<li><a href="#七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5 分钟）</a>
+<ul>
+</ul></li>
+<li><a href="#八课后任务">八、课后任务</a>
+<ul>
+</ul></li>
+<li><a href="#九对应岗位能力或面试考点">九、对应岗位能力或面试考点</a>
+<ul>
+</ul></li>
+<li><a href="#十教学资料与题库索引">十、教学资料与题库索引</a>
+<ul>
+</ul></li>
+<li><a href="#附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 09 次课 <span>｜</span> <strong>文档：</strong>教学设计</p>
+<blockquote>
+<p>所属模块：M3 组件化开发 ｜ 课程：《MVVM前端框架开发技术》
+配套资料：见同文件夹内
+<code>教学资料.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一课程信息">一、课程信息</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>次序</td>
+<td>第 9 次课（全课程 16 次之第 9）</td>
+</tr>
+<tr>
+<td>学时</td>
+<td>2 学时（90 分钟）</td>
+</tr>
+<tr>
+<td>属性</td>
+<td><strong>实践课</strong></td>
+</tr>
+<tr>
+<td>所属模块</td>
+<td>M3 组件化开发</td>
+</tr>
+<tr>
+<td>教学主题</td>
+<td>组件化开发综合实践 — 完成 CTTS-Frontend 核心组件库</td>
+</tr>
+<tr>
+<td>先修基础</td>
+<td>第 1~8 次课（SFC、响应式、组件通信、插槽、动态组件）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="二教学目标">二、教学目标</h2>
+<h3 id="知识目标">知识目标</h3>
+<ol type="1">
+<li>综合运用组件化思想规划与拆分组件库。</li>
+<li>复习 props/emits、插槽、动态组件、:class/:style 的综合应用。</li>
+</ol>
+<h3 id="能力目标">能力目标</h3>
+<ol type="1">
+<li>能够按职责拆分 CTTS-Frontend
+核心组件：布局组件（Header/Sidebar/Content）、列表组件（ProjectList/TaskList）、表单组件（LoginForm/SubmitForm）、通用组件（Pagination/Card/Dialog）。</li>
+<li>能够独立完成组件开发并组织为可运行的应用。</li>
+</ol>
+<h3 id="素质目标课程思政">素质目标（课程思政）</h3>
+<ol type="1">
+<li>培养工匠精神——组件设计的好坏直接影响项目质量。</li>
+<li>建立复盘习惯——实践后总结经验教训。</li>
+</ol>
+<hr />
+<h2
+id="三主要知识点纲要实践复盘型">三、主要知识点纲要（实践复盘型）</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>知识点</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K9-1</td>
+<td>组件库规划与拆分原则</td>
+<td>按职责拆分；单一职责；可复用；命名规范</td>
+</tr>
+<tr>
+<td>K9-2</td>
+<td>布局组件</td>
+<td>AppHeader / AppSidebar / AppContent 组合布局</td>
+</tr>
+<tr>
+<td>K9-3</td>
+<td>列表组件</td>
+<td>ProjectList / TaskList（props 传数据、v-for、:class 状态）</td>
+</tr>
+<tr>
+<td>K9-4</td>
+<td>表单组件</td>
+<td>LoginForm / SubmitForm（v-model、emits 提交）</td>
+</tr>
+<tr>
+<td>K9-5</td>
+<td>通用组件</td>
+<td>Pagination（分页）/ Card（插槽）/ Dialog（v-model 显隐）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="四项目任务或案例任务">四、项目任务或案例任务</h2>
+<p><strong>本次课任务</strong>：完成 CTTS-Frontend
+核心组件库——在课堂上开发并组合 4 类组件，形成可运行的应用骨架。</p>
+<p><strong>任务清单</strong>：</p>
+<ol type="1">
+<li>布局组件：AppHeader（顶部栏）、AppSidebar（侧边导航）、AppContent（内容区）。</li>
+<li>列表组件：ProjectList（项目列表，props
+接收数据）、TaskList（任务列表）。</li>
+<li>表单组件：LoginForm（登录，emit
+submit）、SubmitForm（提交成果）。</li>
+<li>通用组件：Pagination（分页）、Card（插槽卡片）、Dialog（v-model
+控制显隐）。</li>
+</ol>
+<blockquote>
+<p>📌 本节课以动手实践为主，教师巡回指导，最后复盘。</p>
+</blockquote>
+<hr />
+<h2 id="五课堂互动设计">五、课堂互动设计</h2>
+<h3 id="互动-1组件拆分讨论">互动 1：组件拆分讨论</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>"CTTS-Frontend 首页该拆成哪些组件？拆分依据是什么？"</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>按职责（布局/列表/表单/通用）、单一职责、复用性拆分</td>
+</tr>
+</tbody>
+</table>
+<h3 id="互动-2项目任务复盘">互动 2：项目任务复盘</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动任务</td>
+<td>实践结束后，每组分享一个踩坑点与解决方法</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>汇总共性问题（props 忘传、emit 名不一致、插槽忘写等）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六课程思政融入点">六、课程思政融入点</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>融入点</td>
+<td>工匠精神——组件设计影响项目质量</td>
+</tr>
+<tr>
+<td>技术关联</td>
+<td>合理拆分、规范命名、单一职责是工程质量的体现</td>
+</tr>
+<tr>
+<td>引导问题</td>
+<td>"组件拆得太碎 vs 太大，各有什么问题？"</td>
+</tr>
+<tr>
+<td>预期价值目标</td>
+<td>培养工匠精神与工程权衡能力</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5
+分钟）</h2>
+<p><strong>判断题</strong>：</p>
+<ol type="1">
+<li>组件拆分应遵循单一职责原则。（✓）</li>
+<li>LoginForm 提交数据应用 emits。（✓）</li>
+<li>Card 组件用 props 传递内容比插槽更灵活。（✗）</li>
+<li>Pagination 是通用组件可复用。（✓）</li>
+</ol>
+<blockquote>
+<p>详细题目见 <code>题库.md</code>。</p>
+</blockquote>
+<hr />
+<h2 id="八课后任务">八、课后任务</h2>
+<ol type="1">
+<li>完善 CTTS-Frontend 组件库，补全所有 4 类组件。</li>
+<li>撰写一份《组件库设计说明》（1
+页）：列出组件名、职责、props/emits。</li>
+<li>思考：组件拆分的粒度如何把握？（200 字）</li>
+</ol>
+<hr />
+<h2 id="九对应岗位能力或面试考点">九、对应岗位能力或面试考点</h2>
+<table>
+<thead>
+<tr>
+<th>岗位能力/面试考点</th>
+<th>对应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>组件拆分原则（高频）</td>
+<td>K9-1</td>
+</tr>
+<tr>
+<td>综合运用 props/emits/插槽</td>
+<td>K9-2~K9-5</td>
+</tr>
+<tr>
+<td>通用组件封装（Pagination/Card/Dialog）</td>
+<td>K9-5</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="十教学资料与题库索引">十、教学资料与题库索引</h2>
+<table>
+<thead>
+<tr>
+<th>资料类型</th>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学生复习资料</td>
+<td><code>教学资料.md</code></td>
+<td>4 类组件完整代码 + 组合示例 + 复盘要点</td>
+</tr>
+<tr>
+<td>考试题库</td>
+<td><code>题库.md</code></td>
+<td>78 题，含答案解析与评分标准</td>
+</tr>
+<tr>
+<td>课程总览</td>
+<td><code>../00 课程设计总览.md</code></td>
+<td>课程整体框架</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</h2>
+<table>
+<thead>
+<tr>
+<th>时段</th>
+<th>内容</th>
+<th>时长</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0~10 min</td>
+<td>互动 1 组件拆分讨论 + 任务说明</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>10~35 min</td>
+<td>布局组件 + 列表组件开发</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td>35~60 min</td>
+<td>表单组件 + 通用组件开发</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td>60~75 min</td>
+<td>组件组合 + 调试运行</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>75~85 min</td>
+<td>互动 2 复盘 + 随堂练习</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>85~90 min</td>
+<td>小结 + 课后任务</td>
+<td>5 min</td>
+</tr>
+</tbody>
+</table>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

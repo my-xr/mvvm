@@ -1,0 +1,716 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>组件化开发综合实践</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 09 次课 · 题库</div>
+      <h1>组件化开发综合实践</h1>
+      <p>考试题库与参考解析 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 09 次课</span>
+        <span class="hero-chip"><b>主题</b>组件化开发综合实践</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2 分）</a>
+<ul>
+<li><a href="#11-单项选择题30-题">1.1 单项选择题（30 题）</a></li>
+<li><a href="#12-多项选择题10-题">1.2 多项选择题（10 题）</a></li>
+</ul></li>
+<li><a href="#二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1 分）</a>
+<ul>
+</ul></li>
+<li><a href="#三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2 分）</a>
+<ul>
+</ul></li>
+<li><a href="#四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</a>
+<ul>
+</ul></li>
+<li><a href="#五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#题库统计与组卷说明">题库统计与组卷说明</a>
+<ul>
+<li><a href="#题量统计">题量统计</a></li>
+<li><a href="#难度分布">难度分布</a></li>
+<li><a href="#知识点覆盖">知识点覆盖</a></li>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 09 次课 <span>｜</span> <strong>文档：</strong>题库</p>
+<blockquote>
+<p>配套：<code>教学设计.md</code>、<code>教学资料.md</code>（同文件夹）
+题量：40 选择 + 20 判断 + 10 填空 + 4 论述/简答 + 2 程序阅读/补全 + 2
+编程/接口设计 = <strong>78 题</strong>
+全部含参考答案与解析；主观题另附评分标准。 难度：★ 基础 / ★★ 提高 / ★★★
+综合 ｜ 编号：<code>09-题型-序号</code></p>
+</blockquote>
+<hr />
+<h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
+分）</h2>
+<h3 id="11-单项选择题30-题">1.1 单项选择题（30 题）</h3>
+<section class="question-card"><p><strong>09-选择-001</strong>（★ 知识点：K9-1）
+组件拆分应遵循的原则是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>越大越好</span></li><li><span class="option-label">B</span><span>单一职责</span></li><li><span class="option-label">C</span><span>全部放一个组件</span></li><li><span class="option-label">D</span><span>随意拆分</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：单一职责，一个组件只做一件事。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-002</strong>（★ 知识点：K9-1） 通用组件（如
+Card）的命名特点是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>必须带业务前缀</span></li><li><span class="option-label">B</span><span>不绑定具体业务，无业务前缀</span></li><li><span class="option-label">C</span><span>必须用 kebab-case</span></li><li><span class="option-label">D</span><span>必须用中文</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：通用组件不绑定业务，无业务前缀（如 Card）。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-003</strong>（★ 知识点：K9-3） ProjectList
+组件接收数据的方式是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>内部请求</span></li><li><span class="option-label">B</span><span>props 传入</span></li><li><span class="option-label">C</span><span>全局变量</span></li><li><span class="option-label">D</span><span>localStorage</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：列表组件通过 props
+接收父组件传入的数据。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-004</strong>（★ 知识点：K9-4） LoginForm
+提交数据给父组件用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>props</span></li><li><span class="option-label">B</span><span>emits</span></li><li><span class="option-label">C</span><span>v-model</span></li><li><span class="option-label">D</span><span>provide</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：表单提交用 emits
+触发事件传数据。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-005</strong>（★ 知识点：K9-5） Card
+组件实现内容可定制用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>props 传内容</span></li><li><span class="option-label">B</span><span>插槽</span></li><li><span class="option-label">C</span><span>v-model</span></li><li><span class="option-label">D</span><span>emits</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Card
+用插槽让父自定义内容。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-006</strong>（★ 知识点：K9-5） Dialog 控制显隐用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>props 布尔</span></li><li><span class="option-label">B</span><span>组件 v-model</span></li><li><span class="option-label">C</span><span>v-if 直接</span></li><li><span class="option-label">D</span><span>localStorage</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Dialog 用组件
+v-model（modelValue + update）控制显隐最优雅。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-007</strong>（★ 知识点：K9-5） Pagination
+组件翻页用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>props 传页码</span></li><li><span class="option-label">B</span><span>emits change 事件</span></li><li><span class="option-label">C</span><span>v-model</span></li><li><span class="option-label">D</span><span>直接改父数据</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：分页用 emits change
+通知父改页码。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-008</strong>（★ 知识点：K9-2）
+AppHeader/AppSidebar/AppContent 属于？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>布局组件</span></li><li><span class="option-label">B</span><span>表单组件</span></li><li><span class="option-label">C</span><span>通用组件</span></li><li><span class="option-label">D</span><span>列表组件</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：三者是布局组件。A
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-009</strong>（★ 知识点：K9-1） 组件命名推荐？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>camelCase</span></li><li><span class="option-label">B</span><span>PascalCase</span></li><li><span class="option-label">C</span><span>snake_case</span></li><li><span class="option-label">D</span><span>全小写</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：PascalCase。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-010</strong>（★ 知识点：K9-5） Card 组件用插槽而非
+props 传内容的原因是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>props 不能传字符串</span></li><li><span class="option-label">B</span><span>插槽可传模板/HTML
+结构，更灵活</span></li><li><span class="option-label">C</span><span>插槽性能更好</span></li><li><span class="option-label">D</span><span>props 报错</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：插槽可传任意模板结构（含组件），比 props
+传字符串灵活。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-011</strong>（★ 知识点：K9-3） ProjectList
+中列表项状态变色用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>v-if</span></li><li><span class="option-label">B</span><span>:class</span></li><li><span class="option-label">C</span><span>props</span></li><li><span class="option-label">D</span><span>emits</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：:class
+按状态动态变色。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-012</strong>（★ 知识点：K9-4） LoginForm
+内部表单数据用 v-model 绑定，提交时？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>直接改父数据</span></li><li><span class="option-label">B</span><span>emit
+提交事件传表单数据</span></li><li><span class="option-label">C</span><span>用 props 反传</span></li><li><span class="option-label">D</span><span>存 localStorage</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：提交时 emit
+事件传数据给父。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-013</strong>（★ 知识点：K9-5） Dialog 组件 v-model 用
+defineModel 后，关闭对话框的写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>model = false</code></span></li><li><span class="option-label">B</span><span><code>this.close()</code></span></li><li><span class="option-label">C</span><span><code>emit('close')</code></span></li><li><span class="option-label">D</span><span><code>v-if="false"</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：defineModel
+返回可读写的 ref，赋值 <code>model.value = false</code>（模板中
+<code>model = false</code>）。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-014</strong>（★ 知识点：K9-1） 组件拆分过细的问题是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>性能更好</span></li><li><span class="option-label">B</span><span>文件过多、通信复杂</span></li><li><span class="option-label">C</span><span>代码更少</span></li><li><span class="option-label">D</span><span>不可复用</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：拆太碎导致文件过多、组件间通信复杂。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-015</strong>（★ 知识点：K9-2） 布局组件的层次通常是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>通用组件 &gt; 布局组件 &gt; 业务组件</span></li><li><span class="option-label">B</span><span>业务组件 &gt; 布局组件 &gt;
+通用组件</span></li><li><span class="option-label">C</span><span>布局组件 &gt; 业务组件 &gt; 通用组件</span></li><li><span class="option-label">D</span><span>无层次</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：布局 &gt; 业务 &gt;
+通用（从外到内）。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-016</strong>（★ 知识点：K9-5） Pagination 的 props
+应包含？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>page 与 total</span></li><li><span class="option-label">B</span><span>仅 page</span></li><li><span class="option-label">C</span><span>仅 total</span></li><li><span class="option-label">D</span><span>数据数组</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：page（当前页）与
+total（总页数）。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-017</strong>（★ 知识点：K9-3） 列表组件接收数组的
+props 默认值应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>default: []</code></span></li><li><span class="option-label">B</span><span><code>default: () =&gt; []</code></span></li><li><span class="option-label">C</span><span><code>default: {}</code></span></li><li><span class="option-label">D</span><span>不设</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：数组默认值用工厂函数。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-018</strong>（★ 知识点：K9-4）
+表单组件提交数据格式通常是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>字符串</span></li><li><span class="option-label">B</span><span>对象 <code>{ ...form }</code></span></li><li><span class="option-label">C</span><span>数组</span></li><li><span class="option-label">D</span><span>布尔</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：提交表单数据为对象（含各字段）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-019</strong>（★ 知识点：K9-5） Card 组件具名插槽
+header 的声明是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;slot name="header"&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;slot id="header"&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;slot :header&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;header-slot&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：<code>&lt;slot name="header"&gt;</code>。A
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-020</strong>（★ 知识点：K9 综合） CTTS-Frontend
+组件库应包含的类别不包括？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>布局</span></li><li><span class="option-label">B</span><span>列表</span></li><li><span class="option-label">C</span><span>路由</span></li><li><span class="option-label">D</span><span>通用</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong>
+<strong>解析</strong>：组件库含布局/列表/表单/通用，路由非组件类别。C
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-021</strong>（★★ 知识点：K9-3） ProjectList 接收
+<code>:projects</code> 的 props 声明正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>defineProps({ projects: Array })</code></span></li><li><span class="option-label">B</span><span><code>defineProps(['projects'])</code></span></li><li><span class="option-label">C</span><span>A 和 B 都对</span></li><li><span class="option-label">D</span><span><code>defineProps(projects)</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：数组或对象声明都可。C
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-022</strong>（★★ 知识点：K9-5） Dialog 用组件
+v-model，父组件写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;Dialog :show="x" /&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;Dialog v-model="x" /&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;Dialog @show="x" /&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;Dialog show="x" /&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：组件 v-model 用
+<code>v-model="x"</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-023</strong>（★★ 知识点：K9-5） Pagination
+父组件监听翻页事件是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>:change="fn"</code></span></li><li><span class="option-label">B</span><span><code>@change="fn"</code></span></li><li><span class="option-label">C</span><span><code>v-model="fn"</code></span></li><li><span class="option-label">D</span><span><code>:page="fn"</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：用
+<code>@change</code> 监听 emits 事件。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-024</strong>（★★ 知识点：K9-4） LoginForm emit submit
+传数据，父接收正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;LoginForm :submit="onSubmit" /&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;LoginForm @submit="onSubmit" /&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;LoginForm v-model="onSubmit" /&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;LoginForm submit="onSubmit" /&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：用
+<code>@submit</code> 监听。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-025</strong>（★★ 知识点：K9-1）
+"一个组件只做一件事"体现的原则是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>开闭原则</span></li><li><span class="option-label">B</span><span>单一职责</span></li><li><span class="option-label">C</span><span>里氏替换</span></li><li><span class="option-label">D</span><span>依赖倒置</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：单一职责原则。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-026</strong>（★★ 知识点：K9-5） Card
+用具名插槽，父传入 header 内容用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>#header</code></span></li><li><span class="option-label">B</span><span><code>:header</code></span></li><li><span class="option-label">C</span><span><code>@header</code></span></li><li><span class="option-label">D</span><span><code>v-header</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：<code>#header</code>。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-027</strong>（★★ 知识点：K9 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>列表组件用 props 接收数据</span></li><li><span class="option-label">B</span><span>表单组件用 emits 提交</span></li><li><span class="option-label">C</span><span>Card 用插槽</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-028</strong>（★★ 知识点：K9 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>通用组件可复用</span></li><li><span class="option-label">B</span><span>组件应单一职责</span></li><li><span class="option-label">C</span><span>Dialog 用 props 控制显隐最优</span></li><li><span class="option-label">D</span><span>Pagination 用 emits 翻页</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：C 错误，Dialog 用组件
+v-model 更优。A、B、D 正确。选 C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-029</strong>（★★ 知识点：K9 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>布局组件组合业务组件</span></li><li><span class="option-label">B</span><span>业务组件组合通用组件</span></li><li><span class="option-label">C</span><span>组件库应有清晰层次</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-030</strong>（★★ 知识点：K9 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>组件拆得越碎越好</span></li><li><span class="option-label">B</span><span>单一职责是拆分依据</span></li><li><span class="option-label">C</span><span>通用组件不绑业务</span></li><li><span class="option-label">D</span><span>命名用
+PascalCase</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A
+错误，拆太碎通信复杂。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<h3 id="12-多项选择题10-题">1.2 多项选择题（10 题）</h3>
+<section class="question-card"><p><strong>09-选择-031</strong>（★★ 知识点：K9-1）
+组件拆分原则有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>单一职责</span></li><li><span class="option-label">B</span><span>可复用</span></li><li><span class="option-label">C</span><span>命名规范</span></li><li><span class="option-label">D</span><span>越大越好</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-032</strong>（★★ 知识点：K9 综合） CTTS-Frontend
+组件库包含的类别有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>布局</span></li><li><span class="option-label">B</span><span>列表</span></li><li><span class="option-label">C</span><span>表单</span></li><li><span class="option-label">D</span><span>通用</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四类都包含。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-033</strong>（★★ 知识点：K9-3/K9-4）
+关于列表与表单组件，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>列表用 props 接收数据</span></li><li><span class="option-label">B</span><span>表单用 emits 提交</span></li><li><span class="option-label">C</span><span>列表可用 :class 状态变色</span></li><li><span class="option-label">D</span><span>表单内部用 v-model
+绑定</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项均正确。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-034</strong>（★★ 知识点：K9-5）
+关于通用组件，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Card 用插槽</span></li><li><span class="option-label">B</span><span>Pagination 用 emits</span></li><li><span class="option-label">C</span><span>Dialog 用组件 v-model</span></li><li><span class="option-label">D</span><span>都绑定具体业务</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，通用不绑业务。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-035</strong>（★★ 知识点：K9-2）
+布局组件包括？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>AppHeader</span></li><li><span class="option-label">B</span><span>AppSidebar</span></li><li><span class="option-label">C</span><span>AppContent</span></li><li><span class="option-label">D</span><span>LoginForm</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
+是布局组件；LoginForm 是表单组件。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-036</strong>（★★ 知识点：K9 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>列表组件用 props 接收数据</span></li><li><span class="option-label">B</span><span>表单提交用 emits</span></li><li><span class="option-label">C</span><span>Card 用插槽传内容</span></li><li><span class="option-label">D</span><span>Dialog 用 props 控制显隐最优</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，用组件 v-model 更优。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-037</strong>（★★ 知识点：K9 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>组件命名用 PascalCase</span></li><li><span class="option-label">B</span><span>单一职责是拆分依据</span></li><li><span class="option-label">C</span><span>通用组件可复用</span></li><li><span class="option-label">D</span><span>组件拆越碎越好</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-038</strong>（★★ 知识点：K9 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>ProjectList 接收 projects 数组</span></li><li><span class="option-label">B</span><span>LoginForm
+emit submit</span></li><li><span class="option-label">C</span><span>Pagination emit change</span></li><li><span class="option-label">D</span><span>Card 用 props 传内容</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，Card 用插槽。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-039</strong>（★★ 知识点：K9 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>组件 v-model 用 modelValue</span></li><li><span class="option-label">B</span><span>数组默认值用工厂函数</span></li><li><span class="option-label">C</span><span>布局组件组合业务组件</span></li><li><span class="option-label">D</span><span>表单用 props
+反传数据</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，用 emits。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-选择-040</strong>（★★ 知识点：K9 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>组件库应有清晰层次</span></li><li><span class="option-label">B</span><span>通用组件不绑业务</span></li><li><span class="option-label">C</span><span>Card
+具名插槽用 #header</span></li><li><span class="option-label">D</span><span>Dialog 不能用 v-model</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，可用 v-model。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<h2 id="二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1
+分）</h2>
+<section class="question-card"><p><strong>09-判断-001</strong>（★）组件拆分应遵循单一职责原则。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-002</strong>（★）ProjectList 用 props 接收数据。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-003</strong>（★）LoginForm 用 emits 提交数据。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-004</strong>（★）Card 用 props 传内容比插槽更灵活。（
+）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：插槽更灵活。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-005</strong>（★）Pagination 是通用组件可复用。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-006</strong>（★）Dialog 用组件 v-model 控制显隐。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-007</strong>（★）通用组件应绑定具体业务。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：不绑定业务。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-008</strong>（★）组件命名推荐 PascalCase。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-009</strong>（★）布局组件组合业务组件。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-010</strong>（★）数组 props 默认值可直接写
+<code>default: []</code>。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：需工厂函数。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-011</strong>（★★）组件拆得越碎越好。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：拆太碎通信复杂。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-012</strong>（★★）Card 具名插槽用
+<code>&lt;slot name="header"&gt;</code>。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-013</strong>（★★）Pagination 父用
+<code>@change</code> 监听翻页。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-014</strong>（★★）Dialog 关闭用
+<code>model = false</code>（defineModel）。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-015</strong>（★★）LoginForm 提交数据格式是对象。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-016</strong>（★★）通用组件命名带业务前缀。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：不带业务前缀。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-017</strong>（★★）ProjectList 状态变色用 :class。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-018</strong>（★★）表单组件用 props 反向传数据给父。（
+）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：用 emits。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-019</strong>（★★）组件库应有清晰层次（布局&gt;业务&gt;通用）。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-判断-020</strong>（★★）Pagination 的 props 包含 page 与
+total。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<hr />
+<h2 id="三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2
+分）</h2>
+<section class="question-card"><p><strong>09-填空-001</strong>（★）组件拆分遵循 <code>________</code>
+职责原则。</p><blockquote>
+<p><strong>答案：单一</strong> <strong>解析</strong>：单一职责。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-填空-002</strong>（★）ProjectList 通过
+<code>________</code> 接收数据。</p><blockquote>
+<p><strong>答案：props</strong> <strong>解析</strong>：props。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-填空-003</strong>（★）LoginForm 通过 <code>________</code>
+提交数据给父。</p><blockquote>
+<p><strong>答案：emits</strong> <strong>解析</strong>：emits。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-填空-004</strong>（★）Card 组件用 <code>________</code>
+让内容可定制。</p><blockquote>
+<p><strong>答案：插槽（slot）</strong> <strong>解析</strong>：插槽。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-填空-005</strong>（★）Dialog 用组件 <code>________</code>
+控制显隐。</p><blockquote>
+<p><strong>答案：v-model</strong> <strong>解析</strong>：v-model。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-填空-006</strong>（★）Pagination 通过
+<code>________</code> 事件通知父翻页。</p><blockquote>
+<p><strong>答案：change（emits）</strong> <strong>解析</strong>：emit
+change。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-填空-007</strong>（★）组件命名推荐 <code>________</code>
+Case。</p><blockquote>
+<p><strong>答案：Pascal</strong> <strong>解析</strong>：PascalCase。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-填空-008</strong>（★）AppHeader/AppSidebar/AppContent 是
+<code>________</code> 组件。</p><blockquote>
+<p><strong>答案：布局</strong> <strong>解析</strong>：布局组件。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-填空-009</strong>（★）Card/Pagination/Dialog 是
+<code>________</code> 组件（不绑业务）。</p><blockquote>
+<p><strong>答案：通用</strong> <strong>解析</strong>：通用组件。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>09-填空-010</strong>（★）列表项状态变色用
+<code>:________</code>。</p><blockquote>
+<p><strong>答案：class</strong> <strong>解析</strong>：:class。</p>
+</blockquote></section>
+<hr />
+<h2 id="四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</h2>
+<section class="question-card"><p><strong>09-论述-001</strong>（★★ 知识点：K9-1，分值：8 分）
+<strong>题目</strong>：说明组件拆分的原则与粒度权衡。</p>
+<p><strong>要求</strong>： （1）拆分原则（4 分）。 （2）粒度权衡（4
+分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）原则（4
+分）：单一职责（一组件一事）；可复用（通用组件不绑业务）；命名规范（PascalCase）；层次清晰（布局&gt;业务&gt;通用）。
+（2）粒度权衡（4
+分）：拆太大会导致组件臃肿、难维护、复用差；拆太碎会导致文件过多、组件间通信复杂、性能开销。应按"职责边界"拆分，一个职责一个组件，适度复用，避免过度拆分。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-论述-002</strong>（★★ 知识点：K9-3/K9-4，分值：8 分）
+<strong>题目</strong>：列表组件与表单组件的数据流方向有何不同？</p>
+<p><strong>要求</strong>： （1）列表组件数据流（4 分）。
+（2）表单组件数据流（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）列表（4 分）：父→子，父用 props
+传数据给列表组件，列表只负责展示，不修改数据；若需交互（如选中），用
+emits 通知父。 （2）表单（4 分）：子→父，表单内部用 v-model
+收集用户输入，提交时用 emits
+把表单数据传给父，由父处理提交逻辑。数据流是子收集→子 emit→父处理。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-论述-003</strong>（★★ 知识点：K9-5，分值：8 分）
+<strong>题目</strong>：说明 Card/Pagination/Dialog
+三个通用组件各自的设计要点。</p>
+<p><strong>要求</strong>：每个组件 2 分，综合 2 分。</p><blockquote>
+<p><strong>参考答案</strong>：</p>
+<ul>
+<li><strong>Card</strong>（2 分）：用插槽（默认+具名
+header/footer）让父自定义内容，不绑业务。</li>
+<li><strong>Pagination</strong>（2 分）：props 接收 page/total，emits
+change 通知翻页，逻辑通用。</li>
+<li><strong>Dialog</strong>（2 分）：用组件
+v-model（modelValue+update）控制显隐，内容用插槽。</li>
+<li><strong>综合</strong>（2 分）：通用组件不绑定具体业务，通过
+props/emits/插槽与父交互，可跨项目复用。</li>
+</ul>
+<p><strong>评分标准</strong>：共 8 分，按点给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-论述-004</strong>（★★ 知识点：K9 综合，分值：6 分）
+<strong>题目</strong>：实践复盘——列举组件开发中常见的 3
+个问题及解决方法。</p>
+<p><strong>要求</strong>：每个问题+解决 2 分。</p><blockquote>
+<p><strong>参考答案</strong>（每点 2 分，共 6 分）：</p>
+<ol type="1">
+<li>props 忘传/类型不符 → 父正确传值，子声明 type 校验；</li>
+<li>emit 事件名与父监听不一致 → 子 emit 名与父 @ 名保持一致；</li>
+<li>数组 props 默认值报错 → 用工厂函数
+<code>default: () =&gt; []</code>；</li>
+<li>组件 v-model 报错 → Vue 3.4+ 用 defineModel，否则手动
+modelValue+update；</li>
+<li>插槽忘写 <code>&lt;slot&gt;</code> → 通用组件必须留插槽。</li>
+</ol>
+<p><strong>评分标准</strong>：共 6 分，答出 3 个问题及解决即满分。</p>
+</blockquote></section>
+<hr />
+<h2 id="五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</h2>
+<section class="question-card"><p><strong>09-程序-001</strong>（★★ 知识点：K9-4/K9-5，分值：10 分）
+<strong>题目</strong>：补全 LoginForm 与 Dialog 代码空缺。</p>
+<pre class="vue"><code>&lt;!-- LoginForm.vue --&gt;
+&lt;template&gt;
+  &lt;form @submit.prevent=&quot;onSubmit&quot;&gt;
+    &lt;input v-model.trim=&quot;form.username&quot; /&gt;
+    &lt;button type=&quot;submit&quot;&gt;登录&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { reactive } from &#39;vue&#39;
+const emit = ______A______([&#39;submit&#39;])
+const form = reactive({ username: &#39;&#39; })
+const onSubmit = () =&gt; emit(&#39;______B______&#39;, { ...form })
+&lt;/script&gt;</code></pre>
+<pre class="vue"><code>&lt;!-- Dialog.vue --&gt;
+&lt;template&gt;
+  &lt;div v-if=&quot;______C______&quot; class=&quot;dialog&quot;&gt;...&lt;/div&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { defineModel } from &#39;vue&#39;
+const model = defineModel()
+&lt;/script&gt;</code></pre>
+<p><strong>要求</strong>： （1）A：声明 emits 的函数。（3 分）
+（2）B：触发的事件名。（3 分） （3）C：控制显隐的变量。（4 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>defineEmits</code>（3
+分）。 （2）B = <code>submit</code>（3 分）。 （3）C =
+<code>model</code>（4 分）：defineModel 返回的 ref，模板中
+<code>v-if="model"</code>。</p>
+<p><strong>评分标准</strong>：共 10 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-程序-002</strong>（★★ 知识点：K9-3/K9-5，分值：12 分）
+<strong>题目</strong>：补全 ProjectList 与 Pagination 父子组合代码。</p>
+<pre class="vue"><code>&lt;!-- ProjectList.vue --&gt;
+&lt;template&gt;
+  &lt;ul&gt;
+    &lt;li v-for=&quot;p in ______A______&quot; :key=&quot;p.id&quot;&gt;{{ p.title }}&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+defineProps({ projects: { type: Array, default: ______B______ } })
+&lt;/script&gt;</code></pre>
+<pre class="vue"><code>&lt;!-- 父组件 --&gt;
+&lt;template&gt;
+  &lt;ProjectList :projects=&quot;paged&quot; /&gt;
+  &lt;Pagination :page=&quot;page&quot; :total=&quot;total&quot; @______C______=&quot;onPage&quot; /&gt;
+&lt;/template&gt;</code></pre>
+<p><strong>要求</strong>： （1）A：v-for 数据源。（4 分）
+（2）B：数组默认值。（4 分） （3）C：监听的翻页事件名。（4 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>projects</code>（4
+分）：props 数据。 （2）B = <code>() =&gt; []</code>（4 分）：工厂函数。
+（3）C = <code>change</code>（4 分）：Pagination emit 的事件名。</p>
+<p><strong>评分标准</strong>：共 12 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<h2 id="六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</h2>
+<section class="question-card"><p><strong>09-编程-001</strong>（★★ 知识点：K9-5，分值：15 分）
+<strong>题目</strong>：编写通用 Pagination 组件（props:
+page/total；emits: change）与 Card 组件（具名插槽 header/footer +
+默认插槽），并写出父组件使用示例。</p>
+<p><strong>要求</strong>： （1）Pagination 组件（5 分）。 （2）Card
+组件（5 分）。 （3）父组件使用（5 分）。</p><blockquote>
+<p><strong>参考答案</strong>：见教学资料 3.4 节 Pagination.vue 与
+Card.vue，及第四节 App.vue 组合示例。 评分：Pagination
+props+emits+按钮（5 分）；Card 三插槽（5 分）；父组合使用（5 分）。</p>
+<p><strong>评分标准</strong>：共 15 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>09-编程-002</strong>（★★★ 知识点：K9 综合，分值：20 分）
+<strong>题目</strong>：完成 CTTS-Frontend 组件库组合应用，要求：</p>
+<ul>
+<li>布局：AppHeader（props user）+ AppSidebar；</li>
+<li>列表：ProjectList（props projects，:class 状态变色）；</li>
+<li>通用：Card（插槽）+ Pagination（props page/total，emits change）+
+Dialog（v-model）；</li>
+<li>父组件组合，分页切换项目列表，按钮打开对话框。</li>
+</ul>
+<p><strong>要求</strong>： （1）布局+列表组件（6 分）。 （2）通用组件
+Card/Pagination/Dialog（6 分）。 （3）父组件组合+分页+对话框（5 分）。
+（4）完整可运行（3 分）。</p><blockquote>
+<p><strong>参考答案</strong>：见教学资料第四节 App.vue 综合示例。
+评分：布局+列表（6 分）；三通用组件（6 分）；组合+分页+Dialog（5
+分）；可运行（3 分）。</p>
+<p><strong>评分标准</strong>：共 20 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<h2 id="题库统计与组卷说明">题库统计与组卷说明</h2>
+<h3 id="题量统计">题量统计</h3>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>数量</th>
+<th>分值</th>
+<th>小计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择题（单选 30 + 多选 10）</td>
+<td>40</td>
+<td>每题 2 分</td>
+<td>80 分</td>
+</tr>
+<tr>
+<td>判断题</td>
+<td>20</td>
+<td>每题 1 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>填空题</td>
+<td>10</td>
+<td>每题 2 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>论述/简答题</td>
+<td>4</td>
+<td>6~8 分</td>
+<td>30 分</td>
+</tr>
+<tr>
+<td>程序阅读/补全题</td>
+<td>2</td>
+<td>10~12 分</td>
+<td>22 分</td>
+</tr>
+<tr>
+<td>编程/接口设计题</td>
+<td>2</td>
+<td>15~20 分</td>
+<td>35 分</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>78</strong></td>
+<td>—</td>
+<td><strong>207 分</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="难度分布">难度分布</h3>
+<table>
+<thead>
+<tr>
+<th>难度</th>
+<th>题量（约）</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★ 基础</td>
+<td>40</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>★★ 提高</td>
+<td>34</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>★★★ 综合</td>
+<td>4</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="知识点覆盖">知识点覆盖</h3>
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>覆盖题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K9-1 拆分原则</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K9-2 布局组件</td>
+<td>10</td>
+</tr>
+<tr>
+<td>K9-3 列表组件</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K9-4 表单组件</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K9-5 通用组件</td>
+<td>18</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本题库已确保每题答案唯一明确、无歧义选项，全部含解析，主观题含评分标准，可直接录入考试系统题库。</p>
+</blockquote>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

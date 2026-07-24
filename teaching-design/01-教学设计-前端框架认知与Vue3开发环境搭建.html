@@ -1,0 +1,589 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="pandoc">
+  <title>前端框架认知与 Vue3 开发环境搭建</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+<button class="toc-float-toggle" type="button" aria-label="显示目录" title="显示目录">目录</button>
+  <header class="hero">
+  <div class="hero-inner">
+    <div class="course-name">MVVM前端框架开发技术</div>
+    <div class="kicker">第 1 次课 · 教学设计</div>
+    <h1>前端框架认知与 Vue3 开发环境搭建</h1>
+    <p>围绕 Vue 3、MVVM 思想与前端工程化环境，建立从框架认知到项目启动的第一步能力。</p>
+    <div class="hero-meta">
+      <span class="hero-chip"><b>课程</b> MVVM前端框架开发技术</span>
+      <span class="hero-chip"><b>次课</b> 01</span>
+      <span class="hero-chip"><b>文档</b> 教学设计</span>
+      <span class="hero-chip"><b>技术线</b> Vue 3 + Vite</span>
+    </div>
+  </div>
+</header>
+  <div class="layout"><aside class="sidebar"><div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button" aria-label="隐藏目录" title="隐藏/显示目录">收起</button></div><ul>
+<li><a href="#一课程信息" id="toc-一课程信息">一、课程信息</a></li>
+<li><a href="#二教学目标" id="toc-二教学目标">二、教学目标</a>
+<ul>
+<li><a href="#知识目标" id="toc-知识目标">知识目标</a></li>
+<li><a href="#能力目标" id="toc-能力目标">能力目标</a></li>
+<li><a href="#素质目标课程思政"
+id="toc-素质目标课程思政">素质目标（课程思政）</a></li>
+</ul></li>
+<li><a href="#三主要知识点纲要"
+id="toc-三主要知识点纲要">三、主要知识点纲要</a></li>
+<li><a href="#四项目任务或案例任务"
+id="toc-四项目任务或案例任务">四、项目任务或案例任务</a>
+<ul>
+<li><a href="#贯穿项目导入校园实训任务管理系统前端ctts-frontend"
+id="toc-贯穿项目导入校园实训任务管理系统前端ctts-frontend">贯穿项目导入：校园实训任务管理系统前端（CTTS-Frontend）</a></li>
+</ul></li>
+<li><a href="#五课堂互动设计"
+id="toc-五课堂互动设计">五、课堂互动设计</a>
+<ul>
+<li><a href="#互动-1课前-5-分钟讨论开场导入"
+id="toc-互动-1课前-5-分钟讨论开场导入">互动 1：课前 5
+分钟讨论（开场导入）</a></li>
+<li><a href="#互动-2mvvm-角色辨识讲解-k1-2-后"
+id="toc-互动-2mvvm-角色辨识讲解-k1-2-后">互动 2：MVVM 角色辨识（讲解
+K1-2 后）</a></li>
+<li><a href="#互动-3环境搭建互助讲解-k1-5-时"
+id="toc-互动-3环境搭建互助讲解-k1-5-时">互动 3：环境搭建互助（讲解 K1-5
+时）</a></li>
+</ul></li>
+<li><a href="#六课程思政融入点"
+id="toc-六课程思政融入点">六、课程思政融入点</a></li>
+<li><a href="#七课堂练习或随堂测验"
+id="toc-七课堂练习或随堂测验">七、课堂练习或随堂测验</a>
+<ul>
+<li><a href="#随堂练习5-分钟讲解结束前进行"
+id="toc-随堂练习5-分钟讲解结束前进行">随堂练习（5
+分钟，讲解结束前进行）</a></li>
+</ul></li>
+<li><a href="#八课后任务" id="toc-八课后任务">八、课后任务</a></li>
+<li><a href="#九对应岗位能力或面试考点"
+id="toc-九对应岗位能力或面试考点">九、对应岗位能力或面试考点</a></li>
+<li><a href="#十教学资料与题库索引"
+id="toc-十教学资料与题库索引">十、教学资料与题库索引</a></li>
+<li><a href="#附课堂时间分配建议90-分钟"
+id="toc-附课堂时间分配建议90-分钟">附：课堂时间分配建议（90
+分钟）</a></li>
+</ul></aside><main class="content"><article class="article"><p class="doc-meta">
+文档类型：教学设计 ｜ 来源：<code>教学设计.md</code> ｜ 次课编号：01
+</p>
+<blockquote>
+<p>所属模块：M1 前端框架认知与 Vue3 入门 ｜
+课程：《MVVM前端框架开发技术》 配套资料：见同文件夹内
+<code>教学资料.md</code>（学生复习资料）、<code>题库.md</code>（78
+题考试题库）</p>
+</blockquote>
+<hr />
+<h2 id="一课程信息">一、课程信息</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>次序</td>
+<td>第 1 次课（全课程 16 次之首）</td>
+</tr>
+<tr>
+<td>学时</td>
+<td>2 学时（90 分钟）</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>理论课</td>
+</tr>
+<tr>
+<td>所属模块</td>
+<td>M1 前端框架认知与 Vue3 入门</td>
+</tr>
+<tr>
+<td>教学主题</td>
+<td>前端框架认知与 Vue3 开发环境搭建</td>
+</tr>
+<tr>
+<td>先修基础</td>
+<td>HTML/CSS/JavaScript 基础、Web 前端基础</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="二教学目标">二、教学目标</h2>
+<h3 id="知识目标">知识目标</h3>
+<ol type="1">
+<li>了解前端开发的演进历程：原生 JS → jQuery → MVVM
+框架时代，理解”为什么需要前端框架”。</li>
+<li>理解 MVVM 架构思想：Model、View、ViewModel
+三者的职责划分与数据双向流动。</li>
+<li>了解 Vue 3 的核心特性（Composition
+API、<code>&lt;script setup&gt;</code>、性能提升、生态）与作者背景。</li>
+<li>理解 Node.js 与 npm 在前端工程化中的作用：Node.js 是运行时、npm
+是包管理工具。</li>
+<li>掌握使用 Vite 脚手架创建 Vue 3
+项目的流程，理解项目目录的基本结构。</li>
+</ol>
+<h3 id="能力目标">能力目标</h3>
+<ol type="1">
+<li>能够用自己的语言准确描述”什么是 MVVM”“Vue 解决了什么问题”。</li>
+<li>能够独立完成 Node.js 安装与版本验证、npm 镜像配置。</li>
+<li>能够使用 <code>npm create vite@latest</code> 创建一个可运行的 Vue 3
+项目并启动开发服务器。</li>
+<li>能够看懂 Vite 创建的 Vue 3 项目目录结构，找到入口文件与根组件。</li>
+</ol>
+<h3 id="素质目标课程思政">素质目标（课程思政）</h3>
+<ol type="1">
+<li>增强国产技术生态认同——Vue
+是华人尤雨溪创建的框架，体现中国技术影响力。</li>
+<li>建立”工具服务于问题”的工程认知——框架不是炫技，而是为解决前端工程化痛点而生。</li>
+<li>培养独立搭建开发环境的动手能力——环境搭建是工程师的第一项基本功。</li>
+</ol>
+<hr />
+<h2 id="三主要知识点纲要">三、主要知识点纲要</h2>
+<blockquote>
+<p>详细讲解内容见同文件夹 <code>教学资料.md</code>，此处为纲要。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>知识点</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K1-1</td>
+<td>前端开发演进</td>
+<td>原生 JS（操作 DOM）→ jQuery（封装 DOM）→ MVVM
+框架（数据驱动）；演进动力是前端复杂度上升</td>
+</tr>
+<tr>
+<td>K1-2</td>
+<td>MVVM 架构思想</td>
+<td>Model（数据）+ View（界面）+
+ViewModel（桥梁）；数据绑定与响应式同步；数据驱动视图；表单交互可用 v-model 回写数据</td>
+</tr>
+<tr>
+<td>K1-3</td>
+<td>Vue 3 简介与核心特性</td>
+<td>尤雨溪创建；Composition
+API、<code>&lt;script setup&gt;</code>、Proxy
+响应式、性能提升、生态（Router/Pinia/Vite）</td>
+</tr>
+<tr>
+<td>K1-4</td>
+<td>Node.js 与 npm</td>
+<td>Node.js = JS 运行时（让 JS 脱离浏览器运行）；npm =
+包管理工具；前端工程化的基础</td>
+</tr>
+<tr>
+<td>K1-5</td>
+<td>Vite 创建 Vue3 项目</td>
+<td><code>npm create vite@latest</code>；选 Vue +
+JavaScript；项目目录结构；<code>npm install</code> 与
+<code>npm run dev</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="四项目任务或案例任务">四、项目任务或案例任务</h2>
+<h3
+id="贯穿项目导入校园实训任务管理系统前端ctts-frontend">贯穿项目导入：校园实训任务管理系统前端（CTTS-Frontend）</h3>
+<p><strong>本次课任务</strong>： 1. 教师介绍贯穿项目 CTTS-Frontend
+的业务背景与三角色（管理员/教师/学生）。 2. 学生使用 Vite
+脚手架在本地创建 CTTS-Frontend 项目，成功启动开发服务器，看到欢迎页。 3.
+将默认欢迎页标题改为”CTTS-Frontend
+校园实训任务管理系统”，作为项目的第一个提交。</p>
+<p><strong>项目背景概述</strong>（详见 <code>教学资料.md</code>
+综合示例）： - 项目名称：校园实训任务管理系统前端（CTTS-Frontend） -
+三种角色：管理员、教师、学生 - 与 JavaWeb 课程的 CTTS 后端配套，第 14
+次课前后端联调 -
+课程八阶段增量构建，本课程结束时交付可运行、可演示、可部署的前端 SPA</p>
+<blockquote>
+<p>📌 本节课重点是”认知 +
+环境”，代码量少但必须让每个学生把项目跑起来。代码深入从第 2
+次课开始。</p>
+</blockquote>
+<hr />
+<h2 id="五课堂互动设计">五、课堂互动设计</h2>
+<h3 id="互动-1课前-5-分钟讨论开场导入">互动 1：课前 5
+分钟讨论（开场导入）</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>“用原生 JS
+写过一个稍微复杂的页面吗？比如一个带搜索、增删改的列表？最大的痛苦是什么？”</td>
+</tr>
+<tr>
+<td>组织方式</td>
+<td>自由发言，教师板书关键词，不评判对错</td>
+</tr>
+<tr>
+<td>预期学生输出</td>
+<td>提到”操作 DOM
+太繁琐”“状态一多就乱”“代码难维护”“重复逻辑多”等关键词</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>肯定真实痛点，引出”框架就是来解决这些问题的”；为 K1-1 演进与 K1-2
+MVVM 做铺垫</td>
+</tr>
+</tbody>
+</table>
+<h3 id="互动-2mvvm-角色辨识讲解-k1-2-后">互动 2：MVVM 角色辨识（讲解
+K1-2 后）</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>给出一个”购物车页面”：商品列表、数量加减、总价自动计算。请学生指出其中哪些是
+Model、哪些是 View、ViewModel 在做什么</td>
+</tr>
+<tr>
+<td>组织方式</td>
+<td>全班举手抢答，教师引导</td>
+</tr>
+<tr>
+<td>预期学生输出</td>
+<td>Model = 商品数据/数量；View = 页面显示；ViewModel =
+把数量变化自动同步到总价显示</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>强调”ViewModel 是桥梁，开发者只改数据，视图自动更新”，这正是与原生
+JS 操作 DOM 的本质区别</td>
+</tr>
+</tbody>
+</table>
+<h3 id="互动-3环境搭建互助讲解-k1-5-时">互动 3：环境搭建互助（讲解 K1-5
+时）</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动任务</td>
+<td>全员动手用 Vite 创建项目，2 人一组互助，先跑起来的帮未跑起来的</td>
+</tr>
+<tr>
+<td>组织方式</td>
+<td>教师演示一遍 → 学生动手 10 分钟 → 同桌互助</td>
+</tr>
+<tr>
+<td>预期学生输出</td>
+<td>每人本机有一个可运行的 CTTS-Frontend 项目，浏览器显示欢迎页</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>收集共性报错（端口占用、Node
+版本过低、镜像慢），统一讲解排查方法</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六课程思政融入点">六、课程思政融入点</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>融入点</td>
+<td>Vue 是华人尤雨溪（Evan
+You）独立创建并维护的前端框架，目前是全球三大前端框架之一</td>
+</tr>
+<tr>
+<td>技术关联</td>
+<td>Vue 3 是本课程主框架；学习 Vue
+既是学技术，也是认识中国开发者在开源世界的影响力</td>
+</tr>
+<tr>
+<td>引导问题</td>
+<td>“你知道 Vue
+是谁做的吗？一个华人独立发起的项目如何成为全球主流框架？”</td>
+</tr>
+<tr>
+<td>预期价值目标</td>
+<td>增强国产技术生态认同与文化自信；激发学生”我也能做出被世界用的东西”的技术抱负</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>思政自然融入，不空喊口号。通过 Vue
+作者的真实故事，让学生体会开源精神与中国技术影响力。</p>
+</blockquote>
+<hr />
+<h2 id="七课堂练习或随堂测验">七、课堂练习或随堂测验</h2>
+<h3 id="随堂练习5-分钟讲解结束前进行">随堂练习（5
+分钟，讲解结束前进行）</h3>
+<p><strong>判断题（口头快速作答）</strong>： 1. MVVM 中，开发者直接操作
+DOM 来更新界面。（✗） 2. Vue 3 推荐使用 Composition API 和
+<code>&lt;script setup&gt;</code> 语法。（✓） 3. Node.js
+是一个浏览器，用来运行前端代码。（✗） 4.
+<code>npm create vite@latest</code> 命令用于创建一个新的 Vite
+项目。（✓） 5. Vue 是由华人尤雨溪创建的开源前端框架。（✓）</p>
+<blockquote>
+<p>详细题目与解析见
+<code>题库.md</code>。此处仅作课堂快速互动，不计分。</p>
+</blockquote>
+<hr />
+<h2 id="八课后任务">八、课后任务</h2>
+<ol type="1">
+<li><strong>阅读</strong>：通读同文件夹
+<code>教学资料.md</code>，重点理解前端演进、MVVM、Vue3
+特性、Node.js/npm、Vite 项目结构。</li>
+<li><strong>动手</strong>：确保本机 CTTS-Frontend
+项目可正常运行（<code>npm run dev</code>），把欢迎页标题改为”CTTS-Frontend
+校园实训任务管理系统”，截图下次课抽查。</li>
+<li><strong>思考</strong>：用 200 字描述”MVVM 与原生 JS 操作 DOM
+的本质区别”，下次课抽查。</li>
+<li><strong>环境准备</strong>：安装 VS Code（如未安装）并安装 Vue
+Official 插件（原 Volar），为第 2 次课编写 SFC 做准备。</li>
+<li><strong>拓展阅读</strong>：浏览 Vue 3
+官方文档（cn.vuejs.org）首页与”简介”章节（选做）。</li>
+</ol>
+<hr />
+<h2 id="九对应岗位能力或面试考点">九、对应岗位能力或面试考点</h2>
+<table>
+<thead>
+<tr>
+<th>岗位能力/面试考点</th>
+<th>本次课对应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>理解 MVVM 与数据驱动视图（前端面试高频基础题）</td>
+<td>K1-2</td>
+</tr>
+<tr>
+<td>能清晰表述”为什么用框架而不是原生 JS”（技术认知）</td>
+<td>K1-1</td>
+</tr>
+<tr>
+<td>了解 Vue 3 与 Vue 2 的主要区别（Composition API 等）</td>
+<td>K1-3</td>
+</tr>
+<tr>
+<td>独立搭建前端开发环境（Node.js + Vite）（工程师基本功）</td>
+<td>K1-4、K1-5</td>
+</tr>
+<tr>
+<td>看懂前端项目目录结构与入口文件（协作基础）</td>
+<td>K1-5</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>面试常考”说一下对 MVVM 的理解”“Vue 相比原生 JS 有什么优势”“Vue3 和
+Vue2 的区别”等，均属本次课范围。</p>
+</blockquote>
+<hr />
+<h2 id="十教学资料与题库索引">十、教学资料与题库索引</h2>
+<table>
+<thead>
+<tr>
+<th>资料类型</th>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学生复习资料</td>
+<td><code>教学资料.md</code>（同文件夹）</td>
+<td>5 个知识点详解 + CTTS-Frontend 项目创建综合示例 + 知识结构图 +
+复习思考题</td>
+</tr>
+<tr>
+<td>考试题库</td>
+<td><code>题库.md</code>（同文件夹）</td>
+<td>78 题（40 选择 + 20 判断 + 10 填空 + 4 论述简答 + 2 程序阅读补全 + 2
+编程接口设计），含答案解析与评分标准</td>
+</tr>
+<tr>
+<td>课程总览</td>
+<td><code>../00 课程设计总览.md</code></td>
+<td>课程整体框架与 16 次课进度</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</h2>
+<table>
+<thead>
+<tr>
+<th>时段</th>
+<th>内容</th>
+<th>时长</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0~10 min</td>
+<td>课前 5 分钟讨论 + 课程介绍</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>10~30 min</td>
+<td>知识点 K1-1、K1-2：前端演进 + MVVM 思想</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>30~45 min</td>
+<td>知识点 K1-3：Vue3 简介与核心特性 + 互动 2</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>45~60 min</td>
+<td>知识点 K1-4：Node.js 与 npm</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>60~80 min</td>
+<td>知识点 K1-5：Vite 创建项目 + 互动 3（动手搭建）</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>80~85 min</td>
+<td>随堂练习</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>85~90 min</td>
+<td>小结 + 课后任务布置</td>
+<td>5 min</td>
+</tr>
+</tbody>
+</table></article></main></div>
+<script id="design-toc-toggle-script">
+  (function(){
+    var body = document.body;
+    var toggle = document.querySelector('.toc-toggle');
+    var floatToggle = document.querySelector('.toc-float-toggle');
+    function setCollapsed(collapsed){
+      body.classList.toggle('toc-collapsed', collapsed);
+      if(toggle){ toggle.textContent = collapsed ? '展开' : '收起'; toggle.setAttribute('aria-label', collapsed ? '显示目录' : '隐藏目录'); }
+      try{ localStorage.setItem('designTocCollapsed', collapsed ? '1' : '0'); }catch(e){}
+    }
+    try{ if(localStorage.getItem('designTocCollapsed') === '1') setCollapsed(true); }catch(e){}
+    if(toggle){ toggle.addEventListener('click', function(){ setCollapsed(!body.classList.contains('toc-collapsed')); }); }
+    if(floatToggle){ floatToggle.addEventListener('click', function(){ setCollapsed(false); }); }
+  })();
+</script>
+<script id="design-table-auto-width-script">
+  (function(){
+    function textLen(cell){
+      return (cell ? cell.textContent : '').replace(/\s+/g,'').length;
+    }
+    function clamp(n,min,max){ return Math.max(min, Math.min(max, n)); }
+    function optimizeTable(table){
+      var rows = Array.prototype.slice.call(table.rows || []);
+      if(!rows.length) return;
+      var colCount = Math.max.apply(null, rows.map(function(r){ return r.cells.length; }));
+      if(!colCount || colCount < 2) return;
+
+      var scores = [];
+      for(var c=0;c<colCount;c++){
+        var lengths = rows.map(function(r){ return textLen(r.cells[c]); }).filter(function(n){ return n > 0; });
+        var max = lengths.length ? Math.max.apply(null, lengths) : 1;
+        var avg = lengths.length ? lengths.reduce(function(a,b){return a+b;},0) / lengths.length : 1;
+        var header = rows[0] && rows[0].cells[c] ? rows[0].cells[c].textContent.trim() : '';
+        var shortHeader = /^(编号|序号|项目|时段|时长|类型|资料类型)$/.test(header);
+        var longHeader = /^(内容|要点|说明)$/.test(header);
+        var score = Math.sqrt(Math.max(max, avg * 1.35));
+        if(shortHeader || max <= 8) score *= 0.55;
+        if(longHeader || max >= 28) score *= 1.45;
+        scores[c] = clamp(score, 1, 9);
+      }
+
+      // 常见“项目-内容”两列表：短字段列收窄；若第一列本身更长，则尊重内容长度
+      if(colCount === 2){
+        var h0 = rows[0] && rows[0].cells[0] ? rows[0].cells[0].textContent.trim() : '';
+        var h1 = rows[0] && rows[0].cells[1] ? rows[0].cells[1].textContent.trim() : '';
+        if(/^(项目|类型|资料类型)$/.test(h0) && /^(内容|说明|文件)$/.test(h1)){
+          scores[0] = Math.min(scores[0], 2.2);
+          scores[1] = Math.max(scores[1], 5.5);
+        }
+      }
+      // 常见三列表：第一列通常较短，第三列常为说明/要点，优先给第三列空间
+      if(colCount === 3){ scores[0] = Math.min(scores[0], 1.6); scores[2] = Math.max(scores[2], 3.6); }
+
+      var total = scores.reduce(function(a,b){return a+b;},0);
+      var widths = scores.map(function(sc){ return sc / total * 100; });
+
+      // 特例：课堂时间分配表 = 时段 / 内容 / 时长，中间“内容”列应占主宽
+      var headers = [];
+      for(var hi=0; hi<colCount; hi++){
+        headers[hi] = rows[0] && rows[0].cells[hi] ? rows[0].cells[hi].textContent.trim() : '';
+      }
+      if(colCount === 3 && headers[0] === '时段' && headers[1] === '内容' && headers[2] === '时长'){
+        widths = [16, 70, 14];
+        table.classList.add('time-plan-table');
+      } else {
+        // 限制短列最大值，释放给长列
+        if(colCount === 2 && /^(项目|类型|资料类型)$/.test(h0 || '') && widths[0] > 28){ widths[1] += widths[0] - 28; widths[0] = 28; }
+        if(colCount === 3){
+          if(widths[0] > 16){ widths[2] += widths[0] - 16; widths[0] = 16; }
+          if(widths[1] > 28){ widths[2] += widths[1] - 28; widths[1] = 28; }
+        }
+      }
+
+      var old = table.querySelector('colgroup');
+      if(old) old.remove();
+      var cg = document.createElement('colgroup');
+      widths.forEach(function(w, idx){
+        var col = document.createElement('col');
+        col.style.setProperty('--col-width', w.toFixed(2) + '%');
+        col.style.width = w.toFixed(2) + '%';
+        col.className = w < 20 ? 'col-short' : 'col-long';
+        cg.appendChild(col);
+      });
+      table.insertBefore(cg, table.firstChild);
+      table.classList.add('table-auto-ready');
+    }
+    document.querySelectorAll('.article table').forEach(optimizeTable);
+  })();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

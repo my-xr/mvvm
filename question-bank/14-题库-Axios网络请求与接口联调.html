@@ -1,0 +1,695 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Axios网络请求与接口联调</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 14 次课 · 题库</div>
+      <h1>Axios网络请求与接口联调</h1>
+      <p>考试题库与参考解析 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 14 次课</span>
+        <span class="hero-chip"><b>主题</b>Axios网络请求与接口联调</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2 分）</a>
+<ul>
+<li><a href="#11-单项选择题30-题">1.1 单项选择题（30 题）</a></li>
+<li><a href="#12-多项选择题10-题">1.2 多项选择题（10 题）</a></li>
+</ul></li>
+<li><a href="#二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1 分）</a>
+<ul>
+</ul></li>
+<li><a href="#三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2 分）</a>
+<ul>
+</ul></li>
+<li><a href="#四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</a>
+<ul>
+</ul></li>
+<li><a href="#五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#题库统计与组卷说明">题库统计与组卷说明</a>
+<ul>
+<li><a href="#题量统计">题量统计</a></li>
+<li><a href="#难度分布">难度分布</a></li>
+<li><a href="#知识点覆盖">知识点覆盖</a></li>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 14 次课 <span>｜</span> <strong>文档：</strong>题库</p>
+<blockquote>
+<p>配套：<code>教学设计.md</code>、<code>教学资料.md</code>（同文件夹）
+题量：40 选择 + 20 判断 + 10 填空 + 4 论述/简答 + 2 程序阅读/补全 + 2
+编程/接口设计 = <strong>78 题</strong>
+全部含参考答案与解析；主观题另附评分标准。 难度：★ 基础 / ★★ 提高 / ★★★
+综合 ｜ 编号：<code>14-题型-序号</code></p>
+</blockquote>
+<hr />
+<h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
+分）</h2>
+<h3 id="11-单项选择题30-题">1.1 单项选择题（30 题）</h3>
+<section class="question-card"><p><strong>14-选择-001</strong>（★ 知识点：K14-1） Axios 是基于什么的
+HTTP 库？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Callback</span></li><li><span class="option-label">B</span><span>Promise</span></li><li><span class="option-label">C</span><span>Observable</span></li><li><span class="option-label">D</span><span>Event</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：Axios 基于 Promise。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-002</strong>（★ 知识点：K14-1） 安装 Axios 的命令是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>npm install fetch</code></span></li><li><span class="option-label">B</span><span><code>npm install axios</code></span></li><li><span class="option-label">C</span><span><code>npm install http</code></span></li><li><span class="option-label">D</span><span><code>npm install request</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>npm install axios</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-003</strong>（★ 知识点：K14-1） Axios
+响应数据在哪个字段？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>res</code></span></li><li><span class="option-label">B</span><span><code>res.data</code></span></li><li><span class="option-label">C</span><span><code>res.body</code></span></li><li><span class="option-label">D</span><span><code>res.json</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：响应数据在
+<code>res.data</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-004</strong>（★ 知识点：K14-1） 发送 GET 请求用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>axios.get(url)</code></span></li><li><span class="option-label">B</span><span><code>axios.post(url)</code></span></li><li><span class="option-label">C</span><span><code>axios.send(url)</code></span></li><li><span class="option-label">D</span><span><code>axios.request(url)</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：GET 用
+<code>axios.get</code>。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-005</strong>（★ 知识点：K14-1） 发送 POST
+请求带数据，正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>axios.post(url, data)</code></span></li><li><span class="option-label">B</span><span><code>axios.post(url, { params: data })</code></span></li><li><span class="option-label">C</span><span><code>axios.get(url, data)</code></span></li><li><span class="option-label">D</span><span><code>axios.post(data, url)</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：<code>axios.post(url, data)</code>，data
+在请求体。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-006</strong>（★ 知识点：K14-2） 创建 Axios 实例的 API
+是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>axios.new</code></span></li><li><span class="option-label">B</span><span><code>axios.create</code></span></li><li><span class="option-label">C</span><span><code>axios.instance</code></span></li><li><span class="option-label">D</span><span><code>new axios()</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>axios.create(config)</code> 创建实例。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-007</strong>（★ 知识点：K14-2）
+配置基础路径的字段是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>baseURL</code></span></li><li><span class="option-label">B</span><span><code>url</code></span></li><li><span class="option-label">C</span><span><code>path</code></span></li><li><span class="option-label">D</span><span><code>host</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：<code>baseURL</code>
+配置基础路径。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-008</strong>（★ 知识点：K14-2）
+配置请求超时的字段是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>timeout</code></span></li><li><span class="option-label">B</span><span><code>delay</code></span></li><li><span class="option-label">C</span><span><code>expire</code></span></li><li><span class="option-label">D</span><span><code>limit</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：<code>timeout</code>
+配置超时（毫秒）。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-009</strong>（★ 知识点：K14-3）
+请求拦截器添加的位置是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>interceptors.request</code></span></li><li><span class="option-label">B</span><span><code>interceptors.response</code></span></li><li><span class="option-label">C</span><span><code>interceptors.before</code></span></li><li><span class="option-label">D</span><span><code>interceptors.send</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：<code>interceptors.request.use</code>
+添加请求拦截器。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-010</strong>（★ 知识点：K14-3） 请求拦截器常用于？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>自动加 Token</span></li><li><span class="option-label">B</span><span>解包数据</span></li><li><span class="option-label">C</span><span>渲染页面</span></li><li><span class="option-label">D</span><span>路由跳转</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：请求拦截器常自动加
+Token 到请求头。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-011</strong>（★ 知识点：K14-4）
+响应拦截器添加的位置是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>interceptors.request</code></span></li><li><span class="option-label">B</span><span><code>interceptors.response</code></span></li><li><span class="option-label">C</span><span><code>interceptors.after</code></span></li><li><span class="option-label">D</span><span><code>interceptors.receive</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>interceptors.response.use</code>
+添加响应拦截器。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-012</strong>（★ 知识点：K14-4） 响应拦截器常用于？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>自动加 Token</span></li><li><span class="option-label">B</span><span>统一错误处理与解包数据</span></li><li><span class="option-label">C</span><span>发送请求</span></li><li><span class="option-label">D</span><span>创建实例</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：响应拦截器用于解包数据与统一错误处理。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-013</strong>（★ 知识点：K14-5） 开发环境解决跨域用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Vite proxy</span></li><li><span class="option-label">B</span><span>CORS</span></li><li><span class="option-label">C</span><span>JSONP</span></li><li><span class="option-label">D</span><span>不解决</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：开发用 Vite proxy
+代理。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-014</strong>（★ 知识点：K14-5） Vite
+代理配置在哪个文件？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>vite.config.js</code></span></li><li><span class="option-label">B</span><span><code>package.json</code></span></li><li><span class="option-label">C</span><span><code>main.js</code></span></li><li><span class="option-label">D</span><span><code>index.html</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：<code>vite.config.js</code> 配置 server.proxy。A
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-015</strong>（★ 知识点：K14-5）
+<code>changeOrigin: true</code> 的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>改变请求方法</span></li><li><span class="option-label">B</span><span>改变
+Origin 头，解决跨域</span></li><li><span class="option-label">C</span><span>改变 URL</span></li><li><span class="option-label">D</span><span>加 Token</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：changeOrigin 改变
+Origin 头。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-016</strong>（★ 知识点：K14-3） Token
+通常放在请求头的哪个字段？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>Authorization</code></span></li><li><span class="option-label">B</span><span><code>Token</code></span></li><li><span class="option-label">C</span><span><code>Auth</code></span></li><li><span class="option-label">D</span><span><code>Key</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：Token 放
+<code>Authorization</code> 头，常 <code>Bearer xxx</code>。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-017</strong>（★ 知识点：K14-4） HTTP 401 表示？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>服务器错误</span></li><li><span class="option-label">B</span><span>未授权/登录过期</span></li><li><span class="option-label">C</span><span>资源不存在</span></li><li><span class="option-label">D</span><span>请求成功</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：401
+表示未授权，常清状态跳登录。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-018</strong>（★ 知识点：K14-2）
+接口模块文件通常放在？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>src/api/</code></span></li><li><span class="option-label">B</span><span><code>src/components/</code></span></li><li><span class="option-label">C</span><span><code>src/views/</code></span></li><li><span class="option-label">D</span><span><code>src/stores/</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：接口模块放
+<code>src/api/</code>。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-019</strong>（★ 知识点：K14-5）
+后端未就绪时，前端可用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Mock 数据</span></li><li><span class="option-label">B</span><span>直接报错</span></li><li><span class="option-label">C</span><span>不请求</span></li><li><span class="option-label">D</span><span>关闭项目</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：用 Mock 数据兜底。A
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-020</strong>（★ 知识点：K14-1） Axios 请求失败应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>忽略</span></li><li><span class="option-label">B</span><span>catch 或 try/catch 处理</span></li><li><span class="option-label">C</span><span>终止程序</span></li><li><span class="option-label">D</span><span>不处理</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：应处理失败，catch
+捕获。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-021</strong>（★★ 知识点：K14-3） 请求拦截器中忘
+<code>return config</code> 会？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>正常发送</span></li><li><span class="option-label">B</span><span>请求被拦截不发</span></li><li><span class="option-label">C</span><span>报错</span></li><li><span class="option-label">D</span><span>自动修复</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：必须 return
+config，否则请求不发。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-022</strong>（★★ 知识点：K14-4）
+响应拦截器错误处理中忘 <code>return Promise.reject</code> 会？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>正常</span></li><li><span class="option-label">B</span><span>组件 catch 不到错误</span></li><li><span class="option-label">C</span><span>报错</span></li><li><span class="option-label">D</span><span>自动处理</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：错误必须
+reject，否则组件 catch 不到。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-023</strong>（★★ 知识点：K14-5） 改 vite.config.js
+代理后需要？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>无需操作</span></li><li><span class="option-label">B</span><span>重启 dev server</span></li><li><span class="option-label">C</span><span>改 main.js</span></li><li><span class="option-label">D</span><span>重新安装</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：改配置需重启 dev
+server 生效。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-024</strong>（★★ 知识点：K14-2）
+<code>baseURL: '/api'</code> 与 <code>request.get('/login')</code>
+拼接结果是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>/api/login</code></span></li><li><span class="option-label">B</span><span><code>/login</code></span></li><li><span class="option-label">C</span><span><code>/api</code></span></li><li><span class="option-label">D</span><span><code>/api//login</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：拼接为
+<code>/api/login</code>。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-025</strong>（★★ 知识点：K14 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Axios 基于 Promise</span></li><li><span class="option-label">B</span><span>请求拦截器加 Token</span></li><li><span class="option-label">C</span><span>响应拦截器处理错误</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-026</strong>（★★ 知识点：K14 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>响应数据在 res.data</span></li><li><span class="option-label">B</span><span>请求拦截器解包数据</span></li><li><span class="option-label">C</span><span>Vite proxy 解决开发跨域</span></li><li><span class="option-label">D</span><span>401 表示登录过期</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：B
+错误，解包是响应拦截器。A、C、D 正确。选 B。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-027</strong>（★★ 知识点：K14 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>axios.create 创建实例</span></li><li><span class="option-label">B</span><span>baseURL 配置基础路径</span></li><li><span class="option-label">C</span><span>timeout 配置超时</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-028</strong>（★★ 知识点：K14 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Token 放 Authorization 头</span></li><li><span class="option-label">B</span><span>401 清状态跳登录</span></li><li><span class="option-label">C</span><span>生产环境跨域用 Vite
+proxy</span></li><li><span class="option-label">D</span><span>后端未就绪用 Mock</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：C 错误，生产用
+Nginx/CORS。A、B、D 正确。选 C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-029</strong>（★★ 知识点：K14 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>接口模块放 src/api</span></li><li><span class="option-label">B</span><span>请求拦截 return config</span></li><li><span class="option-label">C</span><span>响应拦截 reject 错误</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-030</strong>（★★ 知识点：K14 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>直接用 res 而非 res.data</span></li><li><span class="option-label">B</span><span>封装实例统一配置</span></li><li><span class="option-label">C</span><span>拦截器统一处理</span></li><li><span class="option-label">D</span><span>proxy
+代理跨域</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：A 错误，应用
+res.data。B、C、D 正确。选 A。</p>
+</blockquote></section>
+<hr />
+<h3 id="12-多项选择题10-题">1.2 多项选择题（10 题）</h3>
+<section class="question-card"><p><strong>14-选择-031</strong>（★★ 知识点：K14-2） Axios
+实例配置包含？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>baseURL</code></span></li><li><span class="option-label">B</span><span><code>timeout</code></span></li><li><span class="option-label">C</span><span><code>headers</code></span></li><li><span class="option-label">D</span><span><code>methods</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
+是配置；D 非标准。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-032</strong>（★★ 知识点：K14-3/K14-4） Axios
+拦截器有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>请求拦截器</span></li><li><span class="option-label">B</span><span>响应拦截器</span></li><li><span class="option-label">C</span><span>错误拦截器</span></li><li><span class="option-label">D</span><span>路由拦截器</span></li></ul></div><blockquote>
+<p><strong>答案：A、B</strong> <strong>解析</strong>：A、B 是 Axios
+拦截器。选 A、B。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-033</strong>（★★ 知识点：K14 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Axios 基于 Promise</span></li><li><span class="option-label">B</span><span>请求拦截器加 Token</span></li><li><span class="option-label">C</span><span>响应拦截器处理错误</span></li><li><span class="option-label">D</span><span>Vite proxy 解决开发跨域</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项均正确。全选。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-034</strong>（★★ 知识点：K14 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>响应数据在 res.data</span></li><li><span class="option-label">B</span><span>axios.create 创建实例</span></li><li><span class="option-label">C</span><span>接口模块放 src/api</span></li><li><span class="option-label">D</span><span>请求拦截无需 return config</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，需 return。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-035</strong>（★★ 知识点：K14 综合）
+跨域解决方案有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Vite proxy（开发）</span></li><li><span class="option-label">B</span><span>Nginx 反代（生产）</span></li><li><span class="option-label">C</span><span>后端 CORS</span></li><li><span class="option-label">D</span><span>关闭浏览器安全</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 合理；D
+不可取。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-036</strong>（★★ 知识点：K14 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>401 表示登录过期</span></li><li><span class="option-label">B</span><span>Token 放 Authorization</span></li><li><span class="option-label">C</span><span>响应拦截 reject 错误</span></li><li><span class="option-label">D</span><span>后端未就绪不请求</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，用 Mock。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-037</strong>（★★ 知识点：K14 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>请求拦截 return config</span></li><li><span class="option-label">B</span><span>响应拦截解包数据</span></li><li><span class="option-label">C</span><span>baseURL 拼接路径</span></li><li><span class="option-label">D</span><span>timeout 是字节数</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，是毫秒。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-038</strong>（★★ 知识点：K14 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>axios.get 发 GET</span></li><li><span class="option-label">B</span><span>axios.post 发 POST</span></li><li><span class="option-label">C</span><span>实例统一配置</span></li><li><span class="option-label">D</span><span>改 vite.config 无需重启</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，需重启。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-039</strong>（★★ 知识点：K14 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Mock 用于后端未就绪</span></li><li><span class="option-label">B</span><span>changeOrigin 改 Origin</span></li><li><span class="option-label">C</span><span>接口模块化便于管理</span></li><li><span class="option-label">D</span><span>拦截器无需处理错误</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，需处理。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-选择-040</strong>（★★ 知识点：K14 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>Axios 支持 Promise</span></li><li><span class="option-label">B</span><span>拦截器统一处理</span></li><li><span class="option-label">C</span><span>proxy
+解决开发跨域</span></li><li><span class="option-label">D</span><span>生产用 Vite proxy</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，生产用 Nginx/CORS。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<h2 id="二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1
+分）</h2>
+<section class="question-card"><p><strong>14-判断-001</strong>（★）Axios 是基于 Promise 的 HTTP 库。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-002</strong>（★）响应数据在 res.data。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-003</strong>（★）请求拦截器可自动添加 Token。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-004</strong>（★）Vite 代理可解决开发环境跨域。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-005</strong>（★）响应拦截器用于统一错误处理。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-006</strong>（★）axios.create 用于创建实例。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-007</strong>（★）请求拦截器必须 return config。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-008</strong>（★）401 表示登录过期。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-009</strong>（★）Token 放 Authorization 请求头。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-010</strong>（★）接口模块放 src/api 目录。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-011</strong>（★）改 vite.config.js 后需重启 dev
+server。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-012</strong>（★）后端未就绪可用 Mock 数据。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-013</strong>（★★）请求拦截器用于解包数据。（ ）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：解包是响应拦截器。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-014</strong>（★★）响应拦截器错误处理需 reject。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-015</strong>（★★）生产环境跨域用 Vite proxy。（
+）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：生产用
+Nginx/CORS。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-016</strong>（★★）baseURL 与请求路径会拼接。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-017</strong>（★★）timeout 单位是毫秒。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-018</strong>（★★）直接用 res 而非 res.data 取数据。（
+）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：应用 res.data。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-019</strong>（★★）changeOrigin 改变 Origin 头。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-判断-020</strong>（★★）Axios 只能发 GET 请求。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：支持多种方法。</p>
+</blockquote></section>
+<hr />
+<h2 id="三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2
+分）</h2>
+<section class="question-card"><p><strong>14-填空-001</strong>（★）Axios 基于
+<code>________</code>（异步方案）。</p><blockquote>
+<p><strong>答案：Promise</strong> <strong>解析</strong>：Promise。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-填空-002</strong>（★）响应数据在
+<code>res.________</code>。</p><blockquote>
+<p><strong>答案：data</strong> <strong>解析</strong>：data。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-填空-003</strong>（★）创建实例用
+<code>axios.________</code>。</p><blockquote>
+<p><strong>答案：create</strong> <strong>解析</strong>：create。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-填空-004</strong>（★）配置基础路径用 <code>________</code>
+字段。</p><blockquote>
+<p><strong>答案：baseURL</strong> <strong>解析</strong>：baseURL。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-填空-005</strong>（★）配置超时用 <code>________</code>
+字段。</p><blockquote>
+<p><strong>答案：timeout</strong> <strong>解析</strong>：timeout。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-填空-006</strong>（★）请求拦截器在
+<code>interceptors.________</code> 添加。</p><blockquote>
+<p><strong>答案：request</strong> <strong>解析</strong>：request。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-填空-007</strong>（★）响应拦截器在
+<code>interceptors.________</code> 添加。</p><blockquote>
+<p><strong>答案：response</strong> <strong>解析</strong>：response。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-填空-008</strong>（★）Token 放请求头 <code>________</code>
+字段。</p><blockquote>
+<p><strong>答案：Authorization</strong>
+<strong>解析</strong>：Authorization。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-填空-009</strong>（★）开发环境跨域用 Vite
+<code>________</code> 配置。</p><blockquote>
+<p><strong>答案：proxy</strong> <strong>解析</strong>：proxy。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>14-填空-010</strong>（★）后端未就绪用 <code>________</code>
+数据兜底。</p><blockquote>
+<p><strong>答案：Mock</strong> <strong>解析</strong>：Mock。</p>
+</blockquote></section>
+<hr />
+<h2 id="四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</h2>
+<section class="question-card"><p><strong>14-论述-001</strong>（★★ 知识点：K14-2/K14-3/K14-4，分值：8
+分） <strong>题目</strong>：说明 Axios 封装的目的与拦截器的作用。</p>
+<p><strong>要求</strong>： （1）封装目的（3 分）。 （2）请求拦截器（2
+分）。 （3）响应拦截器（3 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）封装目的（3 分）：用 axios.create
+统一配置
+baseURL/timeout/headers，便于环境切换与统一管理；接口模块化组织在
+src/api/，组件调用 api 函数，解耦请求细节。 （2）请求拦截器（2
+分）：在请求发送前统一处理，常自动添加 Token 到 Authorization 头，必须
+return config。 （3）响应拦截器（3
+分）：在响应到达后统一处理，成功时解包返回业务数据（res.data），失败时统一错误提示；401
+清状态跳登录；错误需 reject。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-论述-002</strong>（★★ 知识点：K14-5，分值：8 分）
+<strong>题目</strong>：说明开发与生产环境跨域的解决方案。</p>
+<p><strong>要求</strong>： （1）为什么跨域（2 分）。 （2）开发方案（3
+分）。 （3）生产方案（3 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）跨域原因（2
+分）：浏览器同源策略，前端 5173 与后端 8080
+端口不同属跨域，浏览器拦截响应。 （2）开发方案（3 分）：Vite 配置
+server.proxy 把 <code>/api</code> 转发到后端地址，changeOrigin 改
+Origin，浏览器认为是同源。 （3）生产方案（3 分）：Nginx
+反向代理转发，或后端配置 CORS 允许跨域。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-论述-003</strong>（★★ 知识点：K14-3/K14-4，分值：8 分）
+<strong>题目</strong>：说明拦截器中常见错误及避免方法。</p>
+<p><strong>要求</strong>： （1）请求拦截器错误（4 分）。
+（2）响应拦截器错误（4 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）请求拦截器（4 分）：忘 return config
+导致请求不发；在 Pinia 未挂载前用 store 报错。避免：必须 return
+config；确保 store 在请求时已可用。 （2）响应拦截器（4 分）：忘 reject
+导致组件 catch 不到；401 处理不当死循环。避免：错误必须
+Promise.reject；401 跳登录时排除登录页避免循环。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-论述-004</strong>（★★ 知识点：K14 综合，分值：6 分）
+<strong>题目</strong>：后端返回统一格式
+<code>{code, message, data}</code>，前端如何处理？</p>
+<p><strong>要求</strong>： （1）格式说明（2 分）。 （2）前端处理（4
+分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）格式（2 分）：后端统一返回
+<code>{code: 200, message: 'success', data: {}}</code>，code
+表示业务状态，data 是实际数据。 （2）处理（4 分）：响应拦截器中判断
+res.code，200 时 return res.data 返回业务数据；非 200 时提示 res.message
+并 reject；HTTP 错误（401/500）单独处理。组件 await 直接拿到 data。</p>
+<p><strong>评分标准</strong>：共 6 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<h2 id="五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</h2>
+<section class="question-card"><p><strong>14-程序-001</strong>（★★ 知识点：K14-3/K14-4，分值：10 分）
+<strong>题目</strong>：补全拦截器代码空缺。</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>request<span class="op">.</span><span class="at">interceptors</span><span class="op">.</span><span class="at">request</span><span class="op">.</span><span class="fu">use</span>(config <span class="kw">=&gt;</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">useUserStore</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (userStore<span class="op">.</span><span class="at">token</span>) {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    config<span class="op">.</span><span class="at">headers</span><span class="op">.</span><span class="at">______A______</span> <span class="op">=</span> <span class="vs">`Bearer </span><span class="sc">${</span>userStore<span class="op">.</span><span class="at">token</span><span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  ______B______ config</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>request<span class="op">.</span><span class="at">interceptors</span><span class="op">.</span><span class="at">response</span><span class="op">.</span><span class="fu">use</span>(response <span class="kw">=&gt;</span> {</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> res <span class="op">=</span> response<span class="op">.</span><span class="at">data</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (res<span class="op">.</span><span class="at">code</span> <span class="op">===</span> <span class="dv">200</span>) <span class="cf">return</span> res<span class="op">.</span><span class="at">______C______</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">reject</span>(<span class="kw">new</span> <span class="bu">Error</span>(res<span class="op">.</span><span class="at">message</span>))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p><strong>要求</strong>： （1）A：Token 请求头字段。（3 分）
+（2）B：请求拦截器必须的操作。（4 分） （3）C：成功返回的数据字段。（3
+分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>Authorization</code>（3
+分）。 （2）B = <code>return</code>（4 分）：return config。 （3）C =
+<code>data</code>（3 分）：返回业务数据。</p>
+<p><strong>评分标准</strong>：共 10 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-程序-002</strong>（★★ 知识点：K14-5，分值：12 分）
+<strong>题目</strong>：补全 Vite 代理配置空缺。</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// vite.config.js</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> <span class="fu">defineConfig</span>({</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">server</span><span class="op">:</span> {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">______A______</span><span class="op">:</span> {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">&#39;/api&#39;</span><span class="op">:</span> {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">target</span><span class="op">:</span> <span class="st">&#39;http://localhost:______B______&#39;</span><span class="op">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">______C______</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">rewrite</span><span class="op">:</span> (path) <span class="kw">=&gt;</span> path<span class="op">.</span><span class="fu">replace</span>(<span class="ss">/</span><span class="sc">^\/</span><span class="ss">api/</span><span class="op">,</span> <span class="st">&#39;&#39;</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p><strong>要求</strong>： （1）A：代理配置字段。（4 分）
+（2）B：后端端口（常见）。（4 分） （3）C：改变 Origin 的字段。（4
+分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>proxy</code>（4 分）。
+（2）B = <code>8080</code>（4 分）：常见后端端口。 （3）C =
+<code>changeOrigin</code>（4 分）。</p>
+<p><strong>评分标准</strong>：共 12 分，每空 4 分。B 答其他常见端口（如
+3000）若合理也可给分。</p>
+</blockquote></section>
+<hr />
+<h2 id="六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</h2>
+<section class="question-card"><p><strong>14-编程-001</strong>（★★ 知识点：K14-2/K14-3/K14-4，分值：15
+分） <strong>题目</strong>：封装 Axios 实例，含 baseURL、请求拦截器（加
+Token）、响应拦截器（解包+错误提示）。</p>
+<p><strong>要求</strong>： （1）创建实例 + baseURL/timeout。（4 分）
+（2）请求拦截器加 Token。（5 分） （3）响应拦截器解包+错误。（6 分）</p><blockquote>
+<p><strong>参考答案</strong>：见教学资料综合示例（src/utils/request.js）。
+评分：实例+baseURL+timeout（4 分）；请求拦截器加 Token + return
+config（5 分）；响应拦截器解包+错误 reject（6 分）。</p>
+<p><strong>评分标准</strong>：共 15 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>14-编程-002</strong>（★★★ 知识点：K14 综合，分值：20 分）
+<strong>题目</strong>：完成 CTTS-Frontend 接口联调，要求：</p>
+<ul>
+<li>封装 request（拦截器）；</li>
+<li>定义 login、getProjects 接口；</li>
+<li>userStore 调用 login 接口；</li>
+<li>配置 Vite 代理；</li>
+<li>组件中调用 getProjects 显示列表。</li>
+</ul>
+<p><strong>要求</strong>： （1）request 封装 + 拦截器。（6 分） （2）api
+模块（login/getProjects）。（4 分） （3）userStore 调 login。（4 分）
+（4）Vite proxy + 组件显示列表。（6 分）</p><blockquote>
+<p><strong>参考答案</strong>：见教学资料综合示例。 评分：request
+封装+拦截器（6 分）；api 两个接口（4 分）；userStore await loginApi（4
+分）；vite proxy + 组件 getProjects 渲染（6 分）。</p>
+<p><strong>评分标准</strong>：共 20 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<h2 id="题库统计与组卷说明">题库统计与组卷说明</h2>
+<h3 id="题量统计">题量统计</h3>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>数量</th>
+<th>分值</th>
+<th>小计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择题（单选 30 + 多选 10）</td>
+<td>40</td>
+<td>每题 2 分</td>
+<td>80 分</td>
+</tr>
+<tr>
+<td>判断题</td>
+<td>20</td>
+<td>每题 1 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>填空题</td>
+<td>10</td>
+<td>每题 2 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>论述/简答题</td>
+<td>4</td>
+<td>6~8 分</td>
+<td>30 分</td>
+</tr>
+<tr>
+<td>程序阅读/补全题</td>
+<td>2</td>
+<td>10~12 分</td>
+<td>22 分</td>
+</tr>
+<tr>
+<td>编程/接口设计题</td>
+<td>2</td>
+<td>15~20 分</td>
+<td>35 分</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>78</strong></td>
+<td>—</td>
+<td><strong>207 分</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="难度分布">难度分布</h3>
+<table>
+<thead>
+<tr>
+<th>难度</th>
+<th>题量（约）</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★ 基础</td>
+<td>40</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>★★ 提高</td>
+<td>34</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>★★★ 综合</td>
+<td>4</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="知识点覆盖">知识点覆盖</h3>
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>覆盖题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K14-1 Axios 基础</td>
+<td>12</td>
+</tr>
+<tr>
+<td>K14-2 请求封装</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K14-3 请求拦截器</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K14-4 响应拦截器</td>
+<td>14</td>
+</tr>
+<tr>
+<td>K14-5 联调与代理</td>
+<td>16</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本题库已确保每题答案唯一明确、无歧义选项，全部含解析，主观题含评分标准，可直接录入考试系统题库。</p>
+</blockquote>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

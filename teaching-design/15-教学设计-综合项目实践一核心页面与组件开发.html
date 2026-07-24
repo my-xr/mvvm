@@ -1,0 +1,374 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>综合项目实践一核心页面与组件开发</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 15 次课 · 教学设计</div>
+      <h1>综合项目实践一核心页面与组件开发</h1>
+      <p>教师教案与课堂组织 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 15 次课</span>
+        <span class="hero-chip"><b>主题</b>综合项目实践一核心页面与组件开发</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一课程信息">一、课程信息</a>
+<ul>
+</ul></li>
+<li><a href="#二教学目标">二、教学目标</a>
+<ul>
+<li><a href="#知识目标">知识目标</a></li>
+<li><a href="#能力目标">能力目标</a></li>
+<li><a href="#素质目标课程思政">素质目标（课程思政）</a></li>
+</ul></li>
+<li><a href="#四项目任务或案例任务">四、项目任务或案例任务</a>
+<ul>
+</ul></li>
+<li><a href="#五课堂互动设计">五、课堂互动设计</a>
+<ul>
+<li><a href="#互动-1项目任务复盘前端联调问题汇总">互动 1：项目任务复盘——前端联调问题汇总</a></li>
+<li><a href="#互动-2代码-review">互动 2：代码 review</a></li>
+</ul></li>
+<li><a href="#六课程思政融入点">六、课程思政融入点</a>
+<ul>
+</ul></li>
+<li><a href="#七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5 分钟）</a>
+<ul>
+</ul></li>
+<li><a href="#八课后任务">八、课后任务</a>
+<ul>
+</ul></li>
+<li><a href="#九对应岗位能力或面试考点">九、对应岗位能力或面试考点</a>
+<ul>
+</ul></li>
+<li><a href="#十教学资料与题库索引">十、教学资料与题库索引</a>
+<ul>
+</ul></li>
+<li><a href="#附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 15 次课 <span>｜</span> <strong>文档：</strong>教学设计</p>
+<blockquote>
+<p>所属模块：M7 综合项目开发 ｜ 课程：《MVVM前端框架开发技术》
+配套资料：见同文件夹内
+<code>教学资料.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一课程信息">一、课程信息</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>次序</td>
+<td>第 15 次课（全课程 16 次之第 15）</td>
+</tr>
+<tr>
+<td>学时</td>
+<td>2 学时（90 分钟）</td>
+</tr>
+<tr>
+<td>属性</td>
+<td><strong>实践课</strong></td>
+</tr>
+<tr>
+<td>所属模块</td>
+<td>M7 综合项目开发</td>
+</tr>
+<tr>
+<td>教学主题</td>
+<td>综合项目实践一：核心页面与组件开发</td>
+</tr>
+<tr>
+<td>先修基础</td>
+<td>第 1~14 次课全部内容</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="二教学目标">二、教学目标</h2>
+<h3 id="知识目标">知识目标</h3>
+<ol type="1">
+<li>综合运用组件化、路由、状态管理、接口联调开发完整页面。</li>
+<li>复习 props/emits、插槽、Pinia、Axios 的实战整合。</li>
+</ol>
+<h3 id="能力目标">能力目标</h3>
+<ol type="1">
+<li>完成 CTTS-Frontend
+全部核心页面：登录页、布局组件、项目列表页、任务列表页、任务详情页、成果提交页、评审页、用户管理页。</li>
+<li>所有页面对接后端 API（或 Mock）。</li>
+</ol>
+<h3 id="素质目标课程思政">素质目标（课程思政）</h3>
+<ol type="1">
+<li>培养团队协作意识——前后端各司其职，接口联调是关键。</li>
+<li>建立工程交付意识——能运行、能演示才是合格成果。</li>
+</ol>
+<hr />
+<h2
+id="三主要知识点纲要实践复盘型">三、主要知识点纲要（实践复盘型）</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>知识点</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K15-1</td>
+<td>核心页面规划</td>
+<td>页面清单；组件复用；数据流</td>
+</tr>
+<tr>
+<td>K15-2</td>
+<td>登录页与布局对接 API</td>
+<td>登录调接口存 Token；布局读 store 显示用户</td>
+</tr>
+<tr>
+<td>K15-3</td>
+<td>列表页与详情页</td>
+<td>项目列表/任务列表（分页筛选）；任务详情（动态路由+接口）</td>
+</tr>
+<tr>
+<td>K15-4</td>
+<td>表单页（提交/评审）</td>
+<td>成果提交、评审打分（表单+接口）</td>
+</tr>
+<tr>
+<td>K15-5</td>
+<td>用户管理页</td>
+<td>管理员页面（CRUD+权限）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="四项目任务或案例任务">四、项目任务或案例任务</h2>
+<p><strong>本次课任务</strong>：完成 CTTS-Frontend
+全部核心页面，对接后端 API。</p>
+<p><strong>任务清单</strong>：</p>
+<ol type="1">
+<li>登录页：表单 + 调 login 接口 + 存 Token + 跳转。</li>
+<li>布局组件：Header（用户名/退出）+ Sidebar（导航）+
+Content（router-view）。</li>
+<li>项目列表页：调 getProjects + 分页 + 筛选。</li>
+<li>任务列表/详情页：动态路由 + 调接口。</li>
+<li>成果提交页：表单 + 调提交接口。</li>
+<li>评审页：教师查看提交 + 打分。</li>
+<li>用户管理页：管理员 CRUD 用户。</li>
+</ol>
+<hr />
+<h2 id="五课堂互动设计">五、课堂互动设计</h2>
+<h3 id="互动-1项目任务复盘前端联调问题汇总">互动
+1：项目任务复盘——前端联调问题汇总</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动任务</td>
+<td>实践后汇总联调问题（跨域、字段不符、Token 失效等）</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>强调接口契约的重要性，前后端对齐字段</td>
+</tr>
+</tbody>
+</table>
+<h3 id="互动-2代码-review">互动 2：代码 review</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动任务</td>
+<td>同学互查代码（组件拆分、状态管理、错误处理）</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>规范性、可维护性、用户体验</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六课程思政融入点">六、课程思政融入点</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>融入点</td>
+<td>团队协作——前后端各司其职，接口联调是关键</td>
+</tr>
+<tr>
+<td>技术关联</td>
+<td>接口契约、统一错误处理、代码规范体现协作</td>
+</tr>
+<tr>
+<td>引导问题</td>
+<td>"前后端字段不一致，联调时多痛苦？如何避免？"</td>
+</tr>
+<tr>
+<td>预期价值目标</td>
+<td>培养协作意识与契约精神</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5
+分钟）</h2>
+<p><strong>判断题</strong>：</p>
+<ol type="1">
+<li>登录后应存 Token 到 store 并持久化。（✓）</li>
+<li>列表页应直接在组件发请求而非通过 api 模块。（✗）</li>
+<li>任务详情页用动态路由传 id。（✓）</li>
+<li>成果提交用 POST 请求。（✓）</li>
+</ol>
+<blockquote>
+<p>详细题目见 <code>题库.md</code>。</p>
+</blockquote>
+<hr />
+<h2 id="八课后任务">八、课后任务</h2>
+<ol type="1">
+<li>完成所有核心页面，确保可运行。</li>
+<li>整理一份《联调问题清单》。</li>
+<li>准备项目演示（下次课答辩）。</li>
+</ol>
+<hr />
+<h2 id="九对应岗位能力或面试考点">九、对应岗位能力或面试考点</h2>
+<table>
+<thead>
+<tr>
+<th>岗位能力/面试考点</th>
+<th>对应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>综合项目开发能力</td>
+<td>K15-1~K15-5</td>
+</tr>
+<tr>
+<td>前后端联调</td>
+<td>K15-2~K15-5</td>
+</tr>
+<tr>
+<td>组件化与状态管理整合</td>
+<td>K15-1</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="十教学资料与题库索引">十、教学资料与题库索引</h2>
+<table>
+<thead>
+<tr>
+<th>资料类型</th>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学生复习资料</td>
+<td><code>教学资料.md</code></td>
+<td>核心页面完整代码 + 联调要点 + 复盘</td>
+</tr>
+<tr>
+<td>考试题库</td>
+<td><code>题库.md</code></td>
+<td>78 题，含答案解析与评分标准</td>
+</tr>
+<tr>
+<td>课程总览</td>
+<td><code>../00 课程设计总览.md</code></td>
+<td>课程整体框架</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</h2>
+<table>
+<thead>
+<tr>
+<th>时段</th>
+<th>内容</th>
+<th>时长</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0~10 min</td>
+<td>页面规划 + 任务说明</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>10~40 min</td>
+<td>登录 + 布局 + 列表页开发</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>40~65 min</td>
+<td>详情 + 提交 + 评审页开发</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td>65~80 min</td>
+<td>用户管理 + 联调调试</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>80~90 min</td>
+<td>互动复盘 + 小结</td>
+<td>10 min</td>
+</tr>
+</tbody>
+</table>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

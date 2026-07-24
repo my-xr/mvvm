@@ -1,0 +1,788 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>插槽与组件高级特性</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 08 次课 · 题库</div>
+      <h1>插槽与组件高级特性</h1>
+      <p>考试题库与参考解析 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 08 次课</span>
+        <span class="hero-chip"><b>主题</b>插槽与组件高级特性</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2 分）</a>
+<ul>
+<li><a href="#11-单项选择题30-题">1.1 单项选择题（30 题）</a></li>
+<li><a href="#12-多项选择题10-题">1.2 多项选择题（10 题）</a></li>
+</ul></li>
+<li><a href="#二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1 分）</a>
+<ul>
+</ul></li>
+<li><a href="#三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2 分）</a>
+<ul>
+</ul></li>
+<li><a href="#四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</a>
+<ul>
+</ul></li>
+<li><a href="#五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</a>
+<ul>
+</ul></li>
+<li><a href="#题库统计与组卷说明">题库统计与组卷说明</a>
+<ul>
+<li><a href="#题量统计">题量统计</a></li>
+<li><a href="#难度分布">难度分布</a></li>
+<li><a href="#知识点覆盖">知识点覆盖</a></li>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 08 次课 <span>｜</span> <strong>文档：</strong>题库</p>
+<blockquote>
+<p>配套：<code>教学设计.md</code>、<code>教学资料.md</code>（同文件夹）
+题量：40 选择 + 20 判断 + 10 填空 + 4 论述/简答 + 2 程序阅读/补全 + 2
+编程/接口设计 = <strong>78 题</strong>
+全部含参考答案与解析；主观题另附评分标准。 难度：★ 基础 / ★★ 提高 / ★★★
+综合 ｜ 编号：<code>08-题型-序号</code></p>
+</blockquote>
+<hr />
+<h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
+分）</h2>
+<h3 id="11-单项选择题30-题">1.1 单项选择题（30 题）</h3>
+<section class="question-card"><p><strong>08-选择-001</strong>（★ 知识点：K8-1） 默认插槽的占位标签是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;slot&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;template&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;content&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;placeholder&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：<code>&lt;slot&gt;</code> 是插槽占位。A
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-002</strong>（★ 知识点：K8-1） 插槽中"后备内容"是指？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>父组件必须传的内容</span></li><li><span class="option-label">B</span><span>父组件不传时 <code>&lt;slot&gt;</code>
+内显示的默认内容</span></li><li><span class="option-label">C</span><span>子组件固定内容</span></li><li><span class="option-label">D</span><span>错误提示</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>&lt;slot&gt;默认值&lt;/slot&gt;</code>
+中的默认值在父不传时显示。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-003</strong>（★ 知识点：K8-2）
+具名插槽用哪个属性区分？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>id</code></span></li><li><span class="option-label">B</span><span><code>key</code></span></li><li><span class="option-label">C</span><span><code>name</code></span></li><li><span class="option-label">D</span><span><code>type</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong>
+<strong>解析</strong>：<code>&lt;slot name="header"&gt;</code> 用 name
+区分。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-004</strong>（★ 知识点：K8-2） 父组件向具名插槽
+<code>header</code> 传入内容，应使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>v-slot:header</code></span></li><li><span class="option-label">B</span><span><code>slot="header"</code></span></li><li><span class="option-label">C</span><span><code>#header</code></span></li><li><span class="option-label">D</span><span>A 和 C 都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong>
+<strong>解析</strong>：<code>v-slot:header</code> 简写
+<code>#header</code>，都对。D 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-005</strong>（★ 知识点：K8-2） <code>v-slot</code>
+简写符号是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>:</code></span></li><li><span class="option-label">B</span><span><code>@</code></span></li><li><span class="option-label">C</span><span><code>#</code></span></li><li><span class="option-label">D</span><span><code>-</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong>
+<strong>解析</strong>：<code>v-slot:name</code> 简写
+<code>#name</code>。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-006</strong>（★ 知识点：K8-3） 作用域插槽的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>父向子传内容</span></li><li><span class="option-label">B</span><span>子向父传数据</span></li><li><span class="option-label">C</span><span>子向插槽内容传数据，父据此自定义渲染</span></li><li><span class="option-label">D</span><span>缓存组件</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong>
+<strong>解析</strong>：作用域插槽让子组件把数据传给插槽内容，父自定义渲染。C
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-007</strong>（★ 知识点：K8-3）
+子组件作用域插槽传递数据的写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;slot :item="item"&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;slot item="item"&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;slot&gt;{{ item }}&lt;/slot&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;slot :data&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：<code>&lt;slot :item="item"&gt;</code> 把 item
+绑定传给父。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-008</strong>（★ 知识点：K8-3）
+父组件接收作用域插槽数据，写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;template #default="item"&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;template #default="{ item }"&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;template :item="item"&gt;</code></span></li><li><span class="option-label">D</span><span>A 和 B 都可能（B
+是解构形式）</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong>
+<strong>解析</strong>：<code>#default="slotProps"</code>
+接收全部，<code>#default="{ item }"</code> 解构取 item。D 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-009</strong>（★ 知识点：K8-4） 动态组件用哪个标签？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;dynamic&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;component :is="..."&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;switch&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;render&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>&lt;component :is="组件"&gt;</code>
+渲染动态组件。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-010</strong>（★ 知识点：K8-4）
+<code>keep-alive</code> 的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>销毁组件</span></li><li><span class="option-label">B</span><span>缓存组件状态，避免重建</span></li><li><span class="option-label">C</span><span>加载组件</span></li><li><span class="option-label">D</span><span>重复渲染</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：keep-alive
+缓存非活动组件，切换回来保留状态。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-011</strong>（★ 知识点：K8-5） 异步组件用哪个 API
+定义？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>defineComponent</code></span></li><li><span class="option-label">B</span><span><code>defineAsyncComponent</code></span></li><li><span class="option-label">C</span><span><code>import</code></span></li><li><span class="option-label">D</span><span><code>require</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>defineAsyncComponent</code> 定义异步组件。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-012</strong>（★ 知识点：K8-5） 异步组件的主要目的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>减少代码</span></li><li><span class="option-label">B</span><span>按需加载，优化首屏</span></li><li><span class="option-label">C</span><span>简化语法</span></li><li><span class="option-label">D</span><span>缓存数据</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：异步组件按需加载，减小首屏体积。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-013</strong>（★ 知识点：K8-1）
+父组件向默认插槽传内容，写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;Child&gt;&lt;slot&gt;内容&lt;/slot&gt;&lt;/Child&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;Child&gt;内容&lt;/Child&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;Child #default&gt;内容&lt;/Child&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;Child :slot&gt;内容&lt;/Child&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：直接在组件标签内写内容即传给默认插槽。B
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-014</strong>（★ 知识点：K8-2） <code>v-slot</code>
+只能用在？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>任意元素</span></li><li><span class="option-label">B</span><span><code>&lt;template&gt;</code> 或组件</span></li><li><span class="option-label">C</span><span><code>&lt;div&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;span&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：v-slot 只能用在
+<code>&lt;template&gt;</code> 或组件上。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-015</strong>（★ 知识点：K8-4） 不加 keep-alive
+的动态组件切换会？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>保留状态</span></li><li><span class="option-label">B</span><span>销毁重建，状态丢失</span></li><li><span class="option-label">C</span><span>报错</span></li><li><span class="option-label">D</span><span>不切换</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：不加
+keep-alive，切换时组件销毁重建，状态丢失。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-016</strong>（★ 知识点：K8-5） 异步组件加载方式是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>静态 import</span></li><li><span class="option-label">B</span><span>动态 <code>import()</code></span></li><li><span class="option-label">C</span><span><code>require</code></span></li><li><span class="option-label">D</span><span><code>fetch</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>defineAsyncComponent(() =&gt; import('./X.vue'))</code>
+用动态 import。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-017</strong>（★ 知识点：K8-2） 具名插槽
+<code>&lt;slot name="footer"&gt;</code>，父组件简写是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>#footer</code></span></li><li><span class="option-label">B</span><span><code>:footer</code></span></li><li><span class="option-label">C</span><span><code>@footer</code></span></li><li><span class="option-label">D</span><span><code>*footer</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：<code>#footer</code>
+是 <code>v-slot:footer</code> 简写。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-018</strong>（★ 知识点：K8-1）
+<code>&lt;slot&gt;</code> 不传内容时显示？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>空白</span></li><li><span class="option-label">B</span><span>后备内容（若有）</span></li><li><span class="option-label">C</span><span>报错</span></li><li><span class="option-label">D</span><span>默认 div</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>&lt;slot&gt;后备&lt;/slot&gt;</code>
+不传时显示后备内容；无后备则空。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-019</strong>（★ 知识点：K8-4） <code>:is</code>
+绑定的值可以是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>组件对象</span></li><li><span class="option-label">B</span><span>全局注册的组件名（字符串）</span></li><li><span class="option-label">C</span><span>A 和 B
+都对</span></li><li><span class="option-label">D</span><span>只能字符串</span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：:is
+可绑组件对象或全局注册名（字符串）。局部注册需用对象。C 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-020</strong>（★ 知识点：K8-3）
+作用域插槽父组件解构接收数据，正确写法是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>#default="item"</code></span></li><li><span class="option-label">B</span><span><code>#default="{ item }"</code></span></li><li><span class="option-label">C</span><span><code>:default="item"</code></span></li><li><span class="option-label">D</span><span><code>@default="item"</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：<code>#default="{ item }"</code>
+解构接收子组件传的 item。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-021</strong>（★★ 知识点：K8-2） 下列写法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;template #header&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;template v-slot:header&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;div #header&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;template #default&gt;</code></span></li></ul></div><blockquote>
+<p><strong>答案：C</strong> <strong>解析</strong>：<code>#header</code>
+不能用在普通 <code>&lt;div&gt;</code>，只能 template 或组件。C
+错误。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-022</strong>（★★ 知识点：K8-4）
+局部注册的组件用于动态组件，<code>:is</code> 应绑？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>组件名字符串</span></li><li><span class="option-label">B</span><span>组件对象引用</span></li><li><span class="option-label">C</span><span>字符串 "comp"</span></li><li><span class="option-label">D</span><span>undefined</span></li></ul></div><blockquote>
+<p><strong>答案：B</strong>
+<strong>解析</strong>：局部注册的组件未全局注册，:is
+需绑组件对象引用（变量）。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-023</strong>（★★ 知识点：K8-3） 子组件
+<code>&lt;slot :item="item" :index="i"&gt;</code>，父接收正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>#default="{ item, index }"</code></span></li><li><span class="option-label">B</span><span><code>#default="item"</code></span></li><li><span class="option-label">C</span><span><code>:default="{ item }"</code></span></li><li><span class="option-label">D</span><span><code>#item</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：解构接收多个：<code>#default="{ item, index }"</code>。A
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-024</strong>（★★ 知识点：K8-5）
+异步组件配置加载中/错误组件的选项是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>loadingComponent</code> /
+<code>errorComponent</code></span></li><li><span class="option-label">B</span><span><code>loading</code> / <code>error</code></span></li><li><span class="option-label">C</span><span><code>spinner</code> / <code>fail</code></span></li><li><span class="option-label">D</span><span><code>wait</code> /
+<code>catch</code></span></li></ul></div><blockquote>
+<p><strong>答案：A</strong>
+<strong>解析</strong>：<code>loadingComponent</code> 和
+<code>errorComponent</code> 配置加载/错误状态。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-025</strong>（★★ 知识点：K8-4） keep-alive
+缓存组件被激活时触发的生命周期是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>onMounted</code></span></li><li><span class="option-label">B</span><span><code>onActivated</code></span></li><li><span class="option-label">C</span><span><code>onCreated</code></span></li><li><span class="option-label">D</span><span><code>onShow</code></span></li></ul></div><blockquote>
+<p><strong>答案：B</strong> <strong>解析</strong>：keep-alive
+缓存组件激活触发 <code>onActivated</code>，离开触发
+<code>onDeactivated</code>。B 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-026</strong>（★★ 知识点：K8-1） 关于插槽，正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>插槽只能有一个</span></li><li><span class="option-label">B</span><span>默认插槽可设后备内容</span></li><li><span class="option-label">C</span><span>插槽内容在子组件渲染</span></li><li><span class="option-label">D</span><span>B
+和 C 都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong>
+<strong>解析</strong>：可多个具名插槽；默认插槽可设后备；内容在子组件
+<code>&lt;slot&gt;</code> 处渲染。D 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-027</strong>（★★ 知识点：K8-2） 默认插槽的隐式 name
+是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>default</code></span></li><li><span class="option-label">B</span><span><code>main</code></span></li><li><span class="option-label">C</span><span><code>content</code></span></li><li><span class="option-label">D</span><span>无 name</span></li></ul></div><blockquote>
+<p><strong>答案：A</strong> <strong>解析</strong>：未写 name 的插槽隐式
+name 为 <code>default</code>。A 正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-028</strong>（★★ 知识点：K8 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>默认插槽用 <code>&lt;slot&gt;</code></span></li><li><span class="option-label">B</span><span>具名插槽用 <code>#name</code></span></li><li><span class="option-label">C</span><span>作用域插槽子传数据</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-029</strong>（★★ 知识点：K8 综合） 说法错误的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>keep-alive 缓存组件</span></li><li><span class="option-label">B</span><span>异步组件按需加载</span></li><li><span class="option-label">C</span><span>动态组件用
+<code>&lt;component :is&gt;</code></span></li><li><span class="option-label">D</span><span>异步组件必须同步加载</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：D
+错误，异步组件按需（异步）加载。A、B、C 正确。选 D。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-030</strong>（★★ 知识点：K8 综合） 说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>作用域插槽可让父自定义子组件列表项渲染</span></li><li><span class="option-label">B</span><span>keep-alive 避免组件重建</span></li><li><span class="option-label">C</span><span>具名插槽适合多区域布局</span></li><li><span class="option-label">D</span><span>以上都对</span></li></ul></div><blockquote>
+<p><strong>答案：D</strong> <strong>解析</strong>：A、B、C 都正确。D
+正确。</p>
+</blockquote></section>
+<hr />
+<h3 id="12-多项选择题10-题">1.2 多项选择题（10 题）</h3>
+<section class="question-card"><p><strong>08-选择-031</strong>（★★ 知识点：K8 综合）
+插槽的类型有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>默认插槽</span></li><li><span class="option-label">B</span><span>具名插槽</span></li><li><span class="option-label">C</span><span>作用域插槽</span></li><li><span class="option-label">D</span><span>动态插槽</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
+是插槽类型。D 非标准称谓。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-032</strong>（★★ 知识点：K8-2）
+关于具名插槽，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>用 <code>name</code> 区分</span></li><li><span class="option-label">B</span><span>父用
+<code>#name</code> 指定</span></li><li><span class="option-label">C</span><span>可有多个</span></li><li><span class="option-label">D</span><span>只能有一个</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，可有多个。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-033</strong>（★★ 知识点：K8-3）
+关于作用域插槽，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>子向父传数据</span></li><li><span class="option-label">B</span><span>子用
+<code>&lt;slot :data="x"&gt;</code> 绑定</span></li><li><span class="option-label">C</span><span>父用
+<code>v-slot="{data}"</code> 接收</span></li><li><span class="option-label">D</span><span>父向子传内容</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+是默认/具名插槽功能。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-034</strong>（★★ 知识点：K8-4）
+关于动态组件，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>用
+<code>&lt;component :is&gt;</code></span></li><li><span class="option-label">B</span><span>适合标签页切换</span></li><li><span class="option-label">C</span><span>keep-alive
+可缓存状态</span></li><li><span class="option-label">D</span><span>必须用字符串名</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，可绑组件对象。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-035</strong>（★★ 知识点：K8-5）
+关于异步组件，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>用 defineAsyncComponent</span></li><li><span class="option-label">B</span><span>按需加载</span></li><li><span class="option-label">C</span><span>优化首屏</span></li><li><span class="option-label">D</span><span>必须用于所有组件</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，大组件才用。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-036</strong>（★★ 知识点：K8-1/K8-2）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;slot&gt;</code> 是占位</span></li><li><span class="option-label">B</span><span>后备内容在父不传时显示</span></li><li><span class="option-label">C</span><span>具名插槽用 name</span></li><li><span class="option-label">D</span><span>v-slot 可用于普通 div</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，只能 template/组件。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-037</strong>（★★ 知识点：K8 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>默认插槽隐式 name 为 default</span></li><li><span class="option-label">B</span><span><code>#header</code> 是 <code>v-slot:header</code> 简写</span></li><li><span class="option-label">C</span><span>作用域插槽可传多个数据</span></li><li><span class="option-label">D</span><span>keep-alive 销毁组件</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，keep-alive 缓存不销毁。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-038</strong>（★★ 知识点：K8 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>动态组件 <code>:is</code> 可绑组件对象</span></li><li><span class="option-label">B</span><span>keep-alive 缓存状态</span></li><li><span class="option-label">C</span><span>异步组件用动态 import</span></li><li><span class="option-label">D</span><span>插槽只能父传子</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，作用域插槽可子传父。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-039</strong>（★★ 知识点：K8 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>具名插槽适合 header/main/footer 布局</span></li><li><span class="option-label">B</span><span>作用域插槽适合列表自定义渲染</span></li><li><span class="option-label">C</span><span>keep-alive 适合频繁切换</span></li><li><span class="option-label">D</span><span>异步组件适合小组件</span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
+错误，适合大组件。选 A、B、C。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-选择-040</strong>（★★ 知识点：K8 综合）
+说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;slot&gt;</code> 可设后备内容</span></li><li><span class="option-label">B</span><span><code>#name</code> 指定具名插槽</span></li><li><span class="option-label">C</span><span>作用域插槽用
+<code>&lt;slot :data&gt;</code></span></li><li><span class="option-label">D</span><span>异步组件用
+<code>defineAsyncComponent</code></span></li></ul></div><blockquote>
+<p><strong>答案：A、B、C、D</strong>
+<strong>解析</strong>：四项均正确。全选。</p>
+</blockquote></section>
+<hr />
+<h2 id="二判断题共-20-题每题-1-分">二、判断题（共 20 题，每题 1
+分）</h2>
+<section class="question-card"><p><strong>08-判断-001</strong>（★）<code>&lt;slot&gt;</code>
+用于父组件向子组件传递内容。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-002</strong>（★）具名插槽用 <code>name</code>
+属性区分。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-003</strong>（★）作用域插槽只能父传子。（ ）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：可子传父（数据）。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-004</strong>（★）<code>&lt;component :is&gt;</code>
+用于动态组件。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-005</strong>（★）keep-alive 缓存组件状态。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-006</strong>（★）异步组件用
+<code>defineAsyncComponent</code>。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-007</strong>（★）<code>v-slot</code> 简写是
+<code>#</code>。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-008</strong>（★）默认插槽可设后备内容。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-009</strong>（★）异步组件按需加载优化首屏。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-010</strong>（★）动态组件不加 keep-alive
+切换会保留状态。（ ）</p><blockquote>
+<p><strong>答案：✗</strong>
+<strong>解析</strong>：会销毁重建，状态丢失。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-011</strong>（★）作用域插槽子组件用
+<code>&lt;slot :data&gt;</code> 传数据。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-012</strong>（★）<code>v-slot</code> 可用于普通
+<code>&lt;div&gt;</code>。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：只能
+template/组件。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-013</strong>（★★）具名插槽可有多个。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-014</strong>（★★）局部注册组件用于动态组件 :is
+需绑组件对象。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-015</strong>（★★）keep-alive 激活组件触发
+onActivated。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-016</strong>（★★）异步组件必须用于所有组件。（ ）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：大组件才用。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-017</strong>（★★）作用域插槽父用
+<code>#default="{ item }"</code> 解构。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-018</strong>（★★）默认插槽隐式 name 为 default。（
+）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-019</strong>（★★）异步组件可用动态
+<code>import()</code> 加载。（ ）</p><blockquote>
+<p><strong>答案：✓</strong> <strong>解析</strong>：正确。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-判断-020</strong>（★★）keep-alive 会销毁非活动组件。（
+）</p><blockquote>
+<p><strong>答案：✗</strong> <strong>解析</strong>：缓存而非销毁。</p>
+</blockquote></section>
+<hr />
+<h2 id="三填空题共-10-题每题-2-分">三、填空题（共 10 题，每题 2
+分）</h2>
+<section class="question-card"><p><strong>08-填空-001</strong>（★）默认插槽占位标签是
+<code>&lt;________&gt;</code>。</p><blockquote>
+<p><strong>答案：slot</strong> <strong>解析</strong>：slot。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-填空-002</strong>（★）具名插槽用 <code>________</code>
+属性区分。</p><blockquote>
+<p><strong>答案：name</strong> <strong>解析</strong>：name。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-填空-003</strong>（★）<code>v-slot:header</code> 简写为
+<code>________header</code>。</p><blockquote>
+<p><strong>答案：#</strong> <strong>解析</strong>：#header。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-填空-004</strong>（★）作用域插槽子组件用
+<code>&lt;slot :________="x"&gt;</code> 传数据。</p><blockquote>
+<p><strong>答案：数据名（如 item/data）</strong>
+<strong>解析</strong>：如 <code>:item="item"</code>。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-填空-005</strong>（★）动态组件用
+<code>&lt;________ :is="..."&gt;</code>。</p><blockquote>
+<p><strong>答案：component</strong>
+<strong>解析</strong>：component。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-填空-006</strong>（★）缓存组件状态用
+<code>&lt;________&gt;</code> 包裹动态组件。</p><blockquote>
+<p><strong>答案：keep-alive</strong>
+<strong>解析</strong>：keep-alive。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-填空-007</strong>（★）异步组件用
+<code>define________Component</code> 定义。</p><blockquote>
+<p><strong>答案：Async</strong>
+<strong>解析</strong>：defineAsyncComponent。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-填空-008</strong>（★）父不传内容时插槽显示的内容称为
+<code>________</code> 内容。</p><blockquote>
+<p><strong>答案：后备（fallback）</strong>
+<strong>解析</strong>：后备内容。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-填空-009</strong>（★）默认插槽隐式 name 是
+<code>________</code>。</p><blockquote>
+<p><strong>答案：default</strong> <strong>解析</strong>：default。</p>
+</blockquote></section>
+<section class="question-card"><p><strong>08-填空-010</strong>（★）keep-alive 缓存组件激活时触发
+<code>on________</code>。</p><blockquote>
+<p><strong>答案：Activated</strong>
+<strong>解析</strong>：onActivated。</p>
+</blockquote></section>
+<hr />
+<h2 id="四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</h2>
+<section class="question-card"><p><strong>08-论述-001</strong>（★★ 知识点：K8-1/K8-2，分值：8 分）
+<strong>题目</strong>：比较默认插槽与具名插槽，说明各自适用场景。</p>
+<p><strong>要求</strong>： （1）默认插槽（3 分）。 （2）具名插槽（3
+分）。 （3）适用场景（2 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）默认插槽（3 分）：无 name 的
+<code>&lt;slot&gt;</code>，父组件直接在标签内写内容传入；可设后备内容；只有一个默认位置。
+（2）具名插槽（3 分）：用 <code>name</code> 区分多个插槽，父用
+<code>#name</code> 指定内容放入哪个插槽；可有多个。 （3）场景（2
+分）：默认插槽适合单一内容替换（如卡片内容）；具名插槽适合多区域布局（header/main/footer）。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-论述-002</strong>（★★ 知识点：K8-3，分值：8 分）
+<strong>题目</strong>：什么是作用域插槽？解决什么问题？举例说明。</p>
+<p><strong>要求</strong>： （1）定义与解决的问题（4 分）。 （2）示例（4
+分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）（4
+分）：作用域插槽让子组件把数据传给插槽内容，父组件据此自定义渲染。解决"子组件有数据但渲染方式由父决定"的问题，如列表组件把每项数据传给父，父决定如何展示每项。
+（2）示例（4 分）：子
+<code>&lt;li v-for="item in items"&gt;&lt;slot :item="item"&gt;&lt;/slot&gt;&lt;/li&gt;</code>；父
+<code>&lt;List&gt;&lt;template #default="{ item }"&gt;&lt;b&gt;{{ item.name }}&lt;/b&gt;&lt;/template&gt;&lt;/List&gt;</code>。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-论述-003</strong>（★★ 知识点：K8-4，分值：8 分）
+<strong>题目</strong>：说明动态组件与 keep-alive 的作用，及 keep-alive
+解决的问题。</p>
+<p><strong>要求</strong>： （1）动态组件作用（3 分）。 （2）keep-alive
+作用（3 分）。 （3）keep-alive 解决的问题（2 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）动态组件（3 分）：用
+<code>&lt;component :is="组件"&gt;</code>
+动态切换渲染的组件，适合标签页等场景，比 v-if 切换更简洁。
+（2）keep-alive（3 分）：用 <code>&lt;keep-alive&gt;</code>
+包裹动态组件，缓存非活动组件实例，切换回来保留状态。 （3）解决问题（2
+分）：不加 keep-alive
+切换时组件销毁重建，状态（如表单输入）丢失；keep-alive
+缓存避免重建，保留状态。</p>
+<p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-论述-004</strong>（★★ 知识点：K8-5，分值：6 分）
+<strong>题目</strong>：什么是异步组件？使用场景与优势？</p>
+<p><strong>要求</strong>： （1）定义（2 分）。 （2）使用场景（2 分）。
+（3）优势（2 分）。</p><blockquote>
+<p><strong>参考答案</strong>： （1）定义（2 分）：异步组件用
+<code>defineAsyncComponent</code> 配合动态 <code>import()</code>
+定义，只在需要渲染时才加载组件代码。 （2）场景（2
+分）：体积大的组件、按需弹窗、路由级组件（路由懒加载）。 （3）优势（2
+分）：减小首屏打包体积，加快首屏加载；按需加载未用到的代码。</p>
+<p><strong>评分标准</strong>：共 6 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<h2 id="五程序阅读--补全题共-2-题">五、程序阅读 / 补全题（共 2 题）</h2>
+<section class="question-card"><p><strong>08-程序-001</strong>（★★ 知识点：K8-3，分值：10 分）
+<strong>题目</strong>：补全作用域插槽代码空缺。</p>
+<pre class="vue"><code>&lt;!-- 子组件 MyList.vue --&gt;
+&lt;template&gt;
+  &lt;ul&gt;
+    &lt;li v-for=&quot;item in items&quot; :key=&quot;item.id&quot;&gt;
+      &lt;slot :item=&quot;______A______&quot;&gt;&lt;/slot&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const items = ref([{ id: 1, name: &#39;A&#39; }, { id: 2, name: &#39;B&#39; }])
+&lt;/script&gt;</code></pre>
+<pre class="vue"><code>&lt;!-- 父组件 --&gt;
+&lt;template&gt;
+  &lt;MyList&gt;
+    &lt;template #______B______=&quot;{ ______C______ }&quot;&gt;
+      &lt;b&gt;{{ item.name }}&lt;/b&gt;
+    &lt;/template&gt;
+  &lt;/MyList&gt;
+&lt;/template&gt;</code></pre>
+<p><strong>要求</strong>： （1）A：子组件传的数据名。（3 分）
+（2）B：插槽名（默认）。（3 分） （3）C：解构接收的数据名。（4 分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>item</code>（3 分）：绑定
+item 数据。 （2）B = <code>default</code>（3 分）：默认插槽。 （3）C =
+<code>item</code>（4 分）：与子绑定的数据名一致。</p>
+<p><strong>评分标准</strong>：共 10 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-程序-002</strong>（★★ 知识点：K8-2/K8-4，分值：12 分）
+<strong>题目</strong>：补全动态标签页与具名插槽代码空缺。</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;button @click=&quot;current = CompA&quot;&gt;A&lt;/button&gt;
+  &lt;button @click=&quot;current = CompB&quot;&gt;B&lt;/button&gt;
+  &lt;keep-alive&gt;
+    &lt;component :______A______=&quot;current&quot; /&gt;
+  &lt;/keep-alive&gt;
+  &lt;Layout&gt;
+    &lt;template #______B______&gt;标题&lt;/template&gt;
+    &lt;p&gt;主体&lt;/p&gt;
+  &lt;/Layout&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { shallowRef } from &#39;vue&#39;
+import CompA from &#39;./CompA.vue&#39;
+import CompB from &#39;./CompB.vue&#39;
+import Layout from &#39;./Layout.vue&#39;
+const current = shallowRef(CompA)
+&lt;/script&gt;</code></pre>
+<p><strong>要求</strong>： （1）A：动态组件绑定的属性。（4 分）
+（2）B：具名插槽名（header）。（4 分） （3）说明 keep-alive 的作用。（4
+分）</p><blockquote>
+<p><strong>参考答案</strong>： （1）A = <code>is</code>（4
+分）：<code>:is</code>。 （2）B = <code>header</code>（4
+分）：<code>#header</code>。 （3）作用（4
+分）：缓存切换走的组件实例，避免销毁重建，切换回来保留状态。</p>
+<p><strong>评分标准</strong>：共 12 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<h2 id="六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</h2>
+<section class="question-card"><p><strong>08-编程-001</strong>（★★ 知识点：K8-1/K8-2，分值：15 分）
+<strong>题目</strong>：封装通用 Card 组件，含
+header（具名）、body（默认）、footer（具名）三插槽，并使用。</p>
+<p><strong>要求</strong>： （1）Card 组件三插槽。（8 分）
+（2）父组件使用三插槽。（7 分）</p><blockquote>
+<p><strong>参考答案</strong>： Card.vue：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div class=&quot;card&quot;&gt;
+    &lt;div class=&quot;header&quot;&gt;&lt;slot name=&quot;header&quot;&gt;&lt;/slot&gt;&lt;/div&gt;
+    &lt;div class=&quot;body&quot;&gt;&lt;slot&gt;&lt;/slot&gt;&lt;/div&gt;
+    &lt;div class=&quot;footer&quot;&gt;&lt;slot name=&quot;footer&quot;&gt;&lt;/slot&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;style scoped&gt;
+.card { border: 1px solid #ddd; border-radius: 8px; max-width: 400px; margin: 10px; }
+.header { padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; }
+.body { padding: 12px; }
+.footer { padding: 10px; border-top: 1px solid #eee; }
+&lt;/style&gt;</code></pre>
+<p>父：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;Card&gt;
+    &lt;template #header&gt;卡片标题&lt;/template&gt;
+    &lt;p&gt;卡片主体内容&lt;/p&gt;
+    &lt;template #footer&gt;卡片底部&lt;/template&gt;
+  &lt;/Card&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import Card from &#39;./Card.vue&#39;
+&lt;/script&gt;</code></pre>
+<p>评分：三插槽定义（8 分）；父用具名+默认（7 分）。</p>
+<p><strong>评分标准</strong>：共 15 分，按小题给分。</p>
+</blockquote></section>
+<hr />
+<section class="question-card"><p><strong>08-编程-002</strong>（★★★ 知识点：K8 综合，分值：20 分）
+<strong>题目</strong>：编写列表组件 TaskList，用作用域插槽把每个 task
+传给父，父自定义渲染（显示标题与状态标签）；并实现动态标签页切换
+TaskList 与一个 UserInfo 组件（keep-alive 缓存）。</p>
+<p><strong>要求</strong>： （1）TaskList 作用域插槽传 task。（6 分）
+（2）父自定义渲染 task。（5 分） （3）动态标签页 + keep-alive。（6 分）
+（4）完整可运行。（3 分）</p><blockquote>
+<p><strong>参考答案</strong>： TaskList.vue：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;ul&gt;
+    &lt;li v-for=&quot;t in tasks&quot; :key=&quot;t.id&quot;&gt;
+      &lt;slot :task=&quot;t&quot;&gt;&lt;/slot&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const tasks = ref([{ id: 1, title: &#39;任务一&#39;, status: &#39;进行中&#39; }, { id: 2, title: &#39;任务二&#39;, status: &#39;已完成&#39; }])
+&lt;/script&gt;</code></pre>
+<p>父 App.vue：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;button @click=&quot;current = TaskList&quot;&gt;任务&lt;/button&gt;
+  &lt;button @click=&quot;current = UserInfo&quot;&gt;用户&lt;/button&gt;
+  &lt;keep-alive&gt;
+    &lt;component :is=&quot;current&quot; /&gt;
+  &lt;/keep-alive&gt;
+  &lt;!-- 当 current 是 TaskList 时，自定义渲染 --&gt;
+  &lt;TaskList v-if=&quot;false&quot;&gt;
+    &lt;template #default=&quot;{ task }&quot;&gt;
+      &lt;b&gt;{{ task.title }}&lt;/b&gt; &lt;span class=&quot;tag&quot;&gt;{{ task.status }}&lt;/span&gt;
+    &lt;/template&gt;
+  &lt;/TaskList&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { shallowRef } from &#39;vue&#39;
+import TaskList from &#39;./TaskList.vue&#39;
+import UserInfo from &#39;./UserInfo.vue&#39;
+const current = shallowRef(TaskList)
+&lt;/script&gt;</code></pre>
+<p>说明：实际中作用域插槽使用应与动态组件结合，示例给出核心结构。评分：作用域插槽传
+task（6 分）；父 <code>#default="{ task }"</code> 自定义渲染（5
+分）；动态组件+keep-alive（6 分）；可运行（3 分）。</p>
+<p><strong>评分标准</strong>：共 20 分，按小题给分。代码须可运行。</p>
+</blockquote></section>
+<hr />
+<h2 id="题库统计与组卷说明">题库统计与组卷说明</h2>
+<h3 id="题量统计">题量统计</h3>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>数量</th>
+<th>分值</th>
+<th>小计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择题（单选 30 + 多选 10）</td>
+<td>40</td>
+<td>每题 2 分</td>
+<td>80 分</td>
+</tr>
+<tr>
+<td>判断题</td>
+<td>20</td>
+<td>每题 1 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>填空题</td>
+<td>10</td>
+<td>每题 2 分</td>
+<td>20 分</td>
+</tr>
+<tr>
+<td>论述/简答题</td>
+<td>4</td>
+<td>6~8 分</td>
+<td>30 分</td>
+</tr>
+<tr>
+<td>程序阅读/补全题</td>
+<td>2</td>
+<td>10~12 分</td>
+<td>22 分</td>
+</tr>
+<tr>
+<td>编程/接口设计题</td>
+<td>2</td>
+<td>15~20 分</td>
+<td>35 分</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>78</strong></td>
+<td>—</td>
+<td><strong>207 分</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="难度分布">难度分布</h3>
+<table>
+<thead>
+<tr>
+<th>难度</th>
+<th>题量（约）</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★ 基础</td>
+<td>40</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>★★ 提高</td>
+<td>34</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>★★★ 综合</td>
+<td>4</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="知识点覆盖">知识点覆盖</h3>
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>覆盖题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K8-1 默认插槽</td>
+<td>12</td>
+</tr>
+<tr>
+<td>K8-2 具名插槽</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K8-3 作用域插槽</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K8-4 动态组件</td>
+<td>16</td>
+</tr>
+<tr>
+<td>K8-5 异步组件</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本题库已确保每题答案唯一明确、无歧义选项，全部含解析，主观题含评分标准，可直接录入考试系统题库。</p>
+</blockquote>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+

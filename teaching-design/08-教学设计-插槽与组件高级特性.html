@@ -1,0 +1,378 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>插槽与组件高级特性</title>
+  <link rel="stylesheet" href="assets/course-html.css">
+  <link rel="stylesheet" href="assets/highlight-local.css">
+  <script src="assets/vue-sfc-highlight.js" defer></script>
+  <script src="assets/course-html.js" defer></script>
+</head>
+<body>
+  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="course-name">MVVM前端框架开发技术</div>
+      <div class="kicker">第 08 次课 · 教学设计</div>
+      <h1>插槽与组件高级特性</h1>
+      <p>教师教案与课堂组织 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
+        <span class="hero-chip"><b>课次</b>第 08 次课</span>
+        <span class="hero-chip"><b>主题</b>插槽与组件高级特性</span>
+      </div>
+    </div>
+  </header>
+  <button class="toc-float-toggle" type="button">目录</button>
+  <div class="layout">
+    <aside class="sidebar" aria-label="页面目录">
+      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+      <ul>
+<li><a href="#一课程信息">一、课程信息</a>
+<ul>
+</ul></li>
+<li><a href="#二教学目标">二、教学目标</a>
+<ul>
+<li><a href="#知识目标">知识目标</a></li>
+<li><a href="#能力目标">能力目标</a></li>
+<li><a href="#素质目标课程思政">素质目标（课程思政）</a></li>
+</ul></li>
+<li><a href="#三主要知识点纲要">三、主要知识点纲要</a>
+<ul>
+</ul></li>
+<li><a href="#四项目任务或案例任务">四、项目任务或案例任务</a>
+<ul>
+</ul></li>
+<li><a href="#五课堂互动设计">五、课堂互动设计</a>
+<ul>
+<li><a href="#互动-1代码阅读作用域插槽场景">互动 1：代码阅读——作用域插槽场景</a></li>
+<li><a href="#互动-2动态组件-vs-v-if">互动 2：动态组件 vs v-if</a></li>
+</ul></li>
+<li><a href="#六课程思政融入点">六、课程思政融入点</a>
+<ul>
+</ul></li>
+<li><a href="#七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5 分钟）</a>
+<ul>
+</ul></li>
+<li><a href="#八课后任务">八、课后任务</a>
+<ul>
+</ul></li>
+<li><a href="#九对应岗位能力或面试考点">九、对应岗位能力或面试考点</a>
+<ul>
+</ul></li>
+<li><a href="#十教学资料与题库索引">十、教学资料与题库索引</a>
+<ul>
+</ul></li>
+<li><a href="#附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</a>
+<ul>
+</ul></li>
+</ul>
+
+    </aside>
+    <main class="content">
+      <article class="article">
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 08 次课 <span>｜</span> <strong>文档：</strong>教学设计</p>
+<blockquote>
+<p>所属模块：M3 组件化开发 ｜ 课程：《MVVM前端框架开发技术》
+配套资料：见同文件夹内
+<code>教学资料.md</code>、<code>题库.md</code></p>
+</blockquote>
+<hr />
+<h2 id="一课程信息">一、课程信息</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>次序</td>
+<td>第 8 次课（全课程 16 次之第 8）</td>
+</tr>
+<tr>
+<td>学时</td>
+<td>2 学时（90 分钟）</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>理论课</td>
+</tr>
+<tr>
+<td>所属模块</td>
+<td>M3 组件化开发</td>
+</tr>
+<tr>
+<td>教学主题</td>
+<td>插槽与组件高级特性</td>
+</tr>
+<tr>
+<td>先修基础</td>
+<td>第 1~7 次课（组件基础、props/emits）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="二教学目标">二、教学目标</h2>
+<h3 id="知识目标">知识目标</h3>
+<ol type="1">
+<li>掌握默认插槽、具名插槽、作用域插槽。</li>
+<li>掌握动态组件 <code>&lt;component :is&gt;</code> 与
+<code>keep-alive</code>。</li>
+<li>了解异步组件 <code>defineAsyncComponent</code>。</li>
+</ol>
+<h3 id="能力目标">能力目标</h3>
+<ol type="1">
+<li>能用插槽封装通用组件（如 Card）。</li>
+<li>能用具名插槽实现多区域布局。</li>
+<li>能用作用域插槽把子组件数据传给插槽内容。</li>
+<li>能用动态组件实现标签页切换。</li>
+</ol>
+<h3 id="素质目标课程思政">素质目标（课程思政）</h3>
+<ol type="1">
+<li>培养复用意识——好组件是设计出来的，插槽是组件复用的关键。</li>
+<li>建立"开闭原则"思维——对扩展开放，对修改封闭。</li>
+</ol>
+<hr />
+<h2 id="三主要知识点纲要">三、主要知识点纲要</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>知识点</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K8-1</td>
+<td>默认插槽</td>
+<td><code>&lt;slot&gt;</code>；父向子传内容；后备内容</td>
+</tr>
+<tr>
+<td>K8-2</td>
+<td>具名插槽</td>
+<td><code>&lt;slot name="x"&gt;</code>；<code>v-slot:x</code>/<code>#x</code>；多区域</td>
+</tr>
+<tr>
+<td>K8-3</td>
+<td>作用域插槽</td>
+<td>子向父传数据；<code>&lt;slot :data="x"&gt;</code>；<code>v-slot="slotProps"</code></td>
+</tr>
+<tr>
+<td>K8-4</td>
+<td>动态组件</td>
+<td><code>&lt;component :is="组件"&gt;</code>；切换；<code>keep-alive</code>
+缓存</td>
+</tr>
+<tr>
+<td>K8-5</td>
+<td>异步组件</td>
+<td><code>defineAsyncComponent</code>；按需加载；性能优化</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="四项目任务或案例任务">四、项目任务或案例任务</h2>
+<p><strong>本次课任务</strong>：封装通用 Card
+组件（默认+具名插槽）、动态标签页（动态组件切换）。</p>
+<hr />
+<h2 id="五课堂互动设计">五、课堂互动设计</h2>
+<h3 id="互动-1代码阅读作用域插槽场景">互动
+1：代码阅读——作用域插槽场景</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>"列表组件如何让父组件自定义每项的渲染？"</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>用作用域插槽，子把 item 传给父，父决定渲染方式</td>
+</tr>
+</tbody>
+</table>
+<h3 id="互动-2动态组件-vs-v-if">互动 2：动态组件 vs v-if</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互动问题</td>
+<td>"动态组件切换与 v-if 切换有什么区别？keep-alive 有何用？"</td>
+</tr>
+<tr>
+<td>教师点评要点</td>
+<td>动态组件适合频繁切换；keep-alive 缓存组件状态避免重建</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六课程思政融入点">六、课程思政融入点</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>融入点</td>
+<td>复用意识——好组件是设计出来的</td>
+</tr>
+<tr>
+<td>技术关联</td>
+<td>插槽让组件内容可定制，极大提升复用性</td>
+</tr>
+<tr>
+<td>引导问题</td>
+<td>"没有插槽，你怎么做一个通用的卡片组件？"</td>
+</tr>
+<tr>
+<td>预期价值目标</td>
+<td>培养复用与开闭原则的工程思维</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="七课堂练习或随堂测验5-分钟">七、课堂练习或随堂测验（5
+分钟）</h2>
+<p><strong>判断题</strong>：</p>
+<ol type="1">
+<li><code>&lt;slot&gt;</code> 用于父组件向子组件传递内容。（✓）</li>
+<li>具名插槽用 <code>name</code> 属性区分。（✓）</li>
+<li>作用域插槽只能父传子。（✗）</li>
+<li><code>&lt;component :is&gt;</code> 用于动态组件。（✓）</li>
+</ol>
+<blockquote>
+<p>详细题目见 <code>题库.md</code>。</p>
+</blockquote>
+<hr />
+<h2 id="八课后任务">八、课后任务</h2>
+<ol type="1">
+<li>通读 <code>教学资料.md</code>，掌握插槽与动态/异步组件。</li>
+<li>完善通用 Card 组件：增加具名插槽 header/footer。</li>
+<li>思考：作用域插槽的应用场景（200 字）。</li>
+</ol>
+<hr />
+<h2 id="九对应岗位能力或面试考点">九、对应岗位能力或面试考点</h2>
+<table>
+<thead>
+<tr>
+<th>岗位能力/面试考点</th>
+<th>对应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>插槽类型与区别（高频）</td>
+<td>K8-1~K8-3</td>
+</tr>
+<tr>
+<td>作用域插槽用法</td>
+<td>K8-3</td>
+</tr>
+<tr>
+<td>动态组件与 keep-alive</td>
+<td>K8-4</td>
+</tr>
+<tr>
+<td>异步组件按需加载</td>
+<td>K8-5</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="十教学资料与题库索引">十、教学资料与题库索引</h2>
+<table>
+<thead>
+<tr>
+<th>资料类型</th>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学生复习资料</td>
+<td><code>教学资料.md</code></td>
+<td>5 个知识点详解 + Card/标签页综合示例 + 知识结构图</td>
+</tr>
+<tr>
+<td>考试题库</td>
+<td><code>题库.md</code></td>
+<td>78 题，含答案解析与评分标准</td>
+</tr>
+<tr>
+<td>课程总览</td>
+<td><code>../00 课程设计总览.md</code></td>
+<td>课程整体框架</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="附课堂时间分配建议90-分钟">附：课堂时间分配建议（90 分钟）</h2>
+<table>
+<thead>
+<tr>
+<th>时段</th>
+<th>内容</th>
+<th>时长</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0~20 min</td>
+<td>K8-1 默认插槽 + K8-2 具名插槽</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>20~45 min</td>
+<td>K8-3 作用域插槽 + 互动 1</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td>45~65 min</td>
+<td>K8-4 动态组件 + keep-alive + 互动 2</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>65~80 min</td>
+<td>K8-5 异步组件 + 项目任务</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>80~85 min</td>
+<td>随堂练习</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>85~90 min</td>
+<td>小结 + 课后任务</td>
+<td>5 min</td>
+</tr>
+</tbody>
+</table>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
+
+
+
+
