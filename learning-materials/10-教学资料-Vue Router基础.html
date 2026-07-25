@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -418,16 +418,36 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb15
 <hr />
 <h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
 <div class="visual">
-  <div class="visual-title">图示 1：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">第 10 次课：Vue Router 基础</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K10-1 概念与安装（SPA 路由，hash/history，createRouter）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K10-2 配置与组件（routes，router-view，router-link，懒加载）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K10-3 useRouter/useRoute（编程式导航，获取参数）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K10-4 动态路由（:id，route.params，props:true）</span>
-<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K10-5 嵌套路由（children，子 router-view，路径拼接）</span>
+  <div class="visual-title">图示 1：Vue Router 基础知识地图</div>
+  <div class="edu-diagram">
+    <div class="diagram-grid three">
+    <div class="diagram-card">
+      <strong>K10-1</strong>
+      <h4>概念与安装</h4>
+      <p>理解 SPA 路由、hash/history 模式，并用 <code>createRouter</code> 创建路由。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K10-2</strong>
+      <h4>配置与组件</h4>
+      <p>配置 routes，使用 <code>router-view</code> 和 <code>router-link</code> 承载页面切换。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K10-3</strong>
+      <h4>组合式 API</h4>
+      <p><code>useRouter</code> 负责跳转，<code>useRoute</code> 读取当前路由信息。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K10-4</strong>
+      <h4>动态路由</h4>
+      <p><code>:id</code> 携带参数，页面通过 params 或 props 获取数据。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K10-5</strong>
+      <h4>嵌套路由</h4>
+      <p>children 描述父子页面关系，子页面由子 <code>router-view</code> 显示。</p>
+    </div>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <table>
 <thead>

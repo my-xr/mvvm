@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -126,14 +126,17 @@
 </table>
 <h4 id="目录结构">目录结构</h4>
 <div class="visual">
-  <div class="visual-title">图示 1：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">src/stores/</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> user.js</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> project.js</span>
-<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> app.js</span>
+  <div class="visual-title">图示 1：src/stores 状态模块目录</div>
+  <div class="edu-diagram">
+    <div class="diagram-code-tree">
+      <ul>
+        <li><span class="tree-label">src/stores/</span></li>
+        <li>user.js <span class="tree-comment"># 登录用户、Token、角色权限</span></li>
+        <li>project.js <span class="tree-comment"># 项目列表、项目详情与筛选条件</span></li>
+        <li>app.js <span class="tree-comment"># 全局加载态、菜单、系统配置</span></li>
+      </ul>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <h4 id="小结">小结</h4>
 <p>多 store 按职责分类，单一职责，目录集中在
@@ -360,16 +363,36 @@ store，组件中调用；切换侧边栏后刷新页面状态保留（持久化
 <hr />
 <h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
 <div class="visual">
-  <div class="visual-title">图示 2：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">第 13 次课：Pinia 进阶与状态管理实践</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K13-1 多 store（user/project/app 分类）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K13-2 store 间引用（action 内 useXxxStore）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K13-3 状态持久化（localStorage / $subscribe / 插件）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K13-4 $reset / $patch / $subscribe</span>
-<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K13-5 综合实践（CTTS 三 store 方案）</span>
+  <div class="visual-title">图示 2：Pinia 进阶知识地图</div>
+  <div class="edu-diagram">
+    <div class="diagram-grid three">
+    <div class="diagram-card">
+      <strong>K13-1</strong>
+      <h4>多 store 拆分</h4>
+      <p>按 user、project、app 分类，让状态职责不混在一起。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K13-2</strong>
+      <h4>store 间引用</h4>
+      <p>在 action 内调用其他 store，完成跨模块协作。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K13-3</strong>
+      <h4>状态持久化</h4>
+      <p>通过 localStorage、<code>$subscribe</code> 或插件保留关键状态。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K13-4</strong>
+      <h4>维护 API</h4>
+      <p><code>$reset</code>、<code>$patch</code>、<code>$subscribe</code> 管理重置、批量更新和订阅。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K13-5</strong>
+      <h4>CTTS 实践</h4>
+      <p>用三类 store 支撑登录、项目数据和全局 UI 状态。</p>
+    </div>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <table>
 <thead>

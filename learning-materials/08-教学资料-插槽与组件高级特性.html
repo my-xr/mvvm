@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -348,16 +348,36 @@ TaskList.vue、UserInfo.vue，点击按钮切换组件；keep-alive 缓存状态
 <hr />
 <h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
 <div class="visual">
-  <div class="visual-title">图示 1：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">第 8 次课：插槽与组件高级特性</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K8-1 默认插槽（&lt;slot&gt;，父传内容，后备内容）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K8-2 具名插槽（name，#name，多区域）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K8-3 作用域插槽（子传数据给父，v-slot=&quot;{x}&quot;）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K8-4 动态组件（&lt;component :is&gt;，keep-alive 缓存）</span>
-<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K8-5 异步组件（defineAsyncComponent，按需加载）</span>
+  <div class="visual-title">图示 1：插槽与组件高级特性知识地图</div>
+  <div class="edu-diagram">
+    <div class="diagram-grid three">
+    <div class="diagram-card">
+      <strong>K8-1</strong>
+      <h4>默认插槽</h4>
+      <p><code>&lt;slot&gt;</code> 接收父组件内容，并可设置后备内容。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K8-2</strong>
+      <h4>具名插槽</h4>
+      <p>通过 name 与 <code>#name</code> 把页面拆成多个内容区域。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K8-3</strong>
+      <h4>作用域插槽</h4>
+      <p>子组件把数据交给父组件模板，父组件决定如何展示。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K8-4</strong>
+      <h4>动态组件</h4>
+      <p><code>&lt;component :is&gt;</code> 切换组件，配合 keep-alive 做缓存。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K8-5</strong>
+      <h4>异步组件</h4>
+      <p><code>defineAsyncComponent</code> 按需加载，降低首屏负担。</p>
+    </div>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <table>
 <thead>

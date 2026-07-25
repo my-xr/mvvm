@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -405,16 +405,36 @@ state</strong>：<code>userStore.$reset()</code>。</li>
 <hr />
 <h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
 <div class="visual">
-  <div class="visual-title">图示 1：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">第 12 次课：Pinia 状态管理基础</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K12-1 Pinia 简介（Vue3 推荐，无 mutations，对比 Vuex）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K12-2 defineStore（id + 配置，选项式/组合式）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K12-3 state（函数返回，直接改/$patch，storeToRefs 解构）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K12-4 getters（计算状态，缓存，this 互访）</span>
-<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K12-5 actions（方法，this 访问 state，可异步）</span>
+  <div class="visual-title">图示 1：Pinia 基础知识地图</div>
+  <div class="edu-diagram">
+    <div class="diagram-grid three">
+    <div class="diagram-card">
+      <strong>K12-1</strong>
+      <h4>Pinia 简介</h4>
+      <p>Vue3 推荐状态库，没有 mutations，写法比 Vuex 更轻。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K12-2</strong>
+      <h4>defineStore</h4>
+      <p>通过 id 加配置创建 store，支持选项式和组合式写法。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K12-3</strong>
+      <h4>state</h4>
+      <p>状态由函数返回，可直接修改或用 <code>$patch</code> 批量更新。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K12-4</strong>
+      <h4>getters</h4>
+      <p>类似计算属性，缓存派生状态，也能在 getter 间互访。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K12-5</strong>
+      <h4>actions</h4>
+      <p>封装业务方法，可通过 this 访问状态，也支持异步请求。</p>
+    </div>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <table>
 <thead>
