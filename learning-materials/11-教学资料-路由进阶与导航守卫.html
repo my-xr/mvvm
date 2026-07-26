@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -180,15 +180,31 @@ onBeforeRouteUpdate((to, from) =&gt; {
 &lt;/script&gt;</code></pre>
 <h4 id="守卫执行顺序">守卫执行顺序</h4>
 <div class="visual">
-  <div class="visual-title">图示 1：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">导航触发</span>
-<span class="diagram-line">  <span class="arrow-token">→</span> beforeEach（全局前置）</span>
-<span class="diagram-line">  <span class="arrow-token">→</span> beforeEnter（路由独享）</span>
-<span class="diagram-line">  <span class="arrow-token">→</span> 组件内 beforeRouteEnter</span>
-<span class="diagram-line">  <span class="arrow-token">→</span> afterEach（全局后置）</span>
+  <div class="visual-title">图示 1：导航守卫执行顺序</div>
+  <div class="edu-diagram">
+    <div class="diagram-steps">
+    <div class="diagram-step" data-step="1">
+      <h4>导航触发</h4>
+      <p>用户点击链接、调用 push，或地址栏发生变化。</p>
+    </div>
+    <div class="diagram-step" data-step="2">
+      <h4>beforeEach</h4>
+      <p>全局前置守卫先做登录、角色等通用判断。</p>
+    </div>
+    <div class="diagram-step" data-step="3">
+      <h4>beforeEnter</h4>
+      <p>路由独享守卫处理当前路由的专属规则。</p>
+    </div>
+    <div class="diagram-step" data-step="4">
+      <h4>beforeRouteEnter</h4>
+      <p>组件进入前守卫处理组件级准备逻辑。</p>
+    </div>
+    <div class="diagram-step" data-step="5">
+      <h4>afterEach</h4>
+      <p>全局后置守卫收尾，例如记录日志或设置标题。</p>
+    </div>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <h4 id="易错点-1">易错点</h4>
 <ul>
@@ -374,16 +390,36 @@ admin 访问 <code>/admin/users</code> 跳回 <code>/projects</code>。</p>
 <hr />
 <h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
 <div class="visual">
-  <div class="visual-title">图示 2：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">第 11 次课：路由进阶与导航守卫</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K11-1 全局守卫（beforeEach/afterEach，返回值控制）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K11-2 独享守卫（beforeEnter）+ 组件内（onBeforeRouteLeave/Update）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K11-3 meta 元信息（权限/角色/标题）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K11-4 路由懒加载（() <span class="arrow-token">=&gt;</span> import()，代码分割）</span>
-<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K11-5 重定向 redirect + 404（:pathMatch(.*)*）</span>
+  <div class="visual-title">图示 2：路由进阶知识地图</div>
+  <div class="edu-diagram">
+    <div class="diagram-grid three">
+    <div class="diagram-card">
+      <strong>K11-1</strong>
+      <h4>全局守卫</h4>
+      <p><code>beforeEach</code> / <code>afterEach</code> 处理全站级导航控制。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K11-2</strong>
+      <h4>独享与组件内守卫</h4>
+      <p><code>beforeEnter</code> 管当前路由，组件内守卫处理离开和更新。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K11-3</strong>
+      <h4>meta 元信息</h4>
+      <p>把权限、角色、标题等放入 meta，守卫从 <code>to.meta</code> 读取。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K11-4</strong>
+      <h4>路由懒加载</h4>
+      <p><code>() =&gt; import()</code> 让路由组件按需加载，形成代码分割。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K11-5</strong>
+      <h4>重定向与 404</h4>
+      <p><code>redirect</code> 处理跳转，<code>:pathMatch(.*)*</code> 兜底未匹配页面。</p>
+    </div>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <table>
 <thead>

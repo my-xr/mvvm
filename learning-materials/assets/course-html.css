@@ -1142,3 +1142,33 @@ body{background:linear-gradient(180deg,#eaf1ff 0,#f7f9fc 360px,#f7f9fc 100%)}
   .image-card{box-shadow:none;break-inside:avoid}
 }
 /* ===== END Course image system ===== */
+
+/* ===== Course semantic diagram system ===== */
+.edu-diagram{display:grid;gap:18px}
+.diagram-grid{display:grid;grid-template-columns:repeat(var(--cols,3),minmax(0,1fr));gap:14px;align-items:stretch}
+.diagram-grid.two{--cols:2}.diagram-grid.three{--cols:3}.diagram-grid.four{--cols:4}.diagram-grid.five{--cols:5}
+.diagram-card,.diagram-panel,.diagram-step,.diagram-note-card{background:#fff;border:1px solid #dbeafe;border-radius:16px;padding:15px 16px;box-shadow:0 8px 20px rgba(15,23,42,.045);min-width:0}
+.diagram-card.good,.diagram-panel.good{border-color:#bbf7d0;background:#f0fdf4}.diagram-card.warn,.diagram-panel.warn{border-color:#fed7aa;background:#fff7ed}.diagram-card.neutral{border-color:#e2e8f0;background:#f8fafc}
+.diagram-card h4,.diagram-panel h4{margin:0 0 8px;color:#0f172a;font-size:1.02rem;line-height:1.35}.diagram-card p,.diagram-panel p{margin:0;color:#64748b;font-size:.92rem;line-height:1.55}
+.diagram-badge{display:inline-flex;align-items:center;margin:0 0 8px;padding:3px 9px;border-radius:999px;background:#e0f2fe;color:#0369a1;font-size:.78rem;font-weight:850}
+.diagram-badge.good{background:#dcfce7;color:#166534}.diagram-badge.warn{background:#ffedd5;color:#9a3412}
+.diagram-flow{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap}.diagram-flow .diagram-card{flex:1 1 160px}
+.flow-arrow{align-self:center;flex:0 0 auto;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#2563eb;color:#fff;font-weight:900;box-shadow:0 8px 18px rgba(37,99,235,.22)}
+.diagram-callout{padding:12px 14px;border-radius:14px;background:#f8fbff;border:1px dashed #93c5fd;color:#334155;font-weight:750}
+.diagram-steps{display:grid;gap:10px;counter-reset:diagramStep}.diagram-steps .diagram-step{position:relative;padding-left:52px;text-align:left}.diagram-steps .diagram-step:before{counter-increment:diagramStep;content:counter(diagramStep);position:absolute;left:15px;top:15px;width:26px;height:26px;display:grid;place-items:center;border-radius:50%;background:#2563eb;color:#fff;font-size:.78rem;font-weight:900}
+.diagram-code-tree{padding:16px;border-radius:16px;background:#0f172a;color:#e5edf9;font-family:"Cascadia Code",Consolas,monospace;font-size:.92rem;line-height:1.65;overflow:auto}.diagram-code-tree ul{list-style:none;margin:0;padding-left:18px}.diagram-code-tree>ul{padding-left:0}.diagram-code-tree li{margin:2px 0;color:#dbeafe}.diagram-code-tree .tree-label{color:#93c5fd;font-weight:800}.diagram-code-tree .tree-comment{color:#94a3b8}
+.sequence-grid{display:grid;grid-template-columns:repeat(var(--lanes,3),minmax(0,1fr));gap:10px;align-items:stretch}.sequence-lane{display:grid;gap:8px;align-content:start;padding:12px;border:1px solid #dbeafe;border-radius:14px;background:#fff}.sequence-lane h4{margin:0 0 4px;color:#1d4ed8;font-size:.98rem;text-align:center}.sequence-event{padding:9px 10px;border-radius:10px;background:#f8fafc;border:1px solid #e2e8f0;color:#475569;font-size:.9rem;line-height:1.45}.sequence-event.active{background:#eff6ff;border-color:#bfdbfe;color:#1e3a8a;font-weight:800}.sequence-event.warn{background:#fff7ed;border-color:#fed7aa;color:#9a3412;font-weight:800}
+.diagram-code{margin:0;padding:13px 14px;border-radius:12px;background:#0f172a;color:#e5edf9;font-family:"Cascadia Code",Consolas,monospace;font-size:.9rem;line-height:1.65;white-space:pre-wrap;overflow:auto}
+@media (max-width:900px){.diagram-grid,.diagram-grid.two,.diagram-grid.three,.diagram-grid.four,.diagram-grid.five,.sequence-grid{grid-template-columns:1fr 1fr}.flow-arrow{transform:rotate(90deg);margin:auto}}
+@media (max-width:640px){.diagram-grid,.diagram-grid.two,.diagram-grid.three,.diagram-grid.four,.diagram-grid.five,.sequence-grid{grid-template-columns:1fr}}
+/* ===== END Course semantic diagram system ===== */
+
+/* ===== MVVM stable chain diagrams ===== */
+.diagram-chain{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:stretch;counter-reset:chainStep}
+.diagram-chain .diagram-card{position:relative;display:flex;flex-direction:column;gap:8px}
+.diagram-chain .diagram-card:before{counter-increment:chainStep;content:counter(chainStep);display:grid;place-items:center;width:28px;height:28px;border-radius:10px;background:linear-gradient(135deg,#2563eb,#0f766e);color:#fff;font-weight:900;font-family:"Cascadia Code",Consolas,monospace;font-size:.86rem}
+.diagram-chain .diagram-card strong{display:inline-flex;width:max-content;max-width:100%;padding:3px 9px;border-radius:999px;background:#e0f2fe;color:#0369a1;font-size:.78rem;line-height:1.35}
+.diagram-chain .diagram-card h4{margin:0}
+.diagram-chain .diagram-card p{margin:0}
+@media (max-width:980px){.diagram-chain{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.diagram-chain{grid-template-columns:1fr}}

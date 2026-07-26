@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -395,16 +395,36 @@ button { padding: 6px 14px; margin: 0 6px; }
 <hr />
 <h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
 <div class="visual">
-  <div class="visual-title">图示 1：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">第 6 次课：条件渲染、列表渲染与样式绑定</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K6-1 条件渲染（v-if/v-else/v-show，频繁切用 show）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K6-2 v-for + :key（唯一稳定，不用 index）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K6-3 列表更新检测（变异触发，非变异替换，Vue3 监测索引）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K6-4 :class（对象/数组/混合，与普通 class 共存）</span>
-<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K6-5 :style（对象驼峰/短横线引号，值带单位）</span>
+  <div class="visual-title">图示 1：渲染与样式绑定知识地图</div>
+  <div class="edu-diagram">
+    <div class="diagram-grid three">
+    <div class="diagram-card">
+      <strong>K6-1</strong>
+      <h4>条件渲染</h4>
+      <p><code>v-if</code>、<code>v-else</code>、<code>v-show</code> 根据切换频率选择。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K6-2</strong>
+      <h4>列表 key</h4>
+      <p><code>v-for</code> 必须搭配唯一稳定的 <code>:key</code>，避免用 index。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K6-3</strong>
+      <h4>列表更新检测</h4>
+      <p>变异方法触发更新，非变异方法用新数组替换；Vue3 可监测索引。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K6-4</strong>
+      <h4>class 绑定</h4>
+      <p>对象、数组、混合写法都能和普通 class 共存。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K6-5</strong>
+      <h4>style 绑定</h4>
+      <p>样式对象支持驼峰或带引号短横线，数值通常要带单位。</p>
+    </div>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <table>
 <thead>

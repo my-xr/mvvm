@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -177,16 +177,22 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build</span></code></pre></div>
 <h4 id="构建产物">构建产物</h4>
 <div class="visual">
-  <div class="visual-title">图示 1：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">dist/</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> index.html</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> assets/</span>
-<span class="diagram-line"><span class="tree-token">│</span>   <span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> index-xxxx.js      # 打包后的 JS（含哈希）</span>
-<span class="diagram-line"><span class="tree-token">│</span>   <span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> index-xxxx.css     # 打包后的 CSS</span>
-<span class="diagram-line"><span class="tree-token">│</span>   <span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> ...                # 其他资源</span>
+  <div class="visual-title">图示 1：Vite 构建产物 dist 目录</div>
+  <div class="edu-diagram">
+    <div class="diagram-code-tree">
+      <ul>
+        <li><span class="tree-label">dist/</span></li>
+        <li>index.html <span class="tree-comment"># 部署入口 HTML</span></li>
+        <li>assets/
+          <ul>
+            <li>index-xxxx.js <span class="tree-comment"># 打包后的 JS，文件名带哈希</span></li>
+            <li>index-xxxx.css <span class="tree-comment"># 打包后的 CSS</span></li>
+            <li>... <span class="tree-comment"># 图片、字体等其他静态资源</span></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <h4 id="预览构建结果">预览构建结果</h4>
 <div class="sourceCode" id="cb4"><pre
@@ -287,11 +293,43 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 方式二：上传到 Vercel/Netlify</span></span></code></pre></div>
 <h3 id="答辩演示流程">答辩演示流程</h3>
 <div class="visual">
-  <div class="visual-title">图示 2：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">登录 <span class="arrow-token">→</span> 项目列表 <span class="arrow-token">→</span> 任务列表 <span class="arrow-token">→</span> 任务详情 <span class="arrow-token">→</span> 成果提交 <span class="arrow-token">→</span> 评审 <span class="arrow-token">→</span> 用户管理 <span class="arrow-token">→</span> 退出</span>
+  <div class="visual-title">图示 2：CTTS 前端业务流程</div>
+  <div class="edu-diagram">
+    <div class="diagram-steps">
+    <div class="diagram-step" data-step="1">
+      <h4>登录</h4>
+      <p>获取身份信息与 Token，进入业务系统。</p>
+    </div>
+    <div class="diagram-step" data-step="2">
+      <h4>项目列表</h4>
+      <p>查看项目集合，进入指定项目上下文。</p>
+    </div>
+    <div class="diagram-step" data-step="3">
+      <h4>任务列表</h4>
+      <p>按项目查看任务并筛选当前工作项。</p>
+    </div>
+    <div class="diagram-step" data-step="4">
+      <h4>任务详情</h4>
+      <p>确认任务要求、状态和提交入口。</p>
+    </div>
+    <div class="diagram-step" data-step="5">
+      <h4>成果提交</h4>
+      <p>填写成果信息并提交到接口。</p>
+    </div>
+    <div class="diagram-step" data-step="6">
+      <h4>评审</h4>
+      <p>管理员或教师完成审核反馈。</p>
+    </div>
+    <div class="diagram-step" data-step="7">
+      <h4>用户管理</h4>
+      <p>维护账号、角色和权限。</p>
+    </div>
+    <div class="diagram-step" data-step="8">
+      <h4>退出</h4>
+      <p>清理登录状态，回到登录入口。</p>
+    </div>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <hr />
 <h2 id="四项目交付验收标准">四、项目交付验收标准</h2>
@@ -332,16 +370,36 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="
 <hr />
 <h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
 <div class="visual">
-  <div class="visual-title">图示 3：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">第 16 次课：综合项目实践二</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K16-1 路由整合（全路由表 + meta + 守卫 + 404）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K16-2 状态整合（三 store 接入页面）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K16-3 接口联调（Mock 替换真实接口）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K16-4 vite build（构建 dist + 预览）</span>
-<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K16-5 部署与答辩（Nginx/平台 + 演示）</span>
+  <div class="visual-title">图示 3：项目整合与部署知识地图</div>
+  <div class="edu-diagram">
+    <div class="diagram-grid three">
+    <div class="diagram-card">
+      <strong>K16-1</strong>
+      <h4>路由整合</h4>
+      <p>全路由表、meta、守卫与 404 形成完整访问控制。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K16-2</strong>
+      <h4>状态整合</h4>
+      <p>三类 store 接入页面，让用户、项目和全局状态协同。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K16-3</strong>
+      <h4>接口联调</h4>
+      <p>用真实接口逐步替换 Mock，检查请求、响应和错误处理。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K16-4</strong>
+      <h4>vite build</h4>
+      <p>构建 dist 产物，并通过预览确认生产效果。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K16-5</strong>
+      <h4>部署与答辩</h4>
+      <p>部署到 Nginx 或平台，准备演示路径和答辩说明。</p>
+    </div>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <table>
 <thead>

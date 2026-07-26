@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -403,16 +403,36 @@ v-model。</li>
 <hr />
 <h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
 <div class="visual">
-  <div class="visual-title">图示 1：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">第 7 次课：组件基础与组件通信</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K7-1 组件注册（局部 import 即用 / 全局 app.component）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K7-2 props（defineProps，类型/默认/必填/校验，单向流）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K7-3 emits（defineEmits + emit 触发，子传父）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K7-4 父子通信（父传子 props，子传父 emits）</span>
-<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K7-5 组件 v-model（modelValue + update:modelValue / defineModel）</span>
+  <div class="visual-title">图示 1：组件基础与通信知识地图</div>
+  <div class="edu-diagram">
+    <div class="diagram-grid three">
+    <div class="diagram-card">
+      <strong>K7-1</strong>
+      <h4>组件注册</h4>
+      <p>局部组件通过 import 即用，全局组件通过 <code>app.component</code> 注册。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K7-2</strong>
+      <h4>props</h4>
+      <p><code>defineProps</code> 描述类型、默认值、必填和校验，保持单向数据流。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K7-3</strong>
+      <h4>emits</h4>
+      <p><code>defineEmits</code> 声明事件，子组件通过 emit 把变化交给父组件。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K7-4</strong>
+      <h4>父子通信</h4>
+      <p>父传子用 props，子传父用 emits，职责边界清晰。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K7-5</strong>
+      <h4>组件 v-model</h4>
+      <p>基于 <code>modelValue</code> 与 <code>update:modelValue</code>，也可用 <code>defineModel</code>。</p>
+    </div>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <table>
 <thead>

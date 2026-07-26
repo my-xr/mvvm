@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -153,7 +153,7 @@ Proxy 代理对象，直接访问属性无需 <code>.value</code>。</p>
 import { reactive } from &#39;vue&#39;
 const state = reactive({ name: &#39;张三&#39;, age: 18 })
 // 直接访问属性，无需 .value
-state.age++                      // ✅ 正确
+state.age++                      // ? 正确
 &lt;/script&gt;</code></pre>
 <h4 id="ref-vs-reactive">ref vs reactive</h4>
 <table>
@@ -404,12 +404,15 @@ K4-6：响应式原理（Proxy）</h3>
 拦截，从而实现"依赖收集"与"触发更新"。</p>
 <h4 id="原理简化">原理（简化）</h4>
 <div class="visual">
-  <div class="visual-title">图示 1：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">读取属性（get） <span class="tree-token">─</span><span class="tree-token">─</span><span class="arrow-token">▶</span> 收集依赖（谁用了这个属性）</span>
-<span class="diagram-line">修改属性（set） <span class="tree-token">─</span><span class="tree-token">─</span><span class="arrow-token">▶</span> 触发更新（通知依赖重新执行/渲染）</span>
+  <div class="visual-title">图示 1：Vue 响应式读写触发链</div>
+  <div class="edu-diagram">
+    <div class="diagram-chain">
+      <div class="diagram-card"><strong>get</strong><h4>读取属性</h4><p>组件渲染或副作用读取响应式属性，Proxy 拦截读取动作。</p></div>
+      <div class="diagram-card"><strong>track</strong><h4>收集依赖</h4><p>记录“谁用了这个属性”，建立属性到副作用的订阅关系。</p></div>
+      <div class="diagram-card"><strong>set</strong><h4>修改属性</h4><p>数据变化进入代理拦截逻辑，Vue 判断是否需要通知更新。</p></div>
+      <div class="diagram-card"><strong>trigger</strong><h4>触发更新</h4><p>通知相关依赖重新执行或重新渲染，下一轮渲染再次读取并收集依赖。</p></div>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <p>简化示意：</p>
 <div class="sourceCode" id="cb9"><pre
@@ -533,17 +536,41 @@ Vue 源码 <code>@vue/reactivity</code>。</li>
 <hr />
 <h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
 <div class="visual">
-  <div class="visual-title">图示 2：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">第 4 次课：响应式系统</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K4-1 ref（基本类型，.value，模板解包）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K4-2 reactive（对象，直接访问，解构用 toRefs）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K4-3 computed（派生数据，缓存，纯函数）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K4-4 watch（显式源，新旧值，deep/immediate）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K4-5 watchEffect（立即执行，自动收集，无旧值）</span>
-<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K4-6 原理（Proxy，依赖收集与触发）</span>
+  <div class="visual-title">图示 2：响应式系统知识地图</div>
+  <div class="edu-diagram">
+    <div class="diagram-grid three">
+    <div class="diagram-card">
+      <strong>K4-1</strong>
+      <h4>ref</h4>
+      <p>适合基本类型，脚本中用 <code>.value</code>，模板中自动解包。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K4-2</strong>
+      <h4>reactive</h4>
+      <p>适合对象和数组，直接访问属性；解构时配合 <code>toRefs</code>。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K4-3</strong>
+      <h4>computed</h4>
+      <p>声明派生数据，具备缓存，保持纯函数思路。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K4-4</strong>
+      <h4>watch</h4>
+      <p>显式监听数据源，可拿新旧值，支持 deep 与 immediate。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K4-5</strong>
+      <h4>watchEffect</h4>
+      <p>立即执行并自动收集依赖，适合不关心旧值的副作用。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K4-6</strong>
+      <h4>Proxy 原理</h4>
+      <p>通过代理完成依赖收集与触发更新，覆盖属性增删和数组索引。</p>
+    </div>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <table>
 <thead>

@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -177,19 +177,22 @@ API，是全课程的集中实战。</p>
 </table>
 <h3 id="目录结构">目录结构</h3>
 <div class="visual">
-  <div class="visual-title">图示 1：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">src/</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> api/            # 接口模块</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> components/     # 通用组件</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> views/          # 页面组件</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> stores/         # Pinia store</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> router/         # 路由</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> utils/          # request 等工具</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> App.vue</span>
-<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> main.js</span>
+  <div class="visual-title">图示 1：CTTS 前端核心目录结构</div>
+  <div class="edu-diagram">
+    <div class="diagram-code-tree">
+      <ul>
+        <li><span class="tree-label">src/</span></li>
+        <li>api/ <span class="tree-comment"># 接口模块</span></li>
+        <li>components/ <span class="tree-comment"># 通用组件</span></li>
+        <li>views/ <span class="tree-comment"># 页面组件</span></li>
+        <li>stores/ <span class="tree-comment"># Pinia store</span></li>
+        <li>router/ <span class="tree-comment"># 路由配置</span></li>
+        <li>utils/ <span class="tree-comment"># request 等工具</span></li>
+        <li>App.vue <span class="tree-comment"># 应用根组件</span></li>
+        <li>main.js <span class="tree-comment"># 应用入口</span></li>
+      </ul>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <hr />
 <h2 id="三核心页面代码">三、核心页面代码</h2>
@@ -445,16 +448,36 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10
 <hr />
 <h2 id="六本节小结与知识结构图">六、本节小结与知识结构图</h2>
 <div class="visual">
-  <div class="visual-title">图示 2：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">第 15 次课：综合项目实践一</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K15-1 页面规划（10 个页面 + 目录结构）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K15-2 登录 + 布局（调接口存 Token，读 store 显示）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K15-3 列表 + 详情（分页筛选，动态路由 props）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K15-4 表单页（提交 + 评审，POST 接口）</span>
-<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K15-5 用户管理（管理员 CRUD + 权限）</span>
+  <div class="visual-title">图示 2：核心页面与组件实践知识地图</div>
+  <div class="edu-diagram">
+    <div class="diagram-grid three">
+    <div class="diagram-card">
+      <strong>K15-1</strong>
+      <h4>页面规划</h4>
+      <p>围绕 10 个页面和目录结构先确定项目骨架。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K15-2</strong>
+      <h4>登录与布局</h4>
+      <p>登录调接口存 Token，布局从 store 读取用户信息。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K15-3</strong>
+      <h4>列表与详情</h4>
+      <p>列表支持分页筛选，详情页通过动态路由 props 获取目标数据。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K15-4</strong>
+      <h4>表单页</h4>
+      <p>提交与评审通过 POST 接口串起业务动作。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K15-5</strong>
+      <h4>用户管理</h4>
+      <p>管理员完成 CRUD，并结合角色权限控制入口。</p>
+    </div>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <table>
 <thead>

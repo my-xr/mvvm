@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -350,16 +350,36 @@ const showDialog = ref(false)
 <hr />
 <h2 id="六本节小结与知识结构图">六、本节小结与知识结构图</h2>
 <div class="visual">
-  <div class="visual-title">图示 1：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">第 9 次课：组件化综合实践</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K9-1 拆分原则（单一职责/复用/命名/层次）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K9-2 布局组件（Header/Sidebar/Content）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K9-3 列表组件（ProjectList/TaskList，props 数据）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K9-4 表单组件（LoginForm/SubmitForm，emits 提交）</span>
-<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K9-5 通用组件（Pagination/Card/Dialog）</span>
+  <div class="visual-title">图示 1：组件化开发实践知识地图</div>
+  <div class="edu-diagram">
+    <div class="diagram-grid three">
+    <div class="diagram-card">
+      <strong>K9-1</strong>
+      <h4>拆分原则</h4>
+      <p>围绕单一职责、复用价值、命名一致性和层次边界拆组件。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K9-2</strong>
+      <h4>布局组件</h4>
+      <p>Header、Sidebar、Content 承担页面骨架，不混入业务细节。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K9-3</strong>
+      <h4>列表组件</h4>
+      <p>ProjectList、TaskList 通过 props 接收数据，专注列表展示。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K9-4</strong>
+      <h4>表单组件</h4>
+      <p>LoginForm、SubmitForm 负责输入收集，通过 emits 提交结果。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K9-5</strong>
+      <h4>通用组件</h4>
+      <p>Pagination、Card、Dialog 抽象高频 UI 能力，服务多个页面。</p>
+    </div>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <table>
 <thead>

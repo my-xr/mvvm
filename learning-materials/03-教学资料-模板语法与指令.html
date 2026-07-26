@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -343,8 +343,7 @@ const obj = ref({ name: &#39;Vue&#39;, version: 3 })
 必须唯一且稳定</strong>：</p>
 <ul>
 <li>✅ 用数据的唯一 id：<code>:key="item.id"</code></li>
-<li>❌ 用
-index：<code>:key="index"</code>（列表增删时会错位、性能差）</li>
+<li>❌ 用 index：<code>:key="index"</code>（列表增删时会错位、性能差）</li>
 <li>❌ 用随机数（每次变，失去复用意义）</li>
 </ul>
 <h4 id="v-if-与-v-for-混用的坑">v-if 与 v-for 混用的坑</h4>
@@ -517,18 +516,46 @@ button { padding: 6px 16px; cursor: pointer; }
 <hr />
 <h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
 <div class="visual">
-  <div class="visual-title">图示 1：结构与流程重绘</div>
-  <div class="diagram-lines">
-<span class="diagram-line">第 3 次课：模板语法与指令</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K3-1 文本插值 {{ }}（响应式文本，不能用于属性）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K3-2 v-bind / : （属性绑定，class/style 对象数组）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K3-3 v-on / @ （事件绑定，$event）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K3-4 v-model （双向绑定 = :value + @input）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K3-5 v-if / v-show （条件渲染，频繁切用 show）</span>
-<span class="diagram-line"><span class="tree-token">├</span><span class="tree-token">─</span><span class="tree-token">─</span> K3-6 v-for + :key （列表渲染，key 唯一稳定）</span>
-<span class="diagram-line"><span class="tree-token">└</span><span class="tree-token">─</span><span class="tree-token">─</span> K3-7 修饰符 （.stop/.prevent/.once/.lazy/.number/.trim）</span>
+  <div class="visual-title">图示 1：模板语法与指令知识地图</div>
+  <div class="edu-diagram">
+    <div class="diagram-grid three">
+    <div class="diagram-card">
+      <strong>K3-1</strong>
+      <h4>文本插值</h4>
+      <p><code>{{ }}</code> 用于响应式文本展示，不能直接放在属性位置。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K3-2</strong>
+      <h4>属性绑定</h4>
+      <p><code>v-bind</code> / <code>:</code> 绑定属性，支持 class/style 对象与数组。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K3-3</strong>
+      <h4>事件绑定</h4>
+      <p><code>v-on</code> / <code>@</code> 绑定交互事件，必要时接收 <code>$event</code>。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K3-4</strong>
+      <h4>双向绑定</h4>
+      <p><code>v-model</code> 等价于值绑定加输入事件，适合表单状态。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K3-5</strong>
+      <h4>条件渲染</h4>
+      <p><code>v-if</code> 控制创建销毁，<code>v-show</code> 适合频繁切换。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K3-6</strong>
+      <h4>列表渲染</h4>
+      <p><code>v-for</code> 配合稳定唯一 <code>:key</code>，让更新更可靠。</p>
+    </div>
+    <div class="diagram-card">
+      <strong>K3-7</strong>
+      <h4>修饰符</h4>
+      <p><code>.stop</code>、<code>.prevent</code>、<code>.lazy</code> 等压缩常见细节。</p>
+    </div>
+    </div>
   </div>
-  <p class="diagram-hint">已由原 Markdown 字符图转换为网页图示，保留原有逻辑关系并优化阅读效果。</p>
 </div>
 <table>
 <thead>
