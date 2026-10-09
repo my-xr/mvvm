@@ -248,18 +248,32 @@ const say = (msg, e) =&gt; { console.log(msg, e) }       // 内联：手动传 $
             </tbody>
           </table>
           <pre class="vue"><code>&lt;template&gt;
-  &lt;form @submit.prevent=&quot;onSubmit&quot;&gt;          &lt;!-- 阻止默认提交 --&gt;
-    &lt;div @click.stop=&quot;outer&quot;&gt;                &lt;!-- 阻止冒泡 --&gt;
-      &lt;button @click.once=&quot;onceFn&quot;&gt;只点一次&lt;/button&gt;
+    &lt;div @click=&quot;parentClick&quot;&gt;
+        &lt;button @click.stop=&quot;childClick&quot;&gt;点我&lt;/button&gt;
     &lt;/div&gt;
-  &lt;/form&gt;
-&lt;/template&gt;</code></pre>
+&lt;/template&gt;
+
+&lt;script setup&gt;
+function parentClick() {
+    console.log('父级被点了')
+}
+function childClick() {
+    console.log('子级被点了')
+}
+&lt;/script&gt;</code></pre>
           <h4 id="链式顺序">链式顺序</h4>
           <p>
             <code>@click.prevent.stop</code>：先 prevent 再
             stop；<code>@click.stop.prevent</code>：先 stop 再
             prevent。顺序影响执行先后。
           </p>
+          <pre class="vue"><code>&lt;!-- 点击不会跳转 --&gt;
+&lt;a href=&quot;https://baidu.com&quot; @click.prevent=&quot;handleLink&quot;&gt;去百度&lt;/a&gt;
+
+&lt;!-- 提交不会刷新页面 --&gt;
+&lt;form @submit.prevent=&quot;handleSubmit&quot;&gt;
+  &lt;button type=&quot;submit&quot;&gt;提交&lt;/button&gt;
+&lt;/form&gt;</code></pre>
           <h4 id="易错点-1">易错点</h4>
           <ul>
             <li>
