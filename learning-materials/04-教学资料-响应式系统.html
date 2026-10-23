@@ -44,6 +44,11 @@
 <li><a href="#知识点-k4-5watcheffect">知识点 K4-5：watchEffect</a></li>
 <li><a href="#知识点-k4-6响应式原理proxy">知识点 K4-6：响应式原理（Proxy）</a></li>
 </ul></li>
+<li><a href="#三综合示例ctts-frontend-响应式实验台">三、综合示例：CTTS-Frontend 响应式实验台</a>
+<ul>
+<li><a href="#31从零运行与验证">3.1 从零运行与验证</a></li>
+<li><a href="#32完整代码与验收要点">3.2 完整代码与验收要点</a></li>
+</ul></li>
 <li><a href="#四拓展阅读选学">四、拓展阅读（选学）</a>
 <ul>
 </ul></li>
@@ -68,6 +73,9 @@
 <h3 id="11-本节定位">1.1 本节定位</h3>
 <p>本节深入 Vue 3 响应式系统，是 Vue 的核心。学完后能根据场景选择
 ref/reactive，用 computed 派生数据，用 watch 响应数据变化。</p>
+<p class="course-boundary"><strong>课程边界：</strong>第 03 课只做模板指令总览；本课负责解释“数据为什么会自动更新”，重点练习
+<code>ref</code>、<code>reactive</code>、<code>computed</code>、<code>watch</code> 与
+<code>watchEffect</code>。事件/表单细节见第 05 课，条件、列表、筛选和样式细节见第 06 课。</p>
 <h3 id="12-先修基础">1.2 先修基础</h3>
 <table>
 <thead>
@@ -113,7 +121,7 @@ ref/reactive，用 computed 派生数据，用 watch 响应数据变化。</p>
 <h4 id="用法">用法</h4>
 <pre class="vue"><code>&lt;template&gt;
   &lt;p&gt;{{ count }}&lt;/p&gt;              &lt;!-- 模板自动解包 --&gt;
-  &lt;button @click=&quot;count.value++&quot;&gt;+1&lt;/button&gt;
+  &lt;button @click=&quot;count++&quot;&gt;+1&lt;/button&gt;
 &lt;/template&gt;
 &lt;script setup&gt;
 import { ref } from &#39;vue&#39;
@@ -128,8 +136,9 @@ console.log(user.value.name)      // 张三
 <li><strong>JS 中忘 <code>.value</code></strong>：<code>count++</code>
 报错，须 <code>count.value++</code>。</li>
 <li><strong>模板中多写
-<code>.value</code></strong>：<code>{{ count.value }}</code> 显示
-undefined。</li>
+<code>.value</code></strong>：模板会自动解包顶层 ref，推荐写
+<code>{{ count }}</code>；写成 <code>{{ count.value }}</code> 时，<code>count</code>
+已是数字，通常会得到 undefined。</li>
 <li><strong>重新赋值覆盖</strong>：<code>count = 1</code> 丢失响应式，应
 <code>count.value = 1</code>。</li>
 </ul>
@@ -278,7 +287,7 @@ watch。</p>
 侦听一个或多个响应式数据，当其变化时执行回调，可获取新旧值。</p>
 <h4 id="原理与用法">原理与用法</h4>
 <pre class="vue"><code>&lt;script setup&gt;
-import { ref, watch } from &#39;vue&#39;
+import { reactive, ref, watch } from &#39;vue&#39;
 const count = ref(0)
 
 // 侦听 ref
@@ -298,7 +307,9 @@ watch([count, () =&gt; state.name], ([newCount, newName]) =&gt; {
 })
 
 // 选项：deep 深度侦听，immediate 立即执行
-watch(state, (newVal) =&gt; { ... }, { deep: true, immediate: true })
+watch(state, (newVal, oldVal) =&gt; {
+  console.log('state 发生变化', { newVal, oldVal })
+}, { deep: true, immediate: true })
 &lt;/script&gt;</code></pre>
 <h4 id="关键选项">关键选项</h4>
 <table>
@@ -466,63 +477,86 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-
 <p>Vue 3 用 Proxy 实现响应式，能监测属性增删与数组索引修改，比 Vue 2
 更全面。</p>
 <hr />
-<h2
-id="三综合示例ctts-frontend-任务列表过滤与状态监听">三、综合示例：CTTS-Frontend
-任务列表过滤与状态监听</h2>
+<a id="三综合示例ctts-frontend-任务列表过滤与状态监听" aria-hidden="true"></a>
+<h2 id="三综合示例ctts-frontend-响应式实验台">三、综合示例：CTTS-Frontend 响应式实验台</h2>
+<p>本案例专门观察响应式数据的三条链路：<code>computed</code> 只负责从状态派生结果，<code>watch</code> 负责拿到新旧值并记录变化，<code>watchEffect</code> 自动追踪它读取到的依赖。列表筛选和分页留到第 06 课，避免同一案例重复讲解。</p>
+<h3 id="31从零运行与验证">3.1 从零运行与验证</h3>
+<ol>
+<li>在终端执行 <code>npm create vite@latest ctts-reactivity -- --template vue</code>，再执行 <code>cd ctts-reactivity</code> 和 <code>npm install</code>。</li>
+<li>把下面的完整代码覆盖 <code>src/App.vue</code>，执行 <code>npm run dev</code>。</li>
+<li>浏览器打开终端显示的地址，依次修改姓名、拖动进度、点击“完成 +10”，观察派生摘要、日志和自动状态说明。</li>
+</ol>
+<pre class="bash"><code>npm create vite@latest ctts-reactivity -- --template vue
+cd ctts-reactivity
+npm install
+npm run dev</code></pre>
+<h3 id="32完整代码与验收要点">3.2 完整代码与验收要点</h3>
 <pre class="vue"><code>&lt;template&gt;
-  &lt;div class=&quot;tasks&quot;&gt;
-    &lt;h2&gt;任务列表&lt;/h2&gt;
-    &lt;input v-model=&quot;keyword&quot; placeholder=&quot;搜索任务&quot; /&gt;
-    &lt;ul&gt;
-      &lt;li v-for=&quot;t in filteredTasks&quot; :key=&quot;t.id&quot;&gt;
-        {{ t.title }} - {{ t.status }}
-      &lt;/li&gt;
+  &lt;div class=&quot;lab&quot;&gt;
+    &lt;h2&gt;响应式实验台&lt;/h2&gt;
+    &lt;label&gt;姓名：&lt;input v-model.trim=&quot;profile.name&quot; /&gt;&lt;/label&gt;
+    &lt;label&gt;完成进度：
+      &lt;input v-model.number=&quot;progress&quot; type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; /&gt;
+      {{ progress }}%
+    &lt;/label&gt;
+    &lt;p&gt;派生摘要（computed）：{{ summary }}&lt;/p&gt;
+    &lt;p&gt;自动状态（watchEffect）：{{ effectText }}&lt;/p&gt;
+    &lt;button type=&quot;button&quot; @click=&quot;increaseProgress&quot;&gt;完成 +10&lt;/button&gt;
+    &lt;button type=&quot;button&quot; @click=&quot;reset&quot;&gt;重置&lt;/button&gt;
+    &lt;h3&gt;变化日志（watch）&lt;/h3&gt;
+    &lt;ul v-if=&quot;logs.length&quot;&gt;
+      &lt;li v-for=&quot;entry in logs&quot; :key=&quot;entry.id&quot;&gt;{{ entry.text }}&lt;/li&gt;
     &lt;/ul&gt;
-    &lt;p&gt;已完成：{{ doneCount }} 个&lt;/p&gt;
-    &lt;button @click=&quot;finishFirst&quot;&gt;完成第一个&lt;/button&gt;
-    &lt;p v-if=&quot;log&quot;&gt;日志：{{ log }}&lt;/p&gt;
+    &lt;p v-else&gt;还没有进度变化&lt;/p&gt;
   &lt;/div&gt;
 &lt;/template&gt;
 
 &lt;script setup&gt;
-import { ref, reactive, computed, watch } from &#39;vue&#39;
+import { computed, reactive, ref, watch, watchEffect } from 'vue'
 
-const keyword = ref(&#39;&#39;)
-const tasks = reactive([
-  { id: 1, title: &#39;任务一：搭建项目&#39;, status: &#39;进行中&#39; },
-  { id: 2, title: &#39;任务二：实现登录&#39;, status: &#39;未开始&#39; },
-  { id: 3, title: &#39;任务三：接口联调&#39;, status: &#39;进行中&#39; }
-])
+const profile = reactive({ name: '小林', role: '前端学习者' })
+const progress = ref(40)
+const summary = computed(() =&gt; `${profile.name || '未填写'}：${progress.value}% 完成`)
+const effectText = ref('')
+const logs = ref([])
+let nextLogId = 1
 
-// computed：搜索过滤
-const filteredTasks = computed(() =&gt;
-  tasks.filter(t =&gt; t.title.includes(keyword.value))
-)
+const addLog = (text) =&gt; {
+  logs.value.unshift({ id: nextLogId++, text })
+  logs.value = logs.value.slice(0, 5)
+}
 
-// computed：统计已完成数量
-const doneCount = computed(() =&gt; tasks.filter(t =&gt; t.status === &#39;已完成&#39;).length)
+watch(progress, (newValue, oldValue) =&gt; {
+  if (newValue !== oldValue) addLog(`进度从 ${oldValue}% 变为 ${newValue}%`)
+}, { immediate: true })
 
-const log = ref(&#39;&#39;)
-// watch：监听任务数组变化（深度）
-watch(tasks, () =&gt; {
-  log.value = `任务状态变化，当前已完成 ${doneCount.value} 个`
-}, { deep: true })
+watchEffect(() =&gt; {
+  effectText.value = `${profile.name || '未填写'}当前${progress.value &gt;= 100 ? '已完成' : '进行中'}`
+})
 
-const finishFirst = () =&gt; {
-  const t = tasks.find(x =&gt; x.status !== &#39;已完成&#39;)
-  if (t) t.status = &#39;已完成&#39;
+const increaseProgress = () =&gt; {
+  progress.value = Math.min(100, progress.value + 10)
+}
+const reset = () =&gt; {
+  profile.name = '小林'
+  progress.value = 40
+  logs.value = []
 }
 &lt;/script&gt;
 
 &lt;style scoped&gt;
-.tasks { max-width: 600px; margin: 20px auto; font-family: system-ui; }
-ul { list-style: none; padding: 0; }
-li { padding: 10px 0; border-bottom: 1px solid #eee; }
-input { padding: 6px; margin-bottom: 10px; }
+.lab { max-width: 620px; margin: 20px auto; font-family: system-ui; }
+label { display: block; margin: 12px 0; }
+input[type=&quot;text&quot;], label input:not([type]) { padding: 6px; }
+input[type=&quot;range&quot;] { width: 220px; vertical-align: middle; }
+button { margin-right: 8px; padding: 6px 12px; }
+ul { padding-left: 20px; }
 &lt;/style&gt;</code></pre>
-<p><strong>运行方式</strong>：替换
-<code>src/App.vue</code>，输入搜索关键词列表实时过滤；点击"完成第一个"按钮，任务状态变化，watch
-触发记录日志，doneCount 自动更新。</p>
+<div class="steps">
+  <div class="step"><span class="num">1</span><div>修改姓名时，<code>profile</code> 是 reactive 对象，模板和 watchEffect 文案会同步变化。</div></div>
+  <div class="step"><span class="num">2</span><div>拖动进度时，<code>summary</code> 自动重新计算；日志只由 watch 追加，说明派生数据和副作用职责不同。</div></div>
+  <div class="step"><span class="num">3</span><div>点击“完成 +10”到 100 后继续点击，进度不会超过 100；点击“重置”会恢复姓名、进度和日志。</div></div>
+</div>
 <hr />
 <h2 id="四拓展阅读选学">四、拓展阅读（选学）</h2>
 <ol type="1">

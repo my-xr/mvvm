@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -68,6 +68,7 @@
 全部含参考答案与解析；主观题另附评分标准。 难度：★ 基础 / ★★ 提高 / ★★★
 综合 ｜ 编号：<code>03-题型-序号</code></p>
 </blockquote>
+<p class="course-boundary"><strong>题库范围：</strong>本课优先考查模板语法总览和基础信息卡片。学习顺序按“<code>K3-3</code> 事件绑定 → <code>K3-4</code> 事件修饰符”衔接，再进入表单、条件和列表；本课对 K3-3 至 K3-7 只做识别性预览，深入题分别在第 04~06 课题库中考查。题目编号按题型组织，不代表课堂讲解顺序。</p>
 <hr />
 <h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
 分）</h2>
@@ -111,39 +112,39 @@
 <code>$event</code> 访问事件对象。C 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-007</strong>（★ 知识点：K3-4） <code>v-model</code>
+<section class="question-card"><p><strong>03-选择-007</strong>（★ 知识点：K3-5） <code>v-model</code>
 本质上是哪两者的语法糖？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>:value</code> + <code>@input</code></span></li><li><span class="option-label">B</span><span><code>:value</code> + <code>@change</code></span></li><li><span class="option-label">C</span><span><code>:model</code> +
 <code>@update</code></span></li><li><span class="option-label">D</span><span><code>:data</code> + <code>@input</code></span></li></ul></div><blockquote>
 <p><strong>答案：A</strong> <strong>解析</strong>：<code>v-model</code>
 = <code>:value</code> + <code>@input</code>（input 元素）。A 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-008</strong>（★ 知识点：K3-4） <code>v-model</code>
+<section class="question-card"><p><strong>03-选择-008</strong>（★ 知识点：K3-5） <code>v-model</code>
 不能用于下列哪个元素？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;input&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;textarea&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;select&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;div&gt;</code></span></li></ul></div><blockquote>
 <p><strong>答案：D</strong> <strong>解析</strong>：v-model
 只能用于表单元素（input/textarea/select），不能用于 div。D 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-009</strong>（★ 知识点：K3-5） 关于 <code>v-if</code>
+<section class="question-card"><p><strong>03-选择-009</strong>（★ 知识点：K3-6） 关于 <code>v-if</code>
 与 <code>v-show</code>，下列说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>两者完全相同</span></li><li><span class="option-label">B</span><span>v-if
 删除/重建 DOM，v-show 切换 display</span></li><li><span class="option-label">C</span><span>v-show 删除 DOM，v-if 切换 display</span></li><li><span class="option-label">D</span><span>都不支持 v-else</span></li></ul></div><blockquote>
 <p><strong>答案：B</strong> <strong>解析</strong>：v-if 删除重建
 DOM，v-show 用 display 切换显隐。B 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-010</strong>（★ 知识点：K3-5）
+<section class="question-card"><p><strong>03-选择-010</strong>（★ 知识点：K3-6）
 频繁切换元素显隐，推荐使用？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>v-if</span></li><li><span class="option-label">B</span><span>v-else</span></li><li><span class="option-label">C</span><span>v-show</span></li><li><span class="option-label">D</span><span>v-for</span></li></ul></div><blockquote>
 <p><strong>答案：C</strong> <strong>解析</strong>：频繁切换用
 v-show（不重建 DOM，开销小）。C 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-011</strong>（★ 知识点：K3-6） <code>v-for</code>
+<section class="question-card"><p><strong>03-选择-011</strong>（★ 知识点：K3-7） <code>v-for</code>
 渲染列表时，<code>:key</code> 的值应？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>使用数组索引 index</span></li><li><span class="option-label">B</span><span>使用随机数</span></li><li><span class="option-label">C</span><span>使用唯一且稳定的标识（如 id）</span></li><li><span class="option-label">D</span><span>不需要 key</span></li></ul></div><blockquote>
 <p><strong>答案：C</strong> <strong>解析</strong>：key
 应唯一稳定，用数据 id；用 index 或随机数会有问题。C 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-012</strong>（★ 知识点：K3-6） 下列关于
+<section class="question-card"><p><strong>03-选择-012</strong>（★ 知识点：K3-7） 下列关于
 <code>v-for</code> 与 <code>v-if</code> 同级使用的说法，正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>推荐同级使用</span></li><li><span class="option-label">B</span><span>Vue 3 中 v-if 优先级高于 v-for，同级会出错</span></li><li><span class="option-label">C</span><span>v-for
 优先级高于 v-if，同级没问题</span></li><li><span class="option-label">D</span><span>同级使用性能更好</span></li></ul></div><blockquote>
 <p><strong>答案：B</strong> <strong>解析</strong>：Vue 3 中 v-if
@@ -151,26 +152,26 @@ v-show（不重建 DOM，开销小）。C 正确。</p>
 computed 过滤。B 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-013</strong>（★ 知识点：K3-7）
+<section class="question-card"><p><strong>03-选择-013</strong>（★ 知识点：K3-4）
 阻止事件冒泡的修饰符是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>.prevent</code></span></li><li><span class="option-label">B</span><span><code>.stop</code></span></li><li><span class="option-label">C</span><span><code>.once</code></span></li><li><span class="option-label">D</span><span><code>.self</code></span></li></ul></div><blockquote>
 <p><strong>答案：B</strong> <strong>解析</strong>：<code>.stop</code>
 阻止冒泡（stopPropagation）；<code>.prevent</code> 阻止默认行为。B
 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-014</strong>（★ 知识点：K3-7）
+<section class="question-card"><p><strong>03-选择-014</strong>（★ 知识点：K3-4）
 阻止表单默认提交的修饰符是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>.stop</code></span></li><li><span class="option-label">B</span><span><code>.prevent</code></span></li><li><span class="option-label">C</span><span><code>.once</code></span></li><li><span class="option-label">D</span><span><code>.submit</code></span></li></ul></div><blockquote>
 <p><strong>答案：B</strong> <strong>解析</strong>：<code>.prevent</code>
 阻止默认行为（preventDefault），如表单提交、链接跳转。B 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-015</strong>（★ 知识点：K3-7）
+<section class="question-card"><p><strong>03-选择-015</strong>（★ 知识点：K3-5）
 <code>v-model.lazy</code> 的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>实时同步</span></li><li><span class="option-label">B</span><span>失焦时才同步</span></li><li><span class="option-label">C</span><span>转为数字</span></li><li><span class="option-label">D</span><span>去空格</span></li></ul></div><blockquote>
 <p><strong>答案：B</strong> <strong>解析</strong>：<code>.lazy</code> 使
 v-model 在失焦（change）时才同步，而非实时（input）。B 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-016</strong>（★ 知识点：K3-7）
+<section class="question-card"><p><strong>03-选择-016</strong>（★ 知识点：K3-5）
 <code>v-model.number</code> 的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>失焦同步</span></li><li><span class="option-label">B</span><span>将输入值转为数字</span></li><li><span class="option-label">C</span><span>去空格</span></li><li><span class="option-label">D</span><span>限制只能输数字</span></li></ul></div><blockquote>
 <p><strong>答案：B</strong> <strong>解析</strong>：<code>.number</code>
 将输入值转为数字类型。B 正确。</p>
@@ -196,7 +197,7 @@ v-model 在失焦（change）时才同步，而非实时（input）。B 正确�
 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-020</strong>（★ 知识点：K3-6）
+<section class="question-card"><p><strong>03-选择-020</strong>（★ 知识点：K3-7）
 <code>v-for="(item, index) in list"</code> 中，index 表示？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>当前项</span></li><li><span class="option-label">B</span><span>当前项的索引</span></li><li><span class="option-label">C</span><span>列表本身</span></li><li><span class="option-label">D</span><span>列表长度</span></li></ul></div><blockquote>
 <p><strong>答案：B</strong> <strong>解析</strong>：index
 是当前项的索引（从 0）。B 正确。</p>
@@ -208,41 +209,41 @@ v-model 在失焦（change）时才同步，而非实时（input）。B 正确�
 <code>{ 类名: 布尔 }</code>。B 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-022</strong>（★★ 知识点：K3-4） 下列代码等价于
+<section class="question-card"><p><strong>03-选择-022</strong>（★★ 知识点：K3-5） 下列代码等价于
 v-model 的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>&lt;input :value="text" @input="text = $event.target.value"&gt;</code></span></li><li><span class="option-label">B</span><span><code>&lt;input :value="text" @click="text = $event"&gt;</code></span></li><li><span class="option-label">C</span><span><code>&lt;input :text="value" @input="text"&gt;</code></span></li><li><span class="option-label">D</span><span><code>&lt;input @value="text"&gt;</code></span></li></ul></div><blockquote>
 <p><strong>答案：A</strong> <strong>解析</strong>：<code>v-model</code>
 等价 <code>:value</code> + <code>@input</code> 中把输入值赋回数据。A
 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-023</strong>（★★ 知识点：K3-5）
+<section class="question-card"><p><strong>03-选择-023</strong>（★★ 知识点：K3-6）
 <code>v-if</code>、<code>v-else-if</code>、<code>v-else</code>
 之间，下列说法正确的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>中间可以插入其他元素</span></li><li><span class="option-label">B</span><span>必须紧邻，中间不能有其他元素</span></li><li><span class="option-label">C</span><span>顺序无所谓</span></li><li><span class="option-label">D</span><span>v-else 可以单独使用</span></li></ul></div><blockquote>
 <p><strong>答案：B</strong> <strong>解析</strong>：v-if/v-else-if/v-else
 必须紧邻，中间插入元素会使 v-else 失效。B 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-024</strong>（★★ 知识点：K3-6） 用 index 作为 v-for
+<section class="question-card"><p><strong>03-选择-024</strong>（★★ 知识点：K3-7） 用 index 作为 v-for
 的 key 会产生的问题是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>编译报错</span></li><li><span class="option-label">B</span><span>列表增删时状态错乱、性能差</span></li><li><span class="option-label">C</span><span>无法渲染</span></li><li><span class="option-label">D</span><span>没有问题</span></li></ul></div><blockquote>
 <p><strong>答案：B</strong> <strong>解析</strong>：用 index 作
 key，列表插入/删除时 index 变化，Vue
 复用错位节点，导致状态错乱且性能差。B 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-025</strong>（★★ 知识点：K3-5） 下列场景适合用 v-if
+<section class="question-card"><p><strong>03-选择-025</strong>（★★ 知识点：K3-6） 下列场景适合用 v-if
 的是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>标签页频繁切换</span></li><li><span class="option-label">B</span><span>折叠面板频繁展开收起</span></li><li><span class="option-label">C</span><span>根据权限只渲染一次的元素</span></li><li><span class="option-label">D</span><span>实时显隐的提示</span></li></ul></div><blockquote>
 <p><strong>答案：C</strong> <strong>解析</strong>：一次性/少切换用
 v-if（惰性渲染，初始开销低）。频繁切换用 v-show。C 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-026</strong>（★★ 知识点：K3-7） <code>.self</code>
+<section class="question-card"><p><strong>03-选择-026</strong>（★★ 知识点：K3-4） <code>.self</code>
 修饰符的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>阻止冒泡</span></li><li><span class="option-label">B</span><span>阻止默认行为</span></li><li><span class="option-label">C</span><span>仅事件源是元素自身才触发</span></li><li><span class="option-label">D</span><span>只触发一次</span></li></ul></div><blockquote>
 <p><strong>答案：C</strong> <strong>解析</strong>：<code>.self</code>
 表示仅当事件目标（event.target）是当前元素本身时才触发，冒泡来的不触发。C
 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-027</strong>（★★ 知识点：K3-7）
+<section class="question-card"><p><strong>03-选择-027</strong>（★★ 知识点：K3-5）
 <code>v-model.trim</code> 的作用是？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>失焦同步</span></li><li><span class="option-label">B</span><span>转数字</span></li><li><span class="option-label">C</span><span>去除首尾空格</span></li><li><span class="option-label">D</span><span>限制长度</span></li></ul></div><blockquote>
 <p><strong>答案：C</strong> <strong>解析</strong>：<code>.trim</code>
 去除输入值首尾空格。C 正确。</p>
@@ -263,34 +264,34 @@ $event；后者把方法引用交给事件，自动接收事件对象</span></li
 <code>:src</code>，不能用 <code>{{ }}</code>。B 正确。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-030</strong>（★★ 知识点：K3-6）
+<section class="question-card"><p><strong>03-选择-030</strong>（★★ 知识点：K3-7）
 遍历对象时，<code>v-for="(value, key) in obj"</code> 中 key 表示？</p><div class="option-list"><ul><li><span class="option-label">A</span><span>对象的属性值</span></li><li><span class="option-label">B</span><span>对象的属性名</span></li><li><span class="option-label">C</span><span>索引</span></li><li><span class="option-label">D</span><span>对象本身</span></li></ul></div><blockquote>
 <p><strong>答案：B</strong> <strong>解析</strong>：遍历对象时，value
 是属性值，key 是属性名。B 正确。</p>
 </blockquote></section>
 <hr />
 <h3 id="12-多项选择题10-题">1.2 多项选择题（10 题）</h3>
-<section class="question-card"><p><strong>03-选择-031</strong>（★★ 知识点：K3-5） 关于 v-if 与
+<section class="question-card"><p><strong>03-选择-031</strong>（★★ 知识点：K3-6） 关于 v-if 与
 v-show，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>v-if 删除/重建 DOM</span></li><li><span class="option-label">B</span><span>v-show 切换 display</span></li><li><span class="option-label">C</span><span>频繁切换推荐 v-show</span></li><li><span class="option-label">D</span><span>v-show 初始开销比 v-if 高</span></li></ul></div><blockquote>
 <p><strong>答案：A、B、C、D</strong>
 <strong>解析</strong>：四项均正确。v-show
 始终渲染故初始开销高。全选。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-032</strong>（★★ 知识点：K3-6） 关于 v-for 的
+<section class="question-card"><p><strong>03-选择-032</strong>（★★ 知识点：K3-7） 关于 v-for 的
 :key，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>必须唯一</span></li><li><span class="option-label">B</span><span>必须稳定（不变）</span></li><li><span class="option-label">C</span><span>推荐用数据
 id</span></li><li><span class="option-label">D</span><span>推荐用 index</span></li></ul></div><blockquote>
 <p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
 错误，index 不稳定不推荐。选 A、B、C。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-033</strong>（★★ 知识点：K3-7）
+<section class="question-card"><p><strong>03-选择-033</strong>（★★ 知识点：K3-4）
 下列属于事件修饰符的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>.stop</code></span></li><li><span class="option-label">B</span><span><code>.prevent</code></span></li><li><span class="option-label">C</span><span><code>.once</code></span></li><li><span class="option-label">D</span><span><code>.lazy</code></span></li></ul></div><blockquote>
 <p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C
 是事件修饰符。<code>.lazy</code> 是 v-model 修饰符。选 A、B、C。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-034</strong>（★★ 知识点：K3-7） 下列属于 v-model
+<section class="question-card"><p><strong>03-选择-034</strong>（★★ 知识点：K3-5） 下列属于 v-model
 修饰符的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>.lazy</code></span></li><li><span class="option-label">B</span><span><code>.number</code></span></li><li><span class="option-label">C</span><span><code>.trim</code></span></li><li><span class="option-label">D</span><span><code>.stop</code></span></li></ul></div><blockquote>
 <p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 是
 v-model 修饰符。<code>.stop</code> 是事件修饰符。选 A、B、C。</p>
@@ -308,19 +309,19 @@ v-on，正确的有？（多选）</p><div class="option-list"><ul><li><span cla
 错误，可传参（内联语句）。选 A、B、C。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-037</strong>（★★ 知识点：K3-1/K3-2/K3-4）
+<section class="question-card"><p><strong>03-选择-037</strong>（★★ 知识点：K3-1/K3-2/K3-5）
 说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span><code>{{ }}</code> 用于文本插值</span></li><li><span class="option-label">B</span><span><code>:src</code> 用于属性绑定</span></li><li><span class="option-label">C</span><span><code>v-model</code> 用于表单双向绑定</span></li><li><span class="option-label">D</span><span><code>{{ }}</code> 可用于属性绑定</span></li></ul></div><blockquote>
 <p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
 错误，<code>{{ }}</code> 不能用于属性。选 A、B、C。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-038</strong>（★★ 知识点：K3-5/K3-6）
+<section class="question-card"><p><strong>03-选择-038</strong>（★★ 知识点：K3-6/K3-7）
 说法正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>v-if 与 v-else 必须紧邻</span></li><li><span class="option-label">B</span><span>v-for 应提供 :key</span></li><li><span class="option-label">C</span><span>v-if 与 v-for 不应同级使用</span></li><li><span class="option-label">D</span><span>v-show 会删除 DOM</span></li></ul></div><blockquote>
 <p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
 错误，v-show 不删除 DOM（切 display）。选 A、B、C。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-选择-039</strong>（★★ 知识点：K3-4） 关于
+<section class="question-card"><p><strong>03-选择-039</strong>（★★ 知识点：K3-5） 关于
 v-model，正确的有？（多选）</p><div class="option-list"><ul><li><span class="option-label">A</span><span>是 <code>:value</code> +
 <code>@input</code> 的语法糖</span></li><li><span class="option-label">B</span><span>只能用于表单元素</span></li><li><span class="option-label">C</span><span>实现双向绑定</span></li><li><span class="option-label">D</span><span>可用于任意 div</span></li></ul></div><blockquote>
 <p><strong>答案：A、B、C</strong> <strong>解析</strong>：A、B、C 正确。D
@@ -475,7 +476,7 @@ display，不删除 DOM。</p>
 </blockquote></section>
 <hr />
 <h2 id="四论述--简答题共-4-题">四、论述 / 简答题（共 4 题）</h2>
-<section class="question-card"><p><strong>03-论述-001</strong>（★★ 知识点：K3-5，分值：6 分）
+<section class="question-card"><p><strong>03-论述-001</strong>（★★ 知识点：K3-6，分值：6 分）
 <strong>题目</strong>：比较 v-if 与 v-show
 的区别，并说明各自适用场景。</p>
 <p><strong>要求</strong>： （1）说明实现方式区别。（3 分）
@@ -490,7 +491,7 @@ DOM），初始开销小（惰性）；v-show
 <p><strong>评分标准</strong>：共 6 分，按小题给分。意思相近即可。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-论述-002</strong>（★★ 知识点：K3-6，分值：8 分）
+<section class="question-card"><p><strong>03-论述-002</strong>（★★ 知识点：K3-7，分值：8 分）
 <strong>题目</strong>：解释 v-for 中 :key 的作用，为什么不建议用 index
 作 key？</p>
 <p><strong>要求</strong>： （1）说明 key 的作用。（3 分） （2）说明用
@@ -504,7 +505,7 @@ Vue 复用错位节点，造成状态错乱（如表单输入残留）且性能�
 <p><strong>评分标准</strong>：共 8 分，按小题给分。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-论述-003</strong>（★★ 知识点：K3-4，分值：8 分）
+<section class="question-card"><p><strong>03-论述-003</strong>（★★ 知识点：K3-5，分值：8 分）
 <strong>题目</strong>：解释 v-model
 的原理，并用代码说明它等价于什么。</p>
 <p><strong>要求</strong>： （1）说明 v-model 的本质。（3 分）
@@ -521,7 +522,7 @@ value）；视图→数据（用户输入通过 input 事件同步回数据）�
 <code>:value</code> 和 <code>@input</code>。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-论述-004</strong>（★★ 知识点：K3-5/K3-6 综合，分值：8 分）
+<section class="question-card"><p><strong>03-论述-004</strong>（★★ 知识点：K3-6/K3-7 综合，分值：8 分）
 <strong>题目</strong>：为什么 v-if 与 v-for
 不应同级使用？应如何解决？</p>
 <p><strong>要求</strong>： （1）说明同级使用的问题。（4 分）
@@ -545,7 +546,7 @@ computed 过滤方案。</p>
   &lt;div&gt;
     &lt;img src=&quot;{{ logo }}&quot; /&gt;
     &lt;li v-for=&quot;item in list&quot; v-if=&quot;item.show&quot; :key=&quot;item.id&quot;&gt;{{ item.name }}&lt;/li&gt;
-    &lt;button @click=&quot;count++&quot;&gt;+1&lt;/button&gt;
+    &lt;button @click=&quot;count.value++&quot;&gt;+1&lt;/button&gt;
   &lt;/div&gt;
 &lt;/template&gt;
 &lt;script setup&gt;
@@ -566,15 +567,16 @@ const count = ref(0)
 item，应改用 computed
 过滤：<code>&lt;li v-for="item in showList" :key="item.id"&gt;</code>，并定义
 <code>const showList = computed(() =&gt; list.value.filter(i =&gt; i.show))</code>。</li>
-<li><strong><code>@click="count++"</code> 错误</strong>（3.33
-分）：count 是 ref，不能直接 ++，应改为
-<code>@click="count.value++"</code>。</li>
+<li><strong><code>@click="count.value++"</code> 错误</strong>（3.33
+分）：模板会自动解包顶层 ref，应改为
+<code>@click="count++"</code>；只有 <code>&lt;script setup&gt;</code> 的 JavaScript
+代码中才写 <code>count.value++</code>。</li>
 </ol>
 <p><strong>评分标准</strong>：共 10 分。每处指出并改正得 3.33
 分，只指出未改正得一半。computed 需 import（可指出但不计入）。</p>
 </blockquote></section>
 <hr />
-<section class="question-card"><p><strong>03-程序-002</strong>（★★ 知识点：K3-4/K3-7，分值：12 分）
+<section class="question-card"><p><strong>03-程序-002</strong>（★★ 知识点：K3-4/K3-5，分值：12 分）
 <strong>题目</strong>：补全以下表单代码空缺。</p>
 <pre class="vue"><code>&lt;template&gt;
   &lt;form @______A______=&quot;onSubmit&quot;&gt;
@@ -601,7 +603,7 @@ C：让姓名去除首尾空格。（4 分）</p><blockquote>
 </blockquote></section>
 <hr />
 <h2 id="六编程--接口设计题共-2-题">六、编程 / 接口设计题（共 2 题）</h2>
-<section class="question-card"><p><strong>03-编程-001</strong>（★★ 知识点：K3-2/K3-3/K3-5，分值：15
+<section class="question-card"><p><strong>03-编程-001</strong>（★★ 知识点：K3-2/K3-3/K3-6，分值：15
 分） <strong>题目</strong>：编写一个 Vue 3
 SFC，实现：一个按钮控制一段文字的显隐（频繁切换），文字根据状态变色（显示时绿色，隐藏时灰色）。要求用
 v-show 与 :class。</p>
@@ -630,60 +632,42 @@ toggle 方法（5 分）。频繁切换应用 v-show（用 v-if 扣 2 分）。<
 </blockquote></section>
 <hr />
 <section class="question-card"><p><strong>03-编程-002</strong>（★★★ 知识点：K3 综合，分值：20 分）
-<strong>题目</strong>：编写 CTTS-Frontend
-项目列表与搜索筛选页面，要求：</p>
+<strong>题目</strong>：编写 CTTS-Frontend 基础信息卡片，要求：</p>
 <ul>
-<li>用 ref 包装项目数组（至少 3 项，含 id/title/status）；</li>
-<li>输入框 v-model 绑定关键词，实时过滤 title；</li>
-<li>下拉框 v-model 绑定状态筛选；</li>
-<li>v-for 渲染过滤后列表，带 :key；</li>
-<li>无匹配时用 v-if/v-else 显示"暂无匹配"；</li>
-<li>提供"重置"按钮清空筛选。</li>
+<li>使用插值显示姓名和身份，使用 :src/:alt 绑定头像属性；</li>
+<li>用 v-model 绑定姓名输入框；</li>
+<li>用 @click 切换重点状态，并用 :class 反映状态；</li>
+<li>用 :disabled 防止空姓名保存，用 v-if 显示保存提示。</li>
 </ul>
-<p><strong>要求</strong>： （1）完整三段式结构。（3 分） （2）ref 数据 +
-computed 过滤（关键词+状态）。（7 分） （3）v-for + :key 渲染列表。（4
-分） （4）v-if/v-else 空状态 + 重置按钮。（6 分）</p><blockquote>
+<p><strong>要求</strong>： （1）完整三段式结构和 ref 数据。（5 分） （2）插值与属性绑定。（5 分）
+（3）v-model 与 @click 交互。（5 分） （4）:class、:disabled 和 v-if。（5 分）</p><blockquote>
 <p><strong>参考答案</strong>：</p>
 <pre class="vue"><code>&lt;template&gt;
-  &lt;div class=&quot;projects&quot;&gt;
-    &lt;h2&gt;项目列表&lt;/h2&gt;
-    &lt;input v-model=&quot;keyword&quot; placeholder=&quot;搜索&quot; /&gt;
-    &lt;select v-model=&quot;statusFilter&quot;&gt;
-      &lt;option value=&quot;&quot;&gt;全部&lt;/option&gt;
-      &lt;option value=&quot;进行中&quot;&gt;进行中&lt;/option&gt;
-      &lt;option value=&quot;未开始&quot;&gt;未开始&lt;/option&gt;
-    &lt;/select&gt;
-    &lt;ul v-if=&quot;filtered.length&quot;&gt;
-      &lt;li v-for=&quot;p in filtered&quot; :key=&quot;p.id&quot;&gt;{{ p.title }} - {{ p.status }}&lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;p v-else&gt;暂无匹配&lt;/p&gt;
-    &lt;button @click=&quot;reset&quot;&gt;重置&lt;/button&gt;
-  &lt;/div&gt;
+  &lt;article :class=&quot;{ featured: isFeatured }&quot;&gt;
+    &lt;img :src=&quot;avatarUrl&quot; :alt=&quot;name + '头像'&quot; /&gt;
+    &lt;h2&gt;{{ name }}&lt;/h2&gt;
+    &lt;p&gt;身份：{{ role }}&lt;/p&gt;
+    &lt;input v-model=&quot;name&quot; /&gt;
+    &lt;button type=&quot;button&quot; @click=&quot;isFeatured = !isFeatured&quot;&gt;切换重点&lt;/button&gt;
+    &lt;button type=&quot;button&quot; :disabled=&quot;!name&quot; @click=&quot;saved = true&quot;&gt;保存&lt;/button&gt;
+    &lt;p v-if=&quot;saved&quot;&gt;已保存：{{ name }}&lt;/p&gt;
+  &lt;/article&gt;
 &lt;/template&gt;
 &lt;script setup&gt;
-import { ref, computed } from &#39;vue&#39;
-const keyword = ref(&#39;&#39;)
-const statusFilter = ref(&#39;&#39;)
-const projects = ref([
-  { id: 1, title: &#39;JavaWeb&#39;, status: &#39;进行中&#39; },
-  { id: 2, title: &#39;Vue3&#39;, status: &#39;进行中&#39; },
-  { id: 3, title: &#39;全栈联调&#39;, status: &#39;未开始&#39; }
-])
-const filtered = computed(() =&gt;
-  projects.value.filter(p =&gt;
-    p.title.includes(keyword.value) &amp;&amp;
-    (statusFilter.value === &#39;&#39; || p.status === statusFilter.value)
-  )
-)
-const reset = () =&gt; { keyword.value = &#39;&#39;; statusFilter.value = &#39;&#39; }
+import { ref } from &#39;vue&#39;
+const name = ref(&#39;小林&#39;)
+const role = ref(&#39;前端学习者&#39;)
+const avatarUrl = ref(&#39;/vite.svg&#39;)
+const isFeatured = ref(false)
+const saved = ref(false)
 &lt;/script&gt;
 &lt;style scoped&gt;
-.projects { max-width: 600px; margin: 20px auto; font-family: system-ui; }
-ul { list-style: none; padding: 0; }
-li { padding: 10px 0; border-bottom: 1px solid #eee; }
+article { max-width: 360px; padding: 20px; border: 1px solid #cbd5e1; }
+.featured { border-color: #2563eb; background: #eff6ff; }
+img { width: 64px; height: 64px; }
+button { margin-right: 8px; }
 &lt;/style&gt;</code></pre>
-<p>评分：三段式（3 分）；ref+computed 双条件过滤（7 分）；v-for+:key（4
-分，缺 :key 扣 1）；v-if/v-else 空状态+重置（6 分）。</p>
+<p>评分：三段式和 ref（5 分）；插值与属性绑定（5 分）；v-model 与事件（5 分）；动态 class、disabled 和 v-if（5 分）。</p>
 <p><strong>评分标准</strong>：共 20 分，按小题给分。代码须可运行。</p>
 </blockquote></section>
 <hr />
@@ -792,20 +776,20 @@ li { padding: 10px 0; border-bottom: 1px solid #eee; }
 <td>12</td>
 </tr>
 <tr>
-<td>K3-4 v-model</td>
+<td>K3-4 事件修饰符</td>
+<td>8</td>
+</tr>
+<tr>
+<td>K3-5 v-model</td>
 <td>12</td>
 </tr>
 <tr>
-<td>K3-5 条件渲染</td>
+<td>K3-6 条件渲染</td>
 <td>14</td>
 </tr>
 <tr>
-<td>K3-6 v-for</td>
+<td>K3-7 v-for</td>
 <td>12</td>
-</tr>
-<tr>
-<td>K3-7 修饰符</td>
-<td>8</td>
 </tr>
 </tbody>
 </table>

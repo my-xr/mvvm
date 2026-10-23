@@ -34,15 +34,24 @@
 <li><a href="#11-本节定位">1.1 本节定位</a></li>
 <li><a href="#12-先修基础">1.2 先修基础</a></li>
 <li><a href="#13-学习目标">1.3 学习目标</a></li>
+<li><a href="#14-三个问题">1.4 学习前先回答三个问题</a></li>
 </ul></li>
 <li><a href="#二知识点详解">二、知识点详解</a>
 <ul>
+<li><a href="#知识点-k7-0为什么需要组件与拆分决策">知识点 K7-0：为什么需要组件与拆分决策</a>
+<ul>
+<li><a href="#vue组件的重要性">组件的重要性</a></li>
+<li><a href="#什么情况需要拆分成组件">拆分判断标准</a></li>
+<li><a href="#不拆分与拆分对比">不拆分与拆分对比</a></li>
+<li><a href="#详细示例课程商城页">详细示例：课程商城页</a></li>
+</ul></li>
 <li><a href="#知识点-k7-1组件基础与注册">知识点 K7-1：组件基础与注册</a></li>
 <li><a href="#知识点-k7-2props">知识点 K7-2：props</a></li>
 <li><a href="#知识点-k7-3emits">知识点 K7-3：emits</a></li>
 <li><a href="#知识点-k7-4父子组件通信综合">知识点 K7-4：父子组件通信综合</a></li>
 <li><a href="#知识点-k7-5组件-v-model">知识点 K7-5：组件 v-model</a></li>
 </ul></li>
+<li><a href="#三综合示例ctts-frontend-loginform-组件">三、综合示例：LoginForm 组件</a></li>
 <li><a href="#四拓展阅读选学">四、拓展阅读（选学）</a>
 <ul>
 </ul></li>
@@ -65,7 +74,7 @@
 <hr />
 <h2 id="一学习导读">一、学习导读</h2>
 <h3 id="11-本节定位">1.1 本节定位</h3>
-<p>本节进入组件化开发，学习如何拆分组件、用 props/emits
+<p>本节进入组件化开发，先理解为什么需要组件、如何判断拆分边界，再学习如何拆分组件、用 props/emits
 实现父子通信。这是构建复杂应用的核心能力。</p>
 <h3 id="12-先修基础">1.2 先修基础</h3>
 <table>
@@ -90,9 +99,280 @@
 <li>✅ 掌握 props 与 emits</li>
 <li>✅ 掌握父子通信</li>
 <li>✅ 了解组件 v-model</li>
+<li>✅ 理解组件化对维护、复用和协作的价值</li>
+<li>✅ 能根据业务边界判断是否拆分组件</li>
 </ul>
+<h3 id="14-三个问题">1.4 学习前先回答三个问题</h3>
+<div class="feature-grid">
+<div class="feature"><b>为什么需要组件？</b><p>当页面变复杂时，把视图、状态和交互封装成可复用单元，才能控制修改范围，而不是在一份越来越长的文件里寻找影响。</p></div>
+<div class="feature"><b>什么时候应该拆？</b><p>出现重复、独立状态、清晰业务名词或独立加载/错误状态时，拆分通常能降低认知负担；不是按文件行数机械切割。</p></div>
+<div class="feature"><b>拆分后如何协作？</b><p>父组件拥有业务状态，子组件通过 props 接收输入、通过 emits 发送意图，组件之间用明确契约协作。</p></div>
+</div>
 <hr />
 <h2 id="二知识点详解">二、知识点详解</h2>
+<h3 id="知识点-k7-0为什么需要组件与拆分决策">知识点 K7-0：为什么需要组件与拆分决策</h3>
+<h4 id="组件是什么">1. 组件是什么：可复用的界面单元</h4>
+<p>组件不是“把 HTML 再包一层”的技巧，而是一个<strong>有边界、有输入、有输出</strong>的界面单元。它可以同时拥有自己的模板、样式、响应式状态和事件处理逻辑，并通过公开的接口与外部协作。</p>
+<p>可以把组件理解成一个小型函数：<code>props</code> 是输入，<code>emits</code> 是输出，模板和内部状态是实现细节。父组件只关心“给它什么”和“它发生了什么”，不需要知道子组件内部每一个按钮如何实现。</p>
+<div class="visual">
+  <div class="visual-title">图示 1：页面从一整块代码演化为可协作的组件</div>
+  <div class="flow">
+    <div class="node"><span class="tag">阶段 1</span><h4>单体页面</h4><p>所有模板、请求、筛选、表单和弹窗都堆在一个 App.vue 中，开始很快，变化后很难定位影响。</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><span class="tag">阶段 2</span><h4>按职责分块</h4><p>把筛选栏、列表项、弹窗等有独立职责的部分提取出来，父组件保留页面编排和核心状态。</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><span class="tag">阶段 3</span><h4>契约化协作</h4><p>每个组件通过 props/emits 交流，能够单独阅读、测试、替换，也更适合多人并行开发。</p></div>
+  </div>
+</div>
+<h4 id="vue组件的重要性">2. Vue组件的重要性</h4>
+<p>Vue 的响应式和模板语法解决了“数据变化后如何更新视图”，组件进一步解决了“功能变多后如何组织代码”。组件化的价值不只在于复用，更在于给代码建立可理解的边界。</p>
+<table>
+<thead>
+<tr><th>价值</th><th>没有组件时</th><th>使用组件后</th><th>带来的结果</th></tr>
+</thead>
+<tbody>
+<tr><td>复用</td><td>相似结构复制多份，修改容易漏改</td><td>同一个组件接收不同 props</td><td>一次修复，多处受益</td></tr>
+<tr><td>隔离变化</td><td>改一个弹窗可能影响整页模板</td><td>组件内部实现隐藏在边界后</td><td>降低回归风险</td></tr>
+<tr><td>降低认知负担</td><td>阅读页面需要同时理解所有细节</td><td>先看组件名和接口，再按需深入</td><td>更容易读懂和接手</td></tr>
+<tr><td>团队协作</td><td>多人同时修改同一个大文件，冲突多</td><td>按业务组件拆分任务和目录</td><td>并行开发更顺畅</td></tr>
+<tr><td>测试与复盘</td><td>只能从整页操作验证，定位失败原因慢</td><td>可单独验证输入、输出和边界状态</td><td>问题定位更快</td></tr>
+<tr><td>性能边界</td><td>所有内容常常一起加载和更新</td><td>可配合异步组件、缓存和局部更新</td><td>为性能优化留下空间</td></tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong>组件化不会自动带来性能提升。它首先是一种组织复杂度的方式；只有当组件边界与真实业务边界匹配，并配合合理的渲染策略时，才可能同时获得性能收益。</p>
+</blockquote>
+<h4 id="什么情况需要拆分成组件">3. 什么情况需要拆分成组件</h4>
+<p>拆分的依据是<strong>职责和变化边界</strong>，不是“每 50 行拆一个文件”。下面的信号越多同时出现，越值得提取组件：</p>
+<div class="steps">
+  <div class="step"><span class="num">1</span><div><strong>重复出现</strong><br>同一块卡片、表单项、提示框在两个页面出现，或同一页面通过 <code>v-for</code> 重复渲染时，优先提取成可配置组件。</div></div>
+  <div class="step"><span class="num">2</span><div><strong>有独立状态或交互</strong><br>组件拥有展开/收起、校验、分页、加载中、错误提示等内部状态，并且这些状态不需要父组件逐一管理。</div></div>
+  <div class="step"><span class="num">3</span><div><strong>能说出清晰的业务名词</strong><br>如果一段代码可以被准确称为“课程筛选栏”“地址选择器”“订单摘要”，它通常已经具备独立边界。</div></div>
+  <div class="step"><span class="num">4</span><div><strong>有独立的加载、错误或权限状态</strong><br>例如用户列表和统计图加载节奏不同，拆开后可分别处理 skeleton、空状态和权限提示。</div></div>
+  <div class="step"><span class="num">5</span><div><strong>变化节奏不同</strong><br>页面布局由一个人维护，但支付按钮由另一个团队频繁迭代，拆分可以减少互相牵连。</div></div>
+  <div class="step"><span class="num">6</span><div><strong>需要单独测试或复用</strong><br>一段逻辑需要在多个场景验证，或者未来明确会在多个页面使用，提前建立组件接口通常更划算。</div></div>
+</div>
+<h4 id="组件不是越多越好">4. 组件不是越多越好：哪些情况先不要拆</h4>
+<div class="compare">
+  <div class="compare-card good">
+    <h4>建议拆分</h4>
+    <ul>
+      <li>重复的结构和交互已经出现两次以上。</li>
+      <li>子区域有明确名称，输入和输出可以写成接口。</li>
+      <li>子区域需要单独处理加载、错误、校验或权限。</li>
+      <li>父组件只负责编排，子组件可以专注一个变化原因。</li>
+    </ul>
+  </div>
+  <div class="compare-card bad">
+    <h4>暂不拆分</h4>
+    <ul>
+      <li>只有一个简单的 <code>&lt;span&gt;</code> 或两三行静态文字。</li>
+      <li>拆分后需要传递大量 props，再层层转发事件。</li>
+      <li>子组件没有独立职责，只是把父组件的代码原样搬走。</li>
+      <li>页面仍在快速探索，接口还没有稳定的业务含义。</li>
+    </ul>
+  </div>
+</div>
+<p>一个实用原则是：<strong>先让页面能表达业务，再根据重复、职责和变化边界提取组件</strong>。好的组件会减少沟通成本；为了“看起来组件很多”而拆分，反而会增加接口和跳转成本。</p>
+<h4 id="不拆分与拆分对比">5. 不拆分与拆分的对比：成本和收益</h4>
+<table>
+<thead>
+<tr><th>比较维度</th><th>全部写在 App.vue</th><th>按职责拆分</th><th>如何取舍</th></tr>
+</thead>
+<tbody>
+<tr><td>首次开发</td><td>文件少，写起来直接</td><td>需要规划目录和接口</td><td>一次性小页面可先不拆</td></tr>
+<tr><td>重复使用</td><td>复制粘贴，容易出现分叉</td><td>通过 props 配置差异</td><td>有第二个使用场景就重新评估</td></tr>
+<tr><td>修改影响</td><td>依赖隐含在同一文件中</td><td>边界和影响面更清晰</td><td>长期维护页面优先拆分</td></tr>
+<tr><td>通信成本</td><td>可以直接访问同一作用域变量</td><td>需要设计 props/emits</td><td>接口是成本，也是可见的约束</td></tr>
+<tr><td>测试定位</td><td>失败时需要从整页排查</td><td>可以定位到具体组件和状态</td><td>交互复杂、风险高时优先拆分</td></tr>
+</tbody>
+</table>
+<h4 id="详细示例课程商城页">6. 详细示例：课程商城页从单体到组件化</h4>
+<p>下面用一个“课程商城”演示完整决策过程。页面有搜索课程、展示课程卡片、加入学习计划和购物车汇总四个职责。它足够小，便于课堂演示，又包含真实项目中常见的输入、输出和状态归属问题。</p>
+<h4 id="不拆分的单体写法">6.1 不拆分的单体写法</h4>
+<pre class="vue"><code>&lt;!-- App.vue：搜索、列表、课程卡片、购物车全部混在一起 --&gt;
+&lt;template&gt;
+  &lt;main class=&quot;course-shop&quot;&gt;
+    &lt;h2&gt;课程商城&lt;/h2&gt;
+    &lt;input v-model.trim=&quot;keyword&quot; placeholder=&quot;搜索课程&quot; /&gt;
+    &lt;p&gt;已选 {{ cart.length }} 门&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li v-for=&quot;course in filteredCourses&quot; :key=&quot;course.id&quot;&gt;
+        &lt;strong&gt;{{ course.name }}&lt;/strong&gt;
+        &lt;span&gt;¥{{ course.price }}&lt;/span&gt;
+        &lt;button @click=&quot;addToCart(course)&quot;&gt;加入学习计划&lt;/button&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;footer&gt;合计：¥{{ total }}&lt;/footer&gt;
+  &lt;/main&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { computed, ref } from &#39;vue&#39;
+
+const keyword = ref(&#39;&#39;)
+const courses = ref([
+  { id: 1, name: &#39;Vue 组件基础&#39;, price: 49 },
+  { id: 2, name: &#39;Vue Router 实战&#39;, price: 59 },
+  { id: 3, name: &#39;Pinia 状态管理&#39;, price: 69 }
+])
+const cart = ref([])
+const filteredCourses = computed(() =&gt; courses.value.filter(course =&gt;
+  course.name.includes(keyword.value)
+))
+const total = computed(() =&gt; cart.value.reduce((sum, item) =&gt; sum + item.price, 0))
+const addToCart = (course) =&gt; {
+  if (!cart.value.some(item =&gt; item.id === course.id)) cart.value.push(course)
+}
+&lt;/script&gt;</code></pre>
+<h4 id="单体写法的问题">6.2 单体写法的问题</h4>
+<ol>
+<li><strong>职责混杂：</strong>搜索输入、列表渲染、课程卡片样式和购物车计算都由同一个组件负责。</li>
+<li><strong>复用困难：</strong>如果后台管理页也需要课程卡片，只能复制模板并接受后续分叉。</li>
+<li><strong>修改风险集中：</strong>调整卡片按钮可能触碰筛选或购物车逻辑，评审时不容易看出影响范围。</li>
+<li><strong>状态归属不清：</strong>哪些数据是页面业务状态，哪些只是卡片内部状态，没有清楚边界。</li>
+</ol>
+<h4 id="拆分后的组件树">6.3 先画组件树，再写代码</h4>
+<div class="visual">
+  <div class="visual-title">图示 2：课程商城组件树与职责边界</div>
+  <div class="diagram-code-tree">
+    <ul>
+      <li><span class="tree-label">App.vue</span> <span class="tree-comment">页面状态与业务编排</span>
+        <ul>
+          <li><span class="tree-label">CourseFilter.vue</span> <span class="tree-comment">输入关键词，展示已选数量</span></li>
+          <li><span class="tree-label">CourseList.vue</span> <span class="tree-comment">接收课程数组，转发选择事件</span>
+            <ul><li><span class="tree-label">CourseCard.vue</span> <span class="tree-comment">展示单门课程，发出 add 意图</span></li></ul>
+          </li>
+          <li><span class="tree-label">CartSummary.vue</span> <span class="tree-comment">接收已选课程，计算并展示合计</span></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+<p>这里没有把每个标签都拆出来：<code>App.vue</code> 保留页面级数据和业务决策，<code>CourseCard.vue</code> 只关心一门课程的展示与“加入”意图。组件边界服务于职责，而不是追求文件数量。</p>
+<h4 id="课程商城拆分代码">6.4 拆分后的核心代码</h4>
+<p><strong>父组件 App.vue：拥有状态，负责组合。</strong></p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;main class=&quot;course-shop&quot;&gt;
+    &lt;h2&gt;课程商城&lt;/h2&gt;
+    &lt;CourseFilter v-model=&quot;keyword&quot; :count=&quot;cart.length&quot; /&gt;
+    &lt;CourseList :courses=&quot;filteredCourses&quot; @select=&quot;addToCart&quot; /&gt;
+    &lt;CartSummary :items=&quot;cart&quot; /&gt;
+  &lt;/main&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { computed, ref } from &#39;vue&#39;
+import CourseFilter from &#39;./components/CourseFilter.vue&#39;
+import CourseList from &#39;./components/CourseList.vue&#39;
+import CartSummary from &#39;./components/CartSummary.vue&#39;
+
+const keyword = ref(&#39;&#39;)
+const cart = ref([])
+const courses = ref([
+  { id: 1, name: &#39;Vue 组件基础&#39;, price: 49 },
+  { id: 2, name: &#39;Vue Router 实战&#39;, price: 59 },
+  { id: 3, name: &#39;Pinia 状态管理&#39;, price: 69 }
+])
+const filteredCourses = computed(() =&gt; courses.value.filter(course =&gt;
+  course.name.includes(keyword.value)
+))
+const addToCart = (course) =&gt; {
+  if (!cart.value.some(item =&gt; item.id === course.id)) cart.value.push(course)
+}
+&lt;/script&gt;</code></pre>
+<p><strong>子组件 CourseFilter.vue：用 v-model 暴露输入，用 props 接收只读信息。</strong></p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div class=&quot;course-filter&quot;&gt;
+    &lt;input
+      :value=&quot;modelValue&quot;
+      placeholder=&quot;搜索课程&quot;
+      @input=&quot;emit('update:modelValue', $event.target.value)&quot;
+    /&gt;
+    &lt;span&gt;已选 {{ count }} 门&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+defineProps({
+  modelValue: { type: String, default: &#39;&#39; },
+  count: { type: Number, default: 0 }
+})
+const emit = defineEmits([&#39;update:modelValue&#39;])
+&lt;/script&gt;</code></pre>
+<p><strong>子组件 CourseList.vue：只负责列表循环，把事件向上转发。</strong></p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;ul&gt;
+    &lt;CourseCard
+      v-for=&quot;course in courses&quot;
+      :key=&quot;course.id&quot;
+      :course=&quot;course&quot;
+      @add=&quot;emit('select', $event)&quot;
+    /&gt;
+  &lt;/ul&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import CourseCard from &#39;./CourseCard.vue&#39;
+defineProps({ courses: { type: Array, default: () =&gt; [] } })
+const emit = defineEmits([&#39;select&#39;])
+&lt;/script&gt;</code></pre>
+<p><strong>子组件 CourseCard.vue：只关心一门课程和用户点击。</strong></p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;li class=&quot;course-card&quot;&gt;
+    &lt;strong&gt;{{ course.name }}&lt;/strong&gt;
+    &lt;span&gt;¥{{ course.price }}&lt;/span&gt;
+    &lt;button @click=&quot;emit('add', course)&quot;&gt;加入学习计划&lt;/button&gt;
+  &lt;/li&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+defineProps({
+  course: { type: Object, required: true }
+})
+const emit = defineEmits([&#39;add&#39;])
+&lt;/script&gt;</code></pre>
+<p><strong>子组件 CartSummary.vue：接收数据并派生展示值，不直接修改父状态。</strong></p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;footer&gt;已选 {{ items.length }} 门，合计：¥{{ total }}&lt;/footer&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { computed } from &#39;vue&#39;
+const props = defineProps({ items: { type: Array, default: () =&gt; [] } })
+const total = computed(() =&gt; props.items.reduce((sum, item) =&gt; sum + item.price, 0))
+&lt;/script&gt;</code></pre>
+<h4 id="组件通信数据流">6.5 这个例子中的通信数据流</h4>
+<div class="visual">
+  <div class="visual-title">图示 3：输入向下传递，用户意图向上汇报</div>
+  <div class="diagram-flow">
+    <div class="diagram-card"><span class="diagram-badge">父 → 子</span><h4>App → CourseFilter</h4><p>通过 <code>v-model</code> 传入关键词，等价于 <code>:modelValue</code> 加 <code>@update:modelValue</code>。</p></div>
+    <div class="flow-arrow">→</div>
+    <div class="diagram-card"><span class="diagram-badge good">子 → 父</span><h4>CourseCard → App</h4><p>点击按钮先触发 <code>add</code>，列表转发为 <code>select</code>，最终由 App 决定是否加入。</p></div>
+    <div class="flow-arrow">→</div>
+    <div class="diagram-card"><span class="diagram-badge">派生数据</span><h4>CartSummary</h4><p>只读接收 <code>items</code>，用 computed 计算合计，不直接写入 props。</p></div>
+  </div>
+</div>
+<table>
+<thead><tr><th>组件</th><th>拥有/接收的数据</th><th>发出的事件</th><th>不应该负责什么</th></tr></thead>
+<tbody>
+<tr><td>App.vue</td><td>keyword、courses、cart</td><td>无须向父汇报</td><td>不必塞入每张卡片的细节模板</td></tr>
+<tr><td>CourseFilter</td><td>modelValue、count</td><td>update:modelValue</td><td>不负责真正筛选数组</td></tr>
+<tr><td>CourseList</td><td>courses</td><td>select</td><td>不决定购物车业务规则</td></tr>
+<tr><td>CourseCard</td><td>course</td><td>add</td><td>不直接修改 cart</td></tr>
+<tr><td>CartSummary</td><td>items</td><td>无</td><td>不删除或添加课程</td></tr>
+</tbody>
+</table>
+<h4 id="拆分检查清单">6.6 组件拆分检查清单</h4>
+<div class="steps">
+  <div class="step"><span class="num">A</span><div><strong>先写一句职责</strong><br>能否用“它负责……”说清组件唯一的主要职责？说不清时先不要创建文件。</div></div>
+  <div class="step"><span class="num">B</span><div><strong>列出输入和输出</strong><br>把需要的 props、要发出的 emits 写在纸上；如果接口比实现还复杂，说明边界可能不合适。</div></div>
+  <div class="step"><span class="num">C</span><div><strong>确认状态归属</strong><br>跨组件共享且决定业务结果的状态放在共同父级；只服务于自身视觉交互的状态留在子组件。</div></div>
+  <div class="step"><span class="num">D</span><div><strong>检查是否真的复用</strong><br>复用不只是“出现两次”，还包括未来是否会以不同数据、不同场景使用；没有稳定差异就不要过早参数化。</div></div>
+</div>
+<p class="diagram-callout"><strong>课堂结论：</strong>组件化的目标不是让目录看起来更碎，而是让每个变化有明确的归属。先找业务边界，再设计 props/emits；当组件只剩下转发和拼接时，应重新审视是否拆得过细。</p>
 <h3 id="知识点-k7-1组件基础与注册">知识点 K7-1：组件基础与注册</h3>
 <h4 id="定义">定义</h4>
 <p><strong>组件</strong>是可复用的 Vue
@@ -146,16 +426,13 @@ PascalCase 区分）。</li>
 <pre class="vue"><code>&lt;!-- 子组件 UserInfo.vue --&gt;
 &lt;template&gt;
   &lt;div&gt;
-    &lt;p&gt;姓名：{{ name }}&lt;/p&gt;
-    &lt;p&gt;年龄：{{ age }}&lt;/p&gt;
+    &lt;p&gt;姓名：{{ props.name }}&lt;/p&gt;
+    &lt;p&gt;年龄：{{ props.age }}&lt;/p&gt;
   &lt;/div&gt;
 &lt;/template&gt;
 &lt;script setup&gt;
-// 字符串数组声明（仅声明）
-defineProps([&#39;name&#39;, &#39;age&#39;])
-
-// 对象声明（带类型/默认值/必填/校验）
-defineProps({
+// 使用对象声明：带类型、默认值、必填和校验
+const props = defineProps({
   name: { type: String, required: true },
   age: { type: Number, default: 18 },
   status: { type: String, validator: (v) =&gt; [&#39;active&#39;, &#39;inactive&#39;].includes(v) }
@@ -321,7 +598,7 @@ defineModel）</h4>
   &lt;input :value=&quot;model&quot; @input=&quot;model = $event.target.value&quot; /&gt;
 &lt;/template&gt;
 &lt;script setup&gt;
-import { defineModel } from &#39;vue&#39;      // Vue 3.4+
+// Vue 3.4+：defineModel 是编译器宏，无需 import
 const model = defineModel()              // 自动声明 modelValue + update:modelValue
 &lt;/script&gt;</code></pre>
 <pre class="vue"><code>&lt;!-- 父组件 --&gt;
@@ -363,9 +640,9 @@ LoginForm 组件</h2>
 &lt;/template&gt;
 &lt;script setup&gt;
 import { reactive } from &#39;vue&#39;
-defineProps({ initName: { type: String, default: &#39;&#39; } })   // 父传初始用户名
+const props = defineProps({ initName: { type: String, default: &#39;&#39; } }) // 父传初始用户名
 const emit = defineEmits([&#39;submit&#39;])                        // 声明事件
-const form = reactive({ username: &#39;&#39;, password: &#39;&#39; })
+const form = reactive({ username: props.initName, password: &#39;&#39; })
 const onSubmit = () =&gt; {
   emit(&#39;submit&#39;, { username: form.username, password: form.password })  // 子传父
 }

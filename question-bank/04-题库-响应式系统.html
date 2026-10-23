@@ -68,6 +68,7 @@
 全部含参考答案与解析；主观题另附评分标准。 难度：★ 基础 / ★★ 提高 / ★★★
 综合 ｜ 编号：<code>04-题型-序号</code></p>
 </blockquote>
+<p class="course-boundary"><strong>题库范围：</strong>本课围绕 ref/reactive/computed/watch/watchEffect 和 Proxy 原理命题，综合题统一使用“响应式实验台”语境；任务列表筛选分页属于第 06 课。</p>
 <hr />
 <h2 id="一选择题共-40-题每题-2-分">一、选择题（共 40 题，每题 2
 分）</h2>
@@ -628,56 +629,54 @@ button { margin: 0 6px; padding: 6px 16px; }
 </blockquote></section>
 <hr />
 <section class="question-card"><p><strong>04-编程-002</strong>（★★★ 知识点：K4 综合，分值：20 分）
-<strong>题目</strong>：编写 CTTS-Frontend 任务列表，要求：</p>
+<strong>题目</strong>：编写 CTTS-Frontend 响应式实验台，要求：</p>
 <ul>
-<li>用 reactive 存储任务数组（id/title/status）；</li>
-<li>用 ref 存储搜索关键词；</li>
-<li>用 computed 过滤任务（按 title）；</li>
-<li>用 computed 统计已完成数量；</li>
-<li>用 watch（深度）监听任务变化，记录日志；</li>
-<li>提供"完成第一个"按钮。</li>
+<li>用 reactive 存储用户姓名，ref 存储 0~100 的完成进度；</li>
+<li>用 computed 生成“姓名 + 进度”的派生摘要；</li>
+<li>用 watch 获取进度新旧值并记录变化日志；</li>
+<li>用 watchEffect 自动显示当前进行中/已完成状态；</li>
+<li>提供“完成 +10”和“重置”按钮。</li>
 </ul>
 <p><strong>要求</strong>： （1）reactive + ref 数据。（4 分）
-（2）computed 过滤 + 统计。（6 分） （3）watch 深度监听记录日志。（5
-分） （4）按钮与方法 + 模板渲染。（5 分）</p><blockquote>
+（2）computed 派生摘要。（4 分） （3）watch 新旧值日志。（5
+分） （4）watchEffect、按钮与模板渲染。（7 分）</p><blockquote>
 <p><strong>参考答案</strong>：</p>
 <pre class="vue"><code>&lt;template&gt;
   &lt;div&gt;
-    &lt;input v-model=&quot;keyword&quot; placeholder=&quot;搜索&quot; /&gt;
-    &lt;ul&gt;
-      &lt;li v-for=&quot;t in filtered&quot; :key=&quot;t.id&quot;&gt;{{ t.title }} - {{ t.status }}&lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;p&gt;已完成：{{ doneCount }}&lt;/p&gt;
-    &lt;button @click=&quot;finishFirst&quot;&gt;完成第一个&lt;/button&gt;
-    &lt;p v-if=&quot;log&quot;&gt;日志：{{ log }}&lt;/p&gt;
+    &lt;input v-model.trim=&quot;profile.name&quot; placeholder=&quot;姓名&quot; /&gt;
+    &lt;input v-model.number=&quot;progress&quot; type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; /&gt;
+    &lt;p&gt;{{ summary }}&lt;/p&gt;
+    &lt;p&gt;{{ effectText }}&lt;/p&gt;
+    &lt;button type=&quot;button&quot; @click=&quot;increase&quot;&gt;完成 +10&lt;/button&gt;
+    &lt;button type=&quot;button&quot; @click=&quot;reset&quot;&gt;重置&lt;/button&gt;
+    &lt;ul&gt;&lt;li v-for=&quot;item in logs&quot; :key=&quot;item.id&quot;&gt;{{ item.text }}&lt;/li&gt;&lt;/ul&gt;
   &lt;/div&gt;
 &lt;/template&gt;
 &lt;script setup&gt;
-import { ref, reactive, computed, watch } from &#39;vue&#39;
-const keyword = ref(&#39;&#39;)
-const tasks = reactive([
-  { id: 1, title: &#39;任务一&#39;, status: &#39;进行中&#39; },
-  { id: 2, title: &#39;任务二&#39;, status: &#39;未开始&#39; }
-])
-const filtered = computed(() =&gt; tasks.filter(t =&gt; t.title.includes(keyword.value)))
-const doneCount = computed(() =&gt; tasks.filter(t =&gt; t.status === &#39;已完成&#39;).length)
-const log = ref(&#39;&#39;)
-watch(tasks, () =&gt; {
-  log.value = `任务变化，已完成 ${doneCount.value} 个`
-}, { deep: true })
-const finishFirst = () =&gt; {
-  const t = tasks.find(x =&gt; x.status !== &#39;已完成&#39;)
-  if (t) t.status = &#39;已完成&#39;
-}
+import { computed, reactive, ref, watch, watchEffect } from &#39;vue&#39;
+const profile = reactive({ name: &#39;小林&#39; })
+const progress = ref(40)
+const summary = computed(() =&gt; `${profile.name || &#39;未填写&#39;}：${progress.value}%`)
+const effectText = ref(&#39;&#39;)
+const logs = ref([])
+let nextId = 1
+const addLog = (text) =&gt; logs.value.unshift({ id: nextId++, text })
+watch(progress, (newValue, oldValue) =&gt; {
+  if (newValue !== oldValue) addLog(`${oldValue}% → ${newValue}%`)
+})
+watchEffect(() =&gt; {
+  effectText.value = progress.value &gt;= 100 ? &#39;状态：已完成&#39; : &#39;状态：进行中&#39;
+})
+const increase = () =&gt; { progress.value = Math.min(100, progress.value + 10) }
+const reset = () =&gt; { profile.name = &#39;小林&#39;; progress.value = 40; logs.value = [] }
 &lt;/script&gt;
 &lt;style scoped&gt;
 ul { list-style: none; padding: 0; }
 li { padding: 8px 0; border-bottom: 1px solid #eee; }
 &lt;/style&gt;</code></pre>
-<p>评分：reactive+ref（4 分）；computed 双用（6 分）；watch 深度+日志（5
-分）；按钮方法+模板（5 分）。</p>
-<p><strong>评分标准</strong>：共 20 分，按小题给分。代码须可运行，watch
-须带 deep。</p>
+<p>评分：reactive+ref（4 分）；computed 派生（4 分）；watch 新旧值日志（5
+分）；watchEffect、按钮方法与模板（7 分）。</p>
+<p><strong>评分标准</strong>：共 20 分，按小题给分。代码须可运行；本题不要求深度 watch，因为侦听源是进度 ref。</p>
 </blockquote></section>
 <hr />
 <h2 id="题库统计与组卷说明">题库统计与组卷说明</h2>

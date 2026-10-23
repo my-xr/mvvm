@@ -78,6 +78,7 @@
 配套资料：见同文件夹内
 <code>教学资料.md</code>、<code>题库.md</code></p>
 </blockquote>
+<p class="course-boundary"><strong>分课边界：</strong>本课解释响应式数据、派生数据和副作用的职责；不承担事件/表单专题，也不提前完成第 06 课的条件、列表、筛选分页案例。</p>
 <hr />
 <h2 id="一课程信息">一、课程信息</h2>
 <table>
@@ -130,8 +131,7 @@
 <li>能够根据数据类型选择 ref 或 reactive。</li>
 <li>能够使用 computed 实现派生数据，理解其缓存优势。</li>
 <li>能够使用 watch 在数据变化时执行副作用（如异步请求）。</li>
-<li>能实现 CTTS-Frontend
-任务列表的搜索过滤（computed）与状态变化响应（watch）。</li>
+<li>能实现 CTTS-Frontend 响应式实验台：用 computed 展示派生摘要，用 watch 记录进度变化，用 watchEffect 展示当前状态。</li>
 </ol>
 <h3 id="素质目标课程思政">素质目标（课程思政）</h3>
 <ol type="1">
@@ -185,8 +185,7 @@ DOM，体会声明式编程的力量。</li>
 </table>
 <hr />
 <h2 id="四项目任务或案例任务">四、项目任务或案例任务</h2>
-<p><strong>本次课任务</strong>：用 computed 实现任务列表的搜索过滤，用
-watch 监听任务状态变化并记录日志。</p>
+<p><strong>本次课任务</strong>：完成响应式实验台，验证 ref/reactive 的读写、computed 的缓存式派生、watch 的新旧值回调和 watchEffect 的自动依赖追踪。</p>
 <hr />
 <h2 id="五课堂互动设计">五、课堂互动设计</h2>
 <h3 id="互动-1面试题导入ref-和-reactive-的区别">互动 1：面试题导入——ref
@@ -280,8 +279,7 @@ computed？"</td>
 <ol type="1">
 <li>通读 <code>教学资料.md</code>，掌握
 ref/reactive/computed/watch/watchEffect。</li>
-<li>完善 CTTS-Frontend 任务列表：computed 过滤 + watch
-记录状态变化日志。</li>
+<li>完善响应式实验台：增加进度滑块、computed 派生摘要、watch 变化日志和 watchEffect 状态说明。</li>
 <li>思考：ref 与 reactive 如何选择？（200 字）</li>
 </ol>
 <hr />

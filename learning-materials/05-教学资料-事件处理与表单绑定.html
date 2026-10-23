@@ -115,6 +115,11 @@
           <p>
             本节学习事件处理与表单绑定，是交互开发的核心。学完后能实现各类表单与用户交互。
           </p>
+           <p class="course-boundary">
+             <strong>课程边界：</strong>第 03 课只保留 <code>@click</code>、基础
+             <code>v-model</code> 的语法预览；本课集中深入事件对象、事件/按键修饰符、所有常见表单控件、
+             <code>v-model</code> 修饰符和提交校验。条件、列表、筛选与样式绑定不在本课展开，见第 06 课。
+           </p>
           <h3 id="12-先修基础">1.2 先修基础</h3>
           <table>
             <thead>
@@ -182,8 +187,8 @@ const say = (msg, e) =&gt; { console.log(msg, e) }       // 内联：手动传 $
               </tr>
               <tr>
                 <td><code>@click="fn()"</code></td>
-                <td>内联，立即执行</td>
-                <td>需手动传 <code>$event</code></td>
+                <td>内联表达式，事件发生后调用</td>
+                <td>不会自动传入；需要时写 <code>fn($event)</code></td>
               </tr>
             </tbody>
           </table>
@@ -372,10 +377,10 @@ function childClick() {
           <pre class="vue"><code>&lt;input v-model=&quot;text&quot; /&gt;
 &lt;textarea v-model=&quot;desc&quot;&gt;&lt;/textarea&gt;</code></pre>
           <p><strong>单选 radio</strong>（绑定字符串值）：</p>
-          <pre
-            class="vue"
-          ><code>&lt;input type=&quot;radio&quot; v-model=&quot;gender&quot; value=&quot;male&quot; /&gt;男
-&lt;input type=&quot;radio&quot; v-model=&quot;gender&quot; value=&quot;female&quot; /&gt;女
+           <pre
+             class="vue"
+           ><code>&lt;input type=&quot;radio&quot; name=&quot;gender&quot; v-model=&quot;gender&quot; value=&quot;male&quot; /&gt;男
+&lt;input type=&quot;radio&quot; name=&quot;gender&quot; v-model=&quot;gender&quot; value=&quot;female&quot; /&gt;女
 &lt;!-- gender 为 &#39;male&#39; 或 &#39;female&#39; --&gt;</code></pre>
           <p>
             <strong>多选 checkbox</strong>： 单个（布尔）：<code
@@ -394,8 +399,44 @@ function childClick() {
 &lt;/select&gt;
 &lt;!-- 多选 --&gt;
 &lt;select v-model=&quot;selectedList&quot; multiple&gt;
-  ...
+  &lt;option value=&quot;a&quot;&gt;A&lt;/option&gt;
+  &lt;option value=&quot;b&quot;&gt;B&lt;/option&gt;
 &lt;/select&gt;</code></pre>
+           <p>
+             上面的单项示例展示语法；下面给出一个把文本、radio、checkbox、select 和 textarea
+             放在一起的完整 SFC。复制时请连同 <code>&lt;template&gt;</code>、
+             <code>&lt;script setup&gt;</code> 一起使用。
+           </p>
+           <pre class="vue"><code>&lt;template&gt;
+  &lt;form @submit.prevent=&quot;submit&quot;&gt;
+    &lt;input v-model=&quot;form.name&quot; placeholder=&quot;姓名&quot; /&gt;
+    &lt;textarea v-model=&quot;form.bio&quot; placeholder=&quot;简介&quot;&gt;&lt;/textarea&gt;
+    &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;level&quot; value=&quot;beginner&quot; v-model=&quot;form.level&quot; /&gt;初学者&lt;/label&gt;
+    &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;level&quot; value=&quot;advanced&quot; v-model=&quot;form.level&quot; /&gt;进阶者&lt;/label&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot; v-model=&quot;form.skills&quot; value=&quot;vue&quot; /&gt;Vue&lt;/label&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot; v-model=&quot;form.skills&quot; value=&quot;js&quot; /&gt;JavaScript&lt;/label&gt;
+    &lt;select v-model=&quot;form.city&quot;&gt;
+      &lt;option disabled value=&quot;&quot;&gt;请选择城市&lt;/option&gt;
+      &lt;option value=&quot;shanghai&quot;&gt;上海&lt;/option&gt;
+      &lt;option value=&quot;shenzhen&quot;&gt;深圳&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;button type=&quot;submit&quot;&gt;保存&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;pre&gt;{{ JSON.stringify(form, null, 2) }}&lt;/pre&gt;
+  &lt;p v-if=&quot;message&quot;&gt;{{ message }}&lt;/p&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { reactive, ref } from 'vue'
+const form = reactive({ name: '', bio: '', level: 'beginner', skills: [], city: '' })
+const message = ref('')
+const submit = () =&gt; { message.value = `已保存：${form.name || '未填写'}（${form.skills.length} 项技能）` }
+&lt;/script&gt;
+&lt;style scoped&gt;
+form { display: grid; gap: 8px; max-width: 360px; }
+textarea { min-height: 70px; }
+label { margin-right: 8px; }
+pre { background: #f6f8fa; padding: 10px; }
+&lt;/style&gt;</code></pre>
           <h4 id="易错点-3">易错点</h4>
           <ul>
             <li>
@@ -485,7 +526,7 @@ function childClick() {
   &lt;/form&gt;
 &lt;/template&gt;
 &lt;script setup&gt;
-import { reactive } from &#39;vue&#39;
+           import { reactive, ref } from &#39;vue&#39;
 const form = reactive({ username: &#39;&#39;, password: &#39;&#39; })
 const errors = reactive({ username: &#39;&#39;, password: &#39;&#39; })
 
@@ -533,11 +574,10 @@ const onSubmit = () =&gt; {
 &lt;/template&gt;
 
 &lt;script setup&gt;
-import { reactive } from &#39;vue&#39;
+import { reactive, ref } from &#39;vue&#39;
 const form = reactive({ username: &#39;&#39;, password: &#39;&#39;, remember: false })
 const errors = reactive({ username: &#39;&#39;, password: &#39;&#39; })
-const msg = ref(&#39;&#39;)   // 注：需 import ref（见下）
-import { ref } from &#39;vue&#39;
+const msg = ref(&#39;&#39;)
 
 const validate = () =&gt; {
   errors.username = form.username ? &#39;&#39; : &#39;用户名不能为空&#39;

@@ -67,10 +67,10 @@ $k3 = @(
   @{code='K3-1'; title='文本插值'; detail='<code>{{ }}</code> 用于响应式文本展示，不能直接放在属性位置。'},
   @{code='K3-2'; title='属性绑定'; detail='<code>v-bind</code> / <code>:</code> 绑定属性，支持 class/style 对象与数组。'},
   @{code='K3-3'; title='事件绑定'; detail='<code>v-on</code> / <code>@</code> 绑定交互事件，必要时接收 <code>$event</code>。'},
-  @{code='K3-4'; title='双向绑定'; detail='<code>v-model</code> 等价于值绑定加输入事件，适合表单状态。'},
-  @{code='K3-5'; title='条件渲染'; detail='<code>v-if</code> 控制创建销毁，<code>v-show</code> 适合频繁切换。'},
-  @{code='K3-6'; title='列表渲染'; detail='<code>v-for</code> 配合稳定唯一 <code>:key</code>，让更新更可靠。'},
-  @{code='K3-7'; title='修饰符'; detail='<code>.stop</code>、<code>.prevent</code>、<code>.lazy</code> 等压缩常见细节。'}
+  @{code='K3-4'; title='事件修饰符'; detail='<code>.stop</code>、<code>.prevent</code>、<code>.once</code> 等为事件附加行为规则。'},
+  @{code='K3-5'; title='双向绑定'; detail='<code>v-model</code> 根据控件类型同步值或选中状态，适合表单状态。'},
+  @{code='K3-6'; title='条件渲染'; detail='<code>v-if</code> 控制创建销毁，<code>v-show</code> 适合频繁切换。'},
+  @{code='K3-7'; title='列表渲染'; detail='<code>v-for</code> 配合稳定唯一 <code>:key</code>，让更新更可靠。'}
 )
 Replace-Visual '03-教学资料-模板语法与指令.html' '图示 1：结构与流程重绘' (Build-Grid '图示 1：模板语法与指令知识地图' 'three' $k3)
 

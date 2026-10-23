@@ -78,6 +78,7 @@
 配套资料：见同文件夹内
 <code>教学资料.md</code>、<code>题库.md</code></p>
 </blockquote>
+<p class="course-boundary"><strong>分课边界：</strong>本课只完成模板语法总览和基础信息卡片；事件/表单、响应式、条件/列表/样式进阶分别由第 04~06 课承担。</p>
 <hr />
 <h2 id="一课程信息">一、课程信息</h2>
 <table>
@@ -125,7 +126,7 @@
 <li>掌握条件渲染 <code>v-if</code> / <code>v-show</code>
 的区别与使用场景。</li>
 <li>掌握列表渲染 <code>v-for</code> 与 <code>:key</code> 的重要性。</li>
-<li>了解常用指令修饰符。</li>
+<li>了解事件修饰符，并知道 <code>v-model</code> 修饰符将在第 05 次课深入。</li>
 </ol>
 <h3 id="能力目标">能力目标</h3>
 <ol type="1">
@@ -133,7 +134,7 @@
 实现数据与视图的绑定。</li>
 <li>能够使用 <code>v-if</code>/<code>v-show</code> 控制元素显隐，使用
 <code>v-for</code> 渲染列表。</li>
-<li>能够用指令实现 CTTS-Frontend 的项目列表展示与搜索筛选。</li>
+<li>能够用基础指令实现 CTTS-Frontend 信息卡片，并能说明后续专题的学习位置。</li>
 </ol>
 <h3 id="素质目标课程思政">素质目标（课程思政）</h3>
 <ol type="1">
@@ -173,34 +174,32 @@ class/style/动态属性</td>
 </tr>
 <tr>
 <td>K3-4</td>
-<td>双向绑定 v-model</td>
-<td>表单双向绑定（基础）；<code>v-model</code> = <code>:value</code> +
-<code>@input</code></td>
+<td>事件修饰符（预览）</td>
+<td><code>.stop</code>/<code>.prevent</code>/<code>.once</code>/<code>.self</code>；为已绑定的事件附加行为规则</td>
 </tr>
 <tr>
 <td>K3-5</td>
+<td>双向绑定 v-model</td>
+<td>表单双向绑定（基础）；文本输入可理解为 <code>:value</code> +
+<code>@input</code>，其他控件按类型同步</td>
+</tr>
+<tr>
+<td>K3-6</td>
 <td>条件渲染</td>
 <td><code>v-if</code>/<code>v-else</code>/<code>v-else-if</code>/<code>v-show</code>；v-if
 删除重建，v-show 切换 display</td>
 </tr>
 <tr>
-<td>K3-6</td>
+<td>K3-7</td>
 <td>列表渲染 v-for</td>
 <td>遍历数组/对象；<code>:key</code> 必须唯一稳定；避免与 v-if 同级</td>
-</tr>
-<tr>
-<td>K3-7</td>
-<td>指令修饰符</td>
-<td><code>.stop</code>/<code>.prevent</code>/<code>.once</code>/<code>.lazy</code>/<code>.number</code>/<code>.trim</code>
-等</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h2 id="四项目任务或案例任务">四、项目任务或案例任务</h2>
-<p><strong>本次课任务</strong>：用指令实现 CTTS-Frontend
-项目列表展示与搜索筛选——展示项目数组、用输入框搜索过滤、用 v-show
-切换列表/空状态提示。</p>
+<p><strong>本次课任务</strong>：用插值、<code>v-bind</code>、<code>@click</code>、基础
+<code>v-model</code> 完成 CTTS-Frontend 信息卡片。搜索筛选、分页和状态样式不在本课验收，分别移至第 04、06 课。</p>
 <hr />
 <h2 id="五课堂互动设计">五、课堂互动设计</h2>
 <h3 id="互动-1代码找错v-if-与-v-for-混用反例">互动 1：代码找错——v-if 与
@@ -300,8 +299,7 @@ v-for 混用反例</h3>
 <h2 id="八课后任务">八、课后任务</h2>
 <ol type="1">
 <li>通读 <code>教学资料.md</code>，掌握各指令用法与区别。</li>
-<li>完善 CTTS-Frontend 项目列表：增加"状态筛选"下拉框，用 computed
-过滤。</li>
+<li>完善 CTTS-Frontend 信息卡片：增加编辑姓名、重点状态和保存提示；搜索筛选由第 06 次课完成。</li>
 <li>思考：v-if 与 v-show 的区别及选择依据（200 字）。</li>
 </ol>
 <hr />
@@ -316,19 +314,23 @@ v-for 混用反例</h3>
 <tbody>
 <tr>
 <td>v-if 与 v-show 区别（高频面试题）</td>
-<td>K3-5</td>
+<td>K3-6</td>
 </tr>
 <tr>
 <td>v-for 与 key 的作用（高频面试题）</td>
-<td>K3-6</td>
+<td>K3-7</td>
 </tr>
 <tr>
 <td>v-bind/v-on 简写与用法</td>
 <td>K3-2、K3-3</td>
 </tr>
 <tr>
-<td>v-model 原理（= :value + @input）</td>
+<td>事件修饰符（stop/prevent/once/self）</td>
 <td>K3-4</td>
+</tr>
+<tr>
+<td>v-model 原理（文本 input 可理解为 :value + @input）</td>
+<td>K3-5</td>
 </tr>
 </tbody>
 </table>
@@ -378,22 +380,22 @@ v-for 混用反例</h3>
 </tr>
 <tr>
 <td>10~30 min</td>
-<td>K3-2 v-bind + K3-3 v-on</td>
+<td>K3-2 v-bind + K3-3 v-on + K3-4 事件修饰符预览</td>
 <td>20 min</td>
 </tr>
 <tr>
 <td>30~45 min</td>
-<td>K3-4 v-model + K3-7 修饰符</td>
+<td>K3-5 v-model</td>
 <td>15 min</td>
 </tr>
 <tr>
 <td>45~65 min</td>
-<td>K3-5 条件渲染 + 互动 2</td>
+<td>K3-6 条件渲染 + 互动 2</td>
 <td>20 min</td>
 </tr>
 <tr>
 <td>65~80 min</td>
-<td>K3-6 v-for + 互动 1 + 项目任务</td>
+<td>K3-7 v-for + 互动 1 + 项目任务</td>
 <td>15 min</td>
 </tr>
 <tr>

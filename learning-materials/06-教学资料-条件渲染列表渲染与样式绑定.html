@@ -66,6 +66,9 @@
 <h2 id="一学习导读">一、学习导读</h2>
 <h3 id="11-本节定位">1.1 本节定位</h3>
 <p>本节深入条件渲染、列表渲染与样式绑定，是构建真实页面的关键技能。</p>
+<p class="course-boundary"><strong>课程边界：</strong>第 03 课只做这些指令的最小预览；本课负责深入
+<code>v-if/v-show</code> 的取舍、<code>v-for/:key</code>、列表更新、<code>:class/:style</code>
+以及筛选分页综合实践。事件和表单行为见第 05 课，响应式原理见第 04 课。</p>
 <h3 id="12-先修基础">1.2 先修基础</h3>
 <table>
 <thead>
@@ -113,7 +116,13 @@ DOM）。</li>
     &lt;p&gt;加载中...&lt;/p&gt;
     &lt;p&gt;请稍候&lt;/p&gt;
   &lt;/template&gt;
-&lt;/template&gt;</code></pre>
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from 'vue'
+const score = ref(72)
+const visible = ref(true)
+const loading = ref(false)
+&lt;/script&gt;</code></pre>
 <h4 id="v-if-vs-v-show">v-if vs v-show</h4>
 <table>
 <thead>
@@ -171,11 +180,15 @@ DOM）。</li>
 <h4 id="用法-1">用法</h4>
 <pre class="vue"><code>&lt;template&gt;
   &lt;!-- 数组 --&gt;
-  &lt;li v-for=&quot;(item, index) in list&quot; :key=&quot;item.id&quot;&gt;
-    {{ index }} - {{ item.title }}
-  &lt;/li&gt;
+  &lt;ul&gt;
+    &lt;li v-for=&quot;(item, index) in list&quot; :key=&quot;item.id&quot;&gt;
+      {{ index }} - {{ item.title }}
+    &lt;/li&gt;
+  &lt;/ul&gt;
   &lt;!-- 对象 --&gt;
-  &lt;li v-for=&quot;(value, key, index) in obj&quot; :key=&quot;key&quot;&gt;{{ key }}: {{ value }}&lt;/li&gt;
+  &lt;ul&gt;
+    &lt;li v-for=&quot;(value, key, index) in obj&quot; :key=&quot;key&quot;&gt;{{ key }}: {{ value }}&lt;/li&gt;
+  &lt;/ul&gt;
   &lt;!-- 数字 --&gt;
   &lt;span v-for=&quot;n in 5&quot; :key=&quot;n&quot;&gt;{{ n }} &lt;/span&gt;
 &lt;/template&gt;
@@ -192,13 +205,12 @@ const obj = ref({ name: &#39;Vue&#39;, version: 3 })
 </ul>
 <h4 id="易错点-1">易错点</h4>
 <ul>
-<li><strong>忘加 :key</strong>：Vue 警告，影响更新。</li>
+<li><strong>忘加 :key</strong>：简单文本列表仍可能显示，但 Vue 无法按业务身份稳定复用节点；涉及输入框、组件状态、排序或增删时容易错位。</li>
 <li><strong>v-for 与 v-if 同级</strong>：Vue 3 中 v-if
 优先级高会出错，用 computed 过滤。</li>
 </ul>
 <h4 id="小结-1">小结</h4>
-<p>v-for 遍历数组/对象/数字，必须提供唯一稳定 :key，避免与 v-if
-同级。</p>
+<p>v-for 遍历数组/对象/数字；列表通常应提供唯一稳定的 :key，涉及输入框、组件状态或排序增删时应视为必需，并避免与 v-if 同级。</p>
 <hr />
 <h3 id="知识点-k6-3列表更新检测">知识点 K6-3：列表更新检测</h3>
 <h4 id="定义-2">定义</h4>
@@ -346,7 +358,7 @@ id="三综合示例ctts-frontend-任务列表条件展示与分页">三、综合
 &lt;/template&gt;
 
 &lt;script setup&gt;
-import { ref, computed } from &#39;vue&#39;
+import { ref, computed, watch } from &#39;vue&#39;
 const pageSize = 2
 const page = ref(1)
 const statusFilter = ref(&#39;&#39;)
@@ -365,6 +377,9 @@ const pagedTasks = computed(() =&gt; {
   const start = (page.value - 1) * pageSize
   return filtered.value.slice(start, start + pageSize)
 })
+watch(statusFilter, () =&gt; {
+  page.value = 1
+})
 const statusClass = (status) =&gt; ({ &#39;s-doing&#39;: status === &#39;进行中&#39;, &#39;s-done&#39;: status === &#39;已完成&#39; })
 
 const prev = () =&gt; { if (page.value &gt; 1) page.value-- }
@@ -381,8 +396,14 @@ li { padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-conten
 .pager { margin-top: 16px; }
 button { padding: 6px 14px; margin: 0 6px; }
 &lt;/style&gt;</code></pre>
-<p><strong>运行方式</strong>：替换
-<code>src/App.vue</code>，筛选状态、翻页均可工作，状态不同颜色不同。</p>
+<p><strong>运行方式</strong>：在第 02 次课创建的 Vite 项目中替换
+<code>src/App.vue</code>，执行 <code>npm run dev</code>。筛选状态、翻页均可工作，状态不同颜色不同；筛选条件变化时页码会自动回到第 1 页。</p>
+<h4 id="运行结果检查">运行结果检查</h4>
+<div class="steps">
+  <div class="step"><span class="num">1</span><div>初始显示第 1 页的两条任务，“进行中”使用橙色，“已完成”使用绿色。</div></div>
+  <div class="step"><span class="num">2</span><div>点击“下一页”显示第 2 页，再切换状态筛选，页码立即回到第 1 页且列表不会空白。</div></div>
+  <div class="step"><span class="num">3</span><div>选择一个没有匹配项的条件，显示“暂无数据”；点击“上一页/下一页”时按钮的 disabled 状态正确。</div></div>
+</div>
 <hr />
 <h2 id="四拓展阅读选学">四、拓展阅读（选学）</h2>
 <ol type="1">
