@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>组件化开发综合实践</title>
+  <title>组件化开发综合实践实验</title>
   <link rel="stylesheet" href="assets/course-html.css">
   <link rel="stylesheet" href="assets/highlight-local.css">
   <script src="assets/vue-sfc-highlight.js" defer></script>
@@ -14,13 +14,13 @@
   <header class="hero">
     <div class="hero-inner">
       <div class="course-name">MVVM前端框架开发技术</div>
-      <div class="kicker">第 09 次课 · 教学资料</div>
-      <h1>组件化开发综合实践</h1>
-      <p>学生复习资料与代码示例 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
+      <div class="kicker">第 09 次课 · 实验课</div>
+      <h1>组件化开发综合实践实验</h1>
+      <p>以 CTTS 校园实训任务管理系统为背景，完成组件拆分、父子通信、组件 v-model 和三个高级组件能力的程序填空。</p>
       <div class="hero-meta">
         <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
         <span class="hero-chip"><b>课次</b>第 09 次课</span>
-        <span class="hero-chip"><b>主题</b>组件化开发综合实践</span>
+        <span class="hero-chip"><b>项目</b>ctts-vue-directive-practice</span>
       </div>
     </div>
   </header>
@@ -29,404 +29,800 @@
     <aside class="sidebar" aria-label="页面目录">
       <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
       <ul>
-<li><a href="#一学习导读">一、学习导读</a>
-<ul>
-<li><a href="#11-本节定位">1.1 本节定位</a></li>
-<li><a href="#12-先修基础">1.2 先修基础</a></li>
-<li><a href="#13-学习目标">1.3 学习目标</a></li>
-<li><a href="#拆分原则">拆分原则</a></li>
-<li><a href="#组件清单">组件清单</a></li>
-</ul></li>
-<li><a href="#三组件完整代码">三、组件完整代码</a>
-<ul>
-<li><a href="#31-布局组件">3.1 布局组件</a></li>
-<li><a href="#32-列表组件">3.2 列表组件</a></li>
-<li><a href="#33-表单组件">3.3 表单组件</a></li>
-<li><a href="#34-通用组件">3.4 通用组件</a></li>
-</ul></li>
-<li><a href="#四综合示例组合应用">四、综合示例：组合应用</a>
-<ul>
-</ul></li>
-<li><a href="#五实践复盘要点">五、实践复盘要点</a>
-<ul>
-</ul></li>
-<li><a href="#六本节小结与知识结构图">六、本节小结与知识结构图</a>
-<ul>
-</ul></li>
-<li><a href="#七复习思考题">七、复习思考题</a>
-<ul>
-</ul></li>
-</ul>
-
+        <li><a href="#lab-goal">一、实验定位与目标</a>
+          <ul>
+            <li><a href="#lab-position">1.1 本课定位</a></li>
+            <li><a href="#learning-goals">1.2 学习目标</a></li>
+            <li><a href="#deliverables">1.3 实验产出</a></li>
+          </ul>
+        </li>
+        <li><a href="#project-start">二、项目准备与基线验证</a>
+          <ul>
+            <li><a href="#run-steps">2.1 启动项目</a></li>
+            <li><a href="#project-map">2.2 项目结构</a></li>
+            <li><a href="#baseline">2.3 基线检查</a></li>
+          </ul>
+        </li>
+        <li><a href="#component-decision">三、组件拆分决策</a>
+          <ul>
+            <li><a href="#why-components">3.1 为什么需要组件</a></li>
+            <li><a href="#split-or-not">3.2 拆分与不拆分对比</a></li>
+            <li><a href="#split-rules">3.3 拆分判断清单</a></li>
+          </ul>
+        </li>
+        <li><a href="#knowledge">四、实验所需关键知识</a>
+          <ul>
+            <li><a href="#k9-1">K9-1 props 与 emits</a></li>
+            <li><a href="#k9-2">K9-2 provide / inject</a></li>
+            <li><a href="#k9-3">K9-3 透传 Attributes</a></li>
+            <li><a href="#k9-4">K9-4 defineModel</a></li>
+          </ul>
+        </li>
+        <li><a href="#experiment">五、实验任务与程序填空</a>
+          <ul>
+            <li><a href="#phase-a">5.1 指令综合题</a></li>
+            <li><a href="#phase-b">5.2 组件通信题</a></li>
+            <li><a href="#phase-c">5.3 三个高级能力任务</a></li>
+          </ul>
+        </li>
+        <li><a href="#integration">六、综合联调与排错</a></li>
+        <li><a href="#acceptance">七、验收、提交与评分</a></li>
+        <li><a href="#summary">八、本节小结</a></li>
+        <li><a href="#questions">九、复习思考题</a></li>
+      </ul>
     </aside>
     <main class="content">
       <article class="article">
-        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 09 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
-<blockquote>
-<p>学生复习资料 ｜ 配套：<code>教学设计.md</code>、<code>题库.md</code>
-本节为实践课，资料以完整项目代码为主，供课后复盘与补全。</p>
-</blockquote>
-<hr />
-<h2 id="一学习导读">一、学习导读</h2>
-<h3 id="11-本节定位">1.1 本节定位</h3>
-<p>本节综合运用前 8 次课知识，完成 CTTS-Frontend
-核心组件库，是组件化能力的集中训练。</p>
-<h3 id="12-先修基础">1.2 先修基础</h3>
-<table>
-<thead>
-<tr>
-<th>先修知识</th>
-<th>程度</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>第 2~8 次课</td>
-<td>必须</td>
-<td>SFC、响应式、props/emits、插槽、动态组件</td>
-</tr>
-</tbody>
-</table>
-<h3 id="13-学习目标">1.3 学习目标</h3>
-<ul>
-<li>✅ 按职责拆分组件库</li>
-<li>✅ 完成 4 类核心组件</li>
-<li>✅ 组合为可运行应用</li>
-</ul>
-<hr />
-<h2
-id="二组件库规划与拆分原则k9-1">二、组件库规划与拆分原则（K9-1）</h2>
-<h3 id="拆分原则">拆分原则</h3>
-<ol type="1">
-<li><strong>单一职责</strong>：一个组件只做一件事（如 ProjectList
-只管列表展示）。</li>
-<li><strong>可复用</strong>：通用组件（Card/Pagination/Dialog）不绑定具体业务。</li>
-<li><strong>命名规范</strong>：PascalCase，业务组件前缀业务名（AppHeader），通用组件无业务前缀（Card）。</li>
-<li><strong>层次清晰</strong>：布局组件 &gt; 业务组件 &gt;
-通用组件。</li>
-</ol>
-<h3 id="组件清单">组件清单</h3>
-<table>
-<thead>
-<tr>
-<th>类别</th>
-<th>组件</th>
-<th>职责</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>布局</td>
-<td>AppHeader / AppSidebar / AppContent</td>
-<td>顶部栏/侧边栏/内容区</td>
-</tr>
-<tr>
-<td>列表</td>
-<td>ProjectList / TaskList</td>
-<td>项目列表/任务列表（props 数据）</td>
-</tr>
-<tr>
-<td>表单</td>
-<td>LoginForm / SubmitForm</td>
-<td>登录/提交（emits）</td>
-</tr>
-<tr>
-<td>通用</td>
-<td>Pagination / Card / Dialog</td>
-<td>分页/卡片插槽/对话框 v-model</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="三组件完整代码">三、组件完整代码</h2>
-<h3 id="31-布局组件">3.1 布局组件</h3>
-<p><strong>AppHeader.vue</strong>：</p>
-<pre class="vue"><code>&lt;template&gt;
-  &lt;header class=&quot;app-header&quot;&gt;
-    &lt;span class=&quot;title&quot;&gt;CTTS-Frontend&lt;/span&gt;
-    &lt;span class=&quot;user&quot;&gt;当前用户：{{ user }}&lt;/span&gt;
-  &lt;/header&gt;
-&lt;/template&gt;
-&lt;script setup&gt;
-defineProps({ user: { type: String, default: &#39;未登录&#39; } })
-&lt;/script&gt;
-&lt;style scoped&gt;
-.app-header { display: flex; justify-content: space-between; padding: 12px 20px; background: #42b883; color: #fff; }
-.title { font-weight: bold; }
-&lt;/style&gt;</code></pre>
-<p><strong>AppSidebar.vue</strong>：</p>
-<pre class="vue"><code>&lt;template&gt;
-  &lt;aside class=&quot;app-sidebar&quot;&gt;
-    &lt;ul&gt;
-      &lt;li v-for=&quot;item in menus&quot; :key=&quot;item.path&quot;&gt;{{ item.label }}&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/aside&gt;
-&lt;/template&gt;
-&lt;script setup&gt;
-import { ref } from &#39;vue&#39;
-const menus = ref([
-  { path: &#39;/projects&#39;, label: &#39;项目列表&#39; },
-  { path: &#39;/tasks&#39;, label: &#39;任务列表&#39; },
-  { path: &#39;/profile&#39;, label: &#39;个人中心&#39; }
-])
-&lt;/script&gt;
-&lt;style scoped&gt;
-.app-sidebar { width: 180px; background: #f5f5f5; padding: 12px; }
-ul { list-style: none; padding: 0; }
-li { padding: 10px; cursor: pointer; border-radius: 4px; }
-li:hover { background: #e6f1fb; }
-&lt;/style&gt;</code></pre>
-<h3 id="32-列表组件">3.2 列表组件</h3>
-<p><strong>ProjectList.vue</strong>（props 传数据、:class 状态）：</p>
-<pre class="vue"><code>&lt;template&gt;
-  &lt;ul class=&quot;project-list&quot;&gt;
-    &lt;li v-for=&quot;p in projects&quot; :key=&quot;p.id&quot; :class=&quot;statusClass(p.status)&quot;&gt;
-      {{ p.title }} &lt;span class=&quot;status&quot;&gt;{{ p.status }}&lt;/span&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/template&gt;
-&lt;script setup&gt;
-defineProps({ projects: { type: Array, default: () =&gt; [] } })
-const statusClass = (s) =&gt; ({ &#39;s-doing&#39;: s === &#39;进行中&#39;, &#39;s-done&#39;: s === &#39;已完成&#39; })
-&lt;/script&gt;
-&lt;style scoped&gt;
-.project-list { list-style: none; padding: 0; }
-li { padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
-.s-doing { color: #e6a23c; }
-.s-done { color: #42b883; }
-&lt;/style&gt;</code></pre>
-<h3 id="33-表单组件">3.3 表单组件</h3>
-<p><strong>LoginForm.vue</strong>（v-model + emits）：</p>
-<pre class="vue"><code>&lt;template&gt;
-  &lt;form @submit.prevent=&quot;onSubmit&quot;&gt;
-    &lt;input v-model.trim=&quot;form.username&quot; placeholder=&quot;用户名&quot; /&gt;
-    &lt;input v-model.trim=&quot;form.password&quot; type=&quot;password&quot; placeholder=&quot;密码&quot; /&gt;
-    &lt;button type=&quot;submit&quot;&gt;登录&lt;/button&gt;
-  &lt;/form&gt;
-&lt;/template&gt;
-&lt;script setup&gt;
-import { reactive } from &#39;vue&#39;
-const emit = defineEmits([&#39;submit&#39;])
-const form = reactive({ username: &#39;&#39;, password: &#39;&#39; })
-const onSubmit = () =&gt; emit(&#39;submit&#39;, { ...form })
-&lt;/script&gt;</code></pre>
-<h3 id="34-通用组件">3.4 通用组件</h3>
-<p><strong>Pagination.vue</strong>（props + emits）：</p>
-<pre class="vue"><code>&lt;template&gt;
-  &lt;div class=&quot;pager&quot;&gt;
-    &lt;button @click=&quot;$emit(&#39;change&#39;, page - 1)&quot; :disabled=&quot;page &lt;= 1&quot;&gt;上一页&lt;/button&gt;
-    &lt;span&gt;{{ page }} / {{ total }}&lt;/span&gt;
-    &lt;button @click=&quot;$emit(&#39;change&#39;, page + 1)&quot; :disabled=&quot;page &gt;= total&quot;&gt;下一页&lt;/button&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-&lt;script setup&gt;
-defineProps({ page: { type: Number, required: true }, total: { type: Number, required: true } })
-&lt;/script&gt;
-&lt;style scoped&gt;
-.pager { margin-top: 16px; }
-button { padding: 4px 12px; margin: 0 6px; }
-&lt;/style&gt;</code></pre>
-<p><strong>Card.vue</strong>（具名插槽）：</p>
-<pre class="vue"><code>&lt;template&gt;
-  &lt;div class=&quot;card&quot;&gt;
-    &lt;div class=&quot;card-header&quot;&gt;&lt;slot name=&quot;header&quot;&gt;&lt;/slot&gt;&lt;/div&gt;
-    &lt;div class=&quot;card-body&quot;&gt;&lt;slot&gt;&lt;/slot&gt;&lt;/div&gt;
-    &lt;div class=&quot;card-footer&quot;&gt;&lt;slot name=&quot;footer&quot;&gt;&lt;/slot&gt;&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-&lt;style scoped&gt;
-.card { border: 1px solid #ddd; border-radius: 8px; max-width: 400px; margin: 10px; }
-.card-header { padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; }
-.card-body { padding: 12px; }
-.card-footer { padding: 10px; border-top: 1px solid #eee; }
-&lt;/style&gt;</code></pre>
-<p><strong>Dialog.vue</strong>（组件 v-model 控制显隐）：</p>
-<pre class="vue"><code>&lt;template&gt;
-  &lt;div v-if=&quot;model&quot; class=&quot;dialog-mask&quot; @click=&quot;model = false&quot;&gt;
-    &lt;div class=&quot;dialog&quot; @click.stop&gt;
-      &lt;slot&gt;&lt;/slot&gt;
-      &lt;button @click=&quot;model = false&quot;&gt;关闭&lt;/button&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-&lt;script setup&gt;
-import { defineModel } from &#39;vue&#39;
-const model = defineModel()
-&lt;/script&gt;
-&lt;style scoped&gt;
-.dialog-mask { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; }
-.dialog { background: #fff; padding: 20px; border-radius: 8px; }
-&lt;/style&gt;</code></pre>
-<hr />
-<h2 id="四综合示例组合应用">四、综合示例：组合应用</h2>
-<p><strong>App.vue</strong>（组合所有组件）：</p>
-<pre class="vue"><code>&lt;template&gt;
-  &lt;div class=&quot;app&quot;&gt;
-    &lt;AppHeader :user=&quot;currentUser&quot; /&gt;
-    &lt;div class=&quot;app-body&quot;&gt;
-      &lt;AppSidebar /&gt;
-      &lt;main class=&quot;app-content&quot;&gt;
-        &lt;Card&gt;
-          &lt;template #header&gt;项目列表&lt;/template&gt;
-          &lt;ProjectList :projects=&quot;projects&quot; /&gt;
-          &lt;template #footer&gt;
-            &lt;Pagination :page=&quot;page&quot; :total=&quot;totalPages&quot; @change=&quot;onPageChange&quot; /&gt;
-          &lt;/template&gt;
-        &lt;/Card&gt;
-        &lt;button @click=&quot;showDialog = true&quot;&gt;打开对话框&lt;/button&gt;
-        &lt;Dialog v-model=&quot;showDialog&quot;&gt;
-          &lt;p&gt;这是一个对话框&lt;/p&gt;
-        &lt;/Dialog&gt;
-      &lt;/main&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-&lt;script setup&gt;
-import { ref, computed } from &#39;vue&#39;
-import AppHeader from &#39;./components/AppHeader.vue&#39;
-import AppSidebar from &#39;./components/AppSidebar.vue&#39;
-import ProjectList from &#39;./components/ProjectList.vue&#39;
-import Card from &#39;./components/Card.vue&#39;
-import Pagination from &#39;./components/Pagination.vue&#39;
-import Dialog from &#39;./components/Dialog.vue&#39;
+        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 09 次课 <span>｜</span> <strong>文档：</strong>实验指导书</p>
+        <blockquote>
+          <p><strong>本课的完成标准：</strong>学生只阅读本页和项目中的任务说明，就能启动项目、补全代码、验证结果并提交一份可运行的 CTTS 组件化实践成果。教师版可以保留参考实现；发放学生版时，可删除源码“学生补全区域”中的实现，只保留注释和任务提示。</p>
+        </blockquote>
 
-const currentUser = ref(&#39;admin&#39;)
-const pageSize = 2
-const page = ref(1)
-const allProjects = ref([
-  { id: 1, title: &#39;项目一&#39;, status: &#39;进行中&#39; },
-  { id: 2, title: &#39;项目二&#39;, status: &#39;已完成&#39; },
-  { id: 3, title: &#39;项目三&#39;, status: &#39;未开始&#39; },
-  { id: 4, title: &#39;项目四&#39;, status: &#39;进行中&#39; }
-])
-const totalPages = computed(() =&gt; Math.max(1, Math.ceil(allProjects.value.length / pageSize)))
-const projects = computed(() =&gt; {
-  const start = (page.value - 1) * pageSize
-  return allProjects.value.slice(start, start + pageSize)
+        <hr>
+        <h2 id="lab-goal">一、实验定位与目标</h2>
+        <h3 id="lab-position">1.1 本课定位</h3>
+        <p>第 09 次课不是继续抄写组件代码，而是一次<strong>以项目为载体的综合实验</strong>。你要在已有的 CTTS 练习项目中完成从“页面能显示”到“组件职责清晰、数据流可追踪、交互可验收”的改造。</p>
+        <p class="course-boundary"><strong>先修要求：</strong>第 07 次课的单文件组件、props、emits 和组件 <code>v-model</code>；第 08 次课的插槽、动态组件等高级特性。本课新增并实践 <code>provide / inject</code>、透传 Attributes、Vue 3.4+ <code>defineModel</code>。</p>
+
+        <h3 id="learning-goals">1.2 学习目标</h3>
+        <table>
+          <thead><tr><th>目标</th><th>完成后的表现</th><th>对应任务</th></tr></thead>
+          <tbody>
+            <tr><td>读懂项目</td><td>能说明 <code>App.vue</code>、练习组件和子组件之间的职责与数据流。</td><td>任务 0</td></tr>
+            <tr><td>完成指令综合题</td><td>能用 <code>v-if</code>、<code>v-show</code>、<code>v-for</code>、<code>v-model</code>、<code>:class</code> 和事件完成六个业务片段。</td><td>任务 1～6</td></tr>
+            <tr><td>完成组件通信题</td><td>能用 props、emits 和多属性 <code>v-model</code> 拆分可复用组件。</td><td>任务 7～9</td></tr>
+            <tr><td>掌握高级能力</td><td>能在真实组件中注入上下文、把属性落到指定原生元素，并用 <code>defineModel</code> 简化双向绑定。</td><td>任务 10～14</td></tr>
+            <tr><td>独立验收</td><td>能根据行为清单和控制台检查结果定位常见错误，并提交源码与截图。</td><td>联调与提交</td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="deliverables">1.3 实验产出</h3>
+        <ul>
+          <li>完成后的 <code>ctts-vue-directive-practice</code> 项目源码，至少包含任务 1～9；任务 10～14 按本课要求完成。</li>
+          <li>一份实验记录：写出每个任务使用的 Vue 语法、遇到的一个错误及解决方法。</li>
+          <li>至少 5 张截图：任务状态、列表/筛选、表单或成果编辑器、组件通信、高级能力任务各一张。</li>
+        </ul>
+
+        <hr>
+        <h2 id="project-start">二、项目准备与基线验证</h2>
+        <h3 id="run-steps">2.1 启动项目</h3>
+        <p>在 PowerShell 或终端执行下面命令。不要在 <code>learning-materials</code> 目录运行，否则相对路径和依赖目录会不正确。</p>
+        <pre class="bash"><code>cd D:\lesson-project\mvvm\ctts-vue-directive-practice
+npm install
+npm run dev</code></pre>
+        <p>浏览器打开 <code>http://127.0.0.1:5175</code>。本项目使用 Vue 3 + Vite，<code>package.json</code> 已固定开发服务器端口；如果端口被占用，先关闭旧的 Vite 进程，再重新启动。</p>
+
+        <h3 id="project-map">2.2 项目结构</h3>
+        <pre class="text"><code>ctts-vue-directive-practice/
+├─ package.json
+├─ vite.config.js
+├─ 任务说明.md
+├─ 组件练习任务说明.md
+└─ src/
+   ├─ App.vue                         # 练习导航和页面组合
+   ├─ main.js                         # createApp 入口
+   ├─ assets/base.css                 # 全局样式
+   ├─ injectionKeys.js                # provide/inject 的 Symbol key
+   └─ components/
+      ├─ TaskStatusBlock.vue          # 任务 1：条件渲染
+      ├─ TaskDetailBlock.vue          # 任务 2：v-show 与事件
+      ├─ ProjectListBlock.vue          # 任务 3：列表渲染
+      ├─ SubmissionFormBlock.vue      # 任务 4：表单
+      ├─ TaskFilterBlock.vue           # 任务 5：计算属性筛选
+      ├─ ReviewScoreBlock.vue          # 任务 6：综合筛选统计
+      ├─ ComponentBasicPractice.vue   # 任务 7：组件复用
+      ├─ ParentChildPractice.vue      # 任务 8：props/emits
+      ├─ ComponentVModelPractice.vue  # 任务 9：多属性 v-model
+      ├─ TaskSummaryCard.vue           # 任务 7 的子组件
+      ├─ TaskRow.vue                   # 任务 8 的子组件
+      ├─ SubmissionEditor.vue          # 任务 9 的子组件
+      ├─ ProvideInjectPractice.vue    # 任务 10～11：上下文共享
+      ├─ ProvideInjectToolbar.vue
+      ├─ ProvideInjectMiddle.vue
+      ├─ ProvideInjectSummary.vue
+      ├─ AttrsForwardPractice.vue     # 任务 12～13：Attributes 透传
+      ├─ BaseField.vue
+      └─ BaseButton.vue</code></pre>
+
+        <h3 id="baseline">2.3 基线检查</h3>
+        <p>第一次打开页面时，按导航依次检查原有九个练习和新增的两个高级练习。每个练习都应能看到题目、控件和参考实现的交互效果。若教师发放的是挖空版，页面可能暂时空白，这是预期现象；请按本课任务补全。</p>
+        <table>
+          <thead><tr><th>检查项</th><th>操作</th><th>正确现象</th></tr></thead>
+          <tbody>
+            <tr><td>状态提示</td><td>切换“未开始/进行中/已结束”。</td><td>提示文字和标签颜色同时变化。</td></tr>
+            <tr><td>筛选与评审</td><td>切换筛选条件，尝试无结果条件，再点击重置。</td><td>列表、空状态、记录数和平均分同步变化。</td></tr>
+            <tr><td>组件通信</td><td>点击任务行；填写成果编辑器。</td><td>父组件显示子组件传回的数据，控制台无警告。</td></tr>
+          </tbody>
+        </table>
+
+        <hr>
+        <h2 id="component-decision">三、组件拆分决策</h2>
+        <h3 id="why-components">3.1 为什么需要组件</h3>
+        <p>组件不是“把一个文件切成很多文件”这么简单。它把<strong>模板、状态、事件和样式</strong>封装成一个有明确输入输出的单元。拆分后，父组件负责组合和业务状态，子组件负责一个局部职责；同一个子组件可以在列表、详情页或不同练习中复用。</p>
+        <ul>
+          <li><strong>可维护：</strong>修改状态标签只需要改一个组件，不必在多个页面搜索重复 HTML。</li>
+          <li><strong>可复用：</strong><code>TaskSummaryCard</code> 接收数据即可生成三张不同的统计卡片。</li>
+          <li><strong>可测试：</strong>可以单独验证子组件的 props、事件和边界状态。</li>
+          <li><strong>可协作：</strong>不同成员可以按组件边界开发，不互相覆盖整页模板。</li>
+        </ul>
+
+        <h3 id="split-or-not">3.2 拆分与不拆分对比</h3>
+        <p><strong>不拆分（短期能显示，长期难维护）：</strong>把三张统计卡片全部写在父组件中，结构和文字重复。</p>
+        <pre class="vue"><code>&lt;!-- ComponentBasicPractice.vue：不推荐的重复写法 --&gt;
+&lt;div class="summary-card"&gt;待完成任务：{{ pendingCount }}&lt;/div&gt;
+&lt;div class="summary-card"&gt;已提交成果：{{ submittedCount }}&lt;/div&gt;
+&lt;div class="summary-card"&gt;平均得分：{{ averageScore }}&lt;/div&gt;</code></pre>
+        <p>这段代码的问题是：卡片布局、图标、帮助文字要改三次；将来新增第四张卡片还要继续复制；不同页面无法直接复用。</p>
+        <p><strong>拆分后（本项目的做法）：</strong>父组件只维护数据并循环，子组件只负责一张卡片。</p>
+        <pre class="vue"><code>&lt;!-- 父组件 --&gt;
+&lt;TaskSummaryCard
+  v-for="card in summaryCards"
+  :key="card.label"
+  v-bind="card"
+/&gt;
+
+&lt;!-- TaskSummaryCard.vue --&gt;
+&lt;template&gt;
+  &lt;article class="component-mini-card"&gt;
+    &lt;strong&gt;{{ icon }}&lt;/strong&gt;
+    &lt;div&gt;&lt;p&gt;{{ label }}&lt;/p&gt;&lt;b&gt;{{ value }}&lt;/b&gt;&lt;small&gt;{{ help }}&lt;/small&gt;&lt;/div&gt;
+  &lt;/article&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+defineProps({
+  icon: String,
+  label: { type: String, required: true },
+  value: { type: [String, Number], required: true },
+  help: String
 })
-const onPageChange = (p) =&gt; { if (p &gt;= 1 &amp;&amp; p &lt;= totalPages.value) page.value = p }
-const showDialog = ref(false)
-&lt;/script&gt;
-&lt;style scoped&gt;
-.app-body { display: flex; }
-.app-content { flex: 1; padding: 16px; }
-&lt;/style&gt;</code></pre>
-<p><strong>运行方式</strong>：在 <code>src/components/</code>
-下创建上述组件，<code>src/App.vue</code> 组合，<code>npm run dev</code>
-即可看到完整应用骨架。</p>
-<hr />
-<h2 id="五实践复盘要点">五、实践复盘要点</h2>
-<table>
-<thead>
-<tr>
-<th>常见问题</th>
-<th>解决</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>props 忘传/类型不符</td>
-<td>父组件正确传值，子组件声明 type</td>
-</tr>
-<tr>
-<td>emit 事件名与监听不一致</td>
-<td>子 emit 名与父 @ 名一致</td>
-</tr>
-<tr>
-<td>插槽忘写 <code>&lt;slot&gt;</code></td>
-<td>通用组件必须留插槽</td>
-</tr>
-<tr>
-<td>组件 v-model 报错</td>
-<td>Vue 3.4+ 用 defineModel，否则手动 modelValue+update</td>
-</tr>
-<tr>
-<td>组件拆太碎/太大</td>
-<td>单一职责，适度拆分</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="六本节小结与知识结构图">六、本节小结与知识结构图</h2>
-<div class="visual">
-  <div class="visual-title">图示 1：组件化开发实践知识地图</div>
-  <div class="edu-diagram">
-    <div class="diagram-grid three">
-    <div class="diagram-card">
-      <strong>K9-1</strong>
-      <h4>拆分原则</h4>
-      <p>围绕单一职责、复用价值、命名一致性和层次边界拆组件。</p>
-    </div>
-    <div class="diagram-card">
-      <strong>K9-2</strong>
-      <h4>布局组件</h4>
-      <p>Header、Sidebar、Content 承担页面骨架，不混入业务细节。</p>
-    </div>
-    <div class="diagram-card">
-      <strong>K9-3</strong>
-      <h4>列表组件</h4>
-      <p>ProjectList、TaskList 通过 props 接收数据，专注列表展示。</p>
-    </div>
-    <div class="diagram-card">
-      <strong>K9-4</strong>
-      <h4>表单组件</h4>
-      <p>LoginForm、SubmitForm 负责输入收集，通过 emits 提交结果。</p>
-    </div>
-    <div class="diagram-card">
-      <strong>K9-5</strong>
-      <h4>通用组件</h4>
-      <p>Pagination、Card、Dialog 抽象高频 UI 能力，服务多个页面。</p>
-    </div>
-    </div>
-  </div>
-</div>
-<table>
-<thead>
-<tr>
-<th>要点</th>
-<th>一句话</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>拆分原则</td>
-<td>单一职责 + 可复用</td>
-</tr>
-<tr>
-<td>列表组件</td>
-<td>props 传数据</td>
-</tr>
-<tr>
-<td>表单组件</td>
-<td>emits 提交</td>
-</tr>
-<tr>
-<td>Card</td>
-<td>插槽</td>
-</tr>
-<tr>
-<td>Dialog</td>
-<td>组件 v-model</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="七复习思考题">七、复习思考题</h2>
-<ol type="1">
-<li>组件拆分的依据是什么？单一职责如何体现？</li>
-<li>ProjectList 接收数据用 props 还是内部请求？为什么？</li>
-<li>Dialog 如何用组件 v-model 控制显隐？</li>
-<li>Card 为什么用插槽而非 props 传内容？</li>
-<li>组件拆分粒度如何权衡？</li>
-</ol>
+&lt;/script&gt;</code></pre>
 
+        <h3 id="split-rules">3.3 拆分判断清单</h3>
+        <table>
+          <thead><tr><th>问题</th><th>回答“是”时的建议</th><th>本项目例子</th></tr></thead>
+          <tbody>
+            <tr><td>是否在两个位置出现相同结构？</td><td>抽为可复用组件，输入差异通过 props 传入。</td><td><code>TaskSummaryCard</code></td></tr>
+            <tr><td>是否有独立状态或交互？</td><td>抽出组件，让它管理局部状态并通过 emit 报告结果。</td><td><code>TaskRow</code> 的“查看任务”</td></tr>
+            <tr><td>是否需要单独测试或替换？</td><td>设置清晰的输入/输出边界。</td><td><code>SubmissionEditor</code></td></tr>
+            <tr><td>是否只有一行、只使用一次且没有独立逻辑？</td><td>可以先留在父组件，避免过度拆分。</td><td>简单的静态说明文字</td></tr>
+          </tbody>
+        </table>
+        <p>组件过大时难以定位问题，组件过碎时阅读成本变高。最终依据是<strong>职责、复用价值和变更边界</strong>，不是文件数量越多越好。</p>
+
+        <hr>
+        <h2 id="knowledge">四、实验所需关键知识</h2>
+        <h3 id="k9-1">知识点 K9-1：props 与 emits 的单向数据流</h3>
+        <p>父组件通过 props 把数据传给子组件，子组件不能直接修改 props；子组件通过 <code>emit</code> 派发事件，父组件决定如何修改自己的状态。以任务行练习为例：</p>
+        <pre class="vue"><code>&lt;!-- 父组件 ParentChildPractice.vue --&gt;
+&lt;TaskRow :task="task" @select-task="handleSelectTask" /&gt;
+
+&lt;script setup&gt;
+import TaskRow from './TaskRow.vue'
+function handleSelectTask(selectedTask) {
+  // 父组件收到子组件派发的任务对象
+  console.log(selectedTask)
+}
+&lt;/script&gt;</code></pre>
+        <pre class="vue"><code>&lt;!-- 子组件 TaskRow.vue --&gt;
+&lt;script setup&gt;
+const props = defineProps({ task: { type: Object, required: true } })
+const emit = defineEmits(['select-task'])
+function selectTask() {
+  emit('select-task', props.task)
+}
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;button type="button" @click="selectTask"&gt;查看任务&lt;/button&gt;
+&lt;/template&gt;</code></pre>
+        <p class="callout"><strong>注意：</strong><code>defineProps</code> 和 <code>defineEmits</code> 是 <code>&lt;script setup&gt;</code> 编译宏，不需要从 <code>vue</code> 导入。事件名要完全对应：子组件 <code>emit('select-task')</code>，父组件监听 <code>@select-task</code>。</p>
+
+        <h3 id="k9-2">知识点 K9-2：provide / inject</h3>
+        <h4>什么时候使用</h4>
+        <p>当数据需要跨越多层组件传递，而中间组件并不使用它时，可以由祖先 <code>provide</code>，后代 <code>inject</code>。它适合主题、表单上下文、当前用户等“同一组件树共享”的依赖；不应把所有业务状态都藏进注入上下文，复杂全局状态仍应考虑明确的状态管理方案。</p>
+        <div class="visual">
+          <div class="visual-title">图示 2：同一组件树中的 provide / inject 依赖流</div>
+          <div class="edu-diagram">
+            <div class="diagram-flow">
+              <div class="diagram-card">
+                <span class="diagram-badge">1 · 祖先组件</span>
+                <h4>Provider：provide</h4>
+                <p>提供响应式 <code>theme</code>、<code>currentUser</code> 和更新方法。</p>
+              </div>
+              <div class="diagram-card neutral">
+                <span class="diagram-badge">2 · 中间层</span>
+                <h4>Layout：不需要传 props</h4>
+                <p>中间组件只负责布局，不声明、不接收、不转发自己不用的上下文。</p>
+              </div>
+              <div class="diagram-card good">
+                <span class="diagram-badge good">3 · 后代组件</span>
+                <h4>Consumer：inject</h4>
+                <p>后代按同一个 key 注入，直接读取共享状态并调用祖先提供的方法。</p>
+              </div>
+            </div>
+            <div class="diagram-callout"><code>祖先 provide</code> → <code>同一组件树</code> → <code>后代 inject</code>；只要仍在这棵组件树中，依赖就能跨过任意层级。</div>
+          </div>
+        </div>
+        <h4>最小可运行示例：响应式主题上下文</h4>
+        <pre class="javascript"><code>// src/injectionKeys.js
+export const THEME_KEY = Symbol('ctts-theme')</code></pre>
+        <pre class="vue"><code>&lt;!-- App.vue 或其他祖先组件 --&gt;
+&lt;script setup&gt;
+import { provide, readonly, ref } from 'vue'
+import { THEME_KEY } from './injectionKeys'
+
+const theme = ref('light')
+function toggleTheme() {
+  theme.value = theme.value === 'light' ? 'dark' : 'light'
+}
+provide(THEME_KEY, {
+  theme: readonly(theme), // 后代只能读，不能直接 theme.value = ...
+  toggleTheme
+})
+&lt;/script&gt;</code></pre>
+        <pre class="vue"><code>&lt;!-- 任意后代组件 ThemeBadge.vue --&gt;
+&lt;script setup&gt;
+import { inject } from 'vue'
+import { THEME_KEY } from '../injectionKeys'
+
+const themeContext = inject(THEME_KEY)
+if (!themeContext) {
+  throw new Error('ThemeBadge 必须放在提供 THEME_KEY 的组件内部')
+}
+const { theme } = themeContext
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div :class="['theme-badge', theme]"&gt;
+    当前主题：{{ theme }}
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+        <h4>必须掌握的细节</h4>
+        <ul>
+          <li>字符串 key（如 <code>'theme'</code>）容易拼写冲突；跨文件共享时优先使用 <code>Symbol</code> key。</li>
+          <li>注入的是 <code>ref</code> 才能保持响应式；模板中会自动解包，脚本中仍要写 <code>theme.value</code>。</li>
+          <li>可以传默认值：<code>inject(THEME_KEY, 'light')</code>；默认值很复杂时可传工厂函数并将第三个参数设为 <code>true</code>。</li>
+          <li>如果后代需要修改状态，注入“修改方法”而不是暴露可写 ref；<code>readonly</code> 只能保护 ref 的直接赋值，不能替代业务权限校验。</li>
+        </ul>
+        <pre class="javascript"><code>import { inject } from 'vue'
+// 第三个参数 true 表示第二个参数是“工厂函数”，需要时才创建默认值
+const context = inject(THEME_KEY, () =&gt; ({ theme: 'light' }), true)</code></pre>
+
+        <h3 id="k9-3">知识点 K9-3：透传 Attributes</h3>
+        <p>父组件传给子组件、但没有被 <code>defineProps</code> 或 <code>defineEmits</code> 声明的属性，会进入 <code>$attrs</code>。它包括普通 HTML 属性、<code>class</code>、<code>style</code> 和事件监听器。单根组件默认把这些属性放到根元素；如果真正应该接收属性的是内部输入框，就要关闭自动继承并手动绑定。</p>
+        <pre class="vue"><code>&lt;!-- BaseField.vue：把属性透传到 input，而不是外层 label --&gt;
+&lt;script setup&gt;
+import { useAttrs } from 'vue'
+
+defineOptions({ inheritAttrs: false })
+const attrs = useAttrs()
+defineProps({ label: { type: String, required: true } })
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;label class="base-field"&gt;
+    &lt;span&gt;{{ label }}&lt;/span&gt;
+    &lt;input v-bind="attrs" /&gt;
+  &lt;/label&gt;
+&lt;/template&gt;</code></pre>
+        <pre class="vue"><code>&lt;!-- 父组件使用：placeholder、disabled、aria-label、@input 都会到 input --&gt;
+&lt;BaseField
+  label="成果标题"
+  placeholder="请输入标题"
+  maxlength="40"
+  aria-label="成果标题"
+  @input="onInput"
+/&gt;</code></pre>
+        <pre class="vue"><code>&lt;!-- 多根节点组件：Vue 不会猜属性应该落在哪个根节点，必须明确绑定 --&gt;
+&lt;template&gt;
+  &lt;label&gt;成果标题&lt;/label&gt;
+  &lt;input v-bind="$attrs" /&gt;
+&lt;/template&gt;</code></pre>
+        <ul>
+          <li>单根组件可以让 Vue 自动透传；多根节点组件不会自动决定放到哪一个根节点，必须显式 <code>v-bind="$attrs"</code>。</li>
+          <li><code>inheritAttrs: false</code> 后如果忘记手动绑定，属性和事件会消失；如果同时自动透传和手动透传，可能出现重复绑定。</li>
+          <li>已经声明的 props/emits 不会出现在 <code>attrs</code> 中，所以 <code>label</code> 仍由 <code>defineProps</code> 接收。</li>
+          <li><code>useAttrs()</code> 适合传递，不要把它当成需要深度监听的响应式数据源。</li>
+        </ul>
+
+        <h3 id="k9-4">知识点 K9-4：defineModel 的详细用法（Vue 3.4+）</h3>
+        <p><code>defineModel</code> 是 <code>&lt;script setup&gt;</code> 编译宏，通常<strong>不需要从 <code>vue</code> 导入</strong>。它把 prop 和 <code>update:</code> 事件组合成一个可直接用于 <code>v-model</code> 的 ref。</p>
+        <h4>4.1 默认模型</h4>
+        <pre class="vue"><code>&lt;!-- TextInput.vue --&gt;
+&lt;script setup&gt;
+const model = defineModel({
+  type: String,
+  default: ''
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;input v-model="model" /&gt;
+&lt;/template&gt;
+
+&lt;!-- 父组件 --&gt;
+&lt;TextInput v-model="keyword" /&gt;</code></pre>
+        <p>上面的写法等价于子组件声明 <code>modelValue</code>，并派发 <code>update:modelValue</code>。父组件没有初始值时，子组件的 <code>default</code> 可能造成短暂的父子不同步；实践中建议父组件先写 <code>const keyword = ref('')</code>。</p>
+        <h4>4.2 多个命名模型：本项目成果编辑器</h4>
+        <pre class="vue"><code>&lt;!-- SubmissionEditor.vue（Vue 3.4+ 写法） --&gt;
+&lt;script setup&gt;
+const title = defineModel('title', { type: String, default: '' })
+const content = defineModel('content', { type: String, default: '' })
+const emit = defineEmits(['submit'])
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div class="editor-box"&gt;
+    &lt;label&gt;成果标题
+      &lt;input v-model="title" placeholder="请输入成果标题" /&gt;
+    &lt;/label&gt;
+    &lt;label&gt;成果说明
+      &lt;textarea v-model="content" placeholder="请描述本次提交的成果内容" /&gt;
+    &lt;/label&gt;
+    &lt;button type="button" @click="emit('submit')"&gt;提交成果&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+        <pre class="vue"><code>&lt;!-- ComponentVModelPractice.vue --&gt;
+&lt;SubmissionEditor
+  v-model:title="form.title"
+  v-model:content="form.content"
+  @submit="submitSubmission"
+/&gt;</code></pre>
+        <h4>4.3 修饰符与 get/set 转换</h4>
+        <pre class="vue"><code>&lt;!-- TrimInput.vue：使用 v-model.capitalize 时首字母转大写 --&gt;
+&lt;script setup&gt;
+const [model, modifiers] = defineModel({
+  type: String,
+  set(value) {
+    if (modifiers.capitalize &amp;&amp; value) {
+      return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+    return value
+  }
+})
+&lt;/script&gt;
+&lt;template&gt;&lt;input v-model="model" /&gt;&lt;/template&gt;
+
+&lt;!-- 父组件 --&gt;
+&lt;TrimInput v-model.capitalize="name" /&gt;</code></pre>
+        <p><code>get</code> 用于读取时转换，<code>set</code> 用于写回父组件前转换。转换规则应保持简单且可预期，不要在 setter 中执行异步请求。</p>
+        <h4>4.4 不使用 defineModel 时的等价写法</h4>
+        <pre class="vue"><code>&lt;script setup&gt;
+const props = defineProps({ title: { type: String, default: '' } })
+const emit = defineEmits(['update:title'])
+function updateTitle(event) {
+  emit('update:title', event.target.value)
+}
+&lt;/script&gt;
+&lt;template&gt;
+  &lt;input :value="props.title" @input="updateTitle" /&gt;
+&lt;/template&gt;</code></pre>
+        <p>如果项目必须兼容 Vue 3.3 或更早版本，使用上面的手动写法；不要把 <code>defineModel</code> 当作普通函数导入。确认项目的 Vue 版本后再选择方案。</p>
+
+        <hr>
+        <h2 id="experiment">五、实验任务与程序填空</h2>
+        <p>建议顺序是“先完成一个任务、立即验证一个任务”。每题都要求补写<strong>完整业务片段</strong>，不是只填一个指令。教师发放挖空版时，只删除注释标记之间的模板实现，保留 <code>&lt;script setup&gt;</code> 中的数据和任务提示。</p>
+
+        <h3 id="task-0">任务 0：建立可回退的实验基线</h3>
+        <p>在修改任何文件前，先确认项目能启动，并把当前目录复制一份或创建 Git 分支。记录此时九个导航项的初始效果；如果后面出现白屏，可以用基线逐个比较，而不是一次性重写所有文件。</p>
+        <ol>
+          <li>运行 <code>npm install</code> 和 <code>npm run dev</code>，打开 <code>http://127.0.0.1:5175</code>。</li>
+          <li>依次点击九个导航按钮，记下每个练习的初始数据、按钮文字和空状态。</li>
+          <li>只关闭开发服务器，不要删除 <code>src</code>、<code>package.json</code> 或 <code>src/assets/base.css</code>。</li>
+        </ol>
+        <p><strong>完成标志：</strong>知道每一道题对应的文件，并能在浏览器和编辑器之间来回定位；后续所有代码只修改对应练习文件。</p>
+
+        <h3 id="phase-a">5.1 阶段 A：六个指令综合题（任务 1～6）</h3>
+        <table>
+          <thead><tr><th>任务</th><th>文件</th><th>必须完成</th><th>验证操作</th></tr></thead>
+          <tbody>
+            <tr><td>1 状态提示</td><td><code>TaskStatusBlock.vue</code></td><td>显示任务名；状态标签用 <code>:class</code>；用 <code>v-if / v-else-if / v-else</code> 显示三种提示。</td><td>切换三种状态，文字和颜色都变化。</td></tr>
+            <tr><td>2 详情展开</td><td><code>TaskDetailBlock.vue</code></td><td>按钮用 <code>@click</code> 切换 <code>showDetail</code>；详情盒使用 <code>v-show</code>。</td><td>反复点击，按钮文字和详情显隐同步。</td></tr>
+            <tr><td>3 项目列表</td><td><code>ProjectListBlock.vue</code></td><td><code>v-for</code> 遍历 <code>projects</code>；绑定 <code>:key="project.id"</code>；状态用 <code>:class</code>。</td><td>显示 3 个项目，控制台无 key 警告。</td></tr>
+            <tr><td>4 成果表单</td><td><code>SubmissionFormBlock.vue</code></td><td>两个输入控件用 <code>v-model</code>；提交按钮调用 <code>submitForm</code>；用条件渲染显示错误/成功和实时预览。</td><td>空提交报错，填满后成功，预览实时变化。</td></tr>
+            <tr><td>5 任务筛选</td><td><code>TaskFilterBlock.vue</code></td><td>下拉框绑定 <code>selectedStatus</code>；遍历 <code>filteredTasks</code>；无结果用 <code>v-else</code>。</td><td>四种状态均能正确筛选，空结果显示空状态。</td></tr>
+            <tr><td>6 评审统计</td><td><code>ReviewScoreBlock.vue</code></td><td>按最低分和状态筛选；渲染记录；用 <code>:class</code> 区分状态；显示数量、平均分和重置按钮。</td><td>改变筛选后列表和平均分同步更新。</td></tr>
+          </tbody>
+        </table>
+
+        <h4>任务 1 的填空模板（其余任务按照同样流程完成）</h4>
+        <pre class="vue"><code>&lt;!-- src/components/TaskStatusBlock.vue 的学生补全区域 --&gt;
+&lt;p class="task-title"&gt;任务名称：{{ task.title }}&lt;/p&gt;
+
+&lt;p :class="['status-tag', /* 填 task.status */]"&gt;
+  {{ statusText }}
+&lt;/p&gt;
+
+&lt;div v-if="/* 未开始条件 */" class="message info"&gt;
+  任务尚未开始，请先阅读任务要求。
+&lt;/div&gt;
+&lt;div v-else-if="/* 进行中条件 */" class="message warning"&gt;
+  任务正在进行中，请按时完成并提交成果。
+&lt;/div&gt;
+&lt;div v-else class="message success"&gt;
+  任务已经结束，请查看教师评审结果。
+&lt;/div&gt;</code></pre>
+        <details>
+          <summary>任务 1 参考答案与易错点</summary>
+          <pre class="vue"><code>&lt;p class="task-title"&gt;任务名称：{{ task.title }}&lt;/p&gt;
+&lt;p :class="['status-tag', task.status]"&gt;{{ statusText }}&lt;/p&gt;
+&lt;div v-if="task.status === 'not_started'" class="message info"&gt;任务尚未开始，请先阅读任务要求。&lt;/div&gt;
+&lt;div v-else-if="task.status === 'in_progress'" class="message warning"&gt;任务正在进行中，请按时完成并提交成果。&lt;/div&gt;
+&lt;div v-else class="message success"&gt;任务已经结束，请查看教师评审结果。&lt;/div&gt;</code></pre>
+          <p>易错点：<code>v-else-if</code> 必须紧跟在带 <code>v-if</code> 的元素后面；状态值要和下拉框的 <code>value</code> 完全一致。</p>
+        </details>
+
+        <details>
+          <summary>任务 2～6 参考结构（先独立完成，再展开核对）</summary>
+          <p><strong>任务 2：TaskDetailBlock.vue</strong></p>
+          <pre class="vue"><code>&lt;button class="primary-btn" @click="showDetail = !showDetail"&gt;
+  {{ showDetail ? '隐藏详情' : '查看详情' }}
+&lt;/button&gt;
+&lt;div v-show="showDetail" class="detail-box"&gt;
+  &lt;p&gt;&lt;strong&gt;任务说明：&lt;/strong&gt;{{ task.description }}&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;截止时间：&lt;/strong&gt;{{ task.deadline }}&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;提交要求：&lt;/strong&gt;{{ task.requirement }}&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+          <p><strong>任务 3：ProjectListBlock.vue</strong></p>
+          <pre class="vue"><code>&lt;div v-for="project in projects" :key="project.id" class="project-item"&gt;
+  &lt;div&gt;
+    &lt;h3&gt;{{ project.name }}&lt;/h3&gt;
+    &lt;p&gt;负责人：{{ project.teacher }} ｜ 班级：{{ project.className }}&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;span :class="['status-tag', project.status]"&gt;{{ project.statusText }}&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+          <p><strong>任务 4：SubmissionFormBlock.vue</strong></p>
+          <pre class="vue"><code>&lt;div class="form-item"&gt;
+  &lt;label&gt;提交标题&lt;/label&gt;
+  &lt;input v-model="form.title" placeholder="例如：需求分析文档初稿" /&gt;
+&lt;/div&gt;
+&lt;div class="form-item"&gt;
+  &lt;label&gt;成果说明&lt;/label&gt;
+  &lt;textarea v-model="form.content" placeholder="请简要说明本次提交的内容"&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+&lt;button class="primary-btn" @click="submitForm"&gt;提交成果&lt;/button&gt;
+&lt;p v-if="errorMessage" class="message danger"&gt;{{ errorMessage }}&lt;/p&gt;
+&lt;p v-if="successMessage" class="message success"&gt;{{ successMessage }}&lt;/p&gt;</code></pre>
+          <p><strong>任务 5：TaskFilterBlock.vue</strong></p>
+          <pre class="vue"><code>&lt;div class="form-item"&gt;
+  &lt;label&gt;任务状态&lt;/label&gt;
+  &lt;select v-model="selectedStatus"&gt;
+    &lt;option value="all"&gt;全部&lt;/option&gt;
+    &lt;option value="unsubmitted"&gt;未提交&lt;/option&gt;
+    &lt;option value="submitted"&gt;已提交&lt;/option&gt;
+    &lt;option value="reviewed"&gt;已评审&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/div&gt;
+&lt;div v-if="filteredTasks.length &gt; 0"&gt;
+  &lt;div v-for="task in filteredTasks" :key="task.id" class="task-item"&gt;
+    &lt;div&gt;&lt;h3&gt;{{ task.title }}&lt;/h3&gt;&lt;p&gt;所属项目：{{ task.projectName }}&lt;/p&gt;&lt;/div&gt;
+    &lt;span :class="['status-tag', task.status]"&gt;{{ task.statusText }}&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div v-else class="empty-box"&gt;暂无符合条件的任务&lt;/div&gt;</code></pre>
+          <p><strong>任务 6：ReviewScoreBlock.vue</strong></p>
+          <pre class="vue"><code>&lt;div v-if="filteredReviews.length &gt; 0"&gt;
+  &lt;div v-for="review in filteredReviews" :key="review.id" class="review-item"&gt;
+    &lt;div&gt;
+      &lt;h3&gt;{{ review.studentName }}：{{ review.taskTitle }}&lt;/h3&gt;
+      &lt;p&gt;评语：{{ review.comment }}&lt;/p&gt;
+      &lt;p&gt;得分：{{ review.score }}&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;span :class="['status-tag', review.result]"&gt;{{ review.resultText }}&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="score-box"&gt;
+    &lt;div class="score-item"&gt;&lt;strong&gt;{{ filteredReviews.length }}&lt;/strong&gt;&lt;span&gt;记录数&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="score-item"&gt;&lt;strong&gt;{{ averageScore }}&lt;/strong&gt;&lt;span&gt;平均分&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div v-else class="empty-box"&gt;暂无符合条件的评审记录&lt;/div&gt;</code></pre>
+          <p>这些片段只放在各文件的“学生补全区域”，不要重复创建 <code>task</code>、<code>projects</code>、<code>filteredTasks</code> 或 <code>filteredReviews</code>。它们已经由文件的 <code>script setup</code> 提供。</p>
+        </details>
+
+        <h4>阶段 A 的独立完成方法</h4>
+        <ol>
+          <li>先读对应文件的 <code>script setup</code>，确认数据名称和计算属性名称，不要自行改名。</li>
+          <li>只在“学生在下面补全整段代码”区域工作，保留外层 <code>section</code> 和样式类名。</li>
+          <li>完成后只验证当前导航项，再进入下一题；出现错误时先看浏览器控制台第一条报错。</li>
+        </ol>
+
+        <h3 id="phase-b">5.2 阶段 B：组件通信题（任务 7～9）</h3>
+        <h4>任务 7：统计卡片组件复用</h4>
+        <p>文件：<code>ComponentBasicPractice.vue</code>、<code>TaskSummaryCard.vue</code>。子组件必须声明 <code>icon</code>、<code>label</code>、<code>value</code>、<code>help</code> 四个 props；父组件导入子组件，使用 <code>v-for</code> 和 <code>:key</code> 生成三张卡片。不要把三张卡片的 HTML 复制到父组件。</p>
+        <pre class="vue"><code>&lt;!-- 父组件补全核心 --&gt;
+&lt;TaskSummaryCard
+  v-for="card in summaryCards"
+  :key="card.label"
+  :icon="card.icon"
+  :label="card.label"
+  :value="card.value"
+  :help="card.help"
+/&gt;</code></pre>
+        <p><strong>验收：</strong>页面有三张卡片；修改 <code>summaryCards</code> 的文字后页面自动更新；控制台没有 “Extraneous non-props attributes” 或未注册组件警告。</p>
+
+        <h4>任务 8：任务行的 props / emits</h4>
+        <p>文件：<code>ParentChildPractice.vue</code>、<code>TaskRow.vue</code>。父组件把每个 <code>task</code> 传入子组件，子组件点击按钮后派发 <code>select-task</code>，父组件把事件参数保存到 <code>selectedTask</code>。</p>
+        <pre class="vue"><code>&lt;!-- 父组件 --&gt;
+&lt;TaskRow
+  v-for="task in tasks"
+  :key="task.id"
+  :task="task"
+  @select-task="handleSelectTask"
+/&gt;
+
+&lt;div v-if="selectedTask" class="detail-box"&gt;
+  当前选中：{{ selectedTask.title }}
+&lt;/div&gt;
+&lt;div v-else class="empty-box"&gt;请在上方选择一个任务&lt;/div&gt;</code></pre>
+        <pre class="vue"><code>&lt;!-- 子组件 --&gt;
+&lt;script setup&gt;
+const props = defineProps({ task: { type: Object, required: true } })
+const emit = defineEmits(['select-task'])
+&lt;/script&gt;
+&lt;template&gt;
+  &lt;button type="button" @click="emit('select-task', props.task)"&gt;查看任务&lt;/button&gt;
+&lt;/template&gt;</code></pre>
+        <p><strong>验收：</strong>点击任意“查看任务”后，下方显示对应任务详情；子组件没有直接写 <code>task.title = newTitle</code> 或修改父数组。</p>
+
+        <h4>任务 9：成果编辑器的多属性 v-model</h4>
+        <p>文件：<code>ComponentVModelPractice.vue</code>、<code>SubmissionEditor.vue</code>。父组件使用 <code>v-model:title</code> 和 <code>v-model:content</code>；子组件用两个输入控件同步并派发 <code>submit</code>。</p>
+        <pre class="vue"><code>&lt;!-- 父组件补全 --&gt;
+&lt;SubmissionEditor
+  v-model:title="form.title"
+  v-model:content="form.content"
+  @submit="submitSubmission"
+/&gt;</code></pre>
+        <pre class="vue"><code>&lt;!-- 子组件的传统实现（Vue 3.3 及更早版本也可用） --&gt;
+&lt;script setup&gt;
+defineProps({
+  title: { type: String, default: '' },
+  content: { type: String, default: '' }
+})
+const emit = defineEmits(['update:title', 'update:content', 'submit'])
+&lt;/script&gt;
+&lt;template&gt;
+  &lt;input :value="title" @input="emit('update:title', $event.target.value)" /&gt;
+  &lt;textarea :value="content" @input="emit('update:content', $event.target.value)" /&gt;
+  &lt;button type="button" @click="emit('submit')"&gt;提交成果&lt;/button&gt;
+&lt;/template&gt;</code></pre>
+        <p><strong>验收：</strong>子组件输入时父组件的“父组件收到的数据”实时变化；提交空内容显示错误，内容完整显示成功；子组件不直接操作父组件的 <code>form</code> 对象。</p>
+
+        <h3 id="phase-c">5.3 阶段 C：五个高级能力任务（任务 10～14）</h3>
+        <h4>任务 10：provide / inject 主题上下文</h4>
+        <p><strong>项目入口：</strong><code>ProvideInjectPractice.vue</code>。祖先组件提供主题，工具栏后代读取并调用切换方法；中间的 <code>ProvideInjectMiddle.vue</code> 不接收任何主题 props，用来观察跨层注入。</p>
+        <ol>
+          <li>在 <code>src/injectionKeys.js</code> 中使用 <code>Symbol</code> 创建 <code>THEME_CONTEXT_KEY</code>。</li>
+          <li>在 <code>ProvideInjectPractice.vue</code> 中用 <code>ref('light')</code> 保存主题，并 <code>provide(THEME_CONTEXT_KEY, { theme: readonly(theme), toggleTheme })</code>。</li>
+          <li>在 <code>ProvideInjectToolbar.vue</code> 中注入同一个 key，解构出顶层 <code>theme</code> 和 <code>toggleTheme</code>。</li>
+          <li>点击工具栏按钮，确认工具栏和摘要组件都能看到主题变化。</li>
+        </ol>
+        <pre class="vue"><code>&lt;!-- ProvideInjectPractice.vue 的核心 --&gt;
+&lt;script setup&gt;
+import { provide, readonly, ref } from 'vue'
+import { THEME_CONTEXT_KEY } from '../injectionKeys'
+
+const theme = ref('light')
+function toggleTheme() {
+  theme.value = theme.value === 'light' ? 'dark' : 'light'
+}
+provide(THEME_CONTEXT_KEY, { theme: readonly(theme), toggleTheme })
+&lt;/script&gt;
+
+&lt;!-- ProvideInjectToolbar.vue 的核心 --&gt;
+&lt;script setup&gt;
+import { inject } from 'vue'
+import { THEME_CONTEXT_KEY } from '../injectionKeys'
+const context = inject(THEME_CONTEXT_KEY)
+if (!context) throw new Error('缺少主题提供者')
+const { theme, toggleTheme } = context
+&lt;/script&gt;
+&lt;template&gt;
+  &lt;button type="button" @click="toggleTheme"&gt;当前主题：{{ theme }}，切换&lt;/button&gt;
+&lt;/template&gt;</code></pre>
+        <p><strong>验收：</strong>切换主题后，工具栏和摘要区域都更新；中间布局组件没有为了传值增加 props；后代不能直接修改 <code>readonly(theme)</code>。</p>
+
+        <h4>任务 11：provide / inject 当前用户上下文</h4>
+        <p><strong>项目入口：</strong>继续在 <code>ProvideInjectPractice.vue</code> 中完成 <code>USER_CONTEXT_KEY</code>。主题和当前用户是两个独立依赖，使用两个 Symbol key，后代组件按需注入。</p>
+        <pre class="vue"><code>&lt;!-- 祖先：提供当前用户和修改方法 --&gt;
+import { USER_CONTEXT_KEY } from '../injectionKeys'
+const currentUser = ref({ id: 'zhang', name: '张老师', role: '指导教师' })
+const users = [
+  { id: 'zhang', name: '张老师', role: '指导教师' },
+  { id: 'li', name: '李同学', role: '项目成员' }
+]
+function switchUser(id) {
+  const nextUser = users.find(user =&gt; user.id === id)
+  if (nextUser) currentUser.value = nextUser
+}
+provide(USER_CONTEXT_KEY, {
+  currentUser: readonly(currentUser),
+  users: readonly(users),
+  switchUser
+})
+
+&lt;!-- 后代：只注入自己需要的用户上下文 --&gt;
+const userContext = inject(USER_CONTEXT_KEY)
+if (!userContext) throw new Error('缺少当前用户提供者')
+const { currentUser, users, switchUser } = userContext</code></pre>
+        <p><strong>验收：</strong>切换下拉框用户后，<code>ProvideInjectSummary.vue</code> 的姓名和角色同步变化；key 拼写错误时能根据错误提示定位问题；修改用户必须调用 <code>switchUser</code>，不能在后代直接改只读 ref。</p>
+
+        <h4>任务 12：Attributes 透传到字段控件</h4>
+        <p><strong>项目入口：</strong><code>AttrsForwardPractice.vue</code> 和 <code>BaseField.vue</code>。要求把普通属性、ARIA 属性和 <code>@input</code> 事件落到真正的 <code>input/textarea</code>，而不是外层 <code>label</code>。</p>
+        <pre class="vue"><code>&lt;!-- BaseField.vue --&gt;
+&lt;script setup&gt;
+import { useAttrs } from 'vue'
+defineOptions({ inheritAttrs: false })
+const attrs = useAttrs()
+defineProps({
+  label: { type: String, required: true },
+  hint: { type: String, default: '' },
+  multiline: { type: Boolean, default: false }
+})
+&lt;/script&gt;
+&lt;template&gt;
+  &lt;label class="field-shell"&gt;
+    &lt;span&gt;{{ label }}&lt;/span&gt;
+    &lt;textarea v-if="multiline" v-bind="attrs" /&gt;
+    &lt;input v-else v-bind="attrs" /&gt;
+    &lt;small v-if="hint"&gt;{{ hint }}&lt;/small&gt;
+  &lt;/label&gt;
+&lt;/template&gt;</code></pre>
+        <pre class="vue"><code>&lt;!-- 父组件：value 和 @input 也会透传给 input --&gt;
+&lt;BaseField
+  label="成果标题"
+  :value="form.title"
+  maxlength="40"
+  placeholder="请输入成果标题"
+  aria-label="成果标题"
+  @input="form.title = $event.target.value"
+/&gt;</code></pre>
+        <p><strong>验收：</strong>在浏览器 Elements 面板确认 <code>maxlength</code>、<code>placeholder</code>、<code>aria-label</code> 位于内部 input；输入后父组件预览同步更新。已声明的 <code>label</code> 是 prop，不会进入 <code>attrs</code>。</p>
+
+        <h4>任务 13：Attributes 透传到按钮并保留事件</h4>
+        <p><strong>项目入口：</strong><code>BaseButton.vue</code>。按钮组件不能把父组件的清空逻辑写死，只负责透传 <code>type</code>、<code>disabled</code>、<code>aria-label</code>、<code>class</code> 和 <code>@click</code>，并渲染默认插槽。</p>
+        <pre class="vue"><code>&lt;script setup&gt;
+import { useAttrs } from 'vue'
+defineOptions({ inheritAttrs: false })
+const attrs = useAttrs()
+&lt;/script&gt;
+&lt;template&gt;
+  &lt;button class="forward-button" v-bind="attrs"&gt;
+    &lt;slot /&gt;
+  &lt;/button&gt;
+&lt;/template&gt;</code></pre>
+        <pre class="vue"><code>&lt;BaseButton
+  type="button"
+  class="secondary-btn"
+  aria-label="清空成果表单"
+  @click="resetForm"
+&gt;清空&lt;/BaseButton&gt;</code></pre>
+        <p><strong>验收：</strong>点击按钮后两个表单字段清空；检查原生 button 的属性和事件；组件本身没有复制父组件的 <code>resetForm</code> 业务逻辑。</p>
+
+        <h4>任务 14：用 defineModel 重构成果编辑器</h4>
+        <p>把任务 9 中的手动 <code>defineProps + defineEmits</code> 改为 Vue 3.4+ 的 <code>defineModel</code>。要求保留父组件现有用法，不修改 <code>v-model:title</code>、<code>v-model:content</code> 和 <code>@submit</code>。</p>
+        <pre class="vue"><code>&lt;!-- SubmissionEditor.vue 的重构目标 --&gt;
+&lt;script setup&gt;
+const title = defineModel('title', { type: String, default: '' })
+const content = defineModel('content', { type: String, default: '' })
+const emit = defineEmits(['submit'])
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div class="editor-box"&gt;
+    &lt;input v-model="title" placeholder="请输入成果标题" /&gt;
+    &lt;textarea v-model="content" placeholder="请描述本次提交的成果内容" /&gt;
+    &lt;span&gt;{{ content.length }} 字&lt;/span&gt;
+    &lt;button type="button" @click="emit('submit')"&gt;提交成果&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+        <p><strong>验收：</strong>父组件不改代码仍可实时收到两个字段；字符数随内容变化；点击提交仍由父组件校验。若项目 Vue 版本低于 3.4，恢复任务 9 的手动写法，不要强行导入 <code>defineModel</code>。</p>
+
+        <hr>
+        <h2 id="integration">六、综合联调与排错</h2>
+        <h3>6.1 完整联调顺序</h3>
+        <ol>
+          <li>执行 <code>npm run build</code>，确认生产构建没有模板、导入或宏编译错误。</li>
+          <li>启动 <code>npm run dev</code>，按导航逐项点击；不要只看首页是否能打开。</li>
+          <li>打开浏览器控制台，确认没有组件未注册、缺少 key、事件监听器或属性透传警告。</li>
+          <li>刷新页面，再次测试任务 4、任务 9、任务 12 和任务 14 的输入与提交，确认没有依赖旧页面状态。</li>
+          <li>在 Elements 面板检查任务 12 的属性真正落在内部 <code>input</code>，检查任务 13 的事件落在原生 button；在 Vue Devtools 中观察任务 10～11 的上下文变化（如已安装）。</li>
+        </ol>
+        <h3>6.2 常见错误对照表</h3>
+        <table>
+          <thead><tr><th>现象</th><th>原因</th><th>处理</th></tr></thead>
+          <tbody>
+            <tr><td><code>Failed to resolve component</code></td><td>文件路径、组件名或导入语句错误。</td><td>确认文件名大小写，并在 <code>&lt;script setup&gt;</code> 导入。</td></tr>
+            <tr><td>点击后父组件没有数据</td><td>emit 名与父监听名不一致，或没有传事件参数。</td><td>逐字核对 <code>select-task</code>、<code>update:title</code> 等名称。</td></tr>
+            <tr><td>列表出现 key 警告</td><td>把索引当 key 或漏写 key。</td><td>使用稳定唯一的 <code>item.id</code>。</td></tr>
+            <tr><td><code>v-else</code> 不生效</td><td>中间插入了文本/元素，或前一个条件不是 <code>v-if</code>。</td><td>让 <code>v-if / v-else-if / v-else</code> 相邻。</td></tr>
+            <tr><td>透传属性落在 label</td><td>单根组件自动继承，未关闭 <code>inheritAttrs</code>。</td><td><code>defineOptions({ inheritAttrs: false })</code> 后在 input 上 <code>v-bind="attrs"</code>。</td></tr>
+            <tr><td><code>defineModel is not defined</code></td><td>错误地把编译宏当普通导入，或 Vue 版本太低。</td><td>删除导入并确认 Vue 3.4+；旧版改用 props/emits。</td></tr>
+            <tr><td>子组件修改父状态报错</td><td>直接修改 props 或 readonly 注入值。</td><td>使用 emit、defineModel 或祖先提供的更新方法。</td></tr>
+            <tr><td><code>inject</code> 得到 <code>undefined</code></td><td>祖先没有 provide、key 不一致或组件不在同一组件树。</td><td>共用同一个 Symbol，并检查组件嵌套关系和默认值。</td></tr>
+          </tbody>
+        </table>
+
+        <hr>
+        <h2 id="acceptance">七、验收、提交与评分</h2>
+        <h3>7.1 必过验收清单</h3>
+        <ul>
+          <li>任务 1～6 的每个交互均可操作，空状态、成功状态和统计数据正确。</li>
+          <li>任务 7 显示三张由同一子组件生成的卡片；任务 8 能选中并显示任务详情。</li>
+          <li>任务 9 的两个命名模型都能双向同步，父组件能接收 <code>submit</code>。</li>
+          <li>任务 10～11 能从后代读取并响应式更新主题、当前用户；任务 12～13 的属性和事件落在正确原生元素；任务 14 用 <code>defineModel</code> 后仍能完成任务 9 的验收。</li>
+          <li><code>npm run build</code> 通过；浏览器控制台无红色错误和 Vue 警告；页面刷新后可再次运行。</li>
+        </ul>
+        <h3>7.2 提交格式与评分建议</h3>
+        <table>
+          <thead><tr><th>评分项</th><th>分值</th><th>检查点</th></tr></thead>
+          <tbody>
+            <tr><td>功能与指令</td><td>30</td><td>任务 1～6 的条件、列表、表单、筛选和统计行为正确。</td></tr>
+            <tr><td>组件拆分与通信</td><td>25</td><td>任务 7～9 的职责边界、props、emits、命名 v-model 正确。</td></tr>
+            <tr><td>高级能力</td><td>25</td><td>任务 10～14 的 provide/inject、attrs 透传和 defineModel 均有代码和可验证结果。</td></tr>
+            <tr><td>工程质量</td><td>10</td><td>命名清晰，key 稳定，控制台无警告，<code>npm run build</code> 通过。</td></tr>
+            <tr><td>实验记录</td><td>10</td><td>截图完整，能解释一个错误的原因和修复过程。</td></tr>
+          </tbody>
+        </table>
+        <p>提交内容建议为：项目源码压缩包（不要包含 <code>node_modules</code>）、实验记录 PDF 或 Markdown、运行截图。源码中保留新增的 <code>injectionKeys.js</code>、<code>ProvideInject*.vue</code>、<code>BaseField.vue</code> 和 <code>BaseButton.vue</code> 等文件。</p>
+
+        <hr>
+        <h2 id="summary">八、本节小结</h2>
+        <div class="visual">
+          <div class="visual-title">图示 1：CTTS 组件化实验知识地图</div>
+          <div class="edu-diagram">
+            <div class="diagram-grid three">
+              <div class="diagram-card"><strong>K9-1</strong><h4>组件边界</h4><p>按职责、复用价值和变更边界拆分，不追求文件越多越好。</p></div>
+              <div class="diagram-card"><strong>K9-2</strong><h4>props / emits</h4><p>父传子用 props，子通知父用 emit，数据流保持可追踪。</p></div>
+              <div class="diagram-card"><strong>K9-3</strong><h4>provide / inject</h4><p>跨层共享上下文，优先 Symbol key，并通过方法修改状态。</p></div>
+              <div class="diagram-card"><strong>K9-4</strong><h4>Attributes 透传</h4><p>用 inheritAttrs 和 v-bind="$attrs" 把属性落到正确的原生元素。</p></div>
+              <div class="diagram-card"><strong>K9-5</strong><h4>defineModel</h4><p>Vue 3.4+ 简化 v-model，可支持命名模型、修饰符和 get/set。</p></div>
+              <div class="diagram-card"><strong>K9-6</strong><h4>实验验收</h4><p>功能、控制台、构建和截图四类证据共同证明实验完成。</p></div>
+            </div>
+          </div>
+        </div>
+        <table>
+          <thead><tr><th>问题</th><th>一句话回答</th></tr></thead>
+          <tbody>
+            <tr><td>为什么拆组件？</td><td>封装职责、复用结构、降低修改和测试成本。</td></tr>
+            <tr><td>什么时候不拆？</td><td>一次性、无独立状态、没有复用价值的极小片段可以留在父组件。</td></tr>
+            <tr><td>如何跨层共享？</td><td>祖先 provide，后代 inject；响应式 ref 和 Symbol key 要保持一致。</td></tr>
+            <tr><td>如何让原生属性落到内部 input？</td><td>关闭自动继承，再把 <code>useAttrs()</code> 的结果绑定到目标元素。</td></tr>
+            <tr><td>defineModel 做了什么？</td><td>把 v-model 对应的 prop 和 update 事件封装成可写 ref。</td></tr>
+          </tbody>
+        </table>
+
+        <hr>
+        <h2 id="questions">九、复习思考题</h2>
+        <ol>
+          <li>如果三张统计卡片只有文字不同但结构完全相同，为什么应使用 <code>v-for</code> 复用子组件？什么时候反而不值得拆？</li>
+          <li><code>props</code> 和 <code>emit</code> 如何共同保证父子组件的数据流清晰？为什么子组件不能直接改 props？</li>
+          <li>为什么 <code>provide / inject</code> 适合主题和表单上下文，却不适合无边界地替代所有状态管理？</li>
+          <li>单根组件和多根组件的 Attributes 继承有什么区别？<code>inheritAttrs: false</code> 解决了什么问题？</li>
+          <li><code>v-model:title</code> 与 <code>defineModel('title')</code> 的对应关系是什么？如何用手动 props/emits 写出等价实现？</li>
+          <li>如果任务 14 的编辑器在父组件没有初始值，子模型有默认值，可能出现什么不同步现象？如何避免？</li>
+        </ol>
       </article>
     </main>
   </div>
 </body>
 </html>
-
-
-
-

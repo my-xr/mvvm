@@ -115,9 +115,12 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>axios<span class="op">.</span><span class="fu">post</span>(<span class="st">&#39;/api/login&#39;</span><span class="op">,</span> { <span class="dt">username</span><span class="op">:</span> <span class="st">&#39;admin&#39;</span><span class="op">,</span> <span class="dt">password</span><span class="op">:</span> <span class="st">&#39;123&#39;</span> })</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">then</span>(res <span class="kw">=&gt;</span> <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(res<span class="op">.</span><span class="at">data</span>))</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">// async/await</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> res <span class="op">=</span> <span class="cf">await</span> axios<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/api/projects&#39;</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(res<span class="op">.</span><span class="at">data</span>)</span></code></pre></div>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">// async/await（放在 async 函数或 &lt;script setup&gt; 中）</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">loadProjects</span>() {</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> res <span class="op">=</span> <span class="cf">await</span> axios<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/api/projects&#39;</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(res<span class="op">.</span><span class="at">data</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">loadProjects</span>()</span></code></pre></div>
 <h4 id="响应结构">响应结构</h4>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>{</span>
@@ -223,16 +226,18 @@ config，否则请求被拦截不发。</li>
 在响应到达后统一处理，常用于解包数据、统一错误处理、登录过期跳转。</p>
 <h4 id="用法-2">用法</h4>
 <div class="sourceCode" id="cb8"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 响应拦截器</span></span>
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb8-import"><a href="#cb8-import" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> axios <span class="im">from</span> <span class="st">&#39;axios&#39;</span></span>
+<span id="cb8-store-import"><a href="#cb8-store-import" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { useUserStore } <span class="im">from</span> <span class="st">&#39;../stores/user&#39;</span></span>
+<span id="cb8-request"><a href="#cb8-request" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> request <span class="op">=</span> axios<span class="op">.</span><span class="fu">create</span>({ <span class="dt">baseURL</span><span class="op">:</span> <span class="st">&#39;/api&#39;</span> })</span>
+<span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 响应拦截器</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>request<span class="op">.</span><span class="at">interceptors</span><span class="op">.</span><span class="at">response</span><span class="op">.</span><span class="fu">use</span>(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  (response) <span class="kw">=&gt;</span> {</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> res <span class="op">=</span> response<span class="op">.</span><span class="at">data</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (res<span class="op">.</span><span class="at">code</span> <span class="op">===</span> <span class="dv">200</span>) {</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="at">data</span>          <span class="co">// 成功，返回业务数据</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      ElMessage<span class="op">.</span><span class="fu">error</span>(res<span class="op">.</span><span class="at">message</span> <span class="op">||</span> <span class="st">&#39;请求失败&#39;</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">reject</span>(<span class="kw">new</span> <span class="bu">Error</span>(res<span class="op">.</span><span class="at">message</span>))</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> hasEnvelope <span class="op">=</span> res <span class="op">&amp;&amp;</span> <span class="kw">typeof</span> res <span class="op">===</span> <span class="st">&#39;object&#39;</span> <span class="op">&amp;&amp;</span> <span class="st">&#39;code&#39;</span> <span class="kw">in</span> res</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>hasEnvelope) <span class="cf">return</span> res       <span class="co">// 后端直接返回数组/对象</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (res<span class="op">.</span><span class="at">code</span> <span class="op">===</span> <span class="dv">200</span>) <span class="cf">return</span> res<span class="op">.</span><span class="at">data</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(res<span class="op">.</span><span class="at">message</span> <span class="op">||</span> <span class="st">&#39;请求失败&#39;</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">reject</span>(<span class="kw">new</span> <span class="bu">Error</span>(res<span class="op">.</span><span class="at">message</span> <span class="op">||</span> <span class="st">&#39;业务请求失败&#39;</span>))</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  (error) <span class="kw">=&gt;</span> {</span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// HTTP 错误（如 401/404/500）</span></span>
@@ -240,18 +245,21 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb8-
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>      <span class="co">// 登录过期，清空状态跳登录</span></span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">useUserStore</span>()</span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>      userStore<span class="op">.</span><span class="fu">logout</span>()</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>      router<span class="op">.</span><span class="fu">push</span>(<span class="st">&#39;/login&#39;</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>      <span class="bu">window</span><span class="op">.</span><span class="at">location</span><span class="op">.</span><span class="at">href</span> <span class="op">=</span> import<span class="op">.</span>meta<span class="op">.</span><span class="at">env</span><span class="op">.</span><span class="at">BASE_URL</span> <span class="op">+</span> <span class="st">&#39;login&#39;</span> <span class="co">// 工具模块不能直接调用 useRouter()</span></span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>      ElMessage<span class="op">.</span><span class="fu">error</span>(error<span class="op">.</span><span class="at">message</span> <span class="op">||</span> <span class="st">&#39;网络错误&#39;</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>      <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(error<span class="op">.</span><span class="at">message</span> <span class="op">||</span> <span class="st">&#39;网络错误&#39;</span>)</span>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">reject</span>(error)</span>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-export"><a href="#cb8-export" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> request</span></code></pre></div>
 <h4 id="统一响应格式与后端约定">统一响应格式（与后端约定）</h4>
 <p>后端返回统一格式：</p>
 <div class="sourceCode" id="cb9"><pre
 class="sourceCode json"><code class="sourceCode json"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> <span class="dt">&quot;code&quot;</span><span class="fu">:</span> <span class="dv">200</span><span class="fu">,</span> <span class="dt">&quot;message&quot;</span><span class="fu">:</span> <span class="st">&quot;success&quot;</span><span class="fu">,</span> <span class="dt">&quot;data&quot;</span><span class="fu">:</span> <span class="fu">{}</span> <span class="fu">}</span></span></code></pre></div>
-<p>响应拦截器根据 code 判断成功/失败，成功返回 data，失败提示。</p>
+<p>这里约定后端返回 <code>{ code, message, data }</code>；如果后端直接返回
+数组或对象，就不要强行读取 <code>res.code</code>，应直接返回
+<code>response.data</code>。响应拦截器必须和后端契约保持一致。</p>
 <h4 id="易错点-3">易错点</h4>
 <ul>
 <li><strong>return Promise.reject</strong>：错误必须 reject，否则组件
@@ -301,15 +309,20 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10
 <p>后端未就绪时，用 Mock 数据：</p>
 <div class="sourceCode" id="cb12"><pre
 class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 简单 Mock：在 api 函数中判断</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getProjects <span class="op">=</span> <span class="kw">async</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 后端就绪：return request.get(&#39;/projects&#39;)</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Mock 兜底：</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> [</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">id</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;项目一：JavaWeb&#39;</span><span class="op">,</span> <span class="dt">status</span><span class="op">:</span> <span class="st">&#39;进行中&#39;</span> }<span class="op">,</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">id</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;项目二：Vue3&#39;</span><span class="op">,</span> <span class="dt">status</span><span class="op">:</span> <span class="st">&#39;进行中&#39;</span> }</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>也可用 <code>mockjs</code> 等库。</p>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> request <span class="im">from</span> <span class="st">&#39;../utils/request&#39;</span></span>
+<span id="cb12-2a"><a href="#cb12-2a" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getProjects <span class="op">=</span> <span class="kw">async</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (import<span class="op">.</span>meta<span class="op">.</span><span class="at">env</span><span class="op">.</span><span class="at">VITE_USE_MOCK</span> <span class="op">!==</span> <span class="st">&#39;true&#39;</span>) {</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> request<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/projects&#39;</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Mock 与真实接口都返回“项目数组”，调用方不需要写两套逻辑</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> [</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">id</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;项目一：JavaWeb&#39;</span><span class="op">,</span> <span class="dt">status</span><span class="op">:</span> <span class="st">&#39;进行中&#39;</span> }<span class="op">,</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">id</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;项目二：Vue3&#39;</span><span class="op">,</span> <span class="dt">status</span><span class="op">:</span> <span class="st">&#39;进行中&#39;</span> }</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>也可用 <code>mockjs</code> 等库。设置
+<code>VITE_USE_MOCK=true</code> 时走 Mock；未设置或为其他值时请求真实后端。
+Vite 配置修改后必须重启开发服务器。</p>
 <h4 id="易错点-4">易错点</h4>
 <ul>
 <li><strong>代理不生效</strong>：改 vite.config.js 后需重启 dev
@@ -330,8 +343,7 @@ Axios 封装与联调</h2>
 <div class="sourceCode" id="cb13"><pre
 class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> axios <span class="im">from</span> <span class="st">&#39;axios&#39;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { useUserStore } <span class="im">from</span> <span class="st">&#39;../stores/user&#39;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { useRouter } <span class="im">from</span> <span class="st">&#39;vue-router&#39;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { ElMessage } <span class="im">from</span> <span class="st">&#39;element-plus&#39;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">// 工具模块不能调用 useRouter；useUserStore 只能在 Pinia 挂载后调用</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> request <span class="op">=</span> axios<span class="op">.</span><span class="fu">create</span>({</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">baseURL</span><span class="op">:</span> <span class="st">&#39;/api&#39;</span><span class="op">,</span></span>
@@ -351,17 +363,19 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb13
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>request<span class="op">.</span><span class="at">interceptors</span><span class="op">.</span><span class="at">response</span><span class="op">.</span><span class="fu">use</span>(</span>
 <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  response <span class="kw">=&gt;</span> {</span>
 <span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> res <span class="op">=</span> response<span class="op">.</span><span class="at">data</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (res<span class="op">.</span><span class="at">code</span> <span class="op">===</span> <span class="dv">200</span>) <span class="cf">return</span> res<span class="op">.</span><span class="at">data</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    ElMessage<span class="op">.</span><span class="fu">error</span>(res<span class="op">.</span><span class="at">message</span> <span class="op">||</span> <span class="st">&#39;请求失败&#39;</span>)</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">reject</span>(<span class="kw">new</span> <span class="bu">Error</span>(res<span class="op">.</span><span class="at">message</span>))</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> hasEnvelope <span class="op">=</span> res <span class="op">&amp;&amp;</span> <span class="kw">typeof</span> res <span class="op">===</span> <span class="st">&#39;object&#39;</span> <span class="op">&amp;&amp;</span> <span class="st">&#39;code&#39;</span> <span class="kw">in</span> res</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>hasEnvelope) <span class="cf">return</span> res</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (res<span class="op">.</span><span class="at">code</span> <span class="op">===</span> <span class="dv">200</span>) <span class="cf">return</span> res<span class="op">.</span><span class="at">data</span></span>
+<span id="cb13-26a"><a href="#cb13-26a" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(res<span class="op">.</span><span class="at">message</span> <span class="op">||</span> <span class="st">&#39;请求失败&#39;</span>)</span>
+<span id="cb13-26b"><a href="#cb13-26b" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">reject</span>(<span class="kw">new</span> <span class="bu">Error</span>(res<span class="op">.</span><span class="at">message</span> <span class="op">||</span> <span class="st">&#39;业务请求失败&#39;</span>))</span>
 <span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
 <span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  error <span class="kw">=&gt;</span> {</span>
 <span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (error<span class="op">.</span><span class="at">response</span><span class="op">?.</span><span class="at">status</span> <span class="op">===</span> <span class="dv">401</span>) {</span>
 <span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">useUserStore</span>()</span>
 <span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>      userStore<span class="op">.</span><span class="fu">logout</span>()</span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>      ElMessage<span class="op">.</span><span class="fu">warning</span>(<span class="st">&#39;登录已过期，请重新登录&#39;</span>)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>      <span class="bu">window</span><span class="op">.</span><span class="at">location</span><span class="op">.</span><span class="at">href</span> <span class="op">=</span> import<span class="op">.</span>meta<span class="op">.</span><span class="at">env</span><span class="op">.</span><span class="at">BASE_URL</span> <span class="op">+</span> <span class="st">&#39;login&#39;</span></span>
 <span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>      ElMessage<span class="op">.</span><span class="fu">error</span>(error<span class="op">.</span><span class="at">message</span> <span class="op">||</span> <span class="st">&#39;网络错误&#39;</span>)</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>      <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(error<span class="op">.</span><span class="at">message</span> <span class="op">||</span> <span class="st">&#39;网络错误&#39;</span>)</span>
 <span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">reject</span>(error)</span>
 <span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>  }</span>
@@ -399,11 +413,13 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb16
 class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">// stores/user.js</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { login <span class="im">as</span> loginApi } <span class="im">from</span> <span class="st">&#39;../api/user&#39;</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">readUserInfo</span>() {</span>
+<span id="cb17-4a"><a href="#cb17-4a" aria-hidden="true" tabindex="-1"></a>  <span class="kw">try</span> { <span class="cf">return</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;userInfo&#39;</span>) <span class="op">||</span> <span class="st">&#39;null&#39;</span>) } <span class="kw">catch</span> { <span class="cf">return</span> <span class="kw">null</span> }</span>
+<span id="cb17-4b"><a href="#cb17-4b" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">token</span><span class="op">:</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;token&#39;</span>) <span class="op">||</span> <span class="st">&#39;&#39;</span><span class="op">,</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">userInfo</span><span class="op">:</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;userInfo&#39;</span>) <span class="op">||</span> <span class="st">&#39;null&#39;</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">userInfo</span><span class="op">:</span> readUserInfo()</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">getters</span><span class="op">:</span> { <span class="dt">isLogin</span><span class="op">:</span> (s) <span class="kw">=&gt;</span> <span class="op">!!</span>s<span class="op">.</span><span class="at">token</span> }<span class="op">,</span></span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">actions</span><span class="op">:</span> {</span>
@@ -429,6 +445,54 @@ Token，响应统一处理。</p>
 <p>若后端未就绪，api 函数返回 Mock 数据兜底，第 15~16
 次课再真实联调。</p>
 </blockquote>
+<h3 id="独立联调练习">独立联调练习：项目列表最小闭环</h3>
+<p>如果从空目录开始，先创建一个 Vue 项目（已有第 12～13 课项目可跳过）：</p>
+<pre class="bash"><code>npm create vite@latest axios-practice -- --template vue
+cd axios-practice
+npm install
+npm install axios pinia</code></pre>
+<p>为了让本课可以独立运行，再创建入口和一个页面。页面只依赖本节的
+<code>getProjects</code>，因此可以先用 Mock，再切到真实接口。</p>
+<p><strong>src/main.js</strong>：</p>
+<pre class="javascript"><code>import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import App from './App.vue'
+import './style.css'
+
+createApp(App).use(createPinia()).mount('#app')</code></pre>
+<p><strong>src/App.vue</strong>：</p>
+<pre class="vue"><code>&lt;script setup&gt;
+import Projects from './views/Projects.vue'
+&lt;/script&gt;
+&lt;template&gt;&lt;Projects /&gt;&lt;/template&gt;</code></pre>
+<p><strong>src/views/Projects.vue</strong>：</p>
+<pre class="vue"><code>&lt;script setup&gt;
+import { onMounted, ref } from 'vue'
+import { getProjects } from '../api/project'
+const projects = ref([])
+const loading = ref(true)
+const error = ref('')
+onMounted(async () =&gt; {
+  try { projects.value = await getProjects() }
+  catch (e) { error.value = e.message || '项目加载失败' }
+  finally { loading.value = false }
+})
+&lt;/script&gt;
+&lt;template&gt;
+  &lt;main&gt;
+    &lt;h2&gt;项目列表&lt;/h2&gt;
+    &lt;p v-if=&quot;loading&quot;&gt;加载中...&lt;/p&gt;
+    &lt;p v-else-if=&quot;error&quot;&gt;{{ error }}&lt;/p&gt;
+    &lt;p v-else-if=&quot;!projects.length&quot;&gt;暂无项目&lt;/p&gt;
+    &lt;ul v-else&gt;&lt;li v-for=&quot;project in projects&quot; :key=&quot;project.id&quot;&gt;
+      {{ project.title }} - {{ project.status }}
+    &lt;/li&gt;&lt;/ul&gt;
+  &lt;/main&gt;
+&lt;/template&gt;</code></pre>
+<p><strong>验收：</strong>先在 <code>.env.local</code> 写
+<code>VITE_USE_MOCK=true</code>，确认页面显示两条 Mock 项目；再删除该变量并启动
+<code>localhost:8080</code> 后端，确认浏览器请求为 <code>/api/projects</code>，
+代理转发到后端的 <code>/projects</code>，接口失败时页面显示错误而不是白屏。</p>
 <hr />
 <h2 id="四拓展阅读选学">四、拓展阅读（选学）</h2>
 <ol type="1">

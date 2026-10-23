@@ -147,6 +147,8 @@
 <h4 id="定义-1">定义</h4>
 <p>在 action 中调用其他
 store：<code>const other = useXxxStore()</code>。</p>
+<p class="note">先在入口文件创建并挂载同一个 Pinia 实例（<code>app.use(createPinia())</code>），
+再在组件或 action 中调用 store；否则会出现“没有 active Pinia”的运行时错误。</p>
 <h4 id="用法">用法</h4>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// stores/project.js</span></span>
@@ -182,10 +184,14 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-
 <h4 id="用法手动持久化">用法（手动持久化）</h4>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// stores/user.js</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
+<span id="cb3-import"><a href="#cb3-import" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">readUserInfo</span>() {</span>
+<span id="cb3-2a"><a href="#cb3-2a" aria-hidden="true" tabindex="-1"></a>  <span class="kw">try</span> { <span class="cf">return</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;userInfo&#39;</span>) <span class="op">||</span> <span class="st">&#39;null&#39;</span>) } <span class="kw">catch</span> { <span class="cf">return</span> <span class="kw">null</span> }</span>
+<span id="cb3-2b"><a href="#cb3-2b" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-store"><a href="#cb3-store" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">token</span><span class="op">:</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;token&#39;</span>) <span class="op">||</span> <span class="st">&#39;&#39;</span><span class="op">,</span>           <span class="co">// 初始化恢复</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">userInfo</span><span class="op">:</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;userInfo&#39;</span>) <span class="op">||</span> <span class="st">&#39;null&#39;</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">userInfo</span><span class="op">:</span> <span class="fu">readUserInfo</span>()</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">actions</span><span class="op">:</span> {</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">login</span>(token<span class="op">,</span> userInfo) {</span>
@@ -204,24 +210,31 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <h4 id="用-subscribe-自动持久化">用 $subscribe 自动持久化</h4>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 在组件或 store 中监听变化自动存储</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>userStore<span class="op">.</span><span class="fu">$subscribe</span>((mutation<span class="op">,</span> state) <span class="kw">=&gt;</span> {</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">&#39;token&#39;</span><span class="op">,</span> state<span class="op">.</span><span class="at">token</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">&#39;userInfo&#39;</span><span class="op">,</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(state<span class="op">.</span><span class="at">userInfo</span>))</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+class="sourceCode vue"><code class="sourceCode vue">&lt;!-- src/components/PersistBridge.vue；在组件 setup 中调用，Pinia 已挂载 --&gt;
+&lt;script setup&gt;
+import { useUserStore } from '../stores/user'
+const userStore = useUserStore()
+userStore.$subscribe((mutation, state) =&gt; {
+  localStorage.setItem('token', state.token)
+  localStorage.setItem('userInfo', JSON.stringify(state.userInfo))
+})
+&lt;/script&gt;</code></pre></div>
 <h4
 id="插件方式pinia-plugin-persistedstate">插件方式（pinia-plugin-persistedstate）</h4>
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install pinia-plugin-persistedstate</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// main.js</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createPinia } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> piniaPluginPersistedstate <span class="im">from</span> <span class="st">&#39;pinia-plugin-persistedstate&#39;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> pinia <span class="op">=</span> <span class="fu">createPinia</span>()</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>pinia<span class="op">.</span><span class="fu">use</span>(piniaPluginPersistedstate)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(pinia)</span></code></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createApp } <span class="im">from</span> <span class="st">&#39;vue&#39;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createPinia } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> piniaPluginPersistedstate <span class="im">from</span> <span class="st">&#39;pinia-plugin-persistedstate&#39;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> App <span class="im">from</span> <span class="st">&#39;./App.vue&#39;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> pinia <span class="op">=</span> <span class="fu">createPinia</span>()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>pinia<span class="op">.</span><span class="fu">use</span>(piniaPluginPersistedstate)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">createApp</span>(App)<span class="op">.</span><span class="fu">use</span>(pinia)<span class="op">.</span><span class="fu">mount</span>(<span class="st">&#39;#app&#39;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// store 中开启</span></span>
+<span id="cb7-import"><a href="#cb7-import" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({ <span class="dt">token</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span> <span class="dt">userInfo</span><span class="op">:</span> <span class="kw">null</span> })<span class="op">,</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">persist</span><span class="op">:</span> <span class="kw">true</span>          <span class="co">// 自动持久化</span></span>
@@ -250,15 +263,19 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-
 <h4 id="subscribe">$subscribe</h4>
 <p>监听 state 变化：</p>
 <div class="sourceCode" id="cb10"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>userStore<span class="op">.</span><span class="fu">$subscribe</span>((mutation<span class="op">,</span> state) <span class="kw">=&gt;</span> {</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;state 变了&#39;</span><span class="op">,</span> state)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+class="sourceCode vue"><code class="sourceCode vue">&lt;script setup&gt;
+import { useUserStore } from '../stores/user'
+const userStore = useUserStore()
+userStore.$subscribe((mutation, state) =&gt; {
+  console.log('state 变了', state)
+})
+&lt;/script&gt;</code></pre></div>
 <h4 id="易错点-2">易错点</h4>
 <ul>
 <li><strong>组合式 store 无 $reset</strong>：Setup
 Store（组合式写法）默认无 $reset，需自行实现。</li>
-<li><strong>$subscribe 不自动解绑</strong>：组件内用需手动解绑或在
-onUnmounted 清理。</li>
+<li><strong>$subscribe 的生命周期</strong>：在组件 <code>setup</code> 中创建的订阅默认会
+随组件销毁清理；在组件外创建或需要提前停止时，保存返回的取消函数并手动调用。</li>
 </ul>
 <h4 id="小结-3">小结</h4>
 <p>$reset 重置、$patch 批量改、$subscribe 监听变化；组合式 store 无默认
@@ -308,7 +325,7 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb12
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">actions</span><span class="op">:</span> {</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">toggleSidebar</span>() {</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">sidebarCollapsed</span> <span class="op">=</span> <span class="op">!</span><span class="kw">this</span><span class="op">.</span><span class="at">sidebarCollapsed</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">&#39;sidebar&#39;</span><span class="op">,</span> <span class="kw">this</span><span class="op">.</span><span class="at">sidebarCollapsed</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">&#39;sidebar&#39;</span><span class="op">,</span> <span class="bu">String</span>(<span class="kw">this</span><span class="op">.</span><span class="at">sidebarCollapsed</span>))</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
@@ -326,8 +343,16 @@ import { useProjectStore } from &#39;../stores/project&#39;
 const appStore = useAppStore()
 const projectStore = useProjectStore()
 &lt;/script&gt;</code></pre>
-<p><strong>运行方式</strong>：配置三个
-store，组件中调用；切换侧边栏后刷新页面状态保留（持久化）。</p>
+<p><strong>src/App.vue</strong>（把上面的演示组件保存为
+<code>src/components/StoreDemo.vue</code>）：</p>
+<pre class="vue"><code>&lt;script setup&gt;
+import StoreDemo from './components/StoreDemo.vue'
+&lt;/script&gt;
+&lt;template&gt;&lt;StoreDemo /&gt;&lt;/template&gt;</code></pre>
+<p><strong>运行方式</strong>：配置三个 store，先按本节的 <code>main.js</code> 安装
+Pinia（若使用插件则同时注册插件），再在组件中调用；切换侧边栏后刷新页面状态
+保留。<code>projectStore.fetchProjects()</code> 只有登录后才会加载，需先给
+<code>userStore</code> 设置 token，或把示例中的登录步骤接入第 12 课。</p>
 <hr />
 <h2 id="四实践复盘要点">四、实践复盘要点</h2>
 <table>

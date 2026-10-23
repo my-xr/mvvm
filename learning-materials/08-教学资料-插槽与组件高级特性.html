@@ -45,6 +45,8 @@
 </ul></li>
 <li><a href="#三综合示例通用-card-组件与动态标签页">三、综合示例：通用 Card 组件与动态标签页</a>
 <ul>
+<li><a href="#31从零运行">3.1 从零运行</a></li>
+<li><a href="#32文件结构与完整代码">3.2 文件结构与完整代码</a></li>
 </ul></li>
 <li><a href="#四拓展阅读选学">四、拓展阅读（选学）</a>
 <ul>
@@ -69,6 +71,7 @@
 <h2 id="一学习导读">一、学习导读</h2>
 <h3 id="11-本节定位">1.1 本节定位</h3>
 <p>本节学习插槽（让组件内容可定制）与动态/异步组件，是组件复用与高级特性的关键。</p>
+<p class="course-boundary"><strong>课程边界：</strong>本课建立插槽和高级组件的使用模型；组件拆分、props/emits 等基础通信见第 07 课。本课示例均按 Vue 3 + Vite + <code>&lt;script setup&gt;</code> 编写，综合案例给出完整文件，可直接创建项目验证。</p>
 <h3 id="12-先修基础">1.2 先修基础</h3>
 <table>
 <thead>
@@ -154,7 +157,10 @@ slot</strong>：子组件模板里写死的内容无法被父组件替换；要�
       &lt;p&gt;底部&lt;/p&gt;
     &lt;/template&gt;
   &lt;/Layout&gt;
-&lt;/template&gt;</code></pre>
+&lt;/template&gt;
+&lt;script setup&gt;
+import Layout from &#39;./Layout.vue&#39;
+&lt;/script&gt;</code></pre>
 <h4 id="简写">简写</h4>
 <p><code>v-slot:header</code> 简写为 <code>#header</code>。默认插槽用
 <code>v-slot:default</code> 或 <code>#default</code>，或直接写内容（不包
@@ -180,7 +186,7 @@ template）。</p>
 <pre class="vue"><code>&lt;!-- 子组件 List.vue --&gt;
 &lt;template&gt;
   &lt;ul&gt;
-    &lt;li v-for=&quot;item in items&quot; :key=&quot;item.id&quot;&gt;
+    &lt;li v-for=&quot;(item, i) in items&quot; :key=&quot;item.id&quot;&gt;
       &lt;slot :item=&quot;item&quot; :index=&quot;i&quot;&gt;&lt;/slot&gt;   &lt;!-- 把 item 传给父 --&gt;
     &lt;/li&gt;
   &lt;/ul&gt;
@@ -192,8 +198,8 @@ const items = ref([{ id: 1, name: &#39;A&#39; }, { id: 2, name: &#39;B&#39; }])
 <pre class="vue"><code>&lt;!-- 父组件 --&gt;
 &lt;template&gt;
   &lt;List&gt;
-    &lt;template #default=&quot;{ item }&quot;&gt;       &lt;!-- 接收子组件传的 item --&gt;
-      &lt;span&gt;自定义：{{ item.name }}&lt;/span&gt;
+    &lt;template #default=&quot;{ item, index }&quot;&gt;       &lt;!-- 接收子组件传的 item/index --&gt;
+      &lt;span&gt;{{ index + 1 }}. 自定义：{{ item.name }}&lt;/span&gt;
     &lt;/template&gt;
   &lt;/List&gt;
 &lt;/template&gt;
@@ -224,21 +230,41 @@ keep-alive</h3>
 <h4 id="用法-3">用法</h4>
 <pre class="vue"><code>&lt;template&gt;
   &lt;div&gt;
-    &lt;button @click=&quot;current = &#39;CompA&#39;&quot;&gt;A&lt;/button&gt;
-    &lt;button @click=&quot;current = &#39;CompB&#39;&quot;&gt;B&lt;/button&gt;
+    &lt;button type=&quot;button&quot; @click=&quot;current = &#39;A&#39;&quot;&gt;A&lt;/button&gt;
+    &lt;button type=&quot;button&quot; @click=&quot;current = &#39;B&#39;&quot;&gt;B&lt;/button&gt;
     &lt;keep-alive&gt;
       &lt;component :is=&quot;currentComp&quot; /&gt;
     &lt;/keep-alive&gt;
   &lt;/div&gt;
 &lt;/template&gt;
 &lt;script setup&gt;
-import { ref, computed, shallowRef } from &#39;vue&#39;
+import { ref, computed } from &#39;vue&#39;
 import CompA from &#39;./CompA.vue&#39;
 import CompB from &#39;./CompB.vue&#39;
 const current = ref(&#39;A&#39;)
 const currentComp = computed(() =&gt; current.value === &#39;A&#39; ? CompA : CompB)
-// 或用 shallowRef 直接存组件
 &lt;/script&gt;</code></pre>
+<p>为了让示例可以直接运行，再创建两个带本地状态的组件：</p>
+<pre class="vue"><code>&lt;!-- CompA.vue --&gt;
+&lt;template&gt;
+  &lt;section&gt;
+    &lt;h3&gt;组件 A&lt;/h3&gt;
+    &lt;label&gt;A 的草稿：&lt;input v-model=&quot;draft&quot; /&gt;&lt;/label&gt;
+  &lt;/section&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const draft = ref(&#39;切换后仍保留&#39;)
+&lt;/script&gt;
+
+&lt;!-- CompB.vue --&gt;
+&lt;template&gt;
+  &lt;section&gt;
+    &lt;h3&gt;组件 B&lt;/h3&gt;
+    &lt;p&gt;B 组件已挂载，切回 A 可观察 keep-alive 的缓存效果。&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/template&gt;</code></pre>
+<p><strong>验证步骤：</strong>把父组件、<code>CompA.vue</code>、<code>CompB.vue</code> 放在同一目录并运行项目；在 A 的输入框输入文字，切换到 B 再切回 A，文字仍在即表示缓存生效。暂时删除 <code>&lt;keep-alive&gt;</code> 的包裹再试一次，可对比状态被重置的结果。</p>
 <h4 id="keep-alive">keep-alive</h4>
 <ul>
 <li>不加 keep-alive：切换时组件销毁重建，状态丢失。</li>
@@ -270,15 +296,43 @@ const HeavyComp = defineAsyncComponent(() =&gt; import(&#39;./HeavyComp.vue&#39;
 &lt;template&gt;
   &lt;HeavyComp /&gt;
 &lt;/template&gt;</code></pre>
-<p>高级配置（加载状态/错误处理）：</p>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> HeavyComp <span class="op">=</span> <span class="fu">defineAsyncComponent</span>({</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">loader</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;./HeavyComp.vue&#39;</span>)<span class="op">,</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">loadingComponent</span><span class="op">:</span> Loading<span class="op">,</span>       <span class="co">// 加载中显示</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">errorComponent</span><span class="op">:</span> <span class="bu">Error</span><span class="op">,</span>           <span class="co">// 加载失败显示</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">delay</span><span class="op">:</span> <span class="dv">200</span><span class="op">,</span>                      <span class="co">// 延迟显示 loading</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">timeout</span><span class="op">:</span> <span class="dv">3000</span>                    <span class="co">// 超时</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p><strong>注意：</strong>下面的高级配置是对上面基础写法的替换，请二选一，不要把两段代码同时放进同一个
+<code>&lt;script setup&gt;</code>，否则会重复声明 <code>HeavyComp</code>。</p>
+<p>高级配置必须传入真实的加载中和失败组件，不能直接写未定义的变量：</p>
+<pre class="vue"><code>&lt;script setup&gt;
+import { defineAsyncComponent } from &#39;vue&#39;
+import LoadingState from &#39;./LoadingState.vue&#39;
+import ErrorState from &#39;./ErrorState.vue&#39;
+
+const HeavyComp = defineAsyncComponent({
+  loader: () =&gt; import(&#39;./HeavyComp.vue&#39;),
+  loadingComponent: LoadingState,
+  errorComponent: ErrorState,
+  delay: 200,
+  timeout: 3000
+})
+&lt;/script&gt;
+&lt;template&gt;
+  &lt;HeavyComp /&gt;
+&lt;/template&gt;</code></pre>
+<p><strong>配套文件：</strong>将下面三个文件放在同一目录。正常加载会看到成功状态；加载失败时才会显示错误状态。</p>
+<pre class="vue"><code>&lt;!-- LoadingState.vue --&gt;
+&lt;template&gt;&lt;p&gt;正在加载高级面板……&lt;/p&gt;&lt;/template&gt;
+
+&lt;!-- ErrorState.vue --&gt;
+&lt;template&gt;&lt;p class=&quot;error&quot;&gt;高级面板加载失败，请稍后重试。&lt;/p&gt;&lt;/template&gt;
+&lt;style scoped&gt;.error { color: #b91c1c; }&lt;/style&gt;
+
+&lt;!-- HeavyComp.vue --&gt;
+&lt;template&gt;
+  &lt;section&gt;
+    &lt;h3&gt;异步加载完成&lt;/h3&gt;
+    &lt;p&gt;这个组件在首次渲染时才被请求。&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/template&gt;</code></pre>
+<p><strong>验证状态：</strong>首次加载很快时可能看不到 loading，这是正常的；可在浏览器开发者工具中开启网络限速后刷新。要验证错误状态，可暂时把
+<code>loader</code> 改成 <code>import('./NotFound.vue')</code> 并刷新，确认看到
+<code>ErrorState</code>，再改回 <code>./HeavyComp.vue</code>。</p>
 <h4 id="易错点-4">易错点</h4>
 <ul>
 <li><strong>滥用异步组件</strong>：小组件无需异步，反而增加请求开销；大组件/路由级才用。</li>
@@ -291,6 +345,26 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-
 <hr />
 <h2 id="三综合示例通用-card-组件与动态标签页">三、综合示例：通用 Card
 组件与动态标签页</h2>
+<h3 id="31从零运行">3.1 从零运行</h3>
+<p>这个综合案例同时验证具名插槽、默认插槽、动态组件和
+<code>keep-alive</code>。请按下面步骤创建项目，所有文件代码均在本节给出。</p>
+<ol>
+<li>执行 <code>npm create vite@latest ctts-slots -- --template vue</code>，进入目录后执行 <code>npm install</code>。</li>
+<li>创建 <code>src/components</code> 文件夹，并按 3.2 的文件结构创建四个文件。</li>
+<li>执行 <code>npm run dev</code>，打开终端显示的本地地址。</li>
+<li>依次点击“卡片”“任务”“用户”；在任务或用户页面输入内容，再切换页面回来，确认状态仍然保留。</li>
+</ol>
+<pre class="bash"><code>npm create vite@latest ctts-slots -- --template vue
+cd ctts-slots
+npm install
+npm run dev</code></pre>
+<h3 id="32文件结构与完整代码">3.2 文件结构与完整代码</h3>
+<pre class="text"><code>src/
+├─ App.vue
+└─ components/
+   ├─ Card.vue
+   ├─ TaskList.vue
+   └─ UserInfo.vue</code></pre>
 <p><strong>通用 Card.vue（具名插槽）</strong>：</p>
 <pre class="vue"><code>&lt;template&gt;
   &lt;div class=&quot;card&quot;&gt;
@@ -314,16 +388,25 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-
 <p><strong>动态标签页 App.vue</strong>：</p>
 <pre class="vue"><code>&lt;template&gt;
   &lt;div class=&quot;tabs&quot;&gt;
-    &lt;button v-for=&quot;tab in tabs&quot; :key=&quot;tab.name&quot; @click=&quot;current = tab.comp&quot;&gt;
+    &lt;button v-for=&quot;tab in tabs&quot; :key=&quot;tab.name&quot; type=&quot;button&quot; @click=&quot;selectTab(tab)&quot;&gt;
       {{ tab.label }}
     &lt;/button&gt;
     &lt;keep-alive&gt;
-      &lt;component :is=&quot;current&quot; /&gt;
+      &lt;Card v-if=&quot;activeName === &#39;card&#39;&quot;&gt;
+        &lt;template #header&gt;
+          &lt;h2&gt;通用卡片标题&lt;/h2&gt;
+        &lt;/template&gt;
+        &lt;p&gt;这段文字来自 App.vue 的默认插槽。&lt;/p&gt;
+        &lt;template #footer&gt;
+          &lt;small&gt;这段文字来自 footer 插槽。&lt;/small&gt;
+        &lt;/template&gt;
+      &lt;/Card&gt;
+      &lt;component v-else :is=&quot;current&quot; /&gt;
     &lt;/keep-alive&gt;
   &lt;/div&gt;
 &lt;/template&gt;
 &lt;script setup&gt;
-import { shallowRef } from &#39;vue&#39;
+import { ref, shallowRef } from &#39;vue&#39;
 import Card from &#39;./components/Card.vue&#39;
 import TaskList from &#39;./components/TaskList.vue&#39;
 import UserInfo from &#39;./components/UserInfo.vue&#39;
@@ -332,10 +415,63 @@ const tabs = [
   { label: &#39;任务&#39;, name: &#39;task&#39;, comp: TaskList },
   { label: &#39;用户&#39;, name: &#39;user&#39;, comp: UserInfo }
 ]
+const activeName = ref(&#39;card&#39;)
 const current = shallowRef(Card)
+const selectTab = (tab) =&gt; {
+  activeName.value = tab.name
+  current.value = tab.comp
+}
 &lt;/script&gt;</code></pre>
-<p><strong>运行方式</strong>：创建 Card.vue 与简单
-TaskList.vue、UserInfo.vue，点击按钮切换组件；keep-alive 缓存状态。</p>
+<p><strong>TaskList.vue</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;section class=&quot;panel&quot;&gt;
+    &lt;h2&gt;任务列表&lt;/h2&gt;
+    &lt;form @submit.prevent=&quot;addTask&quot;&gt;
+      &lt;input v-model.trim=&quot;draft&quot; placeholder=&quot;输入任务&quot; /&gt;
+      &lt;button type=&quot;submit&quot;&gt;添加&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;ul&gt;
+      &lt;li v-for=&quot;task in tasks&quot; :key=&quot;task.id&quot;&gt;{{ task.title }}&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/section&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+
+const draft = ref(&#39;&#39;)
+const nextId = ref(3)
+const tasks = ref([
+  { id: 1, title: &#39;阅读插槽文档&#39; },
+  { id: 2, title: &#39;完成动态组件练习&#39; }
+])
+
+const addTask = () =&gt; {
+  if (!draft.value) return
+  tasks.value.push({ id: nextId.value++, title: draft.value })
+  draft.value = &#39;&#39;
+}
+&lt;/script&gt;
+&lt;style scoped&gt;
+.panel { padding: 16px; border: 1px solid #d1d5db; }
+input { margin-right: 8px; padding: 6px; }
+&lt;/style&gt;</code></pre>
+<p><strong>UserInfo.vue</strong>：</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;section class=&quot;panel&quot;&gt;
+    &lt;h2&gt;用户信息&lt;/h2&gt;
+    &lt;label&gt;昵称：&lt;input v-model=&quot;name&quot; /&gt;&lt;/label&gt;
+    &lt;p&gt;当前昵称：{{ name || &#39;未填写&#39; }}&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+const name = ref(&#39;小林&#39;)
+&lt;/script&gt;
+&lt;style scoped&gt;
+.panel { padding: 16px; border: 1px solid #d1d5db; }
+input { padding: 6px; }
+&lt;/style&gt;</code></pre>
+<p><strong>运行结果检查：</strong>Card 页显示 header/body/footer 三个区域；TaskList 页可以添加任务；UserInfo 页可以编辑昵称。切换标签后，任务和昵称仍保留，说明 <code>keep-alive</code> 正在缓存组件实例。</p>
 <hr />
 <h2 id="四拓展阅读选学">四、拓展阅读（选学）</h2>
 <ol type="1">

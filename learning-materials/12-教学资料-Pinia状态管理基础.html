@@ -226,9 +226,12 @@ const userStore = useUserStore()
 函数</strong>：<code>userStore.$patch(state =&gt; { state.token = 'abc' })</code>。</li>
 <li><strong>action</strong>：<code>userStore.login('abc')</code>。</li>
 </ol>
+<p class="note"><strong>实践建议：</strong>Pinia 允许直接修改 state，这是语法能力；
+涉及校验、接口、日志或多个字段联动时，业务代码应优先调用 action，避免组件到处散落修改规则。</p>
 <h4 id="解构保持响应式storetorefs">解构保持响应式（storeToRefs）</h4>
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { storeToRefs } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
+<span id="cb6-import"><a href="#cb6-import" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { useUserStore } <span class="im">from</span> <span class="st">&#39;../stores/user&#39;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">useUserStore</span>()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> { token<span class="op">,</span> isLogin } <span class="op">=</span> <span class="fu">storeToRefs</span>(userStore)   <span class="co">// 解构保持响应式</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">// 注意：actions 解构后直接用，不需 storeToRefs</span></span>
@@ -252,7 +255,8 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-
 computed，有缓存。</p>
 <h4 id="用法-1">用法</h4>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-import"><a href="#cb7-import" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
+<span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">token</span><span class="op">:</span> <span class="st">&#39;abc&#39;</span><span class="op">,</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">userInfo</span><span class="op">:</span> { <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;张三&#39;</span><span class="op">,</span> <span class="dt">role</span><span class="op">:</span> <span class="st">&#39;admin&#39;</span> }</span>
@@ -267,7 +271,11 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <h4 id="组件中使用">组件中使用</h4>
-<pre class="vue"><code>&lt;template&gt;
+<pre class="vue"><code>&lt;script setup&gt;
+import { useUserStore } from '../stores/user'
+const userStore = useUserStore()
+&lt;/script&gt;
+&lt;template&gt;
   &lt;p&gt;{{ userStore.greeting }}&lt;/p&gt;
 &lt;/template&gt;</code></pre>
 <h4 id="易错点-1">易错点</h4>
@@ -286,7 +294,8 @@ state，不依赖外部变量。</li>
 的方法，可同步可异步，用于封装业务逻辑（如登录请求、修改状态）。</p>
 <h4 id="用法-2">用法</h4>
 <div class="sourceCode" id="cb9"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-import"><a href="#cb9-import" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
+<span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({ <span class="dt">token</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span> <span class="dt">userInfo</span><span class="op">:</span> <span class="kw">null</span> })<span class="op">,</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">actions</span><span class="op">:</span> {</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 同步</span></span>
@@ -301,8 +310,10 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">async</span> <span class="fu">login</span>(credentials) {</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> res <span class="op">=</span> <span class="cf">await</span> <span class="fu">fetch</span>(<span class="st">&#39;/api/login&#39;</span><span class="op">,</span> {</span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">method</span><span class="op">:</span> <span class="st">&#39;POST&#39;</span><span class="op">,</span></span>
+<span id="cb9-15a"><a href="#cb9-15a" aria-hidden="true" tabindex="-1"></a>        <span class="dt">headers</span><span class="op">:</span> { <span class="st">&#39;Content-Type&#39;</span><span class="op">:</span> <span class="st">&#39;application/json&#39;</span> }<span class="op">,</span></span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="dt">body</span><span class="op">:</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(credentials)</span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>      })</span>
+<span id="cb9-18a"><a href="#cb9-18a" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="op">!</span>res<span class="op">.</span><span class="at">ok</span>) <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">Error</span>(<span class="st">&#39;登录请求失败（HTTP &#39;</span> <span class="op">+</span> res<span class="op">.</span><span class="at">status</span> <span class="op">+</span> <span class="st">&#39;）&#39;</span>)</span>
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> data <span class="op">=</span> <span class="cf">await</span> res<span class="op">.</span><span class="fu">json</span>()</span>
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">token</span> <span class="op">=</span> data<span class="op">.</span><span class="at">token</span></span>
 <span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">userInfo</span> <span class="op">=</span> data<span class="op">.</span><span class="at">userInfo</span></span>
@@ -312,8 +323,11 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-
 <span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <h4 id="组件中调用">组件中调用</h4>
 <div class="sourceCode" id="cb10"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">useUserStore</span>()</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> userStore<span class="op">.</span><span class="fu">login</span>({ <span class="dt">username</span><span class="op">:</span> <span class="st">&#39;admin&#39;</span><span class="op">,</span> <span class="dt">password</span><span class="op">:</span> <span class="st">&#39;123&#39;</span> })</span></code></pre></div>
+class="sourceCode vue"><code class="sourceCode vue"><span id="cb10-setup"><a href="#cb10-setup" aria-hidden="true" tabindex="-1"></a>&lt;script setup&gt;</span>
+<span id="cb10-import"><a href="#cb10-import" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { useUserStore } <span class="im">from</span> <span class="st">&#39;../stores/user&#39;</span></span>
+<span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">useUserStore</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> userStore<span class="op">.</span><span class="fu">login</span>({ <span class="dt">username</span><span class="op">:</span> <span class="st">&#39;admin&#39;</span><span class="op">,</span> <span class="dt">password</span><span class="op">:</span> <span class="st">&#39;123&#39;</span> })</span>
+<span id="cb10-end"><a href="#cb10-end" aria-hidden="true" tabindex="-1"></a>&lt;/script&gt;</span></code></pre></div>
 <h4 id="易错点-2">易错点</h4>
 <ul>
 <li><strong>actions 中用 this</strong>：Pinia actions 用
@@ -329,11 +343,13 @@ userStore</h2>
 <p><strong>src/stores/user.js</strong>：</p>
 <div class="sourceCode" id="cb11"><pre
 class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">readUserInfo</span>() {</span>
+<span id="cb11-2a"><a href="#cb11-2a" aria-hidden="true" tabindex="-1"></a>  <span class="kw">try</span> { <span class="cf">return</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;userInfo&#39;</span>) <span class="op">||</span> <span class="st">&#39;null&#39;</span>) } <span class="kw">catch</span> { <span class="cf">return</span> <span class="kw">null</span> }</span>
+<span id="cb11-2b"><a href="#cb11-2b" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">token</span><span class="op">:</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;token&#39;</span>) <span class="op">||</span> <span class="st">&#39;&#39;</span><span class="op">,</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">userInfo</span><span class="op">:</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;userInfo&#39;</span>) <span class="op">||</span> <span class="st">&#39;null&#39;</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">userInfo</span><span class="op">:</span> readUserInfo()</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">getters</span><span class="op">:</span> {</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">isLogin</span><span class="op">:</span> (state) <span class="kw">=&gt;</span> <span class="op">!!</span>state<span class="op">.</span><span class="at">token</span><span class="op">,</span></span>
@@ -370,14 +386,12 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb11
 &lt;/template&gt;
 &lt;script setup&gt;
 import { reactive } from &#39;vue&#39;
-import { useRouter } from &#39;vue-router&#39;
 import { useUserStore } from &#39;../stores/user&#39;
 const form = reactive({ username: &#39;&#39;, password: &#39;&#39; })
-const router = useRouter()
 const userStore = useUserStore()
 const onLogin = async () =&gt; {
   await userStore.login(form)
-  router.push(&#39;/projects&#39;)
+  alert(&#39;登录成功，可刷新页面验证持久化&#39;)
 }
 &lt;/script&gt;</code></pre>
 <p><strong>Header 显示用户</strong>：</p>
@@ -391,8 +405,21 @@ const onLogin = async () =&gt; {
 import { useUserStore } from &#39;../stores/user&#39;
 const userStore = useUserStore()
 &lt;/script&gt;</code></pre>
-<p><strong>运行方式</strong>：配置 store，登录后用户信息全局可读，Header
-显示用户名，退出清空。</p>
+<p><strong>src/App.vue</strong>（本课不依赖路由，直接挂载两个组件）：</p>
+<pre class="vue"><code>&lt;script setup&gt;
+import Login from &#39;./components/Login.vue&#39;
+import UserHeader from &#39;./components/UserHeader.vue&#39;
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;UserHeader /&gt;
+  &lt;Login /&gt;
+&lt;/template&gt;</code></pre>
+<p><strong>运行方式</strong>：将 Login.vue 与 Header 示例分别保存为
+<code>src/components/Login.vue</code> 和 <code>src/components/UserHeader.vue</code>，
+并按上面的 <code>main.js</code> 挂载 Pinia。登录后刷新页面，Header 仍显示用户名；
+点击退出后应清空持久化数据。示例中的 <code>localStorage</code> 只用于课堂演示，
+真实项目不要保存密码，令牌安全应由后端与 HttpOnly Cookie 等方案共同设计。</p>
 <hr />
 <h2 id="四拓展阅读选学">四、拓展阅读（选学）</h2>
 <ol type="1">
