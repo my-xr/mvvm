@@ -1,407 +1,489 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang='zh-CN'>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
   <title>Vue Router基础</title>
-  <link rel="stylesheet" href="assets/course-html.css">
-  <link rel="stylesheet" href="assets/highlight-local.css">
-  <script src="assets/vue-sfc-highlight.js" defer></script>
-  <script src="assets/course-html.js" defer></script>
+  <link rel='stylesheet' href='assets/course-html.css'>
+  <link rel='stylesheet' href='assets/highlight-local.css'>
+  <script src='assets/vue-sfc-highlight.js' defer></script>
+  <script src='assets/course-html.js' defer></script>
 </head>
 <body>
-  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
-  <header class="hero">
-    <div class="hero-inner">
-      <div class="course-name">MVVM前端框架开发技术</div>
-      <div class="kicker">第 10 次课 · 教学资料</div>
+  <a class='archive-home-link' href='index.html' aria-label='回到首页' title='回到首页'>首页</a>
+  <header class='hero'>
+    <div class='hero-inner'>
+      <div class='course-name'>MVVM前端框架开发技术</div>
+      <div class='kicker'>第 10 次课 · 教学资料</div>
       <h1>Vue Router基础</h1>
       <p>学生复习资料与代码示例 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
-      <div class="hero-meta">
-        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
-        <span class="hero-chip"><b>课次</b>第 10 次课</span>
-        <span class="hero-chip"><b>主题</b>Vue Router基础</span>
+      <div class='hero-meta'>
+        <span class='hero-chip'><b>课程</b>MVVM前端框架开发技术</span>
+        <span class='hero-chip'><b>课次</b>第 10 次课</span>
+        <span class='hero-chip'><b>主题</b>Vue Router基础</span>
       </div>
     </div>
   </header>
-  <button class="toc-float-toggle" type="button">目录</button>
-  <div class="layout">
-    <aside class="sidebar" aria-label="页面目录">
-      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+  <button class='toc-float-toggle' type='button'>目录</button>
+  <div class='layout'>
+    <aside class='sidebar' aria-label='页面目录'>
+      <div class='toc-heading'><span>目录</span><button class='toc-toggle' type='button'>收起</button></div>
       <ul>
-<li><a href="#一学习导读">一、学习导读</a>
+<li><a href='#一学习导读'>一、学习导读</a>
 <ul>
-<li><a href="#11-本节定位">1.1 本节定位</a></li>
-<li><a href="#12-先修基础">1.2 先修基础</a></li>
-<li><a href="#13-学习目标">1.3 学习目标</a></li>
+<li><a href='#11-本节定位'>1.1 本节定位</a></li>
+<li><a href='#12-先修基础'>1.2 先修基础</a></li>
+<li><a href='#13-学习目标'>1.3 学习目标</a></li>
 </ul></li>
-<li><a href="#二知识点详解">二、知识点详解</a>
+<li><a href='#二从动态组件到路由'>二、从动态组件到路由</a>
 <ul>
-<li><a href="#知识点-k10-1路由概念与安装">知识点 K10-1：路由概念与安装</a></li>
-<li><a href="#知识点-k10-2路由配置与组件">知识点 K10-2：路由配置与组件</a></li>
-<li><a href="#知识点-k10-3userouter-与-useroute">知识点 K10-3：useRouter 与 useRoute</a></li>
-<li><a href="#知识点-k10-4动态路由与参数">知识点 K10-4：动态路由与参数</a></li>
-<li><a href="#知识点-k10-5嵌套路由">知识点 K10-5：嵌套路由</a></li>
+<li><a href='#21-用动态组件做多页面'>2.1 用动态组件做多页面</a></li>
+<li><a href='#22-动态组件撑不住的地方'>2.2 动态组件撑不住的地方</a></li>
+<li><a href='#23-路由的思路网址驱动组件'>2.3 路由的思路：网址驱动组件</a></li>
+<li><a href='#24-两者对比与应用场景'>2.4 两者对比与应用场景</a></li>
+<li><a href='#25-前端路由是怎么做到不刷新的'>2.5 前端路由如何不刷新</a></li>
 </ul></li>
-<li><a href="#三综合示例ctts-frontend-路由配置">三、综合示例：CTTS-Frontend 路由配置</a>
+<li><a href='#三知识点详解'>三、知识点详解</a>
 <ul>
-<li><a href="#31从零运行">3.1 从零运行</a></li>
-<li><a href="#32文件结构与完整代码">3.2 文件结构与完整代码</a></li>
+<li><a href='#k10-1'>K10-1：安装并改造第一个路由</a></li>
+<li><a href='#k10-2'>K10-2：路由表、router-view 与 router-link</a></li>
+<li><a href='#k10-3'>K10-3：useRouter 与 useRoute</a></li>
+<li><a href='#k10-4'>K10-4：动态路由与参数</a></li>
+<li><a href='#k10-5'>K10-5：嵌套路由</a></li>
 </ul></li>
-<li><a href="#四拓展阅读选学">四、拓展阅读（选学）</a>
+<li><a href='#四综合示例'>四、综合示例：CTTS-Frontend 路由</a>
 <ul>
+<li><a href='#41-从零运行'>4.1 从零运行</a></li>
+<li><a href='#42-文件结构与完整代码'>4.2 文件结构与完整代码</a></li>
 </ul></li>
-<li><a href="#五本节小结与知识结构图">五、本节小结与知识结构图</a>
-<ul>
-</ul></li>
-<li><a href="#六复习思考题">六、复习思考题</a>
-<ul>
-</ul></li>
+<li><a href='#五拓展阅读选学'>五、拓展阅读（选学）</a></li>
+<li><a href='#六本节小结与知识结构图'>六、本节小结与知识结构图</a></li>
+<li><a href='#七复习思考题'>七、复习思考题</a></li>
 </ul>
-
     </aside>
-    <main class="content">
-      <article class="article">
-        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 10 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
+    <main class='content'>
+      <article class='article'>
+<p class='doc-meta'><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 10 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
 <blockquote>
-<p>学生复习资料 ｜
-配套：<code>教学设计.md</code>、<code>题库.md</code></p>
+<p>学生复习资料 ｜ 配套：<code>教学设计.md</code>、<code>题库.md</code></p>
 </blockquote>
 <hr />
-<h2 id="一学习导读">一、学习导读</h2>
-<h3 id="11-本节定位">1.1 本节定位</h3>
-<p>本节学习 Vue Router 4，实现 SPA
-中的多视图导航与页面切换，是前端应用的核心能力。</p>
-<p class="course-boundary"><strong>课程边界：</strong>本课覆盖基础路由、动态参数和嵌套路由；导航守卫、路由元信息和权限控制放在第 11 课。本课所有示例均按 Vue 3 + Vite + <code>&lt;script setup&gt;</code> 编写，综合案例提供完整文件，可直接创建项目运行。</p>
-<h3 id="12-先修基础">1.2 先修基础</h3>
+
+<h2 id='一学习导读'>一、学习导读</h2>
+<h3 id='11-本节定位'>1.1 本节定位</h3>
+<p>第 8 课我们学了动态组件：<code>&lt;component :is&gt;</code> 能根据一个变量切换显示的组件。很多同学会问：既然这样就能做“多个页面”，为什么还要学 Vue Router？</p>
+<p>本节就沿着这个问题展开：<strong>先用动态组件做一个多页面应用，亲手撞上它的局限，再看 Vue Router 如何解决</strong>。后面的 5 个知识点，都是把这个“动态组件版”逐步改造成“路由版”。</p>
+<p class='course-boundary'><strong>课程边界：</strong>本课覆盖基础路由、动态参数和嵌套路由；导航守卫、路由元信息和权限控制放在第 11 课。示例均按 Vue 3 + Vite + <code>&lt;script setup&gt;</code> 编写，综合案例提供完整文件，可直接创建项目运行。</p>
+<h3 id='12-先修基础'>1.2 先修基础</h3>
 <table>
-<thead>
-<tr>
-<th>先修知识</th>
-<th>程度</th>
-<th>说明</th>
-</tr>
-</thead>
+<thead><tr><th>先修知识</th><th>程度</th><th>说明</th></tr></thead>
 <tbody>
-<tr>
-<td>第 2~9 次课</td>
-<td>必须</td>
-<td>Vue 组件、<code>&lt;script setup&gt;</code>、Vite 项目基础</td>
-</tr>
+<tr><td>第 7 课 组件与 props</td><td>必须</td><td>路由页面本质上就是组件，参数可以通过 props 传入</td></tr>
+<tr><td>第 8 课 动态组件与 keep-alive</td><td>必须</td><td>本节的出发点，用来对比 router-view</td></tr>
+<tr><td>第 4 课 响应式（ref、watch）</td><td>必须</td><td>路由对象是响应式的，参数变化要用 watch 监听</td></tr>
 </tbody>
 </table>
-<h3 id="13-学习目标">1.3 学习目标</h3>
+<h3 id='13-学习目标'>1.3 学习目标</h3>
 <ul>
-<li>✅ 掌握 Router 安装与配置</li>
-<li>✅ 掌握 router-view/router-link</li>
-<li>✅ 掌握 useRouter/useRoute</li>
-<li>✅ 掌握动态路由与嵌套路由</li>
+<li>✅ 能说清动态组件与 Vue Router 的区别，并判断一个场景该用哪个</li>
+<li>✅ 理解“网址 ↔ 组件”的映射思想，会安装并配置 Vue Router 4</li>
+<li>✅ 会用 router-view / router-link 搭建页面导航</li>
+<li>✅ 会用 useRouter 跳转、用 useRoute 读取参数</li>
+<li>✅ 会配置动态路由（详情页）与嵌套路由（公共布局）</li>
 </ul>
 <hr />
-<h2 id="二知识点详解">二、知识点详解</h2>
-<h3 id="知识点-k10-1路由概念与安装">知识点 K10-1：路由概念与安装</h3>
-<h4 id="定义">定义</h4>
-<p><strong>前端路由</strong>是 SPA（单页应用）中不刷新页面、通过 JS
-切换页面内容的机制。Vue Router 是 Vue 官方路由库，当前版本 Vue Router
-4。</p>
-<h4 id="hash-与-history-模式">hash 与 history 模式</h4>
-<table>
-<thead>
-<tr>
-<th>模式</th>
-<th>URL 形式</th>
-<th>特点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>hash</td>
-<td><code>http://x.com/#/projects</code></td>
-<td>带 #，兼容好，无需服务器配置</td>
-</tr>
-<tr>
-<td>history</td>
-<td><code>http://x.com/projects</code></td>
-<td>干净，需服务器配置回退到 index.html</td>
-</tr>
-</tbody>
-</table>
-<h4 id="安装">安装</h4>
-<p>请在 Vue 3 + Vite 项目根目录执行；从空目录创建项目的完整命令见
-3.1。Vue Router 4 与 Vue 3 配套使用。</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install vue-router@4</span></code></pre></div>
-<h4 id="创建路由">创建路由</h4>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/router/index.js</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createRouter<span class="op">,</span> createWebHistory } <span class="im">from</span> <span class="st">&#39;vue-router&#39;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Home <span class="im">from</span> <span class="st">&#39;../views/Home.vue&#39;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> Home }<span class="op">,</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/about&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/About.vue&#39;</span>) }   <span class="co">// 懒加载</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> <span class="fu">createRouter</span>({</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">history</span><span class="op">:</span> <span class="fu">createWebHistory</span>()<span class="op">,</span>   <span class="co">// history 模式；hash 用 createWebHashHistory()</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  routes</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> router</span></code></pre></div>
-<p><strong>切换为 hash 模式：</strong>把导入改为
-<code>import { createRouter, createWebHashHistory } from 'vue-router'</code>，并把
-<code>history</code> 改成 <code>createWebHashHistory()</code>。两处必须同时修改，否则会出现未定义函数。</p>
-<h4 id="挂载到应用">挂载到应用</h4>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/main.js</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createApp } <span class="im">from</span> <span class="st">&#39;vue&#39;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> App <span class="im">from</span> <span class="st">&#39;./App.vue&#39;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> router <span class="im">from</span> <span class="st">&#39;./router&#39;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">createApp</span>(App)<span class="op">.</span><span class="fu">use</span>(router)<span class="op">.</span><span class="fu">mount</span>(<span class="st">&#39;#app&#39;</span>)</span></code></pre></div>
-<p><strong>最小页面文件：</strong>上面的路由引用了
-<code>src/views/Home.vue</code> 和 <code>src/views/About.vue</code>，两个文件都必须存在：</p>
-<pre class="vue"><code>&lt;!-- src/views/Home.vue --&gt;
-&lt;template&gt;&lt;h2&gt;首页&lt;/h2&gt;&lt;/template&gt;</code></pre>
-<pre class="vue"><code>&lt;!-- src/views/About.vue --&gt;
-&lt;template&gt;&lt;h2&gt;关于页面&lt;/h2&gt;&lt;/template&gt;</code></pre>
-<h4 id="易错点">易错点</h4>
-<ul>
-<li><strong>history 模式部署 404</strong>：服务器需配置所有路径回退到
-index.html。</li>
-<li><strong>忘在 main.js 挂载 router</strong>：<code>.use(router)</code>
-不能少。</li>
-</ul>
-<h4 id="小结">小结</h4>
-<p>Vue Router 4 用 createRouter 创建，createWebHistory 选模式；在
-main.js <code>.use(router)</code> 挂载。</p>
-<hr />
-<h3 id="知识点-k10-2路由配置与组件">知识点 K10-2：路由配置与组件</h3>
-<h4 id="定义-1">定义</h4>
-<p>路由配置用 <code>routes</code> 数组，每项含
-<code>path</code>（路径）与
-<code>component</code>（组件）。<code>&lt;router-view&gt;</code>
-是路由出口，<code>&lt;router-link&gt;</code> 是导航链接。</p>
-<h4 id="用法">用法</h4>
-<pre class="vue"><code>&lt;!-- App.vue --&gt;
+
+<h2 id='二从动态组件到路由'>二、从动态组件到路由：为什么需要 Vue Router</h2>
+<h3 id='21-用动态组件做多页面'>2.1 用动态组件做多页面</h3>
+<p>假设我们要做 CTTS 系统的两个页面：“项目列表”和“个人中心”。用第 8 课的知识，写法如下：</p>
+<pre class='vue'><code>&lt;!-- App.vue（动态组件版） --&gt;
 &lt;template&gt;
-  &lt;div&gt;
-    &lt;nav&gt;
-      &lt;router-link to=&quot;/&quot;&gt;首页&lt;/router-link&gt;
-      &lt;router-link to=&quot;/about&quot;&gt;关于&lt;/router-link&gt;
-    &lt;/nav&gt;
-    &lt;router-view /&gt;        &lt;!-- 路由匹配的组件在此渲染 --&gt;
-  &lt;/div&gt;
-&lt;/template&gt;</code></pre>
-<h4 id="router-link-属性">router-link 属性</h4>
+  &lt;nav&gt;
+    &lt;button type='button' @click="current = 'projects'"&gt;项目列表&lt;/button&gt;
+    &lt;button type='button' @click="current = 'user'"&gt;个人中心&lt;/button&gt;
+  &lt;/nav&gt;
+  &lt;keep-alive&gt;
+    &lt;component :is='views[current]' /&gt;
+  &lt;/keep-alive&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from 'vue'
+import Projects from './views/Projects.vue'
+import UserCenter from './views/UserCenter.vue'
+
+const views = { projects: Projects, user: UserCenter }
+const current = ref('projects')   // 当前显示哪个页面，由这个变量决定
+&lt;/script&gt;</code></pre>
+<p>核心机制：<strong>变量 <code>current</code> 决定显示哪个组件</strong>。这个方案能跑，也确实实现了“点击切换页面”。</p>
+<h3 id='22-动态组件撑不住的地方'>2.2 动态组件撑不住的地方</h3>
+<p>请真的运行上面的代码，然后依次做下面几个动作，观察会发生什么：</p>
 <table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
+<thead><tr><th>你的操作</th><th>实际结果</th><th>根本原因</th></tr></thead>
 <tbody>
-<tr>
-<td><code>to</code></td>
-<td>目标路径（字符串或对象）</td>
-</tr>
-<tr>
-<td><code>active-class</code></td>
-<td>激活时的 class</td>
-</tr>
-<tr>
-<td><code>replace</code></td>
-<td>替换当前历史记录，不新增本次导航记录</td>
-</tr>
+<tr><td>切到“个人中心”后按 F5 刷新</td><td>回到“项目列表”</td><td>当前页面只存在于内存变量 <code>current</code> 中，刷新即丢失</td></tr>
+<tr><td>把地址栏链接发给同学</td><td>对方打开永远是首页</td><td>地址栏始终不变，网址里没有页面信息</td></tr>
+<tr><td>点击浏览器“后退”按钮</td><td>直接退出本站，而不是回到上一页</td><td>切换没有产生浏览器历史记录</td></tr>
+<tr><td>想做“任务 5 的详情页”</td><td>要自己加 <code>taskId</code> 变量，再层层 props 传递</td><td>没有“带参数的页面”这个概念</td></tr>
+<tr><td>页面增加到 20 个</td><td><code>views</code> 对象和按钮越来越长，全挤在 App.vue</td><td>“页面 ↔ 变量值”的对应关系要全部手写、手动维护</td></tr>
 </tbody>
 </table>
-<pre class="vue"><code>&lt;router-link to=&quot;/&quot;&gt;首页&lt;/router-link&gt;
-&lt;router-link :to=&quot;{ path: &#39;/about&#39;, query: { id: 1 } }&quot;&gt;关于（带查询参数）&lt;/router-link&gt;</code></pre>
-<h4 id="路由懒加载">路由懒加载</h4>
-<p><code>component: () =&gt; import('./X.vue')</code>
-按需加载，减小首屏体积。</p>
-<h4 id="易错点-1">易错点</h4>
-<ul>
-<li><strong>忘写
-<code>&lt;router-view&gt;</code></strong>：路由匹配的组件无处渲染。</li>
-<li><strong>path 不以 / 开头</strong>：除相对嵌套外，path 应以 /
-开头。</li>
-</ul>
-<h4 id="小结-1">小结</h4>
-<p>routes 配置 path+component；<code>&lt;router-view&gt;</code>
-是出口；<code>&lt;router-link to&gt;</code> 导航；大组件懒加载。</p>
+<p>总结一句话：<strong>动态组件只解决了“换一个组件显示”，没有解决“页面”应有的这些能力：有自己的网址、能刷新保持、能收藏分享、能前进后退、能带参数。</strong></p>
+<h3 id='23-路由的思路网址驱动组件'>2.3 路由的思路：网址驱动组件</h3>
+<p>Vue Router 的改进很直接：<strong>不再用自己定义的变量来决定显示哪个组件，而是用浏览器地址栏中的网址来决定</strong>，并由路由表统一维护“网址 → 组件”的对应关系。</p>
+<div class='visual'>
+  <div class='visual-title'>图示 1：动态组件 与 Vue Router 的驱动方式</div>
+  <div class='flow'>
+    <div class='node'><span class='tag'>动态组件</span><p>变量 <code>current</code> 的值<br>→ <code>views[current]</code><br>→ <code>&lt;component :is&gt;</code> 渲染</p></div>
+    <div class='arrow'>VS</div>
+    <div class='node'><span class='tag'>Vue Router</span><p>地址栏 URL<br>→ 路由表 <code>routes</code> 匹配<br>→ <code>&lt;router-view&gt;</code> 渲染</p></div>
+  </div>
+</div>
+<p>因为网址本身就是页面的“身份证”，所以刷新、收藏、分享、前进后退都自然成立：只要网址对，页面就对。可以把 <code>&lt;router-view&gt;</code> 理解为<strong>“由网址驱动的 <code>&lt;component :is&gt;</code>”</strong>。</p>
+<h3 id='24-两者对比与应用场景'>2.4 两者对比与应用场景</h3>
+<table>
+<thead><tr><th>对比维度</th><th>动态组件 <code>&lt;component :is&gt;</code></th><th>Vue Router</th></tr></thead>
+<tbody>
+<tr><td>切换依据</td><td>自己定义的变量（如 <code>current</code>）</td><td>浏览器地址栏的 URL</td></tr>
+<tr><td>地址栏</td><td>不变</td><td>随页面变化（如 <code>/tasks/5</code>）</td></tr>
+<tr><td>刷新页面</td><td>状态丢失，回到初始组件</td><td>仍停留在当前页面</td></tr>
+<tr><td>前进 / 后退</td><td>无历史记录，后退会离开本站</td><td>每次导航产生历史记录，可前进后退</td></tr>
+<tr><td>分享 / 收藏</td><td>做不到</td><td>复制网址即可</td></tr>
+<tr><td>传递参数</td><td>手动 props、事件、共享变量</td><td>路径参数 <code>:id</code>、查询参数 <code>?keyword=</code></td></tr>
+<tr><td>多层页面结构</td><td>自己写嵌套逻辑</td><td>嵌套路由 <code>children</code></td></tr>
+<tr><td>组件缓存</td><td>外包 <code>keep-alive</code></td><td>默认切走即销毁，需要时同样可包 keep-alive</td></tr>
+<tr><td>代码规模增长</td><td>页面越多，手写映射越乱</td><td>集中在路由表，页面再多也清晰</td></tr>
+</tbody>
+</table>
+<p><strong>应用场景怎么选？</strong>看一个问题：<strong>这次切换的结果，值不值得拥有自己的网址？</strong></p>
+<table>
+<thead><tr><th>适合用动态组件</th><th>适合用 Vue Router</th></tr></thead>
+<tbody>
+<tr><td>页面内部的标签页内容（如详情页里的“概览 / 评论 / 记录”）</td><td>登录页、项目列表、任务详情等整页切换</td></tr>
+<tr><td>表单分步向导的各步骤</td><td>用户希望刷新后仍停留在当前页</td></tr>
+<tr><td>按数据类型渲染不同组件（动态表单、消息卡片）</td><td>需要分享链接、收藏、从外部直接进入某页</td></tr>
+<tr><td>仪表盘里切换小部件</td><td>有公共布局（顶栏 + 侧栏）、有层级页面</td></tr>
+<tr><td>切换状态不需要被记住、不需要网址</td><td>后续要做登录拦截、权限控制（第 11 课）</td></tr>
+</tbody>
+</table>
+<p>二者不是替代关系，而是<strong>分工</strong>：路由负责“整个应用有哪些页面”，动态组件负责“某个页面内部怎么局部切换”。真实项目里经常同时出现：一个路由页面里再放一组用动态组件实现的标签页。</p>
+<h3 id='25-前端路由是怎么做到不刷新的'>2.5 前端路由是怎么做到不刷新的</h3>
+<p>传统网站（后端路由）每换一个网址，浏览器都向服务器请求一个新的 HTML 页面，整页刷新。单页应用（SPA）只加载一次 HTML，之后<strong>由 JS 拦截网址变化，只替换页面中的组件</strong>，不再请求新页面。</p>
+<table>
+<thead><tr><th>对比</th><th>后端路由</th><th>前端路由（SPA）</th></tr></thead>
+<tbody>
+<tr><td>谁来匹配网址</td><td>服务器</td><td>浏览器中的 JS（Vue Router）</td></tr>
+<tr><td>切换页面</td><td>请求新 HTML，整页刷新</td><td>替换组件，不刷新</td></tr>
+<tr><td>体验</td><td>有白屏闪烁</td><td>接近桌面应用，切换流畅</td></tr>
+</tbody>
+</table>
+<p>浏览器有两种办法改网址而不触发请求，对应 Vue Router 的两种模式：</p>
+<table>
+<thead><tr><th>模式</th><th>URL 形式</th><th>原理</th><th>特点</th></tr></thead>
+<tbody>
+<tr><td>hash</td><td><code>http://x.com/#/projects</code></td><td>改 <code>#</code> 后面的部分，浏览器不会发请求；监听 hashchange</td><td>带 #，兼容性好，部署无需额外配置</td></tr>
+<tr><td>history</td><td><code>http://x.com/projects</code></td><td>用 HTML5 的 <code>history.pushState</code> 改地址，监听 popstate</td><td>网址干净；部署时服务器必须把未知路径回退到 index.html</td></tr>
+</tbody>
+</table>
 <hr />
-<h3 id="知识点-k10-3userouter-与-useroute">知识点 K10-3：useRouter 与
-useRoute</h3>
-<h4 id="定义-2">定义</h4>
+
+<h2 id='三知识点详解'>三、知识点详解</h2>
+<p>下面的 5 个知识点沿着同一条线：<strong>把 2.1 的动态组件版逐步改造成路由版</strong>，每一步都对应前面暴露的一个痛点。</p>
+
+<h3 id='k10-1'>知识点 K10-1：安装并改造第一个路由</h3>
+<h4>场景与痛点</h4>
+<p>回到 2.2 的实验：动态组件版的页面刷新就丢、不能分享、不能后退。根源是“当前页”只存在内存变量里。</p>
+<h4>核心思想</h4>
+<p>让<strong>网址</strong>来决定显示哪个组件，由路由器维护“网址 → 组件”的对应关系。</p>
+<h4>定义</h4>
+<p><code>createRouter</code> 创建路由器；<code>routes</code> 是网址与组件的对应表；<code>createWebHistory</code> 选择网址模式（见 2.5）；<code>app.use(router)</code> 把路由器接入应用。</p>
+<h4>步骤 1：安装</h4>
+<pre class='bash'><code>npm install vue-router@4</code></pre>
+<h4>步骤 2：创建路由表（取代 <code>views</code> 对象和 <code>current</code> 变量）</h4>
+<pre class='javascript'><code>// src/router/index.js
+import { createRouter, createWebHistory } from 'vue-router'
+import Projects from '../views/Projects.vue'
+import UserCenter from '../views/UserCenter.vue'
+
+const routes = [
+  { path: '/projects', component: Projects },   // 网址 /projects 显示 Projects
+  { path: '/user', component: UserCenter }      // 网址 /user 显示 UserCenter
+]
+
+const router = createRouter({
+  history: createWebHistory(),   // history 模式；hash 模式用 createWebHashHistory()
+  routes
+})
+
+export default router</code></pre>
+<p>对照 2.1：<code>views = { projects: Projects, user: UserCenter }</code> 变成了 <code>path</code> 与 <code>component</code> 的对应，只是“键”从自定义字符串换成了网址。</p>
+<h4>步骤 3：在应用中挂载</h4>
+<pre class='javascript'><code>// src/main.js
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+
+createApp(App).use(router).mount('#app')</code></pre>
+<h4>步骤 4：改写 App.vue</h4>
+<pre class='vue'><code>&lt;!-- App.vue（路由版） --&gt;
+&lt;template&gt;
+  &lt;nav&gt;
+    &lt;router-link to='/projects'&gt;项目列表&lt;/router-link&gt;
+    &lt;router-link to='/user'&gt;个人中心&lt;/router-link&gt;
+  &lt;/nav&gt;
+  &lt;router-view /&gt;
+&lt;/template&gt;</code></pre>
+<p>新旧写法对照：</p>
+<table>
+<thead><tr><th>动态组件版</th><th>路由版</th></tr></thead>
+<tbody>
+<tr><td><code>&lt;button @click="current = 'user'"&gt;</code></td><td><code>&lt;router-link to='/user'&gt;</code></td></tr>
+<tr><td><code>&lt;component :is='views[current]' /&gt;</code></td><td><code>&lt;router-view /&gt;</code></td></tr>
+<tr><td><code>const current = ref(...)</code></td><td>不再需要，地址栏就是“当前页”</td></tr>
+</tbody>
+</table>
+<p>改完再做一次 2.2 的实验：刷新、后退、复制网址，现在都正常了。需要保证 <code>src/views/Projects.vue</code> 和 <code>UserCenter.vue</code> 两个文件存在，例如：</p>
+<pre class='vue'><code>&lt;!-- src/views/Projects.vue --&gt;
+&lt;template&gt;&lt;h2&gt;项目列表&lt;/h2&gt;&lt;/template&gt;</code></pre>
+<h4>应用场景与边界</h4>
 <ul>
-<li><strong><code>useRouter</code></strong>：获取路由实例，用于编程式导航（push/replace/go）。</li>
-<li><strong><code>useRoute</code></strong>：获取当前路由信息（params/query/path
-等）。</li>
+<li>适合：需要多个“整页”、希望刷新保持、可以分享链接的单页应用。</li>
+<li>模式选择：内部系统、不方便改服务器配置时用 hash；对外网站、要干净网址时用 history 并配置回退。</li>
+<li>边界：只是页面内部的局部切换（如标签页），不需要网址，用动态组件即可（见 2.4）。</li>
 </ul>
-<h4 id="用法-1">用法</h4>
-<p>下面的组件应放在已经接入 Router 的页面中（例如路由页面
-<code>Projects.vue</code>），这样 <code>useRouter</code> 和
-<code>useRoute</code> 才能取得当前应用的路由上下文。</p>
-<pre class="vue"><code>&lt;!-- RouteActions.vue --&gt;
+<h4>易错点</h4>
+<ul>
+<li><strong>忘记 <code>.use(router)</code></strong>：router-view、router-link 都无法识别。</li>
+<li><strong>history 模式部署后刷新 404</strong>：服务器要把所有路径回退到 index.html（开发服务器已自动处理）。</li>
+<li><strong>切换 hash 模式要改两处</strong>：导入和 <code>history</code> 选项都改为 <code>createWebHashHistory</code>。</li>
+</ul>
+<h4>小结与钩子</h4>
+<p>createRouter 创建路由、routes 描述“网址 → 组件”、<code>.use(router)</code> 挂载；router-view 取代 <code>&lt;component :is&gt;</code>，router-link 取代手写按钮。<strong>但还剩一个问题：</strong>这里只有两个页面，随手写的小数组就够了；页面一多，怎样把路由表组织清楚？router-link 又和普通 <code>&lt;a&gt;</code> 有什么不同？下一节解决。</p>
+<hr />
+
+<h3 id='k10-2'>知识点 K10-2：路由表、router-view 与 router-link</h3>
+<h4>场景与痛点</h4>
+<p>K10-1 只有两个页面。页面增多后，需要一个清晰的地方登记所有页面；导航还不能用普通链接，否则整页刷新、状态全丢。</p>
+<h4>核心思想</h4>
+<p>路由表像<strong>通讯录</strong>，登记“网址 → 页面”；router-view 是<strong>相框</strong>，当前页挂在里面；router-link 是<strong>不刷新的超链接</strong>。</p>
+<h4>定义：三个核心角色</h4>
+<table>
+<thead><tr><th>角色</th><th>作用</th><th>类比</th></tr></thead>
+<tbody>
+<tr><td><code>routes</code> 路由表</td><td>每项 <code>path</code> + <code>component</code>，登记所有页面</td><td>通讯录</td></tr>
+<tr><td><code>&lt;router-view&gt;</code></td><td>出口：匹配到的组件渲染在这里</td><td>相框</td></tr>
+<tr><td><code>&lt;router-link&gt;</code></td><td>导航链接，改网址但不刷新</td><td>超链接</td></tr>
+</tbody>
+</table>
+<h4>为什么不用普通的 &lt;a&gt; 标签？</h4>
+<p><code>&lt;a href='/user'&gt;</code> 会让浏览器向服务器重新请求页面，整个应用被重新加载，状态全部丢失，SPA 的意义就没了。<code>&lt;router-link&gt;</code> 拦截点击，只更新网址和对应组件。</p>
+<h4>router-link 常用属性</h4>
+<table>
+<thead><tr><th>属性</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td><code>to</code></td><td>目标路径，如 <code>'/user'</code>（对象写法见 K10-3）</td></tr>
+<tr><td><code>replace</code></td><td>替换当前历史记录，不新增一条</td></tr>
+<tr><td>自动 class</td><td>当前所在链接会自动带 <code>router-link-active</code>（精确匹配时还有 <code>router-link-exact-active</code>），可用 CSS 做高亮</td></tr>
+</tbody>
+</table>
+<pre class='vue'><code>&lt;router-link to='/projects'&gt;项目列表&lt;/router-link&gt;</code></pre>
+<h4>路由懒加载</h4>
+<pre class='javascript'><code>{ path: '/user', component: () =&gt; import('../views/UserCenter.vue') }</code></pre>
+<p>写成函数 + <code>import()</code>，页面第一次访问时才下载。思路与第 8 课的 <code>defineAsyncComponent</code> 相同，只是路由已经内置了支持，直接写函数即可。</p>
+<h4>应用场景与边界</h4>
+<ul>
+<li>站内页面跳转一律用 router-link；它渲染成真正的链接，支持右键新标签打开。</li>
+<li>站外网址仍用普通 <code>&lt;a&gt;</code>。</li>
+<li>懒加载适合页面多、体积大的项目；页面很少时直接 import 也可以。</li>
+</ul>
+<h4>易错点</h4>
+<ul>
+<li><strong>忘写 <code>&lt;router-view&gt;</code></strong>：网址变了但页面没内容。</li>
+<li><strong>path 漏写开头的 <code>/</code></strong>：顶层路由的 path 应以 <code>/</code> 开头（嵌套子路由除外，见 K10-5）。</li>
+</ul>
+<h4>小结与钩子</h4>
+<p>routes 登记页面，router-view 显示页面，router-link 导航；页面组件推荐懒加载。<strong>但还剩一个问题：</strong>router-link 只能“点链接”，登录成功后自动跳转这类发生在代码里的跳转怎么做？当前网址里的信息又怎么读？下一节解决。</p>
+<hr />
+
+<h3 id='k10-3'>知识点 K10-3：useRouter 与 useRoute</h3>
+<h4>场景与痛点</h4>
+<p>用户点击“登录”按钮后，要先判断账号是否正确，成功才进入项目列表。这是代码里的条件跳转，router-link 做不到。另外，页面常常需要读取当前网址里的信息（如搜索关键词）。</p>
+<h4>核心思想</h4>
+<p>useRouter 像<strong>遥控器</strong>，用来“去哪里”；useRoute 像<strong>当前位置的路牌</strong>，用来“现在在哪、带了什么信息”。</p>
+<h4>定义</h4>
+<ul>
+<li><strong><code>useRouter()</code></strong>：拿到路由器，<strong>做动作</strong>（<code>push</code> / <code>replace</code> / <code>back</code>）。</li>
+<li><strong><code>useRoute()</code></strong>：拿到当前路由，<strong>读信息</strong>（<code>path</code> / <code>params</code> / <code>query</code>）。</li>
+</ul>
+<h4>用法：登录后跳转</h4>
+<pre class='vue'><code>&lt;!-- Login.vue --&gt;
 &lt;template&gt;
   &lt;section&gt;
-    &lt;button type=&quot;button&quot; @click=&quot;goProjects&quot;&gt;打开项目列表&lt;/button&gt;
-    &lt;button type=&quot;button&quot; @click=&quot;goTask&quot;&gt;打开任务 5&lt;/button&gt;
+    &lt;h2&gt;登录&lt;/h2&gt;
+    &lt;button type='button' @click='login'&gt;登录&lt;/button&gt;
+    &lt;button type='button' @click='router.back()'&gt;返回上一页&lt;/button&gt;
     &lt;p&gt;当前路径：{{ route.path }}&lt;/p&gt;
-    &lt;p&gt;任务 ID：{{ route.params.id || &#39;无&#39; }}&lt;/p&gt;
-    &lt;p&gt;关键词：{{ route.query.keyword || &#39;无&#39; }}&lt;/p&gt;
   &lt;/section&gt;
 &lt;/template&gt;
 &lt;script setup&gt;
-import { useRouter, useRoute } from &#39;vue-router&#39;
+import { useRouter, useRoute } from 'vue-router'
 
-const router = useRouter()
-const route = useRoute()
+const router = useRouter()   // 用来跳转
+const route = useRoute()     // 用来读取当前路由
 
-const goProjects = () =&gt; {
-  router.push(&#39;/projects&#39;)                         // 字符串路径
-}
-const goTask = () =&gt; {
-  router.push({ path: &#39;/tasks/5&#39;, query: { keyword: &#39;vue&#39; } }) // 对象
+const login = () =&gt; {
+  // 登录页不应该能“后退”回来，所以用 replace
+  router.replace('/projects')
 }
 &lt;/script&gt;</code></pre>
-<p><code>route</code> 是响应式路由对象，地址变化后模板会自动更新；路径参数来自
-<code>route.params</code>，查询参数来自 <code>route.query</code>。如果只需要查看当前
-URL，也可以在函数中读取 <code>route.path</code>。</p>
-<p>运行这个组件前，路由表至少要存在
-<code>/projects</code> 和 <code>/tasks/:id</code> 两条路由；没有匹配的路由时，
-<code>router.push</code> 虽然会改变地址，但不会渲染预期页面。</p>
-<h4 id="push-vs-replace">push vs replace</h4>
+<p>跳转时还可以附带<strong>查询参数</strong>：<code>router.push({ path: '/projects', query: { keyword: 'vue' } })</code> 对应网址 <code>/projects?keyword=vue</code>，目标页面用 <code>route.query.keyword</code> 读取。声明式写法同理：<code>&lt;router-link :to="{ path: '/projects', query: { keyword: 'vue' } }"&gt;</code>。查询参数不需要在路由表里声明，适合筛选、搜索、分页。路径里的参数（如 <code>/tasks/5</code>）是下一节的主题。</p>
+<h4>push 与 replace</h4>
 <ul>
-<li><code>push</code>：压入历史，可返回。</li>
-<li><code>replace</code>：替换历史，不可返回。</li>
+<li><code>push</code>：新增一条历史记录，可以后退（普通跳转）。</li>
+<li><code>replace</code>：替换当前记录，不能后退回来（登录成功、重定向等场景）。</li>
 </ul>
-<h4 id="易错点-2">易错点</h4>
+<h4>应用场景与边界</h4>
 <ul>
-<li><strong>混淆 useRouter 与 useRoute</strong>：useRouter
-用于导航（动作），useRoute 用于获取信息（数据）。</li>
-<li><strong>在 setup 外使用</strong>：useRouter/useRoute 必须在 setup
-或组件内调用。</li>
+<li>useRouter：登录成功后跳转、保存后返回列表、按条件跳转、<code>router.back()</code> 返回上一页。</li>
+<li>useRoute：读取筛选关键词、显示当前路径、根据当前路由高亮菜单。</li>
+<li>边界：单纯的“点一下去某页”用 router-link 更合适，不要全部写成按钮加 push。</li>
 </ul>
-<h4 id="小结-2">小结</h4>
-<p>useRouter 做编程式导航（push/replace）；useRoute
-获取当前路由信息（params/query）。</p>
+<h4>易错点</h4>
+<ul>
+<li><strong>混淆两者</strong>：useRouter 是“动作”，useRoute 是“数据”。</li>
+<li><strong>在 setup 之外调用</strong>：二者必须在 setup 同步阶段调用，不能放进点击回调里才调用。</li>
+<li><strong>解构 route</strong>：<code>const { params } = useRoute()</code> 会丢失响应式，应通过 <code>route.params</code> 访问。</li>
+</ul>
+<h4>小结与钩子</h4>
+<p>useRouter 用于代码里跳转，useRoute 用于读取当前网址信息；<code>route</code> 是响应式的，网址变了模板自动更新。<strong>但还剩一个问题：</strong>任务有成百上千个，难道给每个任务都写一条路由？下一节用动态路由，让一条路由匹配一类网址。</p>
 <hr />
-<h3 id="知识点-k10-4动态路由与参数">知识点 K10-4：动态路由与参数</h3>
-<h4 id="定义-3">定义</h4>
-<p><strong>动态路由</strong>用 <code>:参数名</code> 匹配 URL 片段，如
-<code>/tasks/:id</code> 匹配 <code>/tasks/5</code>，参数通过
-<code>route.params.id</code> 获取。</p>
-<h4 id="用法-2">用法</h4>
-<pre class="javascript"><code>// src/router/index.js
+
+<h3 id='k10-4'>知识点 K10-4：动态路由与参数</h3>
+<h4>场景与痛点</h4>
+<p>回到 2.2 的痛点：任务有成百上千个，难道给每个任务都写一条路由？用动态组件则要自己维护 <code>taskId</code> 变量并层层传递。动态路由让<strong>一条路由匹配一类网址</strong>。</p>
+<h4>核心思想</h4>
+<p>路由表里写<strong>模板</strong>，网址里填<strong>具体值</strong>，像填空题：<code>/tasks/:id</code> 是题目，<code>/tasks/5</code> 是答案。</p>
+<h4>定义</h4>
+<p>路径中以 <code>:</code> 开头的片段是参数占位。<code>/tasks/:id</code> 能匹配 <code>/tasks/5</code>、<code>/tasks/8</code>，其中 <code>id</code> 的值可从 <code>route.params.id</code> 取到。</p>
+<pre class='javascript'><code>// src/router/index.js
 const routes = [
   {
     path: '/tasks/:id',
     component: () =&gt; import('../views/TaskDetail.vue'),
-    props: true // 把 params.id 作为 id prop 传入
+    props: true   // 把 params.id 作为 id 这个 prop 传给组件
   }
 ]</code></pre>
-<pre class="vue"><code>&lt;!-- TaskDetail.vue --&gt;
+<pre class='vue'><code>&lt;!-- TaskDetail.vue --&gt;
 &lt;template&gt;
-  &lt;p&gt;任务 ID：{{ props.id }}&lt;/p&gt;
+  &lt;section&gt;
+    &lt;h2&gt;任务详情&lt;/h2&gt;
+    &lt;p&gt;任务 ID：{{ id }}&lt;/p&gt;
+    &lt;p&gt;任务名称：{{ title }}&lt;/p&gt;
+  &lt;/section&gt;
 &lt;/template&gt;
 &lt;script setup&gt;
-const props = defineProps({
-  id: { type: String, required: true }
-})
+import { ref, watch } from 'vue'
+
+const props = defineProps({ id: { type: String, required: true } })
+const title = ref('')
+const tasks = { 5: '学习路由', 8: '完成导航练习' }   // 模拟数据
+
+// 同一个组件在 /tasks/5 与 /tasks/8 之间切换时不会重建，要监听 id 变化
+watch(() =&gt; props.id, (id) =&gt; {
+  title.value = tasks[id] || '任务不存在'
+}, { immediate: true })
 &lt;/script&gt;</code></pre>
-<h4 id="props-传参推荐">props 传参（推荐）</h4>
-<p><code>props: true</code> 让路由参数作为组件 props
-传入，组件与路由解耦。上面的 <code>TaskDetail.vue</code> 就是完整写法。</p>
-<h4 id="直接读取路由参数">直接读取路由参数（可选）</h4>
-<p>如果不使用 <code>props: true</code>，也可以在组件中直接读取当前路由：</p>
-<pre class="vue"><code>&lt;script setup&gt;
-import { useRoute } from &#39;vue-router&#39;
-const route = useRoute()
-&lt;/script&gt;
-&lt;template&gt;
-  &lt;p&gt;任务 ID：{{ route.params.id }}&lt;/p&gt;
-&lt;/template&gt;</code></pre>
-<p>两种方式不要在同一个示例里混用。URL 参数默认是字符串，如需数值请在业务代码中显式转换。</p>
-<h4 id="易错点-3">易错点</h4>
+<h4>应用场景与边界</h4>
+<p>适合“同一种页面、不同数据”的详情页，如任务详情、用户资料、文章页。如果两个页面结构本身不同，就应分别配置路由，不要硬用一个动态路由。</p>
+<h4>params 与 query</h4>
+<table>
+<thead><tr><th>类型</th><th>网址示例</th><th>定义方式</th><th>适合</th></tr></thead>
+<tbody>
+<tr><td>路径参数 params</td><td><code>/tasks/5</code></td><td>路由 path 中写 <code>:id</code></td><td>标识“是哪一个”资源（必需）</td></tr>
+<tr><td>查询参数 query</td><td><code>/projects?keyword=vue</code></td><td>无需预先声明，跳转时附带</td><td>筛选、搜索、分页（可选）</td></tr>
+</tbody>
+</table>
+<h4>两种取参方式</h4>
 <ul>
-<li><strong>参数名不一致</strong>：路由定义 <code>:id</code>，获取应用
-<code>route.params.id</code>。</li>
-<li><strong>多个动态段</strong>：<code>/users/:userId/posts/:postId</code>，分别取
-<code>params.userId</code>、<code>params.postId</code>。</li>
+<li><strong>props: true（推荐）</strong>：参数变成 props，组件不依赖路由，便于复用和测试。</li>
+<li><strong>useRoute</strong>：直接读 <code>route.params.id</code>，写法简单。</li>
 </ul>
-<h4 id="小结-3">小结</h4>
-<p>动态路由 <code>:参数名</code> 匹配 URL；<code>route.params</code>
-获取；<code>props: true</code> 解耦传参。</p>
+<p>URL 参数默认都是字符串，需要数值时请显式转换。</p>
+<h4>易错点</h4>
+<ul>
+<li><strong>参数名不一致</strong>：路由里写 <code>:id</code>，就必须读 <code>params.id</code>。</li>
+<li><strong>参数变化页面不更新</strong>：从 <code>/tasks/5</code> 到 <code>/tasks/8</code> 复用同一组件实例，生命周期不会重走，要用 watch 监听参数。</li>
+<li><strong>多个动态段</strong>：<code>/users/:userId/posts/:postId</code>，分别取 <code>params.userId</code>、<code>params.postId</code>。</li>
+</ul>
+<h4>小结与钩子</h4>
+<p>一条动态路由匹配一类网址；params 是必需标识，query 是可选条件；推荐 props: true，并注意用 watch 响应参数变化。<strong>但还剩一个问题：</strong>项目、任务、用户中心这些页面都要有同样的顶部标题和导航，难道每个页面都复制一遍？下一节用嵌套路由共享外壳。</p>
 <hr />
-<h3 id="知识点-k10-5嵌套路由">知识点 K10-5：嵌套路由</h3>
-<h4 id="定义-4">定义</h4>
-<p><strong>嵌套路由</strong>用 <code>children</code>
-配置子路由，在父组件内用子 <code>&lt;router-view&gt;</code>
-渲染，适合主从结构（如用户中心下有资料/密码子页）。</p>
-<h4 id="用法-3">用法</h4>
-<pre class="javascript"><code>const routes = [
+
+<h3 id='k10-5'>知识点 K10-5：嵌套路由</h3>
+<h4>场景与痛点</h4>
+<p>真实应用中，多个页面共享同一个外壳：顶部标题、导航栏始终不变，只有中间内容在换；“个人中心”内部还有“资料 / 修改密码”两个子页面。用动态组件需要自己层层嵌套判断，嵌套路由则直接用 <code>children</code> 描述这种父子关系。</p>
+<h4>核心思想</h4>
+<p>像<strong>相框里再嵌一个相框</strong>：父页面负责外壳，子页面只填充中间的内容。</p>
+<h4>定义</h4>
+<p>在父路由里用 <code>children</code> 配置子路由；父组件中放一个 <code>&lt;router-view&gt;</code> 作为<strong>子页面的出口</strong>。</p>
+<pre class='javascript'><code>const routes = [
   {
     path: '/user',
-    component: () =&gt; import('../views/UserLayout.vue'),
+    component: () =&gt; import('../views/User.vue'),
     children: [
-      { path: '', redirect: '/user/profile' }, // /user 自动进入 /user/profile
+      { path: '', redirect: '/user/profile' },   // 访问 /user 时自动进入资料页
       { path: 'profile', component: () =&gt; import('../views/UserProfile.vue') },
       { path: 'password', component: () =&gt; import('../views/ChangePassword.vue') }
     ]
   }
 ]</code></pre>
-<pre class="vue"><code>&lt;!-- UserLayout.vue --&gt;
+<pre class='vue'><code>&lt;!-- User.vue（父页面） --&gt;
 &lt;template&gt;
-  &lt;div class=&quot;user-layout&quot;&gt;
+  &lt;section&gt;
+    &lt;h2&gt;用户中心&lt;/h2&gt;
     &lt;nav&gt;
-      &lt;router-link to=&quot;/user/profile&quot;&gt;资料&lt;/router-link&gt;
-      &lt;router-link to=&quot;/user/password&quot;&gt;密码&lt;/router-link&gt;
+      &lt;router-link to='/user/profile'&gt;资料&lt;/router-link&gt;
+      &lt;router-link to='/user/password'&gt;修改密码&lt;/router-link&gt;
     &lt;/nav&gt;
-    &lt;router-view /&gt;          &lt;!-- 子路由渲染处 --&gt;
-  &lt;/div&gt;
+    &lt;router-view /&gt;   &lt;!-- 子路由在这里渲染 --&gt;
+  &lt;/section&gt;
 &lt;/template&gt;</code></pre>
-<h4 id="路径拼接规则">路径拼接规则</h4>
+<h4>路径拼接规则</h4>
 <ul>
-<li>子路由 path 以 <code>/</code> 开头：绝对路径，不与父拼接。</li>
-<li>子路由 path 不以 <code>/</code> 开头：相对，拼接父 path（如父
-<code>/user</code> + 子 <code>profile</code> =
-<code>/user/profile</code>）。</li>
+<li>子路由 path <strong>不以 <code>/</code> 开头</strong>：相对路径，拼接在父路径后（<code>/user</code> + <code>profile</code> = <code>/user/profile</code>）。</li>
+<li>子路由 path <strong>以 <code>/</code> 开头</strong>：绝对路径，不与父路径拼接。</li>
 </ul>
-<p>空字符串 <code>path: ''</code> 表示父路径本身的默认子路由；示例用绝对目标
-<code>redirect: '/user/profile'</code> 把 <code>/user</code> 导向已有的资料页，避免为同一页面重复配置两个路由。</p>
-<h4 id="易错点-4">易错点</h4>
+<h4>应用场景与边界</h4>
 <ul>
-<li><strong>忘在父组件写子
-<code>&lt;router-view&gt;</code></strong>：子路由无处渲染。</li>
-<li><strong>子 path 加了 <code>/</code> 但想拼接</strong>：以 /
-开头是绝对路径，不拼接。</li>
+<li>适合：后台系统的公共布局（顶栏 + 侧栏）、个人中心下的多个子页、设置页的多个标签。</li>
+<li>不适合：页面之间没有共同外壳时，用平级路由即可，不要为了嵌套而嵌套。</li>
+<li>与动态组件的分工：子页面有独立网址就用嵌套路由，仅页内局部切换仍用动态组件。</li>
 </ul>
-<h4 id="小结-4">小结</h4>
-<p>嵌套路由用 <code>children</code>，父组件内放子
-<code>&lt;router-view&gt;</code>；子 path 不以 / 开头则与父拼接。</p>
+<h4>易错点</h4>
+<ul>
+<li><strong>父组件忘写 <code>&lt;router-view&gt;</code></strong>：子页面无处渲染。</li>
+<li><strong>想拼接却给子 path 加了 <code>/</code></strong>：变成绝对路径，拼接失效。</li>
+</ul>
+<h4>小结与钩子</h4>
+<p>children 描述父子页面，父组件里的 router-view 显示子页面；子 path 不以 / 开头则与父路径拼接。<strong>但还剩一个问题：</strong>现在所有页面谁都能直接进入，没登录也能看项目列表。第 11 课用导航守卫解决。</p>
 <hr />
-<h2 id="三综合示例ctts-frontend-路由配置">三、综合示例：CTTS-Frontend
-路由配置</h2>
-<h3 id="31从零运行">3.1 从零运行</h3>
-<p>下面的案例从空目录创建一个完整的 Vue Router 项目，涵盖重定向、声明式导航、编程式导航、动态参数、查询参数、嵌套路由、404 和路由懒加载。</p>
+
+<h2 id='四综合示例'>四、综合示例：CTTS-Frontend 路由</h2>
+<h3 id='41-从零运行'>4.1 从零运行</h3>
+<p>下面的案例从空目录创建完整项目，把前面 5 个知识点串起来：重定向、声明式与编程式导航、动态参数、查询参数、嵌套路由（公共布局 + 用户中心）、404 和懒加载。</p>
 <ol>
-<li>执行 Vite 创建命令并安装依赖。</li>
-<li>用 3.2 的文件内容覆盖 <code>src/App.vue</code>、<code>src/main.js</code>，并创建
-<code>src/router</code>、<code>src/views</code> 中的文件。</li>
+<li>执行下面的命令创建项目并安装依赖。</li>
+<li>用 4.2 的内容覆盖 <code>src/App.vue</code>、<code>src/main.js</code>，并创建 <code>src/router</code>、<code>src/views</code> 中的文件。</li>
 <li>执行 <code>npm run dev</code>，打开终端显示的本地地址。</li>
-<li>依次验证根路径重定向、项目链接、任务动态参数、用户中心子路由、登录页和不存在路径。</li>
+<li>依次验证：根路径重定向、项目链接、任务动态参数、用户中心子路由、登录页、不存在的路径；再试一下刷新和浏览器后退。</li>
 </ol>
-<pre class="bash"><code>npm create vite@latest ctts-router -- --template vue
+<pre class='bash'><code>npm create vite@latest ctts-router -- --template vue
 cd ctts-router
 npm install
 npm install vue-router@4
 npm run dev</code></pre>
-<p>示例使用 <code>createWebHistory()</code>，Vite 开发服务器可直接运行；部署到生产服务器时，必须把未知路径回退到
-<code>index.html</code>，否则直接刷新 <code>/projects</code> 等地址可能返回 404。</p>
-<h3 id="32文件结构与完整代码">3.2 文件结构与完整代码</h3>
-<pre class="text"><code>src/
+<p>示例使用 <code>createWebHistory()</code>，开发服务器可直接运行；部署到生产服务器时，必须把未知路径回退到 <code>index.html</code>，否则直接刷新 <code>/projects</code> 等地址可能返回 404。</p>
+<h3 id='42-文件结构与完整代码'>4.2 文件结构与完整代码</h3>
+<pre class='text'><code>src/
 ├─ App.vue
 ├─ main.js
 ├─ router/
@@ -415,227 +497,197 @@ npm run dev</code></pre>
    ├─ UserProfile.vue
    ├─ ChangePassword.vue
    └─ NotFound.vue</code></pre>
-<p><strong>src/router/index.js：</strong>布局和页面组件都采用懒加载，根路径通过
-<code>redirect</code> 重定向到项目列表。</p>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createRouter<span class="op">,</span> createWebHistory } <span class="im">from</span> <span class="st">&#39;vue-router&#39;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> routes <span class="op">=</span> [</span>
-<span>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/&#39;</span><span class="op">,</span> <span class="dt">redirect</span><span class="op">:</span> <span class="st">&#39;/projects&#39;</span> }<span class="op">,</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/login&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/Login.vue&#39;</span>) }<span class="op">,</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/&#39;</span><span class="op">,</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/Layout.vue&#39;</span>)<span class="op">,</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">children</span><span class="op">:</span> [</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;projects&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/Projects.vue&#39;</span>) }<span class="op">,</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;tasks/:id&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/TaskDetail.vue&#39;</span>)<span class="op">,</span> <span class="dt">props</span><span class="op">:</span> <span class="kw">true</span> }<span class="op">,</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>      {</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;user&#39;</span><span class="op">,</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/User.vue&#39;</span>)<span class="op">,</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        <span class="dt">children</span><span class="op">:</span> [</span>
-<span>          { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span> <span class="dt">redirect</span><span class="op">:</span> <span class="st">&#39;/user/profile&#39;</span> }<span class="op">,</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>          { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;profile&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/UserProfile.vue&#39;</span>) }<span class="op">,</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>          { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;password&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/ChangePassword.vue&#39;</span>) }</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span>  { <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/:pathMatch(.*)*&#39;</span><span class="op">,</span> <span class="dt">component</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="im">import</span>(<span class="st">&#39;../views/NotFound.vue&#39;</span>) }</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> <span class="fu">createRouter</span>({</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  <span class="dt">history</span><span class="op">:</span> <span class="fu">createWebHistory</span>()<span class="op">,</span></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  routes</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> router</span></code></pre></div>
-<p><strong>Layout.vue（含导航与子 router-view）</strong>：</p>
-<pre class="vue"><code>&lt;template&gt;
-  &lt;div class=&quot;layout&quot;&gt;
+<p><strong>src/router/index.js：</strong>布局和页面组件均懒加载；根路径重定向到项目列表；最后一条通配路由负责 404。</p>
+<pre class='javascript'><code>import { createRouter, createWebHistory } from 'vue-router'
+
+const routes = [
+  { path: '/login', component: () =&gt; import('../views/Login.vue') },
+  {
+    path: '/',
+    component: () =&gt; import('../views/Layout.vue'),
+    redirect: '/projects',
+    children: [
+      { path: 'projects', component: () =&gt; import('../views/Projects.vue') },
+      { path: 'tasks/:id', component: () =&gt; import('../views/TaskDetail.vue'), props: true },
+      {
+        path: 'user',
+        component: () =&gt; import('../views/User.vue'),
+        children: [
+          { path: '', redirect: '/user/profile' },
+          { path: 'profile', component: () =&gt; import('../views/UserProfile.vue') },
+          { path: 'password', component: () =&gt; import('../views/ChangePassword.vue') }
+        ]
+      }
+    ]
+  },
+  { path: '/:pathMatch(.*)*', component: () =&gt; import('../views/NotFound.vue') }
+]
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes
+})
+
+export default router</code></pre>
+<p><strong>main.js：</strong></p>
+<pre class='javascript'><code>import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+
+createApp(App).use(router).mount('#app')</code></pre>
+<p><strong>App.vue：</strong>应用只剩一个出口，所有页面由路由决定。</p>
+<pre class='vue'><code>&lt;template&gt;
+  &lt;router-view /&gt;
+&lt;/template&gt;</code></pre>
+<p><strong>Layout.vue（公共外壳：标题 + 导航 + 子页面出口）：</strong></p>
+<pre class='vue'><code>&lt;template&gt;
+  &lt;div class='layout'&gt;
     &lt;header&gt;
       &lt;h1&gt;CTTS-Frontend&lt;/h1&gt;
     &lt;/header&gt;
     &lt;nav&gt;
-      &lt;router-link to=&quot;/projects&quot;&gt;项目&lt;/router-link&gt;
-      &lt;router-link to=&quot;/tasks/5?keyword=vue&quot;&gt;任务 5&lt;/router-link&gt;
-      &lt;router-link to=&quot;/user/profile&quot;&gt;个人中心&lt;/router-link&gt;
-      &lt;router-link to=&quot;/login&quot;&gt;登录页&lt;/router-link&gt;
+      &lt;router-link to='/projects'&gt;项目&lt;/router-link&gt;
+      &lt;router-link to='/tasks/5?keyword=vue'&gt;任务 5&lt;/router-link&gt;
+      &lt;router-link to='/user/profile'&gt;个人中心&lt;/router-link&gt;
+      &lt;router-link to='/login'&gt;登录页&lt;/router-link&gt;
     &lt;/nav&gt;
     &lt;main&gt;
-      &lt;router-view /&gt;      &lt;!-- 子页面渲染 --&gt;
+      &lt;router-view /&gt;   &lt;!-- 子页面渲染 --&gt;
     &lt;/main&gt;
   &lt;/div&gt;
 &lt;/template&gt;</code></pre>
 <p><strong>Projects.vue：</strong></p>
-<pre class="vue"><code>&lt;template&gt;
+<pre class='vue'><code>&lt;template&gt;
   &lt;section&gt;
     &lt;h2&gt;项目列表&lt;/h2&gt;
     &lt;p&gt;选择一个任务查看动态路由参数。&lt;/p&gt;
     &lt;ul&gt;
-      &lt;li&gt;&lt;router-link to=&quot;/tasks/5?keyword=vue&quot;&gt;任务 5：学习路由&lt;/router-link&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;router-link to=&quot;/tasks/8?keyword=router&quot;&gt;任务 8：完成导航练习&lt;/router-link&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;router-link to='/tasks/5?keyword=vue'&gt;任务 5：学习路由&lt;/router-link&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;router-link to='/tasks/8?keyword=router'&gt;任务 8：完成导航练习&lt;/router-link&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/section&gt;
 &lt;/template&gt;</code></pre>
-<p><strong>TaskDetail.vue（动态路由 + props）</strong>：</p>
-<pre class="vue"><code>&lt;template&gt;
+<p><strong>TaskDetail.vue（动态路由 + props + query）：</strong></p>
+<pre class='vue'><code>&lt;template&gt;
   &lt;section&gt;
     &lt;h2&gt;任务详情&lt;/h2&gt;
-    &lt;p&gt;任务 ID：{{ props.id }}&lt;/p&gt;
-    &lt;p&gt;查询关键词：{{ route.query.keyword || &#39;无&#39; }}&lt;/p&gt;
-    &lt;router-link to=&quot;/projects&quot;&gt;返回项目列表&lt;/router-link&gt;
+    &lt;p&gt;任务 ID：{{ id }}&lt;/p&gt;
+    &lt;p&gt;任务名称：{{ title }}&lt;/p&gt;
+    &lt;p&gt;查询关键词：{{ route.query.keyword || '无' }}&lt;/p&gt;
+    &lt;router-link to='/projects'&gt;返回项目列表&lt;/router-link&gt;
   &lt;/section&gt;
 &lt;/template&gt;
 &lt;script setup&gt;
-import { useRoute } from &#39;vue-router&#39;
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
-const props = defineProps({
-  id: { type: String, required: true }
-})
+const props = defineProps({ id: { type: String, required: true } })
 const route = useRoute()
+const title = ref('')
+const tasks = { 5: '学习路由', 8: '完成导航练习' }
+
+watch(() =&gt; props.id, (id) =&gt; {
+  title.value = tasks[id] || '任务不存在'
+}, { immediate: true })
 &lt;/script&gt;</code></pre>
-<p><strong>User.vue：</strong>用户父页面也必须有一个
-<code>&lt;router-view&gt;</code>，才能显示资料和密码子页面。</p>
-<pre class="vue"><code>&lt;template&gt;
+<p><strong>User.vue：</strong>用户父页面必须有 <code>&lt;router-view&gt;</code>，才能显示资料和密码子页面。</p>
+<pre class='vue'><code>&lt;template&gt;
   &lt;section&gt;
     &lt;h2&gt;用户中心&lt;/h2&gt;
     &lt;nav&gt;
-      &lt;router-link to=&quot;/user/profile&quot;&gt;资料&lt;/router-link&gt;
-      &lt;router-link to=&quot;/user/password&quot;&gt;修改密码&lt;/router-link&gt;
+      &lt;router-link to='/user/profile'&gt;资料&lt;/router-link&gt;
+      &lt;router-link to='/user/password'&gt;修改密码&lt;/router-link&gt;
     &lt;/nav&gt;
     &lt;router-view /&gt;
   &lt;/section&gt;
 &lt;/template&gt;</code></pre>
 <p><strong>UserProfile.vue：</strong></p>
-<pre class="vue"><code>&lt;template&gt;
+<pre class='vue'><code>&lt;template&gt;
   &lt;section&gt;
     &lt;h3&gt;个人资料&lt;/h3&gt;
     &lt;p&gt;这里是用户资料子页面。&lt;/p&gt;
   &lt;/section&gt;
 &lt;/template&gt;</code></pre>
 <p><strong>ChangePassword.vue：</strong></p>
-<pre class="vue"><code>&lt;template&gt;
+<pre class='vue'><code>&lt;template&gt;
   &lt;section&gt;
     &lt;h3&gt;修改密码&lt;/h3&gt;
-    &lt;label&gt;新密码：&lt;input type=&quot;password&quot; placeholder=&quot;请输入新密码&quot; /&gt;&lt;/label&gt;
+    &lt;label&gt;新密码：&lt;input type='password' placeholder='请输入新密码' /&gt;&lt;/label&gt;
   &lt;/section&gt;
 &lt;/template&gt;</code></pre>
-<p><strong>Login.vue：</strong></p>
-<pre class="vue"><code>&lt;template&gt;
+<p><strong>Login.vue（编程式导航）：</strong></p>
+<pre class='vue'><code>&lt;template&gt;
   &lt;section&gt;
     &lt;h2&gt;登录页&lt;/h2&gt;
     &lt;p&gt;本课只演示路由跳转，不接入真实登录接口。&lt;/p&gt;
-    &lt;router-link to=&quot;/projects&quot;&gt;模拟登录并进入项目&lt;/router-link&gt;
-  &lt;/section&gt;
-&lt;/template&gt;</code></pre>
-<p><strong>NotFound.vue：</strong></p>
-<pre class="vue"><code>&lt;template&gt;
-  &lt;section&gt;
-    &lt;h2&gt;页面不存在&lt;/h2&gt;
-    &lt;p&gt;当前地址：{{ route.fullPath }}&lt;/p&gt;
-    &lt;router-link to=&quot;/projects&quot;&gt;返回项目列表&lt;/router-link&gt;
+    &lt;button type='button' @click='login'&gt;模拟登录并进入项目&lt;/button&gt;
   &lt;/section&gt;
 &lt;/template&gt;
 &lt;script setup&gt;
-import { useRoute } from &#39;vue-router&#39;
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const login = () =&gt; router.replace('/projects')
+&lt;/script&gt;</code></pre>
+<p><strong>NotFound.vue：</strong></p>
+<pre class='vue'><code>&lt;template&gt;
+  &lt;section&gt;
+    &lt;h2&gt;页面不存在&lt;/h2&gt;
+    &lt;p&gt;当前地址：{{ route.fullPath }}&lt;/p&gt;
+    &lt;router-link to='/projects'&gt;返回项目列表&lt;/router-link&gt;
+  &lt;/section&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { useRoute } from 'vue-router'
 const route = useRoute()
 &lt;/script&gt;</code></pre>
-<p><strong>main.js</strong>：</p>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createApp } <span class="im">from</span> <span class="st">&#39;vue&#39;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> App <span class="im">from</span> <span class="st">&#39;./App.vue&#39;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> router <span class="im">from</span> <span class="st">&#39;./router&#39;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">createApp</span>(App)<span class="op">.</span><span class="fu">use</span>(router)<span class="op">.</span><span class="fu">mount</span>(<span class="st">&#39;#app&#39;</span>)</span></code></pre></div>
-<p><strong>App.vue</strong>：</p>
-<pre class="vue"><code>&lt;template&gt;
-  &lt;router-view /&gt;
-&lt;/template&gt;</code></pre>
-<p><strong>运行结果检查：</strong>访问 <code>/</code> 会重定向到
-<code>/projects</code>；点击任务后应显示 ID 和 query；在用户中心切换资料/密码时只更新子
-<code>router-view</code>；访问任意不存在路径会显示 404 页面。整个过程地址变化但页面不整页刷新。</p>
+<p><strong>运行结果检查：</strong>访问 <code>/</code> 会重定向到 <code>/projects</code>；点击任务后显示 ID、名称和 query；任务 5 与任务 8 之间切换，名称随之更新；在用户中心切换资料/密码只更新子 <code>router-view</code>；访问任意不存在的路径显示 404；整个过程地址变化但页面不整页刷新，刷新后仍停留在当前页，后退按钮可用。</p>
 <hr />
-<h2 id="四拓展阅读选学">四、拓展阅读（选学）</h2>
-<ol type="1">
-<li><strong>导航守卫</strong>（beforeEach）：第 11 次课详讲。</li>
+
+<h2 id='五拓展阅读选学'>五、拓展阅读（选学）</h2>
+<ol>
+<li><strong>导航守卫</strong>（beforeEach）：第 11 次课详讲，用于登录拦截。</li>
 <li><strong>路由元信息 meta</strong>：第 11 次课讲权限控制。</li>
-<li><strong>路由懒加载分组</strong>：<code>import(/* webpackChunkName */ './X.vue')</code>。</li>
+<li><strong>router-view 配合 keep-alive</strong>：想让路由页面切走后保留状态，可用 <code>&lt;router-view v-slot='{ Component }'&gt;&lt;keep-alive&gt;&lt;component :is='Component' /&gt;&lt;/keep-alive&gt;&lt;/router-view&gt;</code>，这正是动态组件与路由结合的写法。</li>
 </ol>
 <hr />
-<h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
-<div class="visual">
-  <div class="visual-title">图示 1：Vue Router 基础知识地图</div>
-  <div class="edu-diagram">
-    <div class="diagram-grid three">
-    <div class="diagram-card">
-      <strong>K10-1</strong>
-      <h4>概念与安装</h4>
-      <p>理解 SPA 路由、hash/history 模式，并用 <code>createRouter</code> 创建路由。</p>
-    </div>
-    <div class="diagram-card">
-      <strong>K10-2</strong>
-      <h4>配置与组件</h4>
-      <p>配置 routes，使用 <code>router-view</code> 和 <code>router-link</code> 承载页面切换。</p>
-    </div>
-    <div class="diagram-card">
-      <strong>K10-3</strong>
-      <h4>组合式 API</h4>
-      <p><code>useRouter</code> 负责跳转，<code>useRoute</code> 读取当前路由信息。</p>
-    </div>
-    <div class="diagram-card">
-      <strong>K10-4</strong>
-      <h4>动态路由</h4>
-      <p><code>:id</code> 携带参数，页面通过 params 或 props 获取数据。</p>
-    </div>
-    <div class="diagram-card">
-      <strong>K10-5</strong>
-      <h4>嵌套路由</h4>
-      <p>children 描述父子页面关系，子页面由子 <code>router-view</code> 显示。</p>
-    </div>
+
+<h2 id='六本节小结与知识结构图'>六、本节小结与知识结构图</h2>
+<div class='visual'>
+  <div class='visual-title'>图示 2：Vue Router 基础知识地图</div>
+  <div class='edu-diagram'>
+    <div class='diagram-grid three'>
+    <div class='diagram-card'><strong>K10-1</strong><h4>安装与改造</h4><p>用网址取代变量驱动组件；createRouter + .use(router)。</p></div>
+    <div class='diagram-card'><strong>K10-2</strong><h4>路由表与组件</h4><p>routes 登记页面，router-view 显示，router-link 导航。</p></div>
+    <div class='diagram-card'><strong>K10-3</strong><h4>组合式 API</h4><p>useRouter 负责跳转，useRoute 读取当前路由。</p></div>
+    <div class='diagram-card'><strong>K10-4</strong><h4>动态路由</h4><p>:id 匹配一类网址；params / query；props 传参。</p></div>
+    <div class='diagram-card'><strong>K10-5</strong><h4>嵌套路由</h4><p>children 描述父子页面，子页面由子 router-view 显示。</p></div>
     </div>
   </div>
 </div>
 <table>
-<thead>
-<tr>
-<th>要点</th>
-<th>一句话</th>
-</tr>
-</thead>
+<thead><tr><th>要点</th><th>一句话</th></tr></thead>
 <tbody>
-<tr>
-<td>创建</td>
-<td>createRouter + createWebHistory</td>
-</tr>
-<tr>
-<td>出口</td>
-<td><code>&lt;router-view&gt;</code></td>
-</tr>
-<tr>
-<td>导航</td>
-<td><code>&lt;router-link to&gt;</code> / router.push</td>
-</tr>
-<tr>
-<td>获取信息</td>
-<td>useRoute（params/query）</td>
-</tr>
-<tr>
-<td>动态路由</td>
-<td><code>:id</code> + props:true</td>
-</tr>
-<tr>
-<td>嵌套</td>
-<td>children + 子 router-view</td>
-</tr>
+<tr><td>为什么用路由</td><td>页面需要自己的网址：能刷新、分享、前进后退、带参数</td></tr>
+<tr><td>与动态组件的分工</td><td>路由管整页切换，动态组件管页内局部切换</td></tr>
+<tr><td>创建</td><td>createRouter + createWebHistory，main.js 中 .use(router)</td></tr>
+<tr><td>出口 / 导航</td><td>router-view / router-link 与 router.push</td></tr>
+<tr><td>获取信息</td><td>useRoute（params / query）</td></tr>
+<tr><td>动态路由</td><td>:id + props: true，参数变化用 watch</td></tr>
+<tr><td>嵌套</td><td>children + 父组件内子 router-view</td></tr>
 </tbody>
 </table>
 <hr />
-<h2 id="六复习思考题">六、复习思考题</h2>
-<ol type="1">
-<li>前端路由与后端路由的区别？SPA 如何实现页面切换？</li>
-<li>hash 与 history 模式的区别？如何选择？</li>
-<li>useRouter 与 useRoute 的区别？</li>
-<li>动态路由如何定义与获取参数？props:true 有何好处？</li>
-<li>嵌套路由如何配置？子 path 拼接规则是什么？</li>
+
+<h2 id='七复习思考题'>七、复习思考题</h2>
+<ol>
+<li>只用动态组件做多页面应用，会遇到哪些问题？Vue Router 是如何解决的？</li>
+<li>动态组件和 Vue Router 分别适合哪些场景？请各举一个例子，并说明判断依据。</li>
+<li>前端路由与后端路由的区别？hash 与 history 模式的区别？如何选择？</li>
+<li>为什么导航要用 router-link 而不是 a 标签？</li>
+<li>useRouter 与 useRoute 的区别？push 与 replace 的区别？</li>
+<li>动态路由如何定义与获取参数？props: true 有何好处？为什么从 /tasks/5 切到 /tasks/8 页面可能不更新？</li>
+<li>嵌套路由如何配置？子 path 的拼接规则是什么？</li>
 </ol>
 
       </article>
@@ -643,7 +695,3 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb15
   </div>
 </body>
 </html>
-
-
-
-

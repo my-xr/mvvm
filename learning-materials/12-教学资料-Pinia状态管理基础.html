@@ -1,510 +1,528 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang='zh-CN'>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
   <title>Pinia状态管理基础</title>
-  <link rel="stylesheet" href="assets/course-html.css">
-  <link rel="stylesheet" href="assets/highlight-local.css">
-  <script src="assets/vue-sfc-highlight.js" defer></script>
-  <script src="assets/course-html.js" defer></script>
+  <link rel='stylesheet' href='assets/course-html.css'>
+  <link rel='stylesheet' href='assets/highlight-local.css'>
+  <script src='assets/vue-sfc-highlight.js' defer></script>
+  <script src='assets/course-html.js' defer></script>
 </head>
 <body>
-  <a class="archive-home-link" href="index.html" aria-label="回到首页" title="回到首页">首页</a>
-  <header class="hero">
-    <div class="hero-inner">
-      <div class="course-name">MVVM前端框架开发技术</div>
-      <div class="kicker">第 12 次课 · 教学资料</div>
+  <a class='archive-home-link' href='index.html' aria-label='回到首页' title='回到首页'>首页</a>
+  <header class='hero'>
+    <div class='hero-inner'>
+      <div class='course-name'>MVVM前端框架开发技术</div>
+      <div class='kicker'>第 12 次课 · 教学资料</div>
       <h1>Pinia状态管理基础</h1>
       <p>学生复习资料与代码示例 ｜ 技术线：Vue 3 + Vite + SFC + Composition API</p>
-      <div class="hero-meta">
-        <span class="hero-chip"><b>课程</b>MVVM前端框架开发技术</span>
-        <span class="hero-chip"><b>课次</b>第 12 次课</span>
-        <span class="hero-chip"><b>主题</b>Pinia状态管理基础</span>
+      <div class='hero-meta'>
+        <span class='hero-chip'><b>课程</b>MVVM前端框架开发技术</span>
+        <span class='hero-chip'><b>课次</b>第 12 次课</span>
+        <span class='hero-chip'><b>主题</b>Pinia状态管理基础</span>
       </div>
     </div>
   </header>
-  <button class="toc-float-toggle" type="button">目录</button>
-  <div class="layout">
-    <aside class="sidebar" aria-label="页面目录">
-      <div class="toc-heading"><span>目录</span><button class="toc-toggle" type="button">收起</button></div>
+  <button class='toc-float-toggle' type='button'>目录</button>
+  <div class='layout'>
+    <aside class='sidebar' aria-label='页面目录'>
+      <div class='toc-heading'><span>目录</span><button class='toc-toggle' type='button'>收起</button></div>
       <ul>
-<li><a href="#一学习导读">一、学习导读</a>
+<li><a href='#一学习导读'>一、学习导读</a>
 <ul>
-<li><a href="#11-本节定位">1.1 本节定位</a></li>
-<li><a href="#12-先修基础">1.2 先修基础</a></li>
-<li><a href="#13-学习目标">1.3 学习目标</a></li>
+<li><a href='#11-本节定位'>1.1 本节定位：登录状态管不住</a></li>
+<li><a href='#12-先修基础'>1.2 先修基础</a></li>
+<li><a href='#13-学习目标'>1.3 学习目标</a></li>
 </ul></li>
-<li><a href="#二知识点详解">二、知识点详解</a>
+<li><a href='#二知识点详解'>二、知识点详解</a>
 <ul>
-<li><a href="#知识点-k12-1pinia-简介与对比-vuex">知识点 K12-1：Pinia 简介与对比 Vuex</a></li>
-<li><a href="#知识点-k12-2definestore-定义-store">知识点 K12-2：defineStore 定义 store</a></li>
-<li><a href="#知识点-k12-3state">知识点 K12-3：state</a></li>
-<li><a href="#知识点-k12-4getters">知识点 K12-4：getters</a></li>
-<li><a href="#知识点-k12-5actions">知识点 K12-5：actions</a></li>
+<li><a href='#k12-1'>K12-1：为什么需要状态管理</a></li>
+<li><a href='#k12-2'>K12-2：第一个 store：defineStore 与 state</a></li>
+<li><a href='#k12-3'>K12-3：修改 state 与 storeToRefs</a></li>
+<li><a href='#k12-4'>K12-4：getters 派生状态</a></li>
+<li><a href='#k12-5'>K12-5：actions 封装业务</a></li>
 </ul></li>
-<li><a href="#三综合示例ctts-frontend-userstore">三、综合示例：CTTS-Frontend userStore</a>
+<li><a href='#三综合示例'>三、综合示例：CTTS userStore</a>
 <ul>
+<li><a href='#31-从零运行'>3.1 从零运行</a></li>
+<li><a href='#32-文件结构与完整代码'>3.2 文件结构与完整代码</a></li>
 </ul></li>
-<li><a href="#四拓展阅读选学">四、拓展阅读（选学）</a>
-<ul>
-</ul></li>
-<li><a href="#五本节小结与知识结构图">五、本节小结与知识结构图</a>
-<ul>
-</ul></li>
-<li><a href="#六复习思考题">六、复习思考题</a>
-<ul>
-</ul></li>
+<li><a href='#四拓展阅读选学'>四、拓展阅读（选学）</a></li>
+<li><a href='#五本节小结与知识结构图'>五、本节小结与知识结构图</a></li>
+<li><a href='#六复习思考题'>六、复习思考题</a></li>
 </ul>
-
     </aside>
-    <main class="content">
-      <article class="article">
-        <p class="doc-meta"><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 12 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
+    <main class='content'>
+      <article class='article'>
+<p class='doc-meta'><strong>课程：</strong>MVVM前端框架开发技术 <span>｜</span> <strong>课次：</strong>第 12 次课 <span>｜</span> <strong>文档：</strong>教学资料</p>
 <blockquote>
-<p>学生复习资料 ｜
-配套：<code>教学设计.md</code>、<code>题库.md</code></p>
+<p>学生复习资料 ｜ 配套：<code>教学设计.md</code>、<code>题库.md</code></p>
 </blockquote>
 <hr />
-<h2 id="一学习导读">一、学习导读</h2>
-<h3 id="11-本节定位">1.1 本节定位</h3>
-<p>本节学习 Pinia 状态管理，解决多组件共享状态问题，是中大型 Vue
-应用的核心。</p>
-<h3 id="12-先修基础">1.2 先修基础</h3>
+
+<h2 id='一学习导读'>一、学习导读</h2>
+<h3 id='11-本节定位'>1.1 本节定位：登录状态管不住</h3>
+<p>第 11 课我们用 <code>localStorage</code> 临时保存登录状态，路由守卫读它来判断是否登录。但它有两个毛病：<strong>不是响应式的</strong>（写入后，页面上显示用户名的地方不会自动更新），而且每个组件都要自己读写、自己解析。</p>
+<p>请想象一个具体场景：页面顶部的 Header 要显示“当前用户”，登录页登录成功后，Header 应该立刻变化；退出登录时，所有用到用户信息的地方也要同时清空。这就是<strong>多个组件共享同一份数据</strong>的问题。</p>
+<p>本节围绕它展开：先看现有办法为什么撑不住（K12-1），再用 Pinia 建一个共享仓库（K12-2），学会安全地修改和读取（K12-3），然后加上派生数据（K12-4）和集中的业务方法（K12-5）。</p>
+<p class='course-boundary'><strong>课程边界：</strong>本课的 store 只保存在内存中，刷新页面会丢失；状态持久化、多个 store、store 之间互相调用、<code>$reset</code>、<code>$subscribe</code> 在第 13 课讲；真实登录接口在第 14 课 Axios 中接入，本课用定时器模拟异步请求。</p>
+<h3 id='12-先修基础'>1.2 先修基础</h3>
 <table>
-<thead>
-<tr>
-<th>先修知识</th>
-<th>程度</th>
-<th>说明</th>
-</tr>
-</thead>
+<thead><tr><th>先修知识</th><th>程度</th><th>说明</th></tr></thead>
 <tbody>
-<tr>
-<td>第 2~11 次课</td>
-<td>必须</td>
-<td>响应式、组件通信、路由</td>
-</tr>
+<tr><td>第 4 课 响应式（ref、computed）</td><td>必须</td><td>store 里的 state、getters 就是 ref 和 computed 的“共享版”</td></tr>
+<tr><td>第 7 课 props / emits</td><td>必须</td><td>用来说明“组件通信”为什么在多层组件里不够用</td></tr>
+<tr><td>第 9 课 provide / inject</td><td>必须</td><td>K12-1 中作为对比方案</td></tr>
+<tr><td>第 11 课 导航守卫与 localStorage 登录</td><td>必须</td><td>本课的出发点，后续课程会把守卫改为读 store</td></tr>
 </tbody>
 </table>
-<h3 id="13-学习目标">1.3 学习目标</h3>
+<h3 id='13-学习目标'>1.3 学习目标</h3>
 <ul>
-<li>✅ 掌握 Pinia store 定义</li>
-<li>✅ 掌握 state/getters/actions</li>
-<li>✅ 能创建 userStore 管理登录状态</li>
+<li>✅ 能说清哪些数据该放 Pinia、哪些该留在组件里</li>
+<li>✅ 会安装并挂载 Pinia，用 defineStore 创建 store</li>
+<li>✅ 会在组件中读取、修改 state，并用 storeToRefs 解构</li>
+<li>✅ 会用 getters 表示派生数据，用 actions 封装业务逻辑（含异步）</li>
+<li>✅ 能创建 userStore，让登录状态在多个组件间同步</li>
 </ul>
 <hr />
-<h2 id="二知识点详解">二、知识点详解</h2>
-<h3 id="知识点-k12-1pinia-简介与对比-vuex">知识点 K12-1：Pinia
-简介与对比 Vuex</h3>
-<h4 id="定义">定义</h4>
-<p><strong>Pinia</strong> 是 Vue 3 官方推荐的状态管理库，是 Vuex
-的继任者，更简洁、TS 友好、无 mutations。</p>
-<h4 id="pinia-vs-vuex">Pinia vs Vuex</h4>
+
+<h2 id='二知识点详解'>二、知识点详解</h2>
+
+<h3 id='k12-1'>知识点 K12-1：为什么需要状态管理</h3>
+<h4>场景与痛点</h4>
+<p>CTTS 的结构是：<code>App → Layout → Header</code>，同时 <code>App → Layout → Login 页</code>。登录页登录成功后，Header 要显示用户名，项目页也要根据角色显示按钮。<strong>登录页和 Header 不是父子关系，却要读写同一份用户信息。</strong></p>
+<h4>笨办法</h4>
 <table>
-<thead>
-<tr>
-<th>特性</th>
-<th>Vuex</th>
-<th>Pinia</th>
-</tr>
-</thead>
+<thead><tr><th>办法</th><th>怎么做</th><th>为什么撑不住</th></tr></thead>
 <tbody>
-<tr>
-<td>mutations</td>
-<td>必须通过 mutations 改 state</td>
-<td>无 mutations，直接改</td>
-</tr>
-<tr>
-<td>模块</td>
-<td>modules 嵌套</td>
-<td>每个 store 独立平级</td>
-</tr>
-<tr>
-<td>TS 支持</td>
-<td>较弱</td>
-<td>友好（源码 TS 重写）</td>
-</tr>
-<tr>
-<td>体积</td>
-<td>较大</td>
-<td>更小</td>
-</tr>
-<tr>
-<td>异步</td>
-<td>actions</td>
-<td>actions（无需 mutations）</td>
-</tr>
-<tr>
-<td>学习成本</td>
-<td>较高</td>
-<td>低</td>
-</tr>
+<tr><td>props + emit</td><td>数据放到共同的祖先，逐层 props 向下传、emit 向上通知</td><td>层级一深，中间组件被迫转发自己用不到的数据；兄弟组件之间要绕道祖先</td></tr>
+<tr><td>provide / inject</td><td>祖先 provide，后代 inject</td><td>数据从哪里来、谁在改它不清楚，修改规则分散；缺少统一的调试工具</td></tr>
+<tr><td>localStorage</td><td>各组件自己读写</td><td>不是响应式，写入后页面不会自动更新；每个组件各写一遍解析代码</td></tr>
 </tbody>
 </table>
-<h4 id="安装与挂载">安装与挂载</h4>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install pinia</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// main.js</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createApp } <span class="im">from</span> <span class="st">&#39;vue&#39;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createPinia } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> App <span class="im">from</span> <span class="st">&#39;./App.vue&#39;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">createApp</span>(App)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="fu">createPinia</span>())</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">mount</span>(<span class="st">&#39;#app&#39;</span>)</span></code></pre></div>
-<h4 id="小结">小结</h4>
-<p>Pinia 是 Vue3 官方推荐状态管理，无 mutations、TS 友好、store
-平级独立。</p>
-<hr />
-<h3 id="知识点-k12-2definestore-定义-store">知识点 K12-2：defineStore
-定义 store</h3>
-<h4 id="定义-1">定义</h4>
-<p><strong><code>defineStore</code></strong> 用于定义一个
-store，第一个参数是唯一 id，第二个是配置（state/getters/actions）。</p>
-<h4 id="用法">用法</h4>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/stores/user.js</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">token</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">userInfo</span><span class="op">:</span> <span class="kw">null</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">getters</span><span class="op">:</span> {</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">isLogin</span><span class="op">:</span> (state) <span class="kw">=&gt;</span> <span class="op">!!</span>state<span class="op">.</span><span class="at">token</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">actions</span><span class="op">:</span> {</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">login</span>(token) {</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">token</span> <span class="op">=</span> token</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">logout</span>() {</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">token</span> <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">userInfo</span> <span class="op">=</span> <span class="kw">null</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-<h4 id="组合式写法setup-store">组合式写法（Setup Store）</h4>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { ref<span class="op">,</span> computed } <span class="im">from</span> <span class="st">&#39;vue&#39;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> token <span class="op">=</span> <span class="fu">ref</span>(<span class="st">&#39;&#39;</span>)                       <span class="co">// state</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> isLogin <span class="op">=</span> <span class="fu">computed</span>(() <span class="kw">=&gt;</span> <span class="op">!!</span>token<span class="op">.</span><span class="at">value</span>) <span class="co">// getters</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> login <span class="op">=</span> (t) <span class="kw">=&gt;</span> { token<span class="op">.</span><span class="at">value</span> <span class="op">=</span> t }     <span class="co">// actions</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> { token<span class="op">,</span> isLogin<span class="op">,</span> login }</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-<p>两种写法等价，选项式更易上手，组合式更灵活。</p>
-<h4 id="小结-1">小结</h4>
-<p><code>defineStore('id', 配置)</code> 定义
-store；选项式（state/getters/actions）或组合式（ref/computed/函数）。</p>
-<hr />
-<h3 id="知识点-k12-3state">知识点 K12-3：state</h3>
-<h4 id="定义-2">定义</h4>
-<p><strong>state</strong> 是 store
-的数据源，用函数返回对象（保证每个实例独立）。</p>
-<h4 id="组件中读取与修改">组件中读取与修改</h4>
-<pre class="vue"><code>&lt;template&gt;
-  &lt;p&gt;Token：{{ userStore.token }}&lt;/p&gt;
-  &lt;p&gt;是否登录：{{ userStore.isLogin }}&lt;/p&gt;
-  &lt;button @click=&quot;userStore.login(&#39;abc&#39;)&quot;&gt;登录&lt;/button&gt;
-  &lt;button @click=&quot;userStore.token = &#39;abc&#39;&quot;&gt;直接改&lt;/button&gt;
-&lt;/template&gt;
+<h4>核心思想</h4>
+<p>把共享的数据从组件里<strong>搬出来</strong>，放进一个所有组件都能直接访问的<strong>公共仓库</strong>；谁用谁自己去取，谁改了所有人自动看到。</p>
+<h4>定义</h4>
+<p><strong>状态管理</strong>：把多个组件共享的数据（状态）放在组件之外统一存放、统一修改。<strong>Pinia</strong> 是 Vue 3 官方推荐的状态管理库。</p>
+<h4>最小示例：不用库也能“搬出来”</h4>
+<p>其实只靠第 4 课的 <code>ref</code> 就能理解这个思想：把 ref 定义在组件外面的 JS 文件里。</p>
+<pre class='javascript'><code>// src/shared/auth.js
+import { ref } from 'vue'
+export const token = ref('')   // 定义在组件外：所有导入它的组件共享同一个 ref</code></pre>
+<pre class='vue'><code>&lt;!-- 任意两个组件都这样用 --&gt;
+&lt;template&gt;&lt;p&gt;当前 token：{{ token || '未登录' }}&lt;/p&gt;&lt;/template&gt;
 &lt;script setup&gt;
-import { useUserStore } from &#39;../stores/user&#39;
-const userStore = useUserStore()
+import { token } from '../shared/auth'
 &lt;/script&gt;</code></pre>
-<h4 id="修改方式">修改方式</h4>
-<ol type="1">
-<li><strong>直接改</strong>：<code>userStore.token = 'abc'</code>（Pinia
-允许，不像 Vuex 需 mutation）。</li>
-<li><strong>$patch
-对象</strong>：<code>userStore.$patch({ token: 'abc', userInfo: {...} })</code>（批量改）。</li>
-<li><strong>$patch
-函数</strong>：<code>userStore.$patch(state =&gt; { state.token = 'abc' })</code>。</li>
-<li><strong>action</strong>：<code>userStore.login('abc')</code>。</li>
-</ol>
-<p class="note"><strong>实践建议：</strong>Pinia 允许直接修改 state，这是语法能力；
-涉及校验、接口、日志或多个字段联动时，业务代码应优先调用 action，避免组件到处散落修改规则。</p>
-<h4 id="解构保持响应式storetorefs">解构保持响应式（storeToRefs）</h4>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { storeToRefs } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
-<span id="cb6-import"><a href="#cb6-import" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { useUserStore } <span class="im">from</span> <span class="st">&#39;../stores/user&#39;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">useUserStore</span>()</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> { token<span class="op">,</span> isLogin } <span class="op">=</span> <span class="fu">storeToRefs</span>(userStore)   <span class="co">// 解构保持响应式</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">// 注意：actions 解构后直接用，不需 storeToRefs</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> { login } <span class="op">=</span> userStore</span></code></pre></div>
-<h4 id="易错点">易错点</h4>
+<p><strong>预期现象：</strong>在一个组件里执行 <code>token.value = 'abc'</code>，另一个组件的页面立刻变化，不需要 props，也不需要 localStorage。</p>
+<h4>前后对照</h4>
+<table>
+<thead><tr><th>逐层传递 / localStorage</th><th>共享仓库</th></tr></thead>
+<tbody>
+<tr><td>数据沿组件树走，中间层被迫参与</td><td>组件直接取，和位置无关</td></tr>
+<tr><td>localStorage 不响应</td><td>响应式，改了即更新</td></tr>
+<tr><td>读写代码到处都是</td><td>集中在一个文件</td></tr>
+</tbody>
+</table>
+<h4>应用场景与边界</h4>
 <ul>
-<li><strong>解构 state
-丢失响应式</strong>：<code>const { token } = userStore</code> 后 token
-不响应式，需 <code>storeToRefs</code>。</li>
-<li><strong>state
-用对象而非函数</strong>：<code>state: { token: '' }</code> 错误，必须
-<code>state: () =&gt; ({ token: '' })</code>。</li>
+<li><strong>适合放进共享仓库：</strong>登录用户信息、权限、购物车、主题/语言、全局的项目列表缓存——多个页面都要读或改的数据。</li>
+<li><strong>不适合：</strong>只有一个组件用的数据（表单草稿、弹窗开关、输入框内容）。不要什么都往仓库里放，否则仓库会变成难以维护的“全局变量堆”。</li>
+<li><strong>父子之间简单的数据传递</strong>仍然用 props / emits，更直接。</li>
 </ul>
-<h4 id="小结-2">小结</h4>
-<p>state 是数据源，用函数返回；可直接改或 $patch；解构用 storeToRefs
-保持响应式。</p>
+<h4>易错点</h4>
+<ul>
+<li><strong>把所有数据都放全局：</strong>→ 原因：觉得“放哪都能用”；→ 做法：先问“有几个组件需要它”，只有一个就留在组件内。</li>
+<li><strong>以为共享仓库能自动保存刷新：</strong>→ 内存里的数据刷新就没了，持久化是第 13 课的内容。</li>
+</ul>
+<h4>小结与钩子</h4>
+<p>共享数据放到组件之外统一管理，是状态管理的核心思想。<strong>但还剩一个问题：</strong>自己用 ref 搭出来的“仓库”没有统一的约定——数据放哪、怎么改、怎么调试、怎么分多个仓库，全靠自觉。下一节用官方的 Pinia 解决。</p>
 <hr />
-<h3 id="知识点-k12-4getters">知识点 K12-4：getters</h3>
-<h4 id="定义-3">定义</h4>
-<p><strong>getters</strong> 是基于 state 的计算状态，类似
-computed，有缓存。</p>
-<h4 id="用法-1">用法</h4>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-import"><a href="#cb7-import" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
-<span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">token</span><span class="op">:</span> <span class="st">&#39;abc&#39;</span><span class="op">,</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">userInfo</span><span class="op">:</span> { <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;张三&#39;</span><span class="op">,</span> <span class="dt">role</span><span class="op">:</span> <span class="st">&#39;admin&#39;</span> }</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">getters</span><span class="op">:</span> {</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">isLogin</span><span class="op">:</span> (state) <span class="kw">=&gt;</span> <span class="op">!!</span>state<span class="op">.</span><span class="at">token</span><span class="op">,</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">userName</span><span class="op">:</span> (state) <span class="kw">=&gt;</span> state<span class="op">.</span><span class="at">userInfo</span><span class="op">?.</span><span class="at">name</span> <span class="op">||</span> <span class="st">&#39;未登录&#39;</span><span class="op">,</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 访问其他 getter（不用 state，用 this）</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">greeting</span>() {</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="vs">`你好，</span><span class="sc">${</span><span class="kw">this</span><span class="op">.</span><span class="at">userName</span><span class="sc">}</span><span class="vs">`</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-<h4 id="组件中使用">组件中使用</h4>
-<pre class="vue"><code>&lt;script setup&gt;
+
+<h3 id='k12-2'>知识点 K12-2：第一个 store：defineStore 与 state</h3>
+<h4>场景与痛点</h4>
+<p>K12-1 的方案能共享数据，但项目里会有用户、项目、任务等很多类共享数据。每类都零散地定义 ref，命名和修改方式各不相同，团队协作时很难统一，也看不到数据是什么时候被谁改的。</p>
+<h4>核心思想</h4>
+<p>Pinia 把每一类共享数据装进一个有名字的<strong>store（仓库）</strong>。store 是一个用 <code>defineStore</code> 定义的“可共享的小模块”，组件通过 <code>useXxxStore()</code> 取到它。</p>
+<h4>定义</h4>
+<ul>
+<li><code>createPinia()</code>：创建 Pinia 实例，通过 <code>app.use()</code> 挂载到应用。</li>
+<li><code>defineStore('id', 配置)</code>：定义 store。第一个参数是<strong>全局唯一的 id</strong>，第二个是配置对象。</li>
+<li><code>state</code>：store 的数据，写成<strong>返回对象的函数</strong>。</li>
+</ul>
+<h4>最小示例</h4>
+<pre class='bash'><code>npm install pinia</code></pre>
+<pre class='javascript'><code>// src/main.js
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import App from './App.vue'
+
+createApp(App).use(createPinia()).mount('#app')</code></pre>
+<pre class='javascript'><code>// src/stores/user.js
+import { defineStore } from 'pinia'
+
+export const useUserStore = defineStore('user', {
+  state: () =&gt; ({ token: '', userInfo: null })   // 数据：函数返回对象
+})</code></pre>
+<pre class='vue'><code>&lt;!-- Header.vue：读取 --&gt;
+&lt;template&gt;&lt;span&gt;{{ userStore.token || '未登录' }}&lt;/span&gt;&lt;/template&gt;
+&lt;script setup&gt;
 import { useUserStore } from '../stores/user'
 const userStore = useUserStore()
 &lt;/script&gt;
-&lt;template&gt;
+
+&lt;!-- Login.vue：修改 --&gt;
+&lt;template&gt;&lt;button type='button' @click='login'&gt;登录&lt;/button&gt;&lt;/template&gt;
+&lt;script setup&gt;
+import { useUserStore } from '../stores/user'
+const userStore = useUserStore()
+const login = () =&gt; { userStore.token = 'abc' }
+&lt;/script&gt;</code></pre>
+<p><strong>预期现象：</strong>点击登录页的按钮，Header 里的文字立刻从“未登录”变成 <code>abc</code>。两个组件互不相识，却共享同一份数据。</p>
+<h4>前后对照</h4>
+<table>
+<thead><tr><th>K12-1 的 ref 仓库</th><th>Pinia store</th></tr></thead>
+<tbody>
+<tr><td>自己约定文件和命名</td><td><code>defineStore('user', ...)</code> 统一结构，id 即名字</td></tr>
+<tr><td>只有一个 ref</td><td>一个 store 可以装多份状态，并扩展出 getters、actions</td></tr>
+<tr><td>难以调试</td><td>支持 Vue Devtools，能看到 state 变化</td></tr>
+</tbody>
+</table>
+<h4>应用场景与边界</h4>
+<ul>
+<li>一类共享数据对应一个 store，例如 <code>user</code>、<code>project</code>，多个 store 的组织在第 13 课。</li>
+<li>store 文件放在 <code>src/stores/</code>，文件名与 id 保持一致，导出函数命名为 <code>useXxxStore</code>。</li>
+</ul>
+<h4>易错点</h4>
+<ul>
+<li><strong>忘记 <code>app.use(createPinia())</code>：</strong>→ 报“getActivePinia was called with no active Pinia”；→ 在 main.js 挂载。</li>
+<li><strong>state 写成对象而不是函数：</strong>→ <code>state: { token: '' }</code> 是错误的，必须 <code>state: () =&gt; ({ token: '' })</code>，这样每个应用实例的数据才互相独立。</li>
+<li><strong>两个 store 用了相同的 id：</strong>→ 会互相覆盖；→ id 必须唯一。</li>
+</ul>
+<h4>小结与钩子</h4>
+<p>createPinia 挂载，defineStore 定义，state 存数据，组件里 <code>useUserStore()</code> 取用。<strong>但还剩一个问题：</strong>上面的写法是直接 <code>userStore.token = 'abc'</code> 修改，修改方式有几种、各适合什么场景？解构取值又为什么会失去响应？下一节解决。</p>
+<hr />
+
+<h3 id='k12-3'>知识点 K12-3：修改 state 与 storeToRefs</h3>
+<h4>场景与痛点</h4>
+<p>登录成功后要同时更新 token 和用户信息两个字段；模板里写 <code>userStore.userInfo.username</code> 太长，想解构成 <code>username</code> 直接用，结果发现修改后页面不更新了。</p>
+<h4>核心思想</h4>
+<p>store 是一个响应式对象：<strong>通过 store 访问，永远是活的；一旦把值“拿出来”成普通变量，就断了联系</strong>。</p>
+<h4>定义：几种修改方式</h4>
+<table>
+<thead><tr><th>方式</th><th>写法</th><th>适合</th></tr></thead>
+<tbody>
+<tr><td>直接改</td><td><code>userStore.token = 'abc'</code></td><td>改一个字段，简单直接（Pinia 允许）</td></tr>
+<tr><td>$patch 对象</td><td><code>userStore.$patch({ token: 'abc', userInfo: { username: 'tom' } })</code></td><td>一次改多个字段</td></tr>
+<tr><td>$patch 函数</td><td><code>userStore.$patch(state =&gt; { state.token = 'abc' })</code></td><td>需要修改数组、复杂逻辑</td></tr>
+<tr><td>action</td><td><code>userStore.login(...)</code></td><td>带业务规则，见 K12-5</td></tr>
+</tbody>
+</table>
+<h4>最小示例：解构与 storeToRefs</h4>
+<pre class='vue'><code>&lt;template&gt;
+  &lt;p&gt;错误解构：{{ badToken }}&lt;/p&gt;
+  &lt;p&gt;正确解构：{{ token }}&lt;/p&gt;
+  &lt;button type='button' @click=&quot;userStore.$patch({ token: 'new-token' })&quot;&gt;批量修改&lt;/button&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { storeToRefs } from 'pinia'
+import { useUserStore } from '../stores/user'
+
+const userStore = useUserStore()
+const { token: badToken } = userStore       // 普通值：以后不再更新
+const { token } = storeToRefs(userStore)    // ref：保持响应式
+&lt;/script&gt;</code></pre>
+<p><strong>预期现象：</strong>点击按钮后，“正确解构”显示 <code>new-token</code>，“错误解构”仍停留在原值。</p>
+<h4>应用场景与边界</h4>
+<ul>
+<li>只改一个字段：直接改；改多个字段：<code>$patch</code>；涉及校验、请求或多个字段联动：写成 action（K12-5）。</li>
+<li>Pinia 允许组件直接改 state，这是语法能力，不代表应该到处改。规则散落在各组件里，以后很难找。</li>
+<li><code>storeToRefs</code> 只用于 state 和 getters；方法（actions）不是响应式数据，直接从 store 解构即可：<code>const { login } = userStore</code>。</li>
+</ul>
+<h4>易错点</h4>
+<ul>
+<li><strong>直接解构 state：</strong>→ 得到的是普通值，不再响应；→ 用 <code>storeToRefs</code>，或始终写 <code>userStore.token</code>。</li>
+<li><strong>在脚本里忘了 <code>.value</code>：</strong>→ <code>storeToRefs</code> 得到的是 ref，在 <code>&lt;script&gt;</code> 里要写 <code>token.value</code>，在模板里则自动解包。</li>
+</ul>
+<h4>小结与钩子</h4>
+<p>改 state 有直接改、$patch、action 三类；取值要么通过 store 访问，要么用 storeToRefs 解构。<strong>但还剩一个问题：</strong>“是否已登录”这种数据是由 token 推出来的，每个组件都写一遍 <code>!!userStore.token</code>，一旦判断规则变了（比如 token 为空串或 null），所有组件都要改。下一节用 getters 把派生数据集中起来。</p>
+<hr />
+
+<h3 id='k12-4'>知识点 K12-4：getters 派生状态</h3>
+<h4>场景与痛点</h4>
+<p>Header 要显示“你好，张三”，项目页要判断是否已登录，菜单要判断是否管理员。这些都是从 <code>token</code>、<code>userInfo</code> 推出来的，如果每个组件各写一遍，判断规则重复，改一处漏一处。</p>
+<h4>核心思想</h4>
+<p>getters 就是 store 里的 <strong>computed</strong>：规则写一次，所有组件直接用，依赖的数据不变就用缓存。</p>
+<h4>定义</h4>
+<p><code>getters</code> 是基于 state 计算出的派生值，参数是 <code>state</code>；有缓存；使用时像属性一样读取，不加括号。</p>
+<h4>最小示例</h4>
+<pre class='javascript'><code>export const useUserStore = defineStore('user', {
+  state: () =&gt; ({ token: '', userInfo: null }),
+  getters: {
+    isLogin: (state) =&gt; !!state.token,
+    username: (state) =&gt; state.userInfo?.username || '未登录',
+    // 访问其他 getter 要用 this，所以这里必须写成普通函数
+    greeting() {
+      return '你好，' + this.username
+    }
+  }
+})</code></pre>
+<pre class='vue'><code>&lt;template&gt;
   &lt;p&gt;{{ userStore.greeting }}&lt;/p&gt;
-&lt;/template&gt;</code></pre>
-<h4 id="易错点-1">易错点</h4>
+  &lt;p v-if='userStore.isLogin'&gt;已登录&lt;/p&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { useUserStore } from '../stores/user'
+const userStore = useUserStore()
+&lt;/script&gt;</code></pre>
+<p><strong>预期现象：</strong>未登录时显示“你好，未登录”；给 <code>userStore.userInfo</code> 赋值后，问候语自动变成用户名。</p>
+<h4>前后对照</h4>
+<table>
+<thead><tr><th>每个组件自己算</th><th>getters</th></tr></thead>
+<tbody>
+<tr><td>判断规则重复多处</td><td>规则只写在 store</td></tr>
+<tr><td>规则变化要改多处</td><td>改一处即可</td></tr>
+<tr><td>每次都重新计算</td><td>依赖不变时用缓存</td></tr>
+</tbody>
+</table>
+<h4>应用场景与边界</h4>
 <ul>
-<li><strong>getters 间互相访问</strong>：用
-<code>this</code>（不能用箭头函数访问 this，需普通函数）。</li>
-<li><strong>getters 依赖外部数据</strong>：getters 应只依赖
-state，不依赖外部变量。</li>
+<li>适合：是否登录、是否管理员、列表过滤结果、统计数量、拼接后的显示名称。</li>
+<li>getters 只负责“算出来”，<strong>不要在里面修改 state</strong>；要修改请用 action。</li>
+<li>只有一个组件用到的小计算，直接在该组件里写 computed 即可。</li>
 </ul>
-<h4 id="小结-3">小结</h4>
-<p>getters 是计算状态有缓存，类似 computed；getter 间互访用 this。</p>
-<hr />
-<h3 id="知识点-k12-5actions">知识点 K12-5：actions</h3>
-<h4 id="定义-4">定义</h4>
-<p><strong>actions</strong> 是 store
-的方法，可同步可异步，用于封装业务逻辑（如登录请求、修改状态）。</p>
-<h4 id="用法-2">用法</h4>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-import"><a href="#cb9-import" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
-<span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({ <span class="dt">token</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span> <span class="dt">userInfo</span><span class="op">:</span> <span class="kw">null</span> })<span class="op">,</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">actions</span><span class="op">:</span> {</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 同步</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">setToken</span>(token) {</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">token</span> <span class="op">=</span> token</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">logout</span>() {</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">token</span> <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">userInfo</span> <span class="op">=</span> <span class="kw">null</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 异步</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">async</span> <span class="fu">login</span>(credentials) {</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> res <span class="op">=</span> <span class="cf">await</span> <span class="fu">fetch</span>(<span class="st">&#39;/api/login&#39;</span><span class="op">,</span> {</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">method</span><span class="op">:</span> <span class="st">&#39;POST&#39;</span><span class="op">,</span></span>
-<span id="cb9-15a"><a href="#cb9-15a" aria-hidden="true" tabindex="-1"></a>        <span class="dt">headers</span><span class="op">:</span> { <span class="st">&#39;Content-Type&#39;</span><span class="op">:</span> <span class="st">&#39;application/json&#39;</span> }<span class="op">,</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="dt">body</span><span class="op">:</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(credentials)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>      })</span>
-<span id="cb9-18a"><a href="#cb9-18a" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="op">!</span>res<span class="op">.</span><span class="at">ok</span>) <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">Error</span>(<span class="st">&#39;登录请求失败（HTTP &#39;</span> <span class="op">+</span> res<span class="op">.</span><span class="at">status</span> <span class="op">+</span> <span class="st">&#39;）&#39;</span>)</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> data <span class="op">=</span> <span class="cf">await</span> res<span class="op">.</span><span class="fu">json</span>()</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">token</span> <span class="op">=</span> data<span class="op">.</span><span class="at">token</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">userInfo</span> <span class="op">=</span> data<span class="op">.</span><span class="at">userInfo</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> data</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-<h4 id="组件中调用">组件中调用</h4>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode vue"><code class="sourceCode vue"><span id="cb10-setup"><a href="#cb10-setup" aria-hidden="true" tabindex="-1"></a>&lt;script setup&gt;</span>
-<span id="cb10-import"><a href="#cb10-import" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { useUserStore } <span class="im">from</span> <span class="st">&#39;../stores/user&#39;</span></span>
-<span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> userStore <span class="op">=</span> <span class="fu">useUserStore</span>()</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> userStore<span class="op">.</span><span class="fu">login</span>({ <span class="dt">username</span><span class="op">:</span> <span class="st">&#39;admin&#39;</span><span class="op">,</span> <span class="dt">password</span><span class="op">:</span> <span class="st">&#39;123&#39;</span> })</span>
-<span id="cb10-end"><a href="#cb10-end" aria-hidden="true" tabindex="-1"></a>&lt;/script&gt;</span></code></pre></div>
-<h4 id="易错点-2">易错点</h4>
+<h4>易错点</h4>
 <ul>
-<li><strong>actions 中用 this</strong>：Pinia actions 用
-<code>this</code> 访问 state/getters，不能用箭头函数（this
-指向错）。</li>
-<li><strong>异步忘 await</strong>：组件调用异步 action 应 await。</li>
+<li><strong>getter 里用箭头函数又想用 this：</strong>→ 箭头函数的 this 不指向 store；→ 访问其他 getter 时写普通函数。</li>
+<li><strong>把 getter 当函数调用：</strong>→ <code>userStore.isLogin()</code> 报错；→ 直接读 <code>userStore.isLogin</code>。</li>
+<li><strong>getter 依赖外部变量：</strong>→ 外部变量变化时不会触发更新；→ getter 只依赖 state 和其他 getter。</li>
 </ul>
-<h4 id="小结-4">小结</h4>
-<p>actions 是方法，用 this 访问 state；可同步可异步，封装业务逻辑。</p>
+<h4>小结与钩子</h4>
+<p>getters 是 store 的 computed，集中派生规则、带缓存。<strong>但还剩一个问题：</strong>登录并不只是“给 token 赋值”，还要校验用户名、请求接口、保存用户信息、出错处理。这些步骤如果散在登录页里，Header、守卫、退出登录各写一套，很快对不上。下一节用 actions 集中业务逻辑。</p>
 <hr />
-<h2 id="三综合示例ctts-frontend-userstore">三、综合示例：CTTS-Frontend
-userStore</h2>
-<p><strong>src/stores/user.js</strong>：</p>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { defineStore } <span class="im">from</span> <span class="st">&#39;pinia&#39;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">readUserInfo</span>() {</span>
-<span id="cb11-2a"><a href="#cb11-2a" aria-hidden="true" tabindex="-1"></a>  <span class="kw">try</span> { <span class="cf">return</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;userInfo&#39;</span>) <span class="op">||</span> <span class="st">&#39;null&#39;</span>) } <span class="kw">catch</span> { <span class="cf">return</span> <span class="kw">null</span> }</span>
-<span id="cb11-2b"><a href="#cb11-2b" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useUserStore <span class="op">=</span> <span class="fu">defineStore</span>(<span class="st">&#39;user&#39;</span><span class="op">,</span> {</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">state</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">token</span><span class="op">:</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;token&#39;</span>) <span class="op">||</span> <span class="st">&#39;&#39;</span><span class="op">,</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">userInfo</span><span class="op">:</span> readUserInfo()</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">getters</span><span class="op">:</span> {</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">isLogin</span><span class="op">:</span> (state) <span class="kw">=&gt;</span> <span class="op">!!</span>state<span class="op">.</span><span class="at">token</span><span class="op">,</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">username</span><span class="op">:</span> (state) <span class="kw">=&gt;</span> state<span class="op">.</span><span class="at">userInfo</span><span class="op">?.</span><span class="at">username</span> <span class="op">||</span> <span class="st">&#39;未登录&#39;</span><span class="op">,</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">role</span><span class="op">:</span> (state) <span class="kw">=&gt;</span> state<span class="op">.</span><span class="at">userInfo</span><span class="op">?.</span><span class="at">role</span> <span class="op">||</span> <span class="st">&#39;guest&#39;</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">actions</span><span class="op">:</span> {</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">async</span> <span class="fu">login</span>(credentials) {</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>      <span class="co">// 简化：实际调后端接口（第 14 次课）</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> mockData <span class="op">=</span> {</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        <span class="dt">token</span><span class="op">:</span> <span class="st">&#39;fake-token-&#39;</span> <span class="op">+</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>()<span class="op">,</span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        <span class="dt">userInfo</span><span class="op">:</span> { <span class="dt">id</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">username</span><span class="op">:</span> credentials<span class="op">.</span><span class="at">username</span><span class="op">,</span> <span class="dt">role</span><span class="op">:</span> <span class="st">&#39;admin&#39;</span> }</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">token</span> <span class="op">=</span> mockData<span class="op">.</span><span class="at">token</span></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">userInfo</span> <span class="op">=</span> mockData<span class="op">.</span><span class="at">userInfo</span></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">&#39;token&#39;</span><span class="op">,</span> <span class="kw">this</span><span class="op">.</span><span class="at">token</span>)</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">&#39;userInfo&#39;</span><span class="op">,</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(<span class="kw">this</span><span class="op">.</span><span class="at">userInfo</span>))</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">logout</span>() {</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">token</span> <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">userInfo</span> <span class="op">=</span> <span class="kw">null</span></span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">removeItem</span>(<span class="st">&#39;token&#39;</span>)</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>      localStorage<span class="op">.</span><span class="fu">removeItem</span>(<span class="st">&#39;userInfo&#39;</span>)</span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-<p><strong>Login.vue 使用</strong>：</p>
-<pre class="vue"><code>&lt;template&gt;
-  &lt;form @submit.prevent=&quot;onLogin&quot;&gt;
-    &lt;input v-model=&quot;form.username&quot; placeholder=&quot;用户名&quot; /&gt;
-    &lt;input v-model=&quot;form.password&quot; type=&quot;password&quot; placeholder=&quot;密码&quot; /&gt;
-    &lt;button type=&quot;submit&quot;&gt;登录&lt;/button&gt;
+
+<h3 id='k12-5'>知识点 K12-5：actions 封装业务</h3>
+<h4>场景与痛点</h4>
+<p>登录需要：校验输入 → 发请求（异步）→ 成功后同时写 token 和用户信息；退出需要同时清空两项。如果这些步骤写在 Login.vue 里，别的组件想退出登录时只能复制一遍。</p>
+<h4>核心思想</h4>
+<p>actions 就是 store 里的<strong>方法</strong>：把“怎么改数据”连同业务规则一起放进仓库，组件只负责调用，不关心细节。</p>
+<h4>定义</h4>
+<p><code>actions</code> 是 store 的方法，可以同步也可以异步（<code>async</code>），通过 <code>this</code> 访问 state、getters 和其他 actions。</p>
+<h4>最小示例</h4>
+<pre class='javascript'><code>export const useUserStore = defineStore('user', {
+  state: () =&gt; ({ token: '', userInfo: null }),
+  actions: {
+    // 同步
+    logout() {
+      this.token = ''
+      this.userInfo = null
+    },
+    // 异步：用定时器模拟网络请求，第 14 课换成真实接口
+    async login(credentials) {
+      if (!credentials.username) throw new Error('请输入用户名')
+      await new Promise((resolve) =&gt; setTimeout(resolve, 500))
+      this.token = 'fake-token-' + Date.now()
+      this.userInfo = { id: 1, username: credentials.username, role: 'admin' }
+    }
+  }
+})</code></pre>
+<pre class='vue'><code>&lt;script setup&gt;
+import { useUserStore } from '../stores/user'
+const userStore = useUserStore()
+
+const onLogin = async () =&gt; {
+  try {
+    await userStore.login({ username: 'tom' })   // 异步 action 要 await
+  } catch (e) {
+    alert(e.message)
+  }
+}
+&lt;/script&gt;</code></pre>
+<p><strong>预期现象：</strong>点击登录约 0.5 秒后，Header 显示用户名；传空用户名时弹出“请输入用户名”，state 不会被修改。</p>
+<h4>前后对照</h4>
+<table>
+<thead><tr><th>组件里直接改 state</th><th>action</th></tr></thead>
+<tbody>
+<tr><td>登录逻辑只在登录页</td><td>任何组件调用 <code>userStore.login</code> 都一致</td></tr>
+<tr><td>多个字段联动容易漏改</td><td>一个方法里统一改完</td></tr>
+<tr><td>难以统一处理错误</td><td>错误规则写在 action 里</td></tr>
+</tbody>
+</table>
+<h4>应用场景与边界</h4>
+<ul>
+<li>适合：登录/退出、加入购物车、请求列表并保存、涉及多个字段联动的修改。</li>
+<li>简单到一行的赋值（比如切换主题颜色），直接改 state 或 $patch 就够了，不必为每个字段都写 action。</li>
+<li>action 不是 getter：它可以修改 state、可以异步；getter 只能读和计算。</li>
+</ul>
+<h4>易错点</h4>
+<ul>
+<li><strong>actions 里用箭头函数：</strong>→ <code>this</code> 指向错误，取不到 state；→ 用方法简写 <code>login() { ... }</code>。</li>
+<li><strong>异步 action 忘了 await：</strong>→ 登录还没完成就继续执行，读到的仍是旧状态；→ 调用处 <code>await</code>，并用 try/catch 处理异常。</li>
+<li><strong>action 出错却没人处理：</strong>→ 异常默认会向上抛出；→ 在调用处 catch 并提示用户。</li>
+</ul>
+<h4>小结</h4>
+<p>actions 是 store 的方法，用 <code>this</code> 访问数据，可同步可异步，让业务规则集中在仓库里。至此 userStore 具备了数据（state）、派生（getters）、行为（actions），下面把它们整合到 CTTS 里。</p>
+<hr />
+
+<h2 id='三综合示例'>三、综合示例：CTTS userStore</h2>
+<h3 id='31-从零运行'>3.1 从零运行</h3>
+<p>本例新建一个小项目，把 K12-1 的痛点真正解决掉：登录页登录后，Header 无需刷新立即显示用户名；退出后立即恢复“未登录”。</p>
+<ol>
+<li>创建项目并安装 Pinia（命令见下）。</li>
+<li>按 3.2 创建文件，覆盖 <code>src/main.js</code>、<code>src/App.vue</code>。</li>
+<li>执行 <code>npm run dev</code>，输入用户名点击登录：约 0.5 秒后 Header 显示用户名和“退出”按钮。</li>
+<li>不输入用户名直接登录：弹出错误提示，Header 不变。</li>
+<li>点击退出：Header 立即恢复“未登录”。</li>
+<li>登录后刷新页面：状态消失，这是预期的，也是第 13 课持久化要解决的问题。</li>
+</ol>
+<pre class='bash'><code>npm create vite@latest ctts-pinia -- --template vue
+cd ctts-pinia
+npm install
+npm install pinia
+npm run dev</code></pre>
+<h3 id='32-文件结构与完整代码'>3.2 文件结构与完整代码</h3>
+<pre class='text'><code>src/
+├─ main.js
+├─ App.vue
+├─ stores/
+│  └─ user.js
+└─ components/
+   ├─ Login.vue
+   └─ UserHeader.vue</code></pre>
+<p><strong>src/main.js：</strong></p>
+<pre class='javascript'><code>import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import App from './App.vue'
+
+createApp(App).use(createPinia()).mount('#app')</code></pre>
+<p><strong>src/stores/user.js：</strong>state、getters、actions 三者齐全。</p>
+<pre class='javascript'><code>import { defineStore } from 'pinia'
+
+export const useUserStore = defineStore('user', {
+  state: () =&gt; ({
+    token: '',
+    userInfo: null
+  }),
+  getters: {
+    isLogin: (state) =&gt; !!state.token,
+    username: (state) =&gt; state.userInfo?.username || '未登录',
+    role: (state) =&gt; state.userInfo?.role || 'guest'
+  },
+  actions: {
+    async login(credentials) {
+      if (!credentials.username) throw new Error('请输入用户名')
+      // 简化：用定时器模拟请求，真实接口在第 14 课接入
+      await new Promise((resolve) =&gt; setTimeout(resolve, 500))
+      this.token = 'fake-token-' + Date.now()
+      this.userInfo = { id: 1, username: credentials.username, role: 'admin' }
+    },
+    logout() {
+      this.token = ''
+      this.userInfo = null
+    }
+  }
+})</code></pre>
+<p><strong>src/components/Login.vue：</strong></p>
+<pre class='vue'><code>&lt;template&gt;
+  &lt;form @submit.prevent='onLogin'&gt;
+    &lt;input v-model='form.username' placeholder='用户名' /&gt;
+    &lt;input v-model='form.password' type='password' placeholder='密码（本课不校验）' /&gt;
+    &lt;button type='submit'&gt;登录&lt;/button&gt;
   &lt;/form&gt;
 &lt;/template&gt;
 &lt;script setup&gt;
-import { reactive } from &#39;vue&#39;
-import { useUserStore } from &#39;../stores/user&#39;
-const form = reactive({ username: &#39;&#39;, password: &#39;&#39; })
+import { reactive } from 'vue'
+import { useUserStore } from '../stores/user'
+
+const form = reactive({ username: '', password: '' })
 const userStore = useUserStore()
+
 const onLogin = async () =&gt; {
-  await userStore.login(form)
-  alert(&#39;登录成功，可刷新页面验证持久化&#39;)
+  try {
+    await userStore.login(form)
+  } catch (e) {
+    alert(e.message)
+  }
 }
 &lt;/script&gt;</code></pre>
-<p><strong>Header 显示用户</strong>：</p>
-<pre class="vue"><code>&lt;template&gt;
+<p><strong>src/components/UserHeader.vue：</strong></p>
+<pre class='vue'><code>&lt;template&gt;
   &lt;header&gt;
-    &lt;span&gt;{{ userStore.username }}&lt;/span&gt;
-    &lt;button v-if=&quot;userStore.isLogin&quot; @click=&quot;userStore.logout&quot;&gt;退出&lt;/button&gt;
+    &lt;span&gt;{{ userStore.username }}（{{ userStore.role }}）&lt;/span&gt;
+    &lt;button v-if='userStore.isLogin' type='button' @click='userStore.logout'&gt;退出&lt;/button&gt;
   &lt;/header&gt;
 &lt;/template&gt;
 &lt;script setup&gt;
-import { useUserStore } from &#39;../stores/user&#39;
+import { useUserStore } from '../stores/user'
 const userStore = useUserStore()
 &lt;/script&gt;</code></pre>
-<p><strong>src/App.vue</strong>（本课不依赖路由，直接挂载两个组件）：</p>
-<pre class="vue"><code>&lt;script setup&gt;
-import Login from &#39;./components/Login.vue&#39;
-import UserHeader from &#39;./components/UserHeader.vue&#39;
+<p><strong>src/App.vue：</strong>本课不依赖路由，直接挂载两个互不相关的组件。</p>
+<pre class='vue'><code>&lt;script setup&gt;
+import Login from './components/Login.vue'
+import UserHeader from './components/UserHeader.vue'
 &lt;/script&gt;
 
 &lt;template&gt;
   &lt;UserHeader /&gt;
   &lt;Login /&gt;
 &lt;/template&gt;</code></pre>
-<p><strong>运行方式</strong>：将 Login.vue 与 Header 示例分别保存为
-<code>src/components/Login.vue</code> 和 <code>src/components/UserHeader.vue</code>，
-并按上面的 <code>main.js</code> 挂载 Pinia。登录后刷新页面，Header 仍显示用户名；
-点击退出后应清空持久化数据。示例中的 <code>localStorage</code> 只用于课堂演示，
-真实项目不要保存密码，令牌安全应由后端与 HttpOnly Cookie 等方案共同设计。</p>
+<p><strong>运行结果检查：</strong>Login 与 UserHeader 没有父子关系，也没有 props 或 emit，登录后 Header 却立即更新，说明两者共享了同一个 store；规则（是否登录、显示名、登录和退出）全部集中在 <code>user.js</code> 里。对比第 11 课的 localStorage 方案：那里写入后 Header 不会自动更新。刷新页面后状态消失，下一课解决。真实项目不要在前端保存密码，令牌安全需要后端与 HttpOnly Cookie 等方案共同设计。</p>
 <hr />
-<h2 id="四拓展阅读选学">四、拓展阅读（选学）</h2>
-<ol type="1">
-<li><strong>store 间互相调用</strong>：在 action 中
-<code>useXxxStore()</code>（第 13 次课）。</li>
-<li><strong>$reset 重置
-state</strong>：<code>userStore.$reset()</code>。</li>
-<li><strong>$subscribe 监听 state 变化</strong>：类似 watch。</li>
+
+<h2 id='四拓展阅读选学'>四、拓展阅读（选学）</h2>
+<ol>
+<li><strong>组合式写法（Setup Store）：</strong><code>defineStore('user', () =&gt; { const token = ref(''); const isLogin = computed(() =&gt; !!token.value); const login = (t) =&gt; { token.value = t }; return { token, isLogin, login } })</code>。ref 对应 state，computed 对应 getters，函数对应 actions，与选项式等价，更灵活。</li>
+<li><strong>Pinia 与 Vuex：</strong>Vuex 是 Vue 2 时代的状态库，Pinia 是它的继任者，主要区别如下表。</li>
+<li><strong>下一课内容：</strong>状态持久化（刷新不丢）、多个 store、store 之间互相调用、<code>$reset</code> 和 <code>$subscribe</code>。</li>
 </ol>
+<table>
+<thead><tr><th>特性</th><th>Vuex</th><th>Pinia</th></tr></thead>
+<tbody>
+<tr><td>修改状态</td><td>必须通过 mutations</td><td>无 mutations，可直接改或用 action</td></tr>
+<tr><td>模块</td><td>modules 嵌套</td><td>每个 store 平级独立</td></tr>
+<tr><td>TypeScript</td><td>支持较弱</td><td>友好</td></tr>
+<tr><td>学习成本</td><td>较高</td><td>较低</td></tr>
+</tbody>
+</table>
 <hr />
-<h2 id="五本节小结与知识结构图">五、本节小结与知识结构图</h2>
-<div class="visual">
-  <div class="visual-title">图示 1：Pinia 基础知识地图</div>
-  <div class="edu-diagram">
-    <div class="diagram-grid three">
-    <div class="diagram-card">
-      <strong>K12-1</strong>
-      <h4>Pinia 简介</h4>
-      <p>Vue3 推荐状态库，没有 mutations，写法比 Vuex 更轻。</p>
-    </div>
-    <div class="diagram-card">
-      <strong>K12-2</strong>
-      <h4>defineStore</h4>
-      <p>通过 id 加配置创建 store，支持选项式和组合式写法。</p>
-    </div>
-    <div class="diagram-card">
-      <strong>K12-3</strong>
-      <h4>state</h4>
-      <p>状态由函数返回，可直接修改或用 <code>$patch</code> 批量更新。</p>
-    </div>
-    <div class="diagram-card">
-      <strong>K12-4</strong>
-      <h4>getters</h4>
-      <p>类似计算属性，缓存派生状态，也能在 getter 间互访。</p>
-    </div>
-    <div class="diagram-card">
-      <strong>K12-5</strong>
-      <h4>actions</h4>
-      <p>封装业务方法，可通过 this 访问状态，也支持异步请求。</p>
-    </div>
+
+<h2 id='五本节小结与知识结构图'>五、本节小结与知识结构图</h2>
+<div class='visual'>
+  <div class='visual-title'>图示 1：本课问题链</div>
+  <div class='edu-diagram'>
+    <div class='diagram-grid three'>
+    <div class='diagram-card'><strong>K12-1</strong><h4>为什么需要状态管理</h4><p>多个组件共享数据？把数据搬出组件，放进公共仓库。</p></div>
+    <div class='diagram-card'><strong>K12-2</strong><h4>defineStore 与 state</h4><p>仓库没有统一约定？用 store 装数据，组件 useXxxStore() 取用。</p></div>
+    <div class='diagram-card'><strong>K12-3</strong><h4>修改与 storeToRefs</h4><p>怎么改、怎么取？直接改 / $patch / action；解构用 storeToRefs。</p></div>
+    <div class='diagram-card'><strong>K12-4</strong><h4>getters</h4><p>派生规则重复？store 里的 computed，写一次处处用。</p></div>
+    <div class='diagram-card'><strong>K12-5</strong><h4>actions</h4><p>业务逻辑分散？把登录、退出等方法放进 store，可异步。</p></div>
     </div>
   </div>
 </div>
 <table>
-<thead>
-<tr>
-<th>要点</th>
-<th>一句话</th>
-</tr>
-</thead>
+<thead><tr><th>要点</th><th>一句话</th></tr></thead>
 <tbody>
-<tr>
-<td>Pinia</td>
-<td>Vue3 官方推荐，无 mutations</td>
-</tr>
-<tr>
-<td>定义</td>
-<td>defineStore('id', {state,getters,actions})</td>
-</tr>
-<tr>
-<td>state</td>
-<td>函数返回，直接改</td>
-</tr>
-<tr>
-<td>解构</td>
-<td>storeToRefs 保持响应式</td>
-</tr>
-<tr>
-<td>getters</td>
-<td>类似 computed</td>
-</tr>
-<tr>
-<td>actions</td>
-<td>用 this，可异步</td>
-</tr>
+<tr><td>为什么用</td><td>多组件共享的数据放到组件外统一管理；只有单个组件用的留在组件里</td></tr>
+<tr><td>创建</td><td>createPinia + app.use；defineStore('唯一id', 配置)</td></tr>
+<tr><td>state</td><td>函数返回对象；直接改、$patch、action 三类修改方式</td></tr>
+<tr><td>解构</td><td>state / getters 用 storeToRefs，actions 直接解构</td></tr>
+<tr><td>getters</td><td>store 的 computed，只读、有缓存，用 this 访问其他 getter</td></tr>
+<tr><td>actions</td><td>store 的方法，用 this，可异步，调用处 await</td></tr>
+<tr><td>边界</td><td>本课 store 只在内存，刷新即丢，持久化见第 13 课</td></tr>
 </tbody>
 </table>
 <hr />
-<h2 id="六复习思考题">六、复习思考题</h2>
-<ol type="1">
-<li>Pinia 相比 Vuex 有哪些优势？</li>
-<li>state、getters、actions 分别对应什么？</li>
-<li>解构 store 状态为什么要用 storeToRefs？</li>
-<li>actions 中如何访问 state？能用箭头函数吗？</li>
-<li>哪些数据应该放 Pinia，哪些放组件本地？</li>
+
+<h2 id='六复习思考题'>六、复习思考题</h2>
+<ol>
+<li>只用 props / emit、provide / inject 或 localStorage 共享登录状态，分别会遇到什么问题？状态管理是怎样解决的？</li>
+<li>哪些数据应该放 Pinia，哪些应该留在组件里？请各举两个例子，并说明判断依据。</li>
+<li>为什么 state 必须写成函数？忘记 <code>app.use(createPinia())</code> 会出现什么现象？</li>
+<li>修改 state 有哪几种方式？分别适合什么场景？为什么业务代码推荐优先用 action？</li>
+<li>解构 store 的状态为什么会失去响应式？应该怎么写？actions 需要用 storeToRefs 吗？</li>
+<li>getters 与组件里的 computed 有什么异同？什么时候该写成 getter？</li>
+<li>actions 中如何访问 state？能用箭头函数吗？异步 action 在调用处要注意什么？</li>
 </ol>
 
       </article>
@@ -512,7 +530,3 @@ state</strong>：<code>userStore.$reset()</code>。</li>
   </div>
 </body>
 </html>
-
-
-
-
